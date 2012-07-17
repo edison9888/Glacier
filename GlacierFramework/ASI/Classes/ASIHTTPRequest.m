@@ -23,6 +23,9 @@
 #import "ASIDataDecompressor.h"
 #import "ASIDataCompressor.h"
 
+// Max net work operation count
+#define MaxConcurrentOperationCount 4 
+
 // Automatically set on build
 NSString *ASIHTTPRequestVersion = @"v1.8.1-61 2011-09-19";
 
@@ -270,7 +273,7 @@ static NSOperationQueue *sharedQueue = nil;
 		ASIUnableToCreateRequestError = [[NSError alloc] initWithDomain:NetworkRequestErrorDomain code:ASIUnableToCreateRequestErrorType userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Unable to create request (bad url?)",NSLocalizedDescriptionKey,nil]];
 		ASITooMuchRedirectionError = [[NSError alloc] initWithDomain:NetworkRequestErrorDomain code:ASITooMuchRedirectionErrorType userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"The request failed because it redirected too many times",NSLocalizedDescriptionKey,nil]];
 		sharedQueue = [[NSOperationQueue alloc] init];
-		[sharedQueue setMaxConcurrentOperationCount:4];
+		[sharedQueue setMaxConcurrentOperationCount:MaxConcurrentOperationCount];
 
 	}
 }

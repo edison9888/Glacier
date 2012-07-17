@@ -83,7 +83,7 @@ static SQLiteInstanceManager *sharedSQLiteManager = nil;
 	if (first || database == NULL)
 	{
 		first = NO;
-        sqlite3_config(SQLITE_CONFIG_SINGLETHREAD);
+        sqlite3_config(SQLITE_CONFIG_SERIALIZED);
 		if (!sqlite3_open([[self databaseFilepath] UTF8String], &database) == SQLITE_OK) 
 		{
 			// Even though the open failed, call close to properly clean up resources.
