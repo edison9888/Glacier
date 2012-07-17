@@ -49,29 +49,29 @@
 		DD865DDB15B1C8C800817FE9 /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = DD865DD915B1C8C800817FE9 /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD865DDC15B1C8C800817FE9 /* JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = DD865DDA15B1C8C800817FE9 /* JSONObject.m */; };
 		DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD87036415AF1BBA0067B66C /* Foundation.framework */; };
-		DD8703A515AF20850067B66C /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038A15AF20420067B66C /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703A515AF20850067B66C /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038A15AF20420067B66C /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703A615AF20850067B66C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87038B15AF20420067B66C /* ASIAuthenticationDialog.m */; };
 		DD8703A715AF20850067B66C /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038C15AF20420067B66C /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD8703A815AF20850067B66C /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038D15AF20420067B66C /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703A815AF20850067B66C /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038D15AF20420067B66C /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703A915AF20850067B66C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87038E15AF20420067B66C /* ASIDataCompressor.m */; };
-		DD8703AA15AF20850067B66C /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038F15AF20420067B66C /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703AA15AF20850067B66C /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87038F15AF20420067B66C /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703AB15AF20850067B66C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039015AF20420067B66C /* ASIDataDecompressor.m */; };
-		DD8703AC15AF20850067B66C /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039115AF20420067B66C /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703AC15AF20850067B66C /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039115AF20420067B66C /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703AD15AF20850067B66C /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039215AF20420067B66C /* ASIDownloadCache.m */; };
-		DD8703AE15AF20850067B66C /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039315AF20420067B66C /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703AE15AF20850067B66C /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039315AF20420067B66C /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703AF15AF20850067B66C /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039415AF20420067B66C /* ASIFormDataRequest.m */; };
 		DD8703B015AF20850067B66C /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039515AF20420067B66C /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD8703B115AF20850067B66C /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039615AF20420067B66C /* ASIHTTPRequest.m */; };
 		DD8703B215AF20850067B66C /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039715AF20420067B66C /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD8703B315AF20850067B66C /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039815AF20420067B66C /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD8703B415AF20850067B66C /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039915AF20420067B66C /* ASIInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703B415AF20850067B66C /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039915AF20420067B66C /* ASIInputStream.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703B515AF20850067B66C /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039A15AF20420067B66C /* ASIInputStream.m */; };
-		DD8703B615AF20850067B66C /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039B15AF20420067B66C /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703B615AF20850067B66C /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039B15AF20420067B66C /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (); }; };
 		DD8703B715AF20850067B66C /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD87039C15AF20420067B66C /* ASINetworkQueue.m */; };
 		DD8703B815AF20850067B66C /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039D15AF20420067B66C /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD8703B915AF208E0067B66C /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = DD8703A315AF20420067B66C /* Reachability.h */; };
 		DD8703BA15AF208E0067B66C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8703A415AF20420067B66C /* Reachability.m */; };
-		DD8703BF15AF21230067B66C /* ASIWebPageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039F15AF20420067B66C /* ASIWebPageRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD8703BF15AF21230067B66C /* ASIWebPageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = DD87039F15AF20420067B66C /* ASIWebPageRequest.h */; settings = {ATTRIBUTES = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -476,11 +476,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 			};
 			name = Debug;
 		};
@@ -495,11 +495,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				LIBRARY_SEARCH_PATHS = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -510,6 +510,8 @@
 				DSTROOT = /tmp/GlacierFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierFramework/GlacierFramework-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -517,6 +519,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 			};
 			name = Debug;
 		};
@@ -526,6 +529,8 @@
 				DSTROOT = /tmp/GlacierFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierFramework/GlacierFramework-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -533,6 +538,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
 			};
 			name = Release;
 		};
