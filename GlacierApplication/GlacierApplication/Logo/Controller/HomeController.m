@@ -16,6 +16,25 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    for (int i = 0; i<1000; i++) 
+    {
+        [self doHttpRequest:@"http://www.baidu.com" userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:i] forKey:@"key"]];
+        NSLog(@"start %d",i);
+    }
+}
+
+
+
+- (void)dealloc
+{
+    NSLog(@"dealloc");
+    [super dealloc];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSString * str = [request responseString];
+    NSLog(@"%@",str);
 }
 
 @end
@@ -34,13 +53,11 @@
     wCo.view.frame = self.view.bounds;
     wCo.view.backgroundColor = [UIColor redColor];
     [self.navigationController pushViewController:wCo animated:false];
-    [self doHttpRequest:@"http://www.baidu.com"];
+    [wCo release];
+   
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-    NSLog(@"%@",[request responseString]);
-}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

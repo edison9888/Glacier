@@ -7,10 +7,24 @@
 //
 
 #import "SharedApp.h"
+#import "ASINetworkQueue.h"
+#import "ASIHTTPRequest.h"
+#define TIMEOUT_SECONDS 30
+static ASINetworkQueue * _ASINetworkQueue;
 
 @implementation SharedApp
 {
     SDKVersion mSDKVersion;
+}
+
++ (SharedApp *) instance
+{
+    static SharedApp * _instance;
+    if (!_instance) 
+    {
+        _instance = [[SharedApp alloc]init];
+    }
+    return _instance;
 }
 
 - (SDKVersion)currentVersion
@@ -31,17 +45,37 @@
     }
     return mSDKVersion;
 }
+@end
 
+@implementation SharedApp (http)
 
-+ (SharedApp *) instance
+- (ASINetworkQueue *)networkQueue
 {
-    static SharedApp * _instance;
-    if (!_instance) 
+    if (!_ASINetworkQueue)
     {
-        _instance = [[SharedApp alloc]init];
+        _ASINetworkQueue = [[ASINetworkQueue alloc] init];
+        [_ASINetworkQueue setMaxConcurrentOperationCount:4];
+        [_ASINetworkQueue go];
     }
-    return _instance;
+    return _ASINetworkQueue;
 }
 
+- (void)removeNetworkReceiver:(id)receiver
+{
+    NSArray * wArr = [_ASINetworkQueue.operations copy];
+    for (ASIHTTPRequest * wReq in wArr) 
+    {
+        if (wReq.delegate == receiver) 
+        {
+            [wReq clearDelegatesAndCancel];
+        }
+    }
+    [wArr release];
+}
 
+-(void) doASIHttpRequest:(ASIHTTPRequest *) request
+{
+    [request setTimeOutSeconds:TIMEOUT_SECONDS];
+    [self.networkQueue addOperation:request];
+}
 @end

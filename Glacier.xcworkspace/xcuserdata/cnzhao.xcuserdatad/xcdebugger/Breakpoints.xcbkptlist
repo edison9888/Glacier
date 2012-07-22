@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "GlacierFramework/ASI/Classes/ASIHTTPRequest.m"
-         timestampString = "364224914.304337"
+         timestampString = "364537249.937111"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "3926"
-         endingLineNumber = "3926"
-         landmarkName = "-fetchPACFile"
+         startingLineNumber = "3179"
+         endingLineNumber = "3179"
+         landmarkName = "-handleNetworkEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

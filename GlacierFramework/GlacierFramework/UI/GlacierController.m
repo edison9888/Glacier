@@ -8,10 +8,10 @@
 
 #import "GlacierController.h"
 #import "JSONKit.h"
-#define TIMEOUT_SECONDS 30
+#import "ASINetworkQueue.h"
 
 @interface GlacierController ()
--(void) doASIHttpRequest:(ASIHTTPRequest *) request;
+-(void) doRawHttpRequest:(ASIHTTPRequest *) request;
 @end
 
 @implementation GlacierController
@@ -21,10 +21,24 @@
     return [SharedApp instance];
 }
 
+- (void)dealloc
+{
+    [self.sharedApp removeNetworkReceiver:self];
+    [super dealloc];
+}
+
 -(void) doHttpRequest:(NSString *) requestUrl
 {
     ASIHTTPRequest * wRequest = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
-    [self doASIHttpRequest:wRequest];
+    [self doRawHttpRequest:wRequest];
+    [wRequest release];
+}
+
+-(void) doHttpRequest:(NSString *) requestUrl userInfo:(NSDictionary *)info;
+{
+    ASIHTTPRequest * wRequest = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
+    wRequest.userInfo = info;
+    [self doRawHttpRequest:wRequest];
     [wRequest release];
 }
 
@@ -33,7 +47,7 @@
     ASIHTTPRequest * wRequest = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
     [wRequest setPostLength:data.length];
     [wRequest setPostBody:[NSMutableData dataWithData:data]];
-    [self doASIHttpRequest:wRequest];
+    [self doRawHttpRequest:wRequest];
     [wRequest release];
 }
 
@@ -43,15 +57,14 @@
     NSData * wData = [json toJsonData];
     [wRequest setPostLength:wData.length];
     [wRequest setPostBody:[NSMutableData dataWithData:wData]];
-    [self doASIHttpRequest:wRequest];
+    [self doRawHttpRequest:wRequest];
     [wRequest release];
 }
 
--(void) doASIHttpRequest:(ASIHTTPRequest *) request
+-(void) doRawHttpRequest:(ASIHTTPRequest *) request
 {
-    [request setTimeOutSeconds:TIMEOUT_SECONDS];
-    [request setDelegate:self];
-    [request startAsynchronous];
+    request.delegate = self;
+    [self.sharedApp doASIHttpRequest:request];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
