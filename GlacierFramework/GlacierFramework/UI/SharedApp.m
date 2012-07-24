@@ -16,6 +16,7 @@ static ASINetworkQueue * _ASINetworkQueue;
 {
     SDKVersion mSDKVersion;
 }
+@synthesize networkQueue;
 
 + (SharedApp *) instance
 {
