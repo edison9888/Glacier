@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580200BC15D607F1002A854F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580200BB15D607F1002A854F /* Security.framework */; };
+		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
+		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
 		58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */; };
-		588533F915B2E955009569A5 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533F715B2E955009569A5 /* HomeController.m */; };
-		588533FA15B2E955009569A5 /* HomeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 588533F815B2E955009569A5 /* HomeController.xib */; };
+		58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */; };
 		DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */; };
-		DD865D9315B1838100817FE9 /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD865D9215B1838100817FE9 /* libGlacierFramework.a */; };
 		DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4B15ADC48000BEF6E8 /* UIKit.framework */; };
 		DD867D4E15ADC48000BEF6E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4D15ADC48000BEF6E8 /* Foundation.framework */; };
 		DD867D5015ADC48000BEF6E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4F15ADC48000BEF6E8 /* CoreGraphics.framework */; };
@@ -22,18 +23,16 @@
 		DDBC22FE15AF2B4500457BB3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBC22FA15AF2B4500457BB3 /* SystemConfiguration.framework */; };
 		DDBC22FF15AF2B4500457BB3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBC22FB15AF2B4500457BB3 /* MobileCoreServices.framework */; };
 		DDBC230015AF2B4500457BB3 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDBC22FC15AF2B4500457BB3 /* libz.dylib */; };
-		DDE8891415B265BB00C66888 /* LogoController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE8891015B265BB00C66888 /* LogoController.m */; };
-		DDE8891515B265BB00C66888 /* LogoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDE8891115B265BB00C66888 /* LogoController.xib */; };
-		DDE8891815B2675100C66888 /* TestJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE8891715B2675100C66888 /* TestJSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		580200BB15D607F1002A854F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		587943531600C64400EE61CC /* MainPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageController.h; sourceTree = "<group>"; };
+		587943541600C64400EE61CC /* MainPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageController.m; sourceTree = "<group>"; };
+		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
 		58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
-		588533F615B2E955009569A5 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
-		588533F715B2E955009569A5 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeController.m; sourceTree = "<group>"; };
-		588533F815B2E955009569A5 /* HomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeController.xib; sourceTree = "<group>"; };
+		58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		DD865D9215B1838100817FE9 /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-fatqiqcwihkfdqdtwmsfantauxzy/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
 		DD867D4715ADC48000BEF6E8 /* GlacierApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlacierApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD867D4B15ADC48000BEF6E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD867D4D15ADC48000BEF6E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,11 +47,6 @@
 		DDBC22FA15AF2B4500457BB3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DDBC22FB15AF2B4500457BB3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DDBC22FC15AF2B4500457BB3 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DDE8890F15B265BB00C66888 /* LogoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoController.h; sourceTree = "<group>"; };
-		DDE8891015B265BB00C66888 /* LogoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoController.m; sourceTree = "<group>"; };
-		DDE8891115B265BB00C66888 /* LogoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogoController.xib; sourceTree = "<group>"; };
-		DDE8891615B2675100C66888 /* TestJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestJSON.h; sourceTree = "<group>"; };
-		DDE8891715B2675100C66888 /* TestJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestJSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				580200BC15D607F1002A854F /* Security.framework in Frameworks */,
+				58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */,
 				58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */,
-				DD865D9315B1838100817FE9 /* libGlacierFramework.a in Frameworks */,
 				DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */,
 				DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */,
 				DD867D4E15ADC48000BEF6E8 /* Foundation.framework in Frameworks */,
@@ -76,6 +71,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		587943521600C61F00EE61CC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				587943531600C64400EE61CC /* MainPageController.h */,
+				587943541600C64400EE61CC /* MainPageController.m */,
+				5879435D1600CFB400EE61CC /* MainPageController.xib */,
+			);
+			name = Controller;
+			path = GlacierApplication/MainPage/Controller;
+			sourceTree = SOURCE_ROOT;
+		};
 		DD867D3C15ADC48000BEF6E8 = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +102,11 @@
 		DD867D4A15ADC48000BEF6E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD865D9215B1838100817FE9 /* libGlacierFramework.a */,
+				58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */,
 				58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */,
 				DDBC22FC15AF2B4500457BB3 /* libz.dylib */,
 				DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */,
+				580200BB15D607F1002A854F /* Security.framework */,
 				DDBC22F915AF2B4500457BB3 /* CFNetwork.framework */,
 				DDBC22FA15AF2B4500457BB3 /* SystemConfiguration.framework */,
 				DDBC22FB15AF2B4500457BB3 /* MobileCoreServices.framework */,
@@ -115,7 +122,7 @@
 			children = (
 				DD867D5A15ADC48000BEF6E8 /* AppDelegate.h */,
 				DD867D5B15ADC48000BEF6E8 /* AppDelegate.m */,
-				DDE8890D15B265BB00C66888 /* Logo */,
+				DDE8890D15B265BB00C66888 /* MainPage */,
 				DD867D5215ADC48000BEF6E8 /* Supporting Files */,
 			);
 			path = GlacierApplication;
@@ -132,34 +139,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DDE8890D15B265BB00C66888 /* Logo */ = {
+		DDE8890D15B265BB00C66888 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				DDE8890E15B265BB00C66888 /* Controller */,
+				587943521600C61F00EE61CC /* Controller */,
 				DDE8891215B265BB00C66888 /* Model */,
 				DDE8891315B265BB00C66888 /* View */,
 			);
+			name = MainPage;
 			path = Logo;
-			sourceTree = "<group>";
-		};
-		DDE8890E15B265BB00C66888 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				DDE8890F15B265BB00C66888 /* LogoController.h */,
-				DDE8891015B265BB00C66888 /* LogoController.m */,
-				DDE8891115B265BB00C66888 /* LogoController.xib */,
-				588533F615B2E955009569A5 /* HomeController.h */,
-				588533F715B2E955009569A5 /* HomeController.m */,
-				588533F815B2E955009569A5 /* HomeController.xib */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		DDE8891215B265BB00C66888 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DDE8891615B2675100C66888 /* TestJSON.h */,
-				DDE8891715B2675100C66888 /* TestJSON.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,8 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD867D5615ADC48000BEF6E8 /* InfoPlist.strings in Resources */,
-				DDE8891515B265BB00C66888 /* LogoController.xib in Resources */,
-				588533FA15B2E955009569A5 /* HomeController.xib in Resources */,
+				5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,9 +229,7 @@
 			files = (
 				DD867D5815ADC48000BEF6E8 /* main.m in Sources */,
 				DD867D5C15ADC48000BEF6E8 /* AppDelegate.m in Sources */,
-				DDE8891415B265BB00C66888 /* LogoController.m in Sources */,
-				DDE8891815B2675100C66888 /* TestJSON.m in Sources */,
-				588533F915B2E955009569A5 /* HomeController.m in Sources */,
+				587943561600C64400EE61CC /* MainPageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +307,10 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "GlacierApplication/GlacierApplication-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -335,7 +328,10 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "GlacierApplication/GlacierApplication-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;

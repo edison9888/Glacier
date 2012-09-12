@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import "LogoController.h"
+#import "MainPageController.h"
 
 @implementation AppDelegate
 
@@ -25,7 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.viewController = [[[LogoController alloc] init] autorelease];
+    self.viewController = [[[MainPageController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
