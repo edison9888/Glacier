@@ -7,6 +7,8 @@
 //
 
 #import "MainPageController.h"
+#import "InsuranceProduct.h"
+
 
 @interface MainPageController ()
 
@@ -26,6 +28,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    InsuranceProduct * wProduct = [[InsuranceProduct alloc]init];
+//    wProduct.insuranceName = @"名字";
+//    [wProduct save];
+    
+//    wProduct = nil;
+    NSArray * wArr = [InsuranceProduct findByinsuranceName:@"名字"];
+    
+    
+//    wProduct.product_name = @"你好";
+//    [wProduct save];
+    
+    NSLog(@"11");
     // Do any additional setup after loading the view from its nib.
 }
 

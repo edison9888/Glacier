@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 580200B715D60752002A854F /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 580200B715D60752002A854F /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (); }; };
 		580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 580200B815D60752002A854F /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		5885340015B2F650009569A5 /* GlacierController.h in Headers */ = {isa = PBXBuildFile; fileRef = 588533FE15B2F650009569A5 /* GlacierController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5885340015B2F650009569A5 /* GlacierController.h in Headers */ = {isa = PBXBuildFile; fileRef = 588533FE15B2F650009569A5 /* GlacierController.h */; settings = {ATTRIBUTES = (); }; };
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
-		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
 		5885340515B2F725009569A5 /* SharedApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5885340315B2F725009569A5 /* SharedApp.m */; };
 		58EDDDC115D5F4EF00D9AADC /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8015D5F4EF00D9AADC /* ASIAuthenticationDialog.h */; };
 		58EDDDC215D5F4EF00D9AADC /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD8115D5F4EF00D9AADC /* ASIAuthenticationDialog.m */; };
@@ -24,22 +24,22 @@
 		58EDDDC915D5F4EF00D9AADC /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD8815D5F4EF00D9AADC /* ASIDownloadCache.m */; };
 		58EDDDCA15D5F4EF00D9AADC /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8915D5F4EF00D9AADC /* ASIFormDataRequest.h */; };
 		58EDDDCB15D5F4EF00D9AADC /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD8A15D5F4EF00D9AADC /* ASIFormDataRequest.m */; };
-		58EDDDCC15D5F4EF00D9AADC /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8B15D5F4EF00D9AADC /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDCC15D5F4EF00D9AADC /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8B15D5F4EF00D9AADC /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDCD15D5F4EF00D9AADC /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD8C15D5F4EF00D9AADC /* ASIHTTPRequest.m */; };
-		58EDDDCE15D5F4EF00D9AADC /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8D15D5F4EF00D9AADC /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		58EDDDCF15D5F4EF00D9AADC /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8E15D5F4EF00D9AADC /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDCE15D5F4EF00D9AADC /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8D15D5F4EF00D9AADC /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (); }; };
+		58EDDDCF15D5F4EF00D9AADC /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8E15D5F4EF00D9AADC /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDD015D5F4EF00D9AADC /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8F15D5F4EF00D9AADC /* ASIInputStream.h */; };
 		58EDDDD115D5F4EF00D9AADC /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9015D5F4EF00D9AADC /* ASIInputStream.m */; };
-		58EDDDD215D5F4EF00D9AADC /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9115D5F4EF00D9AADC /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDD215D5F4EF00D9AADC /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9115D5F4EF00D9AADC /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDD315D5F4EF00D9AADC /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9215D5F4EF00D9AADC /* ASINetworkQueue.m */; };
 		58EDDDD415D5F4EF00D9AADC /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9315D5F4EF00D9AADC /* ASIProgressDelegate.h */; };
 		58EDDDD515D5F4EF00D9AADC /* ASIWebPageRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9515D5F4EF00D9AADC /* ASIWebPageRequest.h */; };
 		58EDDDD615D5F4EF00D9AADC /* ASIWebPageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9615D5F4EF00D9AADC /* ASIWebPageRequest.m */; };
 		58EDDDD715D5F4EF00D9AADC /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9915D5F4EF00D9AADC /* Reachability.h */; };
 		58EDDDD815D5F4EF00D9AADC /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9A15D5F4EF00D9AADC /* Reachability.m */; };
-		58EDDDD915D5F4EF00D9AADC /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9C15D5F4EF00D9AADC /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDD915D5F4EF00D9AADC /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9C15D5F4EF00D9AADC /* JSONKit.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDDA15D5F4EF00D9AADC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9D15D5F4EF00D9AADC /* JSONKit.m */; };
-		58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDDC15D5F4EF00D9AADC /* JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9F15D5F4EF00D9AADC /* JSONObject.m */; };
 		58EDDDDD15D5F4EF00D9AADC /* NSData-SQLitePersistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDA115D5F4EF00D9AADC /* NSData-SQLitePersistence.h */; };
 		58EDDDDE15D5F4EF00D9AADC /* NSData-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDA215D5F4EF00D9AADC /* NSData-SQLitePersistence.m */; };
@@ -67,7 +67,7 @@
 		58EDDDF415D5F4EF00D9AADC /* NSString-UppercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDB815D5F4EF00D9AADC /* NSString-UppercaseFirst.m */; };
 		58EDDDF515D5F4EF00D9AADC /* SQLiteInstanceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDB915D5F4EF00D9AADC /* SQLiteInstanceManager.h */; };
 		58EDDDF615D5F4EF00D9AADC /* SQLiteInstanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDBA15D5F4EF00D9AADC /* SQLiteInstanceManager.m */; };
-		58EDDDF715D5F4EF00D9AADC /* SQLitePersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDBB15D5F4EF00D9AADC /* SQLitePersistentObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58EDDDF715D5F4EF00D9AADC /* SQLitePersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDBB15D5F4EF00D9AADC /* SQLitePersistentObject.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDF815D5F4EF00D9AADC /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDBC15D5F4EF00D9AADC /* SQLitePersistentObject.m */; };
 		58EDDDF915D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDBD15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.h */; };
 		58EDDDFA15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDBE15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m */; };
@@ -359,23 +359,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5885340015B2F650009569A5 /* GlacierController.h in Headers */,
-				5885340415B2F725009569A5 /* SharedApp.h in Headers */,
 				58EDDDC115D5F4EF00D9AADC /* ASIAuthenticationDialog.h in Headers */,
 				58EDDDC315D5F4EF00D9AADC /* ASICacheDelegate.h in Headers */,
 				58EDDDC415D5F4EF00D9AADC /* ASIDataCompressor.h in Headers */,
 				58EDDDC615D5F4EF00D9AADC /* ASIDataDecompressor.h in Headers */,
 				58EDDDC815D5F4EF00D9AADC /* ASIDownloadCache.h in Headers */,
 				58EDDDCA15D5F4EF00D9AADC /* ASIFormDataRequest.h in Headers */,
+				5885340415B2F725009569A5 /* SharedApp.h in Headers */,
 				58EDDDCC15D5F4EF00D9AADC /* ASIHTTPRequest.h in Headers */,
 				58EDDDCE15D5F4EF00D9AADC /* ASIHTTPRequestConfig.h in Headers */,
 				58EDDDCF15D5F4EF00D9AADC /* ASIHTTPRequestDelegate.h in Headers */,
-				58EDDDD015D5F4EF00D9AADC /* ASIInputStream.h in Headers */,
 				58EDDDD215D5F4EF00D9AADC /* ASINetworkQueue.h in Headers */,
+				58EDDDD915D5F4EF00D9AADC /* JSONKit.h in Headers */,
+				58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */,
+				58EDDDF715D5F4EF00D9AADC /* SQLitePersistentObject.h in Headers */,
+				580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */,
+				58EDDDD015D5F4EF00D9AADC /* ASIInputStream.h in Headers */,
 				58EDDDD415D5F4EF00D9AADC /* ASIProgressDelegate.h in Headers */,
 				58EDDDD515D5F4EF00D9AADC /* ASIWebPageRequest.h in Headers */,
 				58EDDDD715D5F4EF00D9AADC /* Reachability.h in Headers */,
-				58EDDDD915D5F4EF00D9AADC /* JSONKit.h in Headers */,
-				58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */,
 				58EDDDDD15D5F4EF00D9AADC /* NSData-SQLitePersistence.h in Headers */,
 				58EDDDDF15D5F4EF00D9AADC /* NSDate-SQLitePersistence.h in Headers */,
 				58EDDDE115D5F4EF00D9AADC /* NSMutableArray-MultipleSort.h in Headers */,
@@ -389,10 +391,8 @@
 				58EDDDF115D5F4EF00D9AADC /* NSString-SQLitePersistence.h in Headers */,
 				58EDDDF315D5F4EF00D9AADC /* NSString-UppercaseFirst.h in Headers */,
 				58EDDDF515D5F4EF00D9AADC /* SQLiteInstanceManager.h in Headers */,
-				58EDDDF715D5F4EF00D9AADC /* SQLitePersistentObject.h in Headers */,
 				58EDDDF915D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.h in Headers */,
 				58EDDDFB15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h in Headers */,
-				580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +509,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
 			};
 			name = Debug;
 		};
@@ -531,7 +531,7 @@
 				OTHER_LDFLAGS = "-lxml2";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -551,7 +551,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
 			};
 			name = Debug;
 		};
@@ -570,7 +570,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../**";
+				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
 			};
 			name = Release;
 		};

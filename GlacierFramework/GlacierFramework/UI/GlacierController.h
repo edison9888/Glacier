@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #import "JSONObject.h"
 #import "SharedApp.h"
+#import "SQLitePersistentObject.h"
 
 @interface GlacierController : UIViewController<ASIHTTPRequestDelegate>
 @property (nonatomic,readonly) SharedApp * sharedApp;

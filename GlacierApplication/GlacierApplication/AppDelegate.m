@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 #import "MainPageController.h"
-
+#import "SQLiteInstanceManager.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -24,6 +24,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSString * dbFilePath = [[NSBundle mainBundle]pathForResource:@"database" ofType:@"sqlite"];
+    [[SQLiteInstanceManager sharedManager] setDatabaseFilepath:dbFilePath];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.viewController = [[[MainPageController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
