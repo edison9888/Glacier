@@ -7,9 +7,9 @@
 //
 
 #import "MainPageController.h"
-#import "InsuranceProduct.h"
+#import "plipdtm.h"
+#import "pkclass.h"
 #import "UIView+SKLCurrentImage.h"
-
 
 @interface MainPageController ()
 
@@ -17,13 +17,20 @@
 - (void)showAlertMsg:(NSString *)msg;
 
 @property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
+@property (nonatomic,retain) NSMutableArray * plipdtm_list;
+@property (nonatomic,retain) NSMutableArray * pkclass_list;
 @end
 
 @implementation MainPageController
+{
+    
+}
 @synthesize slider = _slider;
 @synthesize birDayLabel = _birDayLabel;
 @synthesize yearsOldLabel = _yearsOldLabel;
 @synthesize twDateFormatter = _twDateFormatter;
+@synthesize plipdtm_list = _plipdtm_list;
+@synthesize pkclass_list = _pkclass_list;
 
 - (void)dealloc {
     [_slider release];
@@ -51,26 +58,14 @@
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    InsuranceProduct * wProduct = [[InsuranceProduct alloc]init];
-//    wProduct.insuranceName = @"名字";
-//    [wProduct save];
-    
-//    wProduct = nil;
-    NSArray * wArr = [InsuranceProduct findByinsuranceName:@"名字"];
-    
-    
-//    wProduct.product_name = @"你好";
-//    [wProduct save];
-    
-    NSLog(@"11");
-    // Do any additional setup after loading the view from its nib.
     _slider.delegate = self;
     [_slider setYearsOldMin:0 max:150];
+
+    self.plipdtm_list = [plipdtm findByCriteria:@""];
+    self.pkclass_list = [pkclass findByCriteria:@""];
 }
 
 - (void)viewDidUnload
@@ -81,6 +76,37 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+    return self.pkclass_list.count;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return ((pkclass *) [self.pkclass_list objectAtIndex:section]).name;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    pkclass * wClass = [self.pkclass_list objectAtIndex:section];
+    
+    return [self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * identify = @"PliCell";
+    UITableViewCell * wCell = [tableView dequeueReusableCellWithIdentifier:identify];
+    if (!wCell) {
+        wCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify] autorelease];
+    }
+    pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];
+    
+    wCell.textLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]).pdpdtname;
+    return wCell;
 }
 
 #pragma mark - 

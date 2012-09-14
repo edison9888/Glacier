@@ -11,8 +11,12 @@
 		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
 		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
 		58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */; };
-		58EB35ED16022B1900FF668B /* InsuranceProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB35EC16022B1900FF668B /* InsuranceProduct.m */; };
 		58EB35FA1602348E00FF668B /* database.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 58EB35F91602348E00FF668B /* database.sqlite */; };
+		58EB36061603668D00FF668B /* SKLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36031603668D00FF668B /* SKLSlider.m */; };
+		58EB36071603668D00FF668B /* UIView+SKLCurrentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36051603668D00FF668B /* UIView+SKLCurrentImage.m */; };
+		58EB360A1603684200FF668B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EB36091603684200FF668B /* MessageUI.framework */; };
+		58EB361C16037E3F00FF668B /* pkclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB361B16037E3F00FF668B /* pkclass.m */; };
+		58EB361F16038B8B00FF668B /* plipdtm.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB361E16038B8B00FF668B /* plipdtm.m */; };
 		58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */; };
 		DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */; };
 		DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4B15ADC48000BEF6E8 /* UIKit.framework */; };
@@ -33,9 +37,16 @@
 		587943541600C64400EE61CC /* MainPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageController.m; sourceTree = "<group>"; };
 		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
 		58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
-		58EB35EB16022B1900FF668B /* InsuranceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuranceProduct.h; sourceTree = "<group>"; };
-		58EB35EC16022B1900FF668B /* InsuranceProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuranceProduct.m; sourceTree = "<group>"; };
 		58EB35F91602348E00FF668B /* database.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = database.sqlite; sourceTree = "<group>"; };
+		58EB36021603668D00FF668B /* SKLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKLSlider.h; path = GlacierApplication/MainPage/View/SKLSlider.h; sourceTree = SOURCE_ROOT; };
+		58EB36031603668D00FF668B /* SKLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKLSlider.m; path = GlacierApplication/MainPage/View/SKLSlider.m; sourceTree = SOURCE_ROOT; };
+		58EB36041603668D00FF668B /* UIView+SKLCurrentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SKLCurrentImage.h"; path = "GlacierApplication/MainPage/View/UIView+SKLCurrentImage.h"; sourceTree = SOURCE_ROOT; };
+		58EB36051603668D00FF668B /* UIView+SKLCurrentImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+SKLCurrentImage.m"; path = "GlacierApplication/MainPage/View/UIView+SKLCurrentImage.m"; sourceTree = SOURCE_ROOT; };
+		58EB36091603684200FF668B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		58EB361A16037E3F00FF668B /* pkclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkclass.h; sourceTree = "<group>"; };
+		58EB361B16037E3F00FF668B /* pkclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pkclass.m; sourceTree = "<group>"; };
+		58EB361D16038B8B00FF668B /* plipdtm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtm.h; sourceTree = "<group>"; };
+		58EB361E16038B8B00FF668B /* plipdtm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtm.m; sourceTree = "<group>"; };
 		58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DD867D4715ADC48000BEF6E8 /* GlacierApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlacierApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58EB360A1603684200FF668B /* MessageUI.framework in Frameworks */,
 				580200BC15D607F1002A854F /* Security.framework in Frameworks */,
 				58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */,
 				58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */,
@@ -90,8 +102,10 @@
 		58EB35E51602264B00FF668B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				58EB35EB16022B1900FF668B /* InsuranceProduct.h */,
-				58EB35EC16022B1900FF668B /* InsuranceProduct.m */,
+				58EB361A16037E3F00FF668B /* pkclass.h */,
+				58EB361B16037E3F00FF668B /* pkclass.m */,
+				58EB361D16038B8B00FF668B /* plipdtm.h */,
+				58EB361E16038B8B00FF668B /* plipdtm.m */,
 			);
 			name = Model;
 			path = GlacierApplication/MainPage/Model;
@@ -129,6 +143,7 @@
 				58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */,
 				DDBC22FC15AF2B4500457BB3 /* libz.dylib */,
 				DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */,
+				58EB36091603684200FF668B /* MessageUI.framework */,
 				580200BB15D607F1002A854F /* Security.framework */,
 				DDBC22F915AF2B4500457BB3 /* CFNetwork.framework */,
 				DDBC22FA15AF2B4500457BB3 /* SystemConfiguration.framework */,
@@ -177,6 +192,10 @@
 		DDE8891315B265BB00C66888 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				58EB36021603668D00FF668B /* SKLSlider.h */,
+				58EB36031603668D00FF668B /* SKLSlider.m */,
+				58EB36041603668D00FF668B /* UIView+SKLCurrentImage.h */,
+				58EB36051603668D00FF668B /* UIView+SKLCurrentImage.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -248,7 +267,10 @@
 				DD867D5815ADC48000BEF6E8 /* main.m in Sources */,
 				DD867D5C15ADC48000BEF6E8 /* AppDelegate.m in Sources */,
 				587943561600C64400EE61CC /* MainPageController.m in Sources */,
-				58EB35ED16022B1900FF668B /* InsuranceProduct.m in Sources */,
+				58EB36061603668D00FF668B /* SKLSlider.m in Sources */,
+				58EB36071603668D00FF668B /* UIView+SKLCurrentImage.m in Sources */,
+				58EB361C16037E3F00FF668B /* pkclass.m in Sources */,
+				58EB361F16038B8B00FF668B /* plipdtm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
