@@ -7,7 +7,13 @@
 //
 
 #import "GlacierController.h"
+#import <MessageUI/MessageUI.h>
+#import "SKLSlider.h"
 
-@interface MainPageController : GlacierController
+@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate, SKLSliderDelegate>
+
+@property (retain, nonatomic) IBOutlet SKLSlider *slider;
+@property (retain, nonatomic) IBOutlet UILabel *birDayLabel;
+@property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
 
 @end
