@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		580200BC15D607F1002A854F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580200BB15D607F1002A854F /* Security.framework */; };
+		5864B44316042BD7009072F2 /* plipdtrate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5864B44216042BD7009072F2 /* plipdtrate.m */; };
 		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
 		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
 		58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */; };
@@ -33,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		580200BB15D607F1002A854F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5864B44116042BD7009072F2 /* plipdtrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtrate.h; sourceTree = "<group>"; };
+		5864B44216042BD7009072F2 /* plipdtrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtrate.m; sourceTree = "<group>"; };
 		587943531600C64400EE61CC /* MainPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageController.h; sourceTree = "<group>"; };
 		587943541600C64400EE61CC /* MainPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageController.m; sourceTree = "<group>"; };
 		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				58EB361B16037E3F00FF668B /* pkclass.m */,
 				58EB361D16038B8B00FF668B /* plipdtm.h */,
 				58EB361E16038B8B00FF668B /* plipdtm.m */,
+				5864B44116042BD7009072F2 /* plipdtrate.h */,
+				5864B44216042BD7009072F2 /* plipdtrate.m */,
 			);
 			name = Model;
 			path = GlacierApplication/MainPage/Model;
@@ -271,6 +276,7 @@
 				58EB36071603668D00FF668B /* UIView+SKLCurrentImage.m in Sources */,
 				58EB361C16037E3F00FF668B /* pkclass.m in Sources */,
 				58EB361F16038B8B00FF668B /* plipdtm.m in Sources */,
+				5864B44316042BD7009072F2 /* plipdtrate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
