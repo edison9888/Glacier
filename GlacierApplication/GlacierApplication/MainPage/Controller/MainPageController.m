@@ -85,7 +85,7 @@
     _slider.delegate = self;
     [_slider setYearsOldMin:0 max:150];
     NSLog(@"aaa");
-    self.plipdtm_list = [plipdtm findByCriteria:@""];
+    self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@""];
     NSLog(@"bbb");
     NSLog(@"111");
