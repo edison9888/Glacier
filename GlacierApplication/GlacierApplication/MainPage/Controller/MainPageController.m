@@ -87,8 +87,6 @@
     NSLog(@"aaa");
     self.plipdtm_list = [plipdtm findByCriteria:@""];
     self.pkclass_list = [pkclass findByCriteria:@""];
-    self.plipdtrate_list = [plipdtrate findByCriteria:@""];
-    self.plipdtyear_list = [plipdtyear findByCriteria:@""];
     NSLog(@"bbb");
     NSLog(@"111");
 }
@@ -277,8 +275,8 @@
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
-    NSString * predicate = [NSString stringWithFormat:@"self.prpdtcode = '%@' and self.prage = '%d'",self.currentPli_pdt_m.pdpdtcode,mCurrentAge];
-    NSArray * reslutArr = [self.plipdtrate_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
+    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d'",self.currentPli_pdt_m.pdpdtcode,mCurrentAge];
+    NSArray * reslutArr = [plipdtrate findByCriteria:query];
     NSString * rate = nil;
     plipdtrate * plir = nil;
     if (reslutArr.count > 0) 
