@@ -13,6 +13,7 @@
 		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
 		58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */; };
 		589579A8160482E200609C0F /* glacierapplication.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 589579A7160482E200609C0F /* glacierapplication.sqlite3 */; };
+		589579AB1604863D00609C0F /* plipdtyear.m in Sources */ = {isa = PBXBuildFile; fileRef = 589579AA1604863D00609C0F /* plipdtyear.m */; };
 		58EB36061603668D00FF668B /* SKLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36031603668D00FF668B /* SKLSlider.m */; };
 		58EB36071603668D00FF668B /* UIView+SKLCurrentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36051603668D00FF668B /* UIView+SKLCurrentImage.m */; };
 		58EB360A1603684200FF668B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EB36091603684200FF668B /* MessageUI.framework */; };
@@ -41,6 +42,8 @@
 		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
 		58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		589579A7160482E200609C0F /* glacierapplication.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glacierapplication.sqlite3; sourceTree = "<group>"; };
+		589579A91604863D00609C0F /* plipdtyear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtyear.h; sourceTree = "<group>"; };
+		589579AA1604863D00609C0F /* plipdtyear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtyear.m; sourceTree = "<group>"; };
 		58EB36021603668D00FF668B /* SKLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKLSlider.h; path = GlacierApplication/MainPage/View/SKLSlider.h; sourceTree = SOURCE_ROOT; };
 		58EB36031603668D00FF668B /* SKLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKLSlider.m; path = GlacierApplication/MainPage/View/SKLSlider.m; sourceTree = SOURCE_ROOT; };
 		58EB36041603668D00FF668B /* UIView+SKLCurrentImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+SKLCurrentImage.h"; path = "GlacierApplication/MainPage/View/UIView+SKLCurrentImage.h"; sourceTree = SOURCE_ROOT; };
@@ -111,6 +114,8 @@
 				58EB361E16038B8B00FF668B /* plipdtm.m */,
 				5864B44116042BD7009072F2 /* plipdtrate.h */,
 				5864B44216042BD7009072F2 /* plipdtrate.m */,
+				589579A91604863D00609C0F /* plipdtyear.h */,
+				589579AA1604863D00609C0F /* plipdtyear.m */,
 			);
 			name = Model;
 			path = GlacierApplication/MainPage/Model;
@@ -277,6 +282,7 @@
 				58EB361C16037E3F00FF668B /* pkclass.m in Sources */,
 				58EB361F16038B8B00FF668B /* plipdtm.m in Sources */,
 				5864B44316042BD7009072F2 /* plipdtrate.m in Sources */,
+				589579AB1604863D00609C0F /* plipdtyear.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

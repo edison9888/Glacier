@@ -10,6 +10,7 @@
 #import "plipdtm.h"
 #import "pkclass.h"
 #import "plipdtrate.h"
+#import "plipdtyear.h"
 #import "UIView+SKLCurrentImage.h"
 
 @interface MainPageController ()
@@ -21,6 +22,7 @@
 @property (nonatomic,retain) NSArray * plipdtm_list;
 @property (nonatomic,retain) NSArray * pkclass_list;
 @property (nonatomic,retain) NSArray * plipdtrate_list;
+@property (nonatomic,retain) NSArray * plipdtyear_list;
 @property (nonatomic,retain) plipdtm * currentPli_pdt_m;
 @end
 
@@ -43,6 +45,7 @@
 @synthesize plipdtm_list = _plipdtm_list;
 @synthesize pkclass_list = _pkclass_list;
 @synthesize plipdtrate_list = _plipdtrate_list;
+@synthesize plipdtyear_list = _plipdtyear_list;
 @synthesize currentPli_pdt_m = _currentPli_pdt_m;
 
 - (void)dealloc {
@@ -81,9 +84,13 @@
     [super viewDidLoad];
     _slider.delegate = self;
     [_slider setYearsOldMin:0 max:150];
+    NSLog(@"aaa");
     self.plipdtm_list = [plipdtm findByCriteria:@""];
     self.pkclass_list = [pkclass findByCriteria:@""];
     self.plipdtrate_list = [plipdtrate findByCriteria:@""];
+    self.plipdtyear_list = [plipdtyear findByCriteria:@""];
+    NSLog(@"bbb");
+    NSLog(@"111");
 }
 
 - (void)viewDidUnload
