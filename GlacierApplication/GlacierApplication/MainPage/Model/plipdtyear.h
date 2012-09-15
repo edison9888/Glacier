@@ -10,7 +10,7 @@
 
 @interface plipdtyear : SQLitePersistentObject
 @property (nonatomic,copy) NSString * pdpdtcode;
-@property (nonatomic,copy) NSString * pypdtyear;
+@property (nonatomic,assign) int pypdtyear;
 @property (nonatomic,copy) NSString * pypdtyeartype;
 @property (nonatomic,copy) NSString * pypdtyearna;
 @property (nonatomic,copy) NSString * pyratecode;

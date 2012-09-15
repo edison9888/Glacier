@@ -235,7 +235,7 @@ NSMutableArray *checkedTables;
 	
 	NSString *query = [NSString stringWithFormat:@"SELECT pk,* FROM %@ %@", [[self class] tableName], queryString];
 	[queryString release];
-	
+	NSLog(@"%@",query);
 	sqlite3_stmt *statement;
 	if (sqlite3_prepare_v2( database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK)
 	{

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 580200B715D60752002A854F /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (); }; };
-		580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 580200B815D60752002A854F /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 580200B815D60752002A854F /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		5885340015B2F650009569A5 /* GlacierController.h in Headers */ = {isa = PBXBuildFile; fileRef = 588533FE15B2F650009569A5 /* GlacierController.h */; settings = {ATTRIBUTES = (); }; };
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };

@@ -17,6 +17,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *birDayLabel;
 @property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
+@property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
 
 @property (retain, nonatomic) IBOutlet UITextView *resultTextView;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;

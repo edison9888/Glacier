@@ -22,7 +22,7 @@
 @property (nonatomic,retain) NSArray * plipdtm_list;
 @property (nonatomic,retain) NSArray * pkclass_list;
 @property (nonatomic,retain) NSArray * plipdtrate_list;
-@property (nonatomic,retain) NSArray * plipdtyear_list;
+@property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
 @property (nonatomic,retain) plipdtm * currentPli_pdt_m;
 @end
 
@@ -31,13 +31,14 @@
     bool mCurrentSex;
     int mCurrentJobType;
     int mCurrentAge;
-    int mCurrentPdtYear;
+    int mCurrentPdtYearIndex;
 }
 @synthesize amountTextField = _amountTextField;
 @synthesize slider = _slider;
 @synthesize birDayLabel = _birDayLabel;
 @synthesize yearsOldLabel = _yearsOldLabel;
 @synthesize insuranceNameLabel = _insuranceNameLabel;
+@synthesize pdtYearButton = _pdtYearButton;
 @synthesize resultTextView = _resultTextView;
 @synthesize maleButton = _maleButton;
 @synthesize femaleButton = _femaleButton;
@@ -58,6 +59,7 @@
     [_femaleButton release];
     [_amountTextField release];
     [_resultTextView release];
+    [_pdtYearButton release];
     [super dealloc];
 }
 
@@ -84,11 +86,8 @@
     [super viewDidLoad];
     _slider.delegate = self;
     [_slider setYearsOldMin:0 max:150];
-    NSLog(@"aaa");
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
-    self.pkclass_list = [pkclass findByCriteria:@""];
-    NSLog(@"bbb");
-    NSLog(@"111");
+    self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
 }
 
 - (void)viewDidUnload
@@ -101,6 +100,7 @@
     [self setFemaleButton:nil];
     [self setAmountTextField:nil];
     [self setResultTextView:nil];
+    [self setPdtYearButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -137,7 +137,6 @@
     return wCell;
 }
 
-#pragma mark - 
 #pragma mark SKLSliderDelegate
 
 - (void)yearsOldChanged:(NSInteger)yearsOld birDay:(NSDate *)birDayDate {
@@ -146,14 +145,12 @@
     _yearsOldLabel.text = [NSString stringWithFormat:@"%d", yearsOld];
 }
 
-#pragma mark - 
 #pragma mark 界面操作相关
 
 - (IBAction)userClickMail:(id)sender {
     [self displayMailComposerSheet];
 }
 
-#pragma mark - 
 #pragma mark 邮件相关
 
 - (void)displayMailComposerSheet {
@@ -190,11 +187,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];
-    
+    pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];    
     self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]);
+    [self initComponent];
     self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
+    
+}
+
+-(void) initComponent
+{
+    self.plipdtyear_list = [plipdtyear findByCriteria:@"where pdpdtcode = '%@' group by pypdtyear order by pypdtyear",self.currentPli_pdt_m.pdpdtcode];
+    mCurrentPdtYearIndex = 0;
+    [self adjustPdtYearText];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
@@ -236,18 +240,13 @@
 
 - (IBAction)onPdtYearClick:(UIButton *)sender 
 {
-    mCurrentPdtYear = (mCurrentPdtYear + 1) % 2;
-    switch (mCurrentPdtYear)
-    {
-        case 0:
-            [sender setTitle:@"五年期" forState:UIControlStateNormal];
-            break;
-        case 1:
-            [sender setTitle:@"十五年期" forState:UIControlStateNormal];
-            break;
-        default:
-            break;
-    }
+    mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
+    [self adjustPdtYearText];
+}
+
+- (void) adjustPdtYearText
+{
+    [self.pdtYearButton setTitle:((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyearna forState:UIControlStateNormal];
 }
 
 - (IBAction)onSexClick:(UIButton *)sender
@@ -275,7 +274,10 @@
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
-    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d'",self.currentPli_pdt_m.pdpdtcode,mCurrentAge];
+    //获得年期
+    int pdtYear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyear;
+    
+    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d",self.currentPli_pdt_m.pdpdtcode,mCurrentAge,pdtYear];
     NSArray * reslutArr = [plipdtrate findByCriteria:query];
     NSString * rate = nil;
     plipdtrate * plir = nil;
