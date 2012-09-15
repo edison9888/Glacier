@@ -306,7 +306,7 @@
 
 - (void) generateOutput:(NSString *) rate
 {
-    long long resultAmount = self.amountTextField.text.intValue * 10000 * rate.floatValue; 
+    long long resultAmount = self.amountTextField.text.intValue * rate.floatValue; 
     NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
