@@ -24,6 +24,7 @@
 @property (nonatomic,retain) NSArray * plipdtrate_list;
 @property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
 @property (nonatomic,retain) plipdtm * currentPli_pdt_m;
+@property (nonatomic,retain) UIAlertView * alertView;
 @end
 
 @implementation MainPageController
@@ -51,6 +52,7 @@
 @synthesize plipdtrate_list = _plipdtrate_list;
 @synthesize plipdtyear_list = _plipdtyear_list;
 @synthesize currentPli_pdt_m = _currentPli_pdt_m;
+@synthesize alertView;
 
 - (void)dealloc {
     [_slider release];
@@ -270,11 +272,18 @@
 #pragma mark - 
 #pragma mark util
 
-- (void)showAlertMsg:(NSString *)msg {
-    
+- (void)showAlertMsg:(NSString *)msg 
+{
+    [self.alertView dismissWithClickedButtonIndex:0 animated:false];
     UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    self.alertView = wAlertView;
     [wAlertView show];
     [wAlertView release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 - (IBAction)onPdtYearClick:(UIButton *)sender 
@@ -288,6 +297,7 @@
 {
     [self.pdtYearButton setTitle:((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyearna forState:UIControlStateNormal];
 }
+
 
 - (IBAction)onSexClick:(UIButton *)sender
 {
@@ -326,9 +336,18 @@
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
-    //获得年期
-    int pdtYear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyear;
+    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]);
     
+    long long amount = self.amountTextField.text.longLongValue;
+    
+    if (amount < pdtyear.pyminamt || amount > pdtyear.pymaxamt )
+    {
+        [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
+        return;
+    }
+    
+    //获得年期
+    int pdtYear = pdtyear.pypdtyear;
     NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,mCurrentAge,pdtYear,mCurrentJobType];
     NSArray * reslutArr = [plipdtrate findByCriteria:query];
     NSString * rate = nil;

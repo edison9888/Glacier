@@ -10,7 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import "SKLSlider.h"
 
-@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate, SKLSliderDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate, SKLSliderDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 - (IBAction)onCalculateClick:(UIButton *)sender;
 
 @property (retain, nonatomic) IBOutlet UITableView *tableListView;
