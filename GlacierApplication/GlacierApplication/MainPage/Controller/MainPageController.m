@@ -342,6 +342,11 @@
         [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
         return;
     }
+    if(!self.currentPli_pdt_m)
+    {
+        [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种",pdtyear.pyminamt,pdtyear.pymaxamt]];
+        return;
+    }
     
     //获得年期
     int pdtYear = pdtyear.pypdtyear;
