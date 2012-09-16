@@ -11,8 +11,12 @@
 @implementation plipdtyear
 @synthesize pdpdtcode;
 @synthesize pyminamt;
+@synthesize pymaxamt;
 @synthesize pypdtyear;
 @synthesize pyratecode;
 @synthesize pypdtyearna;
 @synthesize pypdtyeartype;
+@synthesize pyminage;
+@synthesize pymaxage;
+@synthesize pyamtunit;
 @end

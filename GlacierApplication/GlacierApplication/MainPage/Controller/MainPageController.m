@@ -32,8 +32,11 @@
     int mCurrentJobType;
     int mCurrentAge;
     int mCurrentPdtYearIndex;
+    int mCurrentPdKind;
 }
 @synthesize amountTextField = _amountTextField;
+@synthesize tableListView = _tableListView;
+@synthesize pdKindButtonArr = _pdKindButtonArr;
 @synthesize slider = _slider;
 @synthesize birDayLabel = _birDayLabel;
 @synthesize yearsOldLabel = _yearsOldLabel;
@@ -60,6 +63,8 @@
     [_amountTextField release];
     [_resultTextView release];
     [_pdtYearButton release];
+    [_pdKindButtonArr release];
+    [_tableListView release];
     [super dealloc];
 }
 
@@ -85,7 +90,7 @@
 {
     [super viewDidLoad];
     _slider.delegate = self;
-    [_slider setYearsOldMin:0 max:150];
+    mCurrentJobType = 1;
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
 }
@@ -101,6 +106,8 @@
     [self setAmountTextField:nil];
     [self setResultTextView:nil];
     [self setPdtYearButton:nil];
+    [self setPdKindButtonArr:nil];
+    [self setTableListView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -121,7 +128,19 @@
 {
     pkclass * wClass = [self.pkclass_list objectAtIndex:section];
     
-    return [self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]].count;
+    NSString * predicateStr;
+    
+    if (mCurrentPdKind != 0)
+    {
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@' and self.pdkind == '%d'",wClass.code, mCurrentPdKind];
+    }
+    else 
+    {
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@'",wClass.code];
+    }
+
+    
+    return [self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,7 +152,18 @@
     }
     pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];
     
-    wCell.textLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]).pdpdtname;
+    NSString * predicateStr;
+    
+    if (mCurrentPdKind != 0)
+    {
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@' and self.pdkind == '%d'",wClass.code, mCurrentPdKind];
+    }
+    else 
+    {
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@'",wClass.code];
+    }
+
+    wCell.textLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).pdpdtname;
     return wCell;
 }
 
@@ -198,6 +228,15 @@
 {
     self.plipdtyear_list = [plipdtyear findByCriteria:@"where pdpdtcode = '%@' group by pypdtyear order by pypdtyear",self.currentPli_pdt_m.pdpdtcode];
     mCurrentPdtYearIndex = 0;
+    
+    plipdtyear * pdtyear;
+    if(self.plipdtyear_list.count > 0)
+    {
+        pdtyear =  [self.plipdtyear_list objectAtIndex:0];
+        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
+    }
+    
+    
     [self adjustPdtYearText];
 }
 
@@ -241,6 +280,7 @@
 - (IBAction)onPdtYearClick:(UIButton *)sender 
 {
     mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
+    
     [self adjustPdtYearText];
 }
 
@@ -258,14 +298,26 @@
 
 - (IBAction)onJobTypeClick:(UIButton *)sender 
 {
-    mCurrentJobType = (mCurrentJobType + 1) % 2;
+    mCurrentJobType = mCurrentJobType % 6 + 1;
     switch (mCurrentJobType)
     {
-        case 0:
+        case 1:
             [sender setTitle:@"第一类别" forState:UIControlStateNormal];
             break;
-        case 1:
+        case 2:
             [sender setTitle:@"第二类别" forState:UIControlStateNormal];
+            break;
+        case 3:
+            [sender setTitle:@"第三类别" forState:UIControlStateNormal];
+            break;
+        case 4:
+            [sender setTitle:@"第四类别" forState:UIControlStateNormal];
+            break;
+        case 5:
+            [sender setTitle:@"第五类别" forState:UIControlStateNormal];
+            break;
+        case 6:
+            [sender setTitle:@"第六类别" forState:UIControlStateNormal];
             break;
         default:
             break;
@@ -277,7 +329,7 @@
     //获得年期
     int pdtYear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyear;
     
-    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d",self.currentPli_pdt_m.pdpdtcode,mCurrentAge,pdtYear];
+    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,mCurrentAge,pdtYear,mCurrentJobType];
     NSArray * reslutArr = [plipdtrate findByCriteria:query];
     NSString * rate = nil;
     plipdtrate * plir = nil;
@@ -315,5 +367,15 @@
     NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * output = [NSString stringWithFormat:@"每月应缴：%@ 元\r\n每季应缴：%@ 元\r\n每半年应缴：%@ 元\r\n每年应缴：%@ 元\r\n",monthStr,quarterStr,halfYearStr,yearStr];
     self.resultTextView.text = output;
+}
+- (IBAction)onPdkindClick:(UIButton *)sender 
+{
+    for (UIButton * wButton in self.pdKindButtonArr) 
+    {
+        wButton.selected = false;
+    }
+    sender.selected = true;
+    mCurrentPdKind = sender.tag;
+    [self.tableListView reloadData];
 }
 @end

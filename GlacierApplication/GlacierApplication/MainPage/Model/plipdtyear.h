@@ -14,5 +14,9 @@
 @property (nonatomic,copy) NSString * pypdtyeartype;
 @property (nonatomic,copy) NSString * pypdtyearna;
 @property (nonatomic,copy) NSString * pyratecode;
-@property (nonatomic,copy) NSString * pyminamt;
+@property (nonatomic,assign) int pyminamt;
+@property (nonatomic,assign) int pymaxamt;
+@property (nonatomic,copy) NSString * pyamtunit;
+@property (nonatomic,assign) int pyminage;
+@property (nonatomic,assign) int pymaxage;
 @end

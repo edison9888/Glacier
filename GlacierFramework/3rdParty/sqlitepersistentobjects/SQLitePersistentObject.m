@@ -266,6 +266,7 @@ NSMutableArray *checkedTables;
 			for (i=0; i <  sqlite3_column_count(statement); i++)
 			{
 				NSString *colName = [NSString stringWithUTF8String:sqlite3_column_name(statement, i)];
+    
 				if ([colName isEqualToString:@"pk"])
 				{
 					//already set
@@ -278,7 +279,7 @@ NSMutableArray *checkedTables;
 					
 					NSString *colType = [theProps valueForKey:propName];
 					if (colType == nil)
-						break;
+						continue;
 					if ([colType isEqualToString:@"i"] || // int
 						[colType isEqualToString:@"l"] || // long
 						[colType isEqualToString:@"q"] || // long long

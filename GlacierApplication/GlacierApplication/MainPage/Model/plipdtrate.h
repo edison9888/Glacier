@@ -12,7 +12,7 @@
 @property (nonatomic,copy) NSString * prpdtcode;
 @property (nonatomic,copy) NSString * prpdtyear;
 @property (nonatomic,copy) NSString * prage;
-@property (nonatomic,copy) NSString * prsales;
+@property (nonatomic, assign) int prsales;
 @property (nonatomic,copy) NSString * prmrate;
 @property (nonatomic,copy) NSString * prfrate;
 @end
