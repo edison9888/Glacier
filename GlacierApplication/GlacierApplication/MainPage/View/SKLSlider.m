@@ -107,7 +107,7 @@
         self.minimumValue = wMinValue;
         self.maximumValue = wMaxValue;
 //        NSLog(@"%s, %f - %f", __func__, self.minimumValue, self.maximumValue);
-        self.value = (self.minimumValue + self.maximumValue) / 2;
+        [self setValue:self.minimumValue animated:false];
         [self valueChanged:self];
     }
 }
