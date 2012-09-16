@@ -274,7 +274,7 @@
 
 - (void)showAlertMsg:(NSString *)msg 
 {
-    [self.alertView dismissWithClickedButtonIndex:0 animated:false];
+    [self.amountTextField resignFirstResponder];
     UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
     self.alertView = wAlertView;
     [wAlertView show];
