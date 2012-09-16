@@ -222,26 +222,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];    
+    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];    
     self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]);
     [self initComponent];
-    self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
-    self.yearsOldLabel.text = @"0";
+    
 }
 
 -(void) initComponent
 {
     self.plipdtyear_list = [plipdtyear findByCriteria:@"where pdpdtcode = '%@' group by pypdtyear order by pypdtyear",self.currentPli_pdt_m.pdpdtcode];
     mCurrentPdtYearIndex = 0;
-    
+    self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
     plipdtyear * pdtyear;
     if(self.plipdtyear_list.count > 0)
     {
         pdtyear =  [self.plipdtyear_list objectAtIndex:0];
         [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
+        self.yearsOldLabel.text = [NSString stringWithFormat:@"%d",pdtyear.pyminage];
     }
-    
-    
     [self adjustPdtYearText];
 }
 
