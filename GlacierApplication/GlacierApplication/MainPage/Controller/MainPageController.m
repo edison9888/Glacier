@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
 @property (nonatomic,retain) NSArray * plipdtm_list;
 @property (nonatomic,retain) NSArray * pkclass_list;
+@property (nonatomic,retain) NSArray * currentPkClass_list;
 @property (nonatomic,retain) NSArray * plipdtrate_list;
 @property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
 @property (nonatomic,retain) plipdtm * currentPli_pdt_m;
@@ -53,6 +54,7 @@
 @synthesize plipdtyear_list = _plipdtyear_list;
 @synthesize currentPli_pdt_m = _currentPli_pdt_m;
 @synthesize alertView;
+@synthesize currentPkClass_list = _currentPkClass_list;
 
 - (void)dealloc {
     [_slider release];
@@ -95,6 +97,7 @@
     mCurrentJobType = 1;
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
+    [self adjustCurrentPkClassList];
 }
 
 - (void)viewDidUnload
@@ -117,18 +120,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
-    return self.pkclass_list.count;
+    return self.currentPkClass_list.count;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return ((pkclass *) [self.pkclass_list objectAtIndex:section]).name;
+    return ((pkclass *) [self.currentPkClass_list objectAtIndex:section]).name;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    pkclass * wClass = [self.pkclass_list objectAtIndex:section];
+    pkclass * wClass = [self.currentPkClass_list objectAtIndex:section];
     
     NSString * predicateStr;
     
@@ -152,7 +155,7 @@
     if (!wCell) {
         wCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify] autorelease];
     }
-    pkclass * wClass = [self.pkclass_list objectAtIndex:indexPath.section];
+    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
     
     NSString * predicateStr;
     
@@ -223,7 +226,7 @@
     self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]);
     [self initComponent];
     self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
-    
+    self.yearsOldLabel.text = @"0";
 }
 
 -(void) initComponent
@@ -275,16 +278,12 @@
 - (void)showAlertMsg:(NSString *)msg 
 {
     [self.amountTextField resignFirstResponder];
-    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     self.alertView = wAlertView;
     [wAlertView show];
     [wAlertView release];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-}
 
 - (IBAction)onPdtYearClick:(UIButton *)sender 
 {
@@ -387,6 +386,7 @@
     NSString * output = [NSString stringWithFormat:@"每月应缴：%@ 元\r\n每季应缴：%@ 元\r\n每半年应缴：%@ 元\r\n每年应缴：%@ 元\r\n",monthStr,quarterStr,halfYearStr,yearStr];
     self.resultTextView.text = output;
 }
+
 - (IBAction)onPdkindClick:(UIButton *)sender 
 {
     for (UIButton * wButton in self.pdKindButtonArr) 
@@ -395,6 +395,32 @@
     }
     sender.selected = true;
     mCurrentPdKind = sender.tag;
+    [self adjustCurrentPkClassList];
     [self.tableListView reloadData];
+}
+
+-(void)adjustCurrentPkClassList
+{
+    NSMutableArray * wArr = [self.pkclass_list mutableCopy];
+    for (int i = wArr.count - 1; i>=0; i--)
+    {
+        pkclass * wClass = [wArr objectAtIndex:i];
+        int count = 0;
+        if (mCurrentPdKind != 0)
+        {
+            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@' and pdkind = '%d'",wClass.code,mCurrentPdKind];
+            count = [plipdtm countByCriteria:query];
+        }
+        else 
+        {
+            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@'",wClass.code];
+            count = [plipdtm countByCriteria:query];
+        }
+        if(count == 0)
+        {
+            [wArr removeObject:wClass];
+        }
+    }
+    self.currentPkClass_list = wArr;
 }
 @end

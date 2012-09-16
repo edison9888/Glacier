@@ -306,7 +306,7 @@
 							<object class="IBUILabel" id="276981735">
 								<reference key="NSNextResponder" ref="1048719321"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{385, 228}, {42, 21}}</string>
+								<string key="NSFrame">{{377, 206}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="1048719321"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="179322437"/>
@@ -327,7 +327,7 @@
 							<object class="IBUILabel" id="573682221">
 								<reference key="NSNextResponder" ref="1048719321"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{35, 235}, {125, 21}}</string>
+								<string key="NSFrame">{{35, 235}, {142, 21}}</string>
 								<reference key="NSSuperview" ref="1048719321"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="276981735"/>
@@ -337,7 +337,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">名10年10月10日</string>
+								<string key="IBUIText">民国10年10月10日</string>
 								<reference key="IBUITextColor" ref="400166954"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
@@ -360,6 +360,7 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
@@ -1015,7 +1016,6 @@
 							<reference ref="782281125"/>
 							<reference ref="779865654"/>
 							<reference ref="179335453"/>
-							<reference ref="276981735"/>
 							<reference ref="368705274"/>
 							<reference ref="301400596"/>
 							<reference ref="615743525"/>
@@ -1028,6 +1028,7 @@
 							<reference ref="1067608741"/>
 							<reference ref="555177821"/>
 							<reference ref="253550278"/>
+							<reference ref="276981735"/>
 						</array>
 						<reference key="parent" ref="776283854"/>
 					</object>
