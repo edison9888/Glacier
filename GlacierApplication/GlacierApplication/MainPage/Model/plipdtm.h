@@ -13,4 +13,5 @@
 @property (nonatomic,copy) NSString * pdpdtname;
 @property (nonatomic,copy) NSString * pkclass;
 @property (nonatomic,copy) NSString * pdkind;
+@property (nonatomic,copy) NSString * pdonepay;
 @end

@@ -44,7 +44,7 @@
 @synthesize yearsOldLabel = _yearsOldLabel;
 @synthesize insuranceNameLabel = _insuranceNameLabel;
 @synthesize pdtYearButton = _pdtYearButton;
-@synthesize resultTextView = _resultTextView;
+@synthesize resultWebView = _resultWebView;
 @synthesize maleButton = _maleButton;
 @synthesize femaleButton = _femaleButton;
 @synthesize twDateFormatter = _twDateFormatter;
@@ -65,10 +65,10 @@
     [_maleButton release];
     [_femaleButton release];
     [_amountTextField release];
-    [_resultTextView release];
     [_pdtYearButton release];
     [_pdKindButtonArr release];
     [_tableListView release];
+    [_resultWebView release];
     [super dealloc];
 }
 
@@ -100,6 +100,7 @@
     [self adjustCurrentPkClassList];
 }
 
+
 - (void)viewDidUnload
 {
     [self setSlider:nil];
@@ -109,10 +110,10 @@
     [self setMaleButton:nil];
     [self setFemaleButton:nil];
     [self setAmountTextField:nil];
-    [self setResultTextView:nil];
     [self setPdtYearButton:nil];
     [self setPdKindButtonArr:nil];
     [self setTableListView:nil];
+    [self setResultWebView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -285,9 +286,12 @@
 
 - (IBAction)onPdtYearClick:(UIButton *)sender 
 {
-    mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
-    
-    [self adjustPdtYearText];
+    if(self.plipdtyear_list)
+    {
+        mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
+        
+        [self adjustPdtYearText];
+    }
 }
 
 - (void) adjustPdtYearText
@@ -337,7 +341,7 @@
     
     long long amount = self.amountTextField.text.longLongValue;
     
-    if (amount < pdtyear.pyminamt || amount > pdtyear.pymaxamt )
+    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
     {
         [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
         return;
@@ -373,7 +377,7 @@
     }
     else 
     {
-         self.resultTextView.text = @"无相关记录";
+         [self.resultWebView loadHTMLString:@"无相关记录" baseURL:nil] ;
     }
     
 }
@@ -386,8 +390,18 @@
     NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * output = [NSString stringWithFormat:@"每月应缴：%@ 元\r\n每季应缴：%@ 元\r\n每半年应缴：%@ 元\r\n每年应缴：%@ 元\r\n",monthStr,quarterStr,halfYearStr,yearStr];
-    self.resultTextView.text = output;
+     NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
+    NSString * output;
+    if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"]) 
+    {
+        output = [NSString stringWithFormat:@"每月应缴：%@ 元<br/>每季应缴：%@ 元<br/>每半年应缴：%@ 元<br/>每年应缴：%@ 元<br/>每日应缴：%@ 元<br/>躉繳保费：%@ 元",monthStr,quarterStr,halfYearStr,yearStr,yearStr,dayStr];
+    }
+    else 
+    {
+        output = [NSString stringWithFormat:@"每月应缴：%@ 元<br/>每季应缴：%@ 元<br/>每半年应缴：%@ 元<br/>每年应缴：%@ 元<br/>每日应缴：%@ 元",monthStr,quarterStr,halfYearStr,yearStr,dayStr];
+    }
+    
+    [self.resultWebView loadHTMLString:output baseURL:nil];
 }
 
 - (IBAction)onPdkindClick:(UIButton *)sender 
@@ -426,4 +440,25 @@
     }
     self.currentPkClass_list = wArr;
 }
+
+-(NSString *) generateTD:(NSArray *) td_list
+{
+    NSMutableString * wMutStr = [NSMutableString stringWithCapacity:0];
+    for (NSString * wStr in td_list)
+    {
+        [wMutStr appendFormat:@"<td>%@</td>",wStr];
+    }
+    return wMutStr;
+}
+
+-(NSString *) generateTR:(NSArray *) tr_list
+{
+    NSMutableString * wMutStr = [NSMutableString stringWithCapacity:0];
+    for (NSString * wStr in tr_list)
+    {
+        [wMutStr appendFormat:@"<tr>%@</tr>",wStr];
+    }
+    return wMutStr;
+}
+
 @end

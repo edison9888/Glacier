@@ -21,8 +21,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
 - (IBAction)onPdkindClick:(UIButton *)sender;
-
-@property (retain, nonatomic) IBOutlet UITextView *resultTextView;
+@property (retain, nonatomic) IBOutlet UIWebView *resultWebView;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;
 @property (retain, nonatomic) IBOutlet UIButton *femaleButton;
 - (IBAction)onPdtYearClick:(UIButton *)sender;
