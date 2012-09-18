@@ -37,9 +37,7 @@
 #pragma mark - 
 
 - (void)innerInit {
-    self.todayDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
-    self.todayDate = [[NSCalendar currentCalendar] dateFromComponents:self.todayDateComponents];
-    self.date1970 = [NSDate dateWithTimeIntervalSince1970:0];
+    
     [self addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     
 }
@@ -100,7 +98,13 @@
     return wTmp.day;
 }
 
-- (void)setYearsOldMin:(NSInteger)min max:(NSInteger)max {
+- (void)setYearsOldMin:(NSInteger)min max:(NSInteger)max 
+{
+    self.todayDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:[NSDate date]];
+    self.todayDate = [[NSCalendar currentCalendar] dateFromComponents:self.todayDateComponents];
+    self.date1970 = [NSDate dateWithTimeIntervalSince1970:0];
+    
+    
     if (min >= 0 && max >= 0) {
         NSInteger wMinValue = MIN([self minDaysTo1970AtYearsOld:min], [self minDaysTo1970AtYearsOld:max]);
         NSInteger wMaxValue = MAX([self maxDaysTo1970AtYearsOld:min], [self maxDaysTo1970AtYearsOld:max]);

@@ -14,6 +14,9 @@
 #import "UIView+SKLCurrentImage.h"
 
 @interface MainPageController ()
+@property (retain, nonatomic) IBOutlet UITextView *cautionTextView;
+@property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
+@property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
 
 - (void)displayMailComposerSheet;
 - (void)showAlertMsg:(NSString *)msg;
@@ -35,7 +38,11 @@
     int mCurrentAge;
     int mCurrentPdtYearIndex;
     int mCurrentPdKind;
+    int mCurrentCalcMode;//当前计算模式
 }
+@synthesize cautionTextView = _cautionTextView;
+@synthesize minAgeTextField = _minAgeTextField;
+@synthesize maxAgeTextField = _maxAgeTextField;
 @synthesize amountTextField = _amountTextField;
 @synthesize tableListView = _tableListView;
 @synthesize pdKindButtonArr = _pdKindButtonArr;
@@ -69,6 +76,9 @@
     [_pdKindButtonArr release];
     [_tableListView release];
     [_resultWebView release];
+    [_cautionTextView release];
+    [_minAgeTextField release];
+    [_maxAgeTextField release];
     [super dealloc];
 }
 
@@ -114,6 +124,9 @@
     [self setPdKindButtonArr:nil];
     [self setTableListView:nil];
     [self setResultWebView:nil];
+    [self setCautionTextView:nil];
+    [self setMinAgeTextField:nil];
+    [self setMaxAgeTextField:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -235,12 +248,16 @@
     mCurrentPdtYearIndex = 0;
     self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
     plipdtyear * pdtyear;
+    
     if(self.plipdtyear_list.count > 0)
     {
         pdtyear =  [self.plipdtyear_list objectAtIndex:0];
         [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
         self.yearsOldLabel.text = [NSString stringWithFormat:@"%d",pdtyear.pyminage];
     }
+    
+    self.cautionTextView.text = [NSString stringWithFormat:@"[投保年龄]：%d-%d嵗\r\n[核保限制]：被保人年龄介于：%d-%d嵗\r\n[保额]：%d-%d万元",pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminamt,pdtyear.pymaxamt];
+    
     [self adjustPdtYearText];
 }
 
@@ -337,30 +354,53 @@
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
-    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]);
+    
+    NSString * rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
+
+    if (rate)
+    {
+        [self generateOutput:rate];
+    }
+    else 
+    {
+         [self.resultWebView loadHTMLString:@"无相关记录" baseURL:nil] ;
+    }
+    
+}
+
+
+- (NSString *) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
+{
+    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
     
     long long amount = self.amountTextField.text.longLongValue;
     
     if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
     {
-        [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
-        return;
+        if (isShow) 
+        {
+            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
+        }
+        return nil;
     }
     if(!self.currentPli_pdt_m)
     {
-        [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种",pdtyear.pyminamt,pdtyear.pymaxamt]];
-        return;
+        if (isShow) 
+        {
+            [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种",pdtyear.pyminamt,pdtyear.pymaxamt]];
+        }
+        return nil;
     }
     
     //获得年期
-    int pdtYear = pdtyear.pypdtyear;
-    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,mCurrentAge,pdtYear,mCurrentJobType];
+    int pdt = pdtyear.pypdtyear;
+    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,age,pdt,mCurrentJobType];
     NSArray * reslutArr = [plipdtrate findByCriteria:query];
     NSString * rate = nil;
     plipdtrate * plir = nil;
     if (reslutArr.count > 0) 
     {
-       plir  = [reslutArr objectAtIndex:0];
+        plir  = [reslutArr objectAtIndex:0];
     }
     
     if (plir)
@@ -373,13 +413,13 @@
         {
             rate = plir.prfrate;
         }
-        [self generateOutput:rate];
+        return rate;
     }
     else 
     {
-         [self.resultWebView loadHTMLString:@"无相关记录" baseURL:nil] ;
+        return  nil;
     }
-    
+
 }
 
 
@@ -441,24 +481,42 @@
     self.currentPkClass_list = wArr;
 }
 
--(NSString *) generateTD:(NSArray *) td_list
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    NSMutableString * wMutStr = [NSMutableString stringWithCapacity:0];
-    for (NSString * wStr in td_list)
+    mCurrentCalcMode = item.tag;
+    if (mCurrentCalcMode == 0)
     {
-        [wMutStr appendFormat:@"<td>%@</td>",wStr];
+        [self.view viewWithTag:20].hidden = true;
     }
-    return wMutStr;
+    else if (mCurrentCalcMode == 1) 
+    {
+        [self.view viewWithTag:20].hidden = false;
+    }
 }
 
--(NSString *) generateTR:(NSArray *) tr_list
+@end
+
+
+@interface NSString(webTable)
+-(NSString *) wrapTD;
+-(NSString *) wrapTR;
+-(NSString *) wrapTable;
+@end
+
+@implementation NSString (webTable)
+
+-(NSString *) wrapTD
 {
-    NSMutableString * wMutStr = [NSMutableString stringWithCapacity:0];
-    for (NSString * wStr in tr_list)
-    {
-        [wMutStr appendFormat:@"<tr>%@</tr>",wStr];
-    }
-    return wMutStr;
+    return [NSString stringWithFormat:@"<td> %@ </td>",self];
 }
 
+-(NSString *) wrapTR
+{
+    return [NSString stringWithFormat:@"<td> %@ </td>",self];
+}
+
+- (NSString *)wrapTable
+{
+    return [NSString stringWithFormat:@"<table> %@ </table>",self];
+}
 @end
