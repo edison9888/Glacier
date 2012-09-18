@@ -365,7 +365,7 @@
     
     if (plir)
     {
-        if (mCurrentSex)
+        if (!mCurrentSex)
         {
             rate = plir.prmrate;
         }
