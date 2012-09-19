@@ -12,6 +12,9 @@
 #import "plipdtrate.h"
 #import "plipdtyear.h"
 #import "UIView+SKLCurrentImage.h"
+#import "ResultModel.h"
+#import "ProductCell.h"
+#import "ProductSectionView.h"
 
 @interface MainPageController ()
 @property (retain, nonatomic) IBOutlet UITextView *cautionTextView;
@@ -44,6 +47,11 @@
 @synthesize minAgeTextField = _minAgeTextField;
 @synthesize maxAgeTextField = _maxAgeTextField;
 @synthesize amountTextField = _amountTextField;
+@synthesize yearAmountLabel = _yearAmountLabel;
+@synthesize halfYearAmountLabel = _halfYearAmountLabel;
+@synthesize quarterAmountLabel = _quarterAmountLabel;
+@synthesize monthAmountLabel = _monthAmountLabel;
+@synthesize onePayAmountLabel = _onePayAmountLabel;
 @synthesize tableListView = _tableListView;
 @synthesize pdKindButtonArr = _pdKindButtonArr;
 @synthesize slider = _slider;
@@ -51,7 +59,6 @@
 @synthesize yearsOldLabel = _yearsOldLabel;
 @synthesize insuranceNameLabel = _insuranceNameLabel;
 @synthesize pdtYearButton = _pdtYearButton;
-@synthesize resultWebView = _resultWebView;
 @synthesize maleButton = _maleButton;
 @synthesize femaleButton = _femaleButton;
 @synthesize twDateFormatter = _twDateFormatter;
@@ -75,10 +82,14 @@
     [_pdtYearButton release];
     [_pdKindButtonArr release];
     [_tableListView release];
-    [_resultWebView release];
     [_cautionTextView release];
     [_minAgeTextField release];
     [_maxAgeTextField release];
+    [_yearAmountLabel release];
+    [_halfYearAmountLabel release];
+    [_quarterAmountLabel release];
+    [_monthAmountLabel release];
+    [_onePayAmountLabel release];
     [super dealloc];
 }
 
@@ -127,6 +138,11 @@
     [self setCautionTextView:nil];
     [self setMinAgeTextField:nil];
     [self setMaxAgeTextField:nil];
+    [self setYearAmountLabel:nil];
+    [self setHalfYearAmountLabel:nil];
+    [self setQuarterAmountLabel:nil];
+    [self setMonthAmountLabel:nil];
+    [self setOnePayAmountLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -137,11 +153,12 @@
     return self.currentPkClass_list.count;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return ((pkclass *) [self.currentPkClass_list objectAtIndex:section]).name;
+    ProductSectionView * wView = [[[NSBundle mainBundle]loadNibNamed:@"ProductSectionView" owner:nil options:nil] objectAtIndex:0];
+    wView.nameLabel.text = ((pkclass *) [self.currentPkClass_list objectAtIndex:section]).name;
+    return wView;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -165,9 +182,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * identify = @"PliCell";
-    UITableViewCell * wCell = [tableView dequeueReusableCellWithIdentifier:identify];
+    ProductCell * wCell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (!wCell) {
-        wCell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify] autorelease];
+        wCell = [[[NSBundle mainBundle]loadNibNamed:@"ProductCell" owner:nil options:nil] objectAtIndex:0];
     }
     pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
     
@@ -182,7 +199,7 @@
         predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@'",wClass.code];
     }
 
-    wCell.textLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).pdpdtname;
+    wCell.nameLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).pdpdtname;
     return wCell;
 }
 
@@ -356,16 +373,22 @@
 {
     
     NSString * rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
+ 
+    if(!self.currentPli_pdt_m)
+    {
 
+        [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种"]];
+        return;
+    }
+    
     if (rate)
     {
         [self generateOutput:rate];
     }
     else 
     {
-         [self.resultWebView loadHTMLString:@"无相关记录" baseURL:nil] ;
+        
     }
-    
 }
 
 
@@ -375,6 +398,8 @@
     
     long long amount = self.amountTextField.text.longLongValue;
     
+   
+    
     if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
     {
         if (isShow) 
@@ -383,14 +408,7 @@
         }
         return nil;
     }
-    if(!self.currentPli_pdt_m)
-    {
-        if (isShow) 
-        {
-            [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种",pdtyear.pyminamt,pdtyear.pymaxamt]];
-        }
-        return nil;
-    }
+   
     
     //获得年期
     int pdt = pdtyear.pypdtyear;
@@ -425,7 +443,7 @@
 
 - (void) generateOutput:(NSString *) rate
 {
-    long long resultAmount = self.amountTextField.text.intValue * rate.floatValue; 
+    long long resultAmount = self.amountTextField.text.longLongValue * rate.floatValue; 
     NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
@@ -434,14 +452,21 @@
     NSString * output;
     if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"]) 
     {
-        output = [NSString stringWithFormat:@"每月应缴：%@ 元<br/>每季应缴：%@ 元<br/>每半年应缴：%@ 元<br/>每年应缴：%@ 元<br/>每日应缴：%@ 元<br/>躉繳保费：%@ 元",monthStr,quarterStr,halfYearStr,yearStr,yearStr,dayStr];
+        self.yearAmountLabel.text = yearStr;
+        self.halfYearAmountLabel.text = halfYearStr;
+        self.quarterAmountLabel.text = quarterStr;
+        self.monthAmountLabel.text = monthStr;
+        self.onePayAmountLabel.text = yearStr;
     }
     else 
     {
-        output = [NSString stringWithFormat:@"每月应缴：%@ 元<br/>每季应缴：%@ 元<br/>每半年应缴：%@ 元<br/>每年应缴：%@ 元<br/>每日应缴：%@ 元",monthStr,quarterStr,halfYearStr,yearStr,dayStr];
+        self.yearAmountLabel.text = yearStr;
+        self.halfYearAmountLabel.text = halfYearStr;
+        self.quarterAmountLabel.text = quarterStr;
+        self.monthAmountLabel.text = monthStr;
+        self.onePayAmountLabel.text = @"--";
     }
-    
-    [self.resultWebView loadHTMLString:output baseURL:nil];
+
 }
 
 - (IBAction)onPdkindClick:(UIButton *)sender 

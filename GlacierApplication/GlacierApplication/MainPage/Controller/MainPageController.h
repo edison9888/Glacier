@@ -20,13 +20,17 @@
 @property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
-- (IBAction)onPdkindClick:(UIButton *)sender;
-@property (retain, nonatomic) IBOutlet UIWebView *resultWebView;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;
 @property (retain, nonatomic) IBOutlet UIButton *femaleButton;
-- (IBAction)onPdtYearClick:(UIButton *)sender;
 @property (retain, nonatomic) IBOutlet UITextField *amountTextField;
+@property (retain, nonatomic) IBOutlet UILabel *yearAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *halfYearAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *quarterAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *monthAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *onePayAmountLabel;
 
+- (IBAction)onPdkindClick:(UIButton *)sender;
+- (IBAction)onPdtYearClick:(UIButton *)sender;
 - (IBAction)onSexClick:(UIButton *)sender;
 - (IBAction)onJobTypeClick:(UIButton *)sender;
 @end
