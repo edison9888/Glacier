@@ -9,9 +9,15 @@
 #import "GlacierController.h"
 #import <MessageUI/MessageUI.h>
 #import "SKLSlider.h"
+#import "PopDateController.h"
 
-@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate, SKLSliderDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate>
+@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate, SKLSliderDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate>
+- (IBAction)onBirthdayClick:(UIButton *)sender;
+@property (retain, nonatomic) IBOutlet UIButton *birthdayButton;
+@property (retain, nonatomic) IBOutlet UILabel *sexLabel;
 - (IBAction)onCalculateClick:(UIButton *)sender;
+@property (retain, nonatomic) IBOutlet UILabel *codeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tipLabel;
 
 @property (retain, nonatomic) IBOutlet UITableView *tableListView;
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;

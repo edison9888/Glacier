@@ -15,11 +15,11 @@
 #import "ResultModel.h"
 #import "ProductCell.h"
 #import "ProductSectionView.h"
+#import "PopDateController.h"
+
 
 @interface MainPageController ()
-@property (retain, nonatomic) IBOutlet UITextView *cautionTextView;
-@property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
-@property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
+
 
 - (void)displayMailComposerSheet;
 - (void)showAlertMsg:(NSString *)msg;
@@ -32,6 +32,12 @@
 @property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
 @property (nonatomic,retain) plipdtm * currentPli_pdt_m;
 @property (nonatomic,retain) UIAlertView * alertView;
+@property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
+@property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
+@property (nonatomic,retain) PopDateController * popDateController;
+@property (retain, nonatomic) UIPopoverController * popOverController;
+@property (nonatomic,retain) NSDate * maxAgeDate;
+@property (nonatomic,retain) NSDate * minAgeDate;
 @end
 
 @implementation MainPageController
@@ -43,7 +49,8 @@
     int mCurrentPdKind;
     int mCurrentCalcMode;//当前计算模式
 }
-@synthesize cautionTextView = _cautionTextView;
+@synthesize birthdayButton = _birthdayButton;
+@synthesize sexLabel = _sexLabel;
 @synthesize minAgeTextField = _minAgeTextField;
 @synthesize maxAgeTextField = _maxAgeTextField;
 @synthesize amountTextField = _amountTextField;
@@ -52,6 +59,8 @@
 @synthesize quarterAmountLabel = _quarterAmountLabel;
 @synthesize monthAmountLabel = _monthAmountLabel;
 @synthesize onePayAmountLabel = _onePayAmountLabel;
+@synthesize codeLabel = _codeLabel;
+@synthesize tipLabel = _tipLabel;
 @synthesize tableListView = _tableListView;
 @synthesize pdKindButtonArr = _pdKindButtonArr;
 @synthesize slider = _slider;
@@ -69,6 +78,10 @@
 @synthesize currentPli_pdt_m = _currentPli_pdt_m;
 @synthesize alertView;
 @synthesize currentPkClass_list = _currentPkClass_list;
+@synthesize popDateController = _popDateController;
+@synthesize popOverController = _popOverController;
+@synthesize maxAgeDate;
+@synthesize minAgeDate;
 
 - (void)dealloc {
     [_slider release];
@@ -82,7 +95,6 @@
     [_pdtYearButton release];
     [_pdKindButtonArr release];
     [_tableListView release];
-    [_cautionTextView release];
     [_minAgeTextField release];
     [_maxAgeTextField release];
     [_yearAmountLabel release];
@@ -90,6 +102,12 @@
     [_quarterAmountLabel release];
     [_monthAmountLabel release];
     [_onePayAmountLabel release];
+    [_codeLabel release];
+    [_tipLabel release];
+    [_sexLabel release];
+    [_birthdayButton release];
+    [_popDateController release];
+    [_popOverController release];
     [super dealloc];
 }
 
@@ -134,8 +152,6 @@
     [self setPdtYearButton:nil];
     [self setPdKindButtonArr:nil];
     [self setTableListView:nil];
-    [self setResultWebView:nil];
-    [self setCautionTextView:nil];
     [self setMinAgeTextField:nil];
     [self setMaxAgeTextField:nil];
     [self setYearAmountLabel:nil];
@@ -143,6 +159,10 @@
     [self setQuarterAmountLabel:nil];
     [self setMonthAmountLabel:nil];
     [self setOnePayAmountLabel:nil];
+    [self setCodeLabel:nil];
+    [self setTipLabel:nil];
+    [self setSexLabel:nil];
+    [self setBirthdayButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -264,16 +284,31 @@
     self.plipdtyear_list = [plipdtyear findByCriteria:@"where pdpdtcode = '%@' group by pypdtyear order by pypdtyear",self.currentPli_pdt_m.pdpdtcode];
     mCurrentPdtYearIndex = 0;
     self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
+    self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.pdpdtcode];
     plipdtyear * pdtyear;
     
     if(self.plipdtyear_list.count > 0)
     {
         pdtyear =  [self.plipdtyear_list objectAtIndex:0];
+        
+        NSDateComponents* minCom = [[NSDateComponents alloc] init];
+        [minCom setYear:-pdtyear.pyminage];
+        NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
+        self.minAgeDate = wMinDate;
+        [minCom release];
+        
+        NSDateComponents* maxCom = [[NSDateComponents alloc] init];
+        [maxCom setYear:-pdtyear.pymaxage];
+        NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
+        self.maxAgeDate = wMaxDate;
+        [maxCom release];
+        
+        mCurrentAge = pdtyear.pyminage;
         [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
         self.yearsOldLabel.text = [NSString stringWithFormat:@"%d",pdtyear.pyminage];
     }
     
-    self.cautionTextView.text = [NSString stringWithFormat:@"[投保年龄]：%d-%d嵗\r\n[核保限制]：被保人年龄介于：%d-%d嵗\r\n[保额]：%d-%d万元",pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminamt,pdtyear.pymaxamt];
+    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%d-%d万元",pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminamt,pdtyear.pymaxamt];
     
     [self adjustPdtYearText];
 }
@@ -339,6 +374,13 @@
     mCurrentSex = (bool)sender.tag;
     self.maleButton.selected = !mCurrentSex;
     self.femaleButton.selected = mCurrentSex;
+    sender.selected = !sender.selected;
+    if (!mCurrentSex) {
+        self.sexLabel.text = @"先生";
+    }
+    else {
+        self.sexLabel.text = @"女士";
+    }
 }
 
 - (IBAction)onJobTypeClick:(UIButton *)sender 
@@ -398,7 +440,6 @@
     
     long long amount = self.amountTextField.text.longLongValue;
     
-   
     
     if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
     {
@@ -448,25 +489,54 @@
     NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
-     NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * output;
+    NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
+
+    
+    self.yearAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
+    self.halfYearAmountLabel.text = [halfYearStr stringByAppendingString:@" 元"];
+    self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
+    self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
+    
     if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"]) 
     {
-        self.yearAmountLabel.text = yearStr;
-        self.halfYearAmountLabel.text = halfYearStr;
-        self.quarterAmountLabel.text = quarterStr;
-        self.monthAmountLabel.text = monthStr;
-        self.onePayAmountLabel.text = yearStr;
+       
+        self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
     }
     else 
     {
-        self.yearAmountLabel.text = yearStr;
-        self.halfYearAmountLabel.text = halfYearStr;
-        self.quarterAmountLabel.text = quarterStr;
-        self.monthAmountLabel.text = monthStr;
-        self.onePayAmountLabel.text = @"--";
+        self.onePayAmountLabel.text = [@"--" stringByAppendingString:@" 元"];
     }
 
+}
+
+- (IBAction)onBirthdayClick:(UIButton *)sender 
+{
+    PopDateController * wDateController = [[PopDateController alloc]init];
+    self.popDateController = wDateController;
+    wDateController.popDateDelegate = self;
+    wDateController.maxDate = self.minAgeDate;
+    wDateController.minDate = self.maxAgeDate;
+    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wDateController];
+    wController.popoverContentSize = wDateController.view.frame.size;
+    self.popOverController = wController;
+    [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+    [wDateController release];
+    [wController release];
+}
+
+-(void)onOkClick:(NSDate *)date
+{
+    NSString * birthday = [self.twDateFormatter stringFromDate:date];
+    NSDateComponents *wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
+    mCurrentAge = wDateComponents.year;
+    self.yearsOldLabel.text = [NSString stringWithFormat:@"%d", wDateComponents.year];
+    [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+- (void)onCancelClick
+{
+    [self.popOverController dismissPopoverAnimated:true];
 }
 
 - (IBAction)onPdkindClick:(UIButton *)sender 
@@ -518,6 +588,7 @@
         [self.view viewWithTag:20].hidden = false;
     }
 }
+
 
 @end
 
