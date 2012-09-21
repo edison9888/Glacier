@@ -26,13 +26,13 @@
 @synthesize date1970 = _date1970;
 @synthesize birDay = _birDay;
 
-- (void)dealloc {
-    self.todayDate = nil;
-    self.todayDateComponents = nil;
-    self.date1970 = nil;
-    self.birDay = nil;
-    [super dealloc];
-}
+//- (void)dealloc {
+//    self.todayDate = nil;
+//    self.todayDateComponents = nil;
+//    self.date1970 = nil;
+//    self.birDay = nil;
+//    [super dealloc];
+//}
 
 #pragma mark - 
 
@@ -71,7 +71,7 @@
         wDateComponents.day = slider.maximumValue + slider.minimumValue - slider.value;
 //        NSLog(@"%s, %d", __func__, wDateComponents.day);
         NSDate *wDate = [[NSCalendar currentCalendar] dateByAddingComponents:wDateComponents toDate:self.date1970 options:0];
-        [wDateComponents release];
+//        [wDateComponents release];
         wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:wDate toDate:self.todayDate options:0];
         [_delegate yearsOldChanged:wDateComponents.year birDay:wDate];
     }
@@ -82,7 +82,7 @@
     wTmp.year -= yearsOld + 1;
     wTmp.day += 1;
     NSDate *wTmpDate = [[NSCalendar currentCalendar] dateFromComponents:wTmp];
-    [wTmp release];
+//    [wTmp release];
     wTmp = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.date1970 toDate:wTmpDate options:0];
 //    NSLog(@"%s, %d", __func__, wTmp.day);
     return wTmp.day;
@@ -92,7 +92,7 @@
     NSDateComponents *wTmp = [self.todayDateComponents copy];
     wTmp.year -= yearsOld;
     NSDate *wTmpDate = [[NSCalendar currentCalendar] dateFromComponents:wTmp];
-    [wTmp release];
+//    [wTmp release];
     wTmp = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.date1970 toDate:wTmpDate options:0];
 //    NSLog(@"%s, %d", __func__, wTmp.day);
     return wTmp.day;
@@ -117,9 +117,9 @@
 }
 
 - (void)setBirDay:(NSDate *)birDay {
-    [_birDay release];
+//    [_birDay release];
     _birDay = nil;
-    _birDay = [birDay retain];
+//    _birDay = [birDay retain];
     if (_birDay) {
         NSDateComponents *wTmp = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.date1970 toDate:birDay options:0];
         self.value = wTmp.day;

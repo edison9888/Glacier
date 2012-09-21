@@ -29,9 +29,9 @@
         self.nameLabel.highlighted = selected;
 }
 
-- (void)dealloc {
-    [nameLabel release];
-    [bgImg release];
-    [super dealloc];
-}
+//- (void)dealloc {
+//    [nameLabel release];
+//    [bgImg release];
+//    [super dealloc];
+//}
 @end

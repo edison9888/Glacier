@@ -21,8 +21,8 @@
 }
 
 
-- (void)dealloc {
-    [nameLabel release];
-    [super dealloc];
-}
+//- (void)dealloc {
+//    [nameLabel release];
+//    [super dealloc];
+//}
 @end

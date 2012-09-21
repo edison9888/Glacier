@@ -15,19 +15,19 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 
-- (void)dealloc
-{
-    [_window release];
-    [_viewController release];
-    [super dealloc];
-}
+//- (void)dealloc
+//{
+//    [_window release];
+//    [_viewController release];
+//    [super dealloc];
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSString * dbFilePath = [[NSBundle mainBundle]pathForResource:@"glacierapplication" ofType:@"sqlite3"];
     [[SQLiteInstanceManager sharedManager] setDatabaseFilepath:dbFilePath];
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.viewController = [[[MainPageController alloc] init] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
+    self.viewController = [[MainPageController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

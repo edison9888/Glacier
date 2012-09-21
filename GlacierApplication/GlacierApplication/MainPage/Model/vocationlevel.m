@@ -16,10 +16,10 @@
 
 - (void)dealloc
 {
-    self.codeid = nil;
-    self.codecname = nil;
-    self.parentcodeid = nil;
-    self.value = nil;
-    [super dealloc];
+//    self.codeid = nil;
+//    self.codecname = nil;
+//    self.parentcodeid = nil;
+//    self.value = nil;
+//    [super dealloc];
 }
 @end

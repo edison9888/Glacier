@@ -87,34 +87,34 @@
 @synthesize minAgeDate;
 @synthesize comboModel;
 
-- (void)dealloc {
-    [_yearsOldLabel release];
-    [_twDateFormatter release];
-    [_insuranceNameLabel release];
-    [_maleButton release];
-    [_femaleButton release];
-    [_amountTextField release];
-    [_pdtYearButton release];
-    [_pdKindButtonArr release];
-    [_tableListView release];
-    [_minAgeTextField release];
-    [_maxAgeTextField release];
-    [_yearAmountLabel release];
-    [_halfYearAmountLabel release];
-    [_quarterAmountLabel release];
-    [_monthAmountLabel release];
-    [_onePayAmountLabel release];
-    [_codeLabel release];
-    [_tipLabel release];
-    [_sexLabel release];
-    [_birthdayButton release];
-    [_popDateController release];
-    [_popOverController release];
-    [_jobTypeButton release];
-    [_jobTypeLabel release];
-    [comboModel release];
-    [super dealloc];
-}
+//- (void)dealloc {
+//    [_yearsOldLabel release];
+//    [_twDateFormatter release];
+//    [_insuranceNameLabel release];
+//    [_maleButton release];
+//    [_femaleButton release];
+//    [_amountTextField release];
+//    [_pdtYearButton release];
+//    [_pdKindButtonArr release];
+//    [_tableListView release];
+//    [_minAgeTextField release];
+//    [_maxAgeTextField release];
+//    [_yearAmountLabel release];
+//    [_halfYearAmountLabel release];
+//    [_quarterAmountLabel release];
+//    [_monthAmountLabel release];
+//    [_onePayAmountLabel release];
+//    [_codeLabel release];
+//    [_tipLabel release];
+//    [_sexLabel release];
+//    [_birthdayButton release];
+//    [_popDateController release];
+//    [_popOverController release];
+//    [_jobTypeButton release];
+//    [_jobTypeLabel release];
+//    [comboModel release];
+//    [super dealloc];
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -124,11 +124,11 @@
         _twDateFormatter = [[NSDateFormatter alloc] init];
         NSCalendar *wRepublicOfChinaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSRepublicOfChinaCalendar];
         _twDateFormatter.calendar = wRepublicOfChinaCalendar;
-        [wRepublicOfChinaCalendar release];
+//        [wRepublicOfChinaCalendar release];
         
         NSLocale *wLocale  = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_TW"];
         _twDateFormatter.locale = wLocale;
-        [wLocale release];
+//        [wLocale release];
         
         _twDateFormatter.dateFormat = @"G yyy年MM月dd日";
     }
@@ -270,7 +270,7 @@
 //        [wMailComposeViewController setMessageBody:emailBody isHTML:NO];
         
         [self presentModalViewController:wMailComposeViewController animated:YES];
-        [wMailComposeViewController release];
+//        [wMailComposeViewController release];
     } else {
         [self showAlertMsg:@"邮箱暂未配置，请配置后再使用该功能。"];
     }
@@ -300,13 +300,13 @@
         [minCom setYear:-pdtyear.pyminage];
         NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
         self.minAgeDate = wMinDate;
-        [minCom release];
+//        [minCom release];
         
         NSDateComponents* maxCom = [[NSDateComponents alloc] init];
         [maxCom setYear:-pdtyear.pymaxage];
         NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
         self.maxAgeDate = wMaxDate;
-        [maxCom release];
+//        [maxCom release];
         
         mCurrentAge = pdtyear.pyminage;
 //        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
@@ -354,7 +354,7 @@
     UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     self.alertView = wAlertView;
     [wAlertView show];
-    [wAlertView release];
+//    [wAlertView release];
 }
 
 
@@ -531,8 +531,8 @@
     wController.popoverContentSize = wDateController.view.frame.size;
     self.popOverController = wController;
     [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-    [wDateController release];
-    [wController release];
+//    [wDateController release];
+//    [wController release];
 }
 
 - (IBAction)onJobTypePopClick:(UIButton *)sender 
@@ -545,8 +545,8 @@
     wController.popoverContentSize = wComboController.view.frame.size;
     self.popOverController = wController;
     [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-    [wComboController release];
-    [wController release];
+//    [wComboController release];
+//    [wController release];
 }
 
 

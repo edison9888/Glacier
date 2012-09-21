@@ -54,23 +54,23 @@
     {
         ComboModel * model = [[ComboModel alloc]init];
         self.selectedModel = model;
-        [model release];
+//        [model release];
     }
     [self initPicker];
 }
 
-- (void)viewDidUnload
-{
-    [onePicker release];
-    onePicker = nil;
-    [twoPicker release];
-    twoPicker = nil;
-    [threePicker release];
-    threePicker = nil;
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+//- (void)viewDidUnload
+//{
+//    [onePicker release];
+//    onePicker = nil;
+//    [twoPicker release];
+//    twoPicker = nil;
+//    [threePicker release];
+//    threePicker = nil;
+//    [super viewDidUnload];
+//    // Release any retained subviews of the main view.
+//    // e.g. self.myOutlet = nil;
+//}
 
 - (void) initPicker
 {
@@ -200,7 +200,7 @@
     else {
         UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择一个职业" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [wAlert show];
-        [wAlert release];
+//        [wAlert release];
     }
 }
 
@@ -212,10 +212,10 @@
     }
 }
 
-- (void)dealloc {
-    [onePicker release];
-    [twoPicker release];
-    [threePicker release];
-    [super dealloc];
-}
+//- (void)dealloc {
+//    [onePicker release];
+//    [twoPicker release];
+//    [threePicker release];
+//    [super dealloc];
+//}
 @end

@@ -60,11 +60,11 @@
     // e.g. self.myOutlet = nil;
 } 
 
-- (void)dealloc 
-{
-    [picker release];
-    self.maxDate = nil;
-    self.minDate = nil;
-    [super dealloc];
-}
+//- (void)dealloc 
+//{
+//    [picker release];
+//    self.maxDate = nil;
+//    self.minDate = nil;
+//    [super dealloc];
+//}
 @end

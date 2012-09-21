@@ -17,7 +17,7 @@
 
 + (ResultModel *) resultModelwithRate:(NSString *)rate amount:(long long)amount
 {
-    ResultModel * wModel = [[[ResultModel alloc]init] autorelease];
+    ResultModel * wModel = [[ResultModel alloc]init];
     long long resultAmount = amount * rate.floatValue; 
     wModel.yearPay = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
     wModel.halfYearPay = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
