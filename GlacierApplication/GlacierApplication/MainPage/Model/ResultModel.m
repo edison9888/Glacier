@@ -14,6 +14,7 @@
 @synthesize quarterPay;
 @synthesize monthPay;
 @synthesize dayPay;
+
 + (ResultModel *) resultModelwithRate:(NSString *)rate amount:(long long)amount
 {
     ResultModel * wModel = [[[ResultModel alloc]init] autorelease];

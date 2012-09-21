@@ -15,7 +15,6 @@
 #import "ResultModel.h"
 #import "ProductCell.h"
 #import "ProductSectionView.h"
-#import "PopDateController.h"
 
 
 @interface MainPageController ()
@@ -34,10 +33,13 @@
 @property (nonatomic,retain) UIAlertView * alertView;
 @property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
 @property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
+@property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
 @property (nonatomic,retain) PopDateController * popDateController;
 @property (retain, nonatomic) UIPopoverController * popOverController;
+@property (nonatomic,retain) PopComboController * popComboController;
 @property (nonatomic,retain) NSDate * maxAgeDate;
 @property (nonatomic,retain) NSDate * minAgeDate;
+@property (nonatomic,retain) ComboModel * comboModel;
 @end
 
 @implementation MainPageController
@@ -49,10 +51,12 @@
     int mCurrentPdKind;
     int mCurrentCalcMode;//当前计算模式
 }
+@synthesize jobTypeLabel = _jobTypeLabel;
 @synthesize birthdayButton = _birthdayButton;
 @synthesize sexLabel = _sexLabel;
 @synthesize minAgeTextField = _minAgeTextField;
 @synthesize maxAgeTextField = _maxAgeTextField;
+@synthesize jobTypeButton = _jobTypeButton;
 @synthesize amountTextField = _amountTextField;
 @synthesize yearAmountLabel = _yearAmountLabel;
 @synthesize halfYearAmountLabel = _halfYearAmountLabel;
@@ -63,8 +67,6 @@
 @synthesize tipLabel = _tipLabel;
 @synthesize tableListView = _tableListView;
 @synthesize pdKindButtonArr = _pdKindButtonArr;
-@synthesize slider = _slider;
-@synthesize birDayLabel = _birDayLabel;
 @synthesize yearsOldLabel = _yearsOldLabel;
 @synthesize insuranceNameLabel = _insuranceNameLabel;
 @synthesize pdtYearButton = _pdtYearButton;
@@ -80,12 +82,12 @@
 @synthesize currentPkClass_list = _currentPkClass_list;
 @synthesize popDateController = _popDateController;
 @synthesize popOverController = _popOverController;
+@synthesize popComboController = _popComboController;
 @synthesize maxAgeDate;
 @synthesize minAgeDate;
+@synthesize comboModel;
 
 - (void)dealloc {
-    [_slider release];
-    [_birDayLabel release];
     [_yearsOldLabel release];
     [_twDateFormatter release];
     [_insuranceNameLabel release];
@@ -108,6 +110,9 @@
     [_birthdayButton release];
     [_popDateController release];
     [_popOverController release];
+    [_jobTypeButton release];
+    [_jobTypeLabel release];
+    [comboModel release];
     [super dealloc];
 }
 
@@ -132,7 +137,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _slider.delegate = self;
     mCurrentJobType = 1;
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
@@ -142,8 +146,6 @@
 
 - (void)viewDidUnload
 {
-    [self setSlider:nil];
-    [self setBirDayLabel:nil];
     [self setYearsOldLabel:nil];
     [self setInsuranceNameLabel:nil];
     [self setMaleButton:nil];
@@ -163,6 +165,8 @@
     [self setTipLabel:nil];
     [self setSexLabel:nil];
     [self setBirthdayButton:nil];
+    [self setJobTypeButton:nil];
+    [self setJobTypeLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -223,13 +227,14 @@
     return wCell;
 }
 
-#pragma mark SKLSliderDelegate
 
-- (void)yearsOldChanged:(NSInteger)yearsOld birDay:(NSDate *)birDayDate {
-    _birDayLabel.text = [self.twDateFormatter stringFromDate:birDayDate];
-    mCurrentAge = yearsOld;
-    _yearsOldLabel.text = [NSString stringWithFormat:@"%d", yearsOld];
-}
+//#pragma mark SKLSliderDelegate
+//
+//- (void)yearsOldChanged:(NSInteger)yearsOld birDay:(NSDate *)birDayDate {
+//    _birDayLabel.text = [self.twDateFormatter stringFromDate:birDayDate];
+//    mCurrentAge = yearsOld;
+//    _yearsOldLabel.text = [NSString stringWithFormat:@"%d", yearsOld];
+//}
 
 #pragma mark 界面操作相关
 
@@ -304,7 +309,7 @@
         [maxCom release];
         
         mCurrentAge = pdtyear.pyminage;
-        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
+//        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
         self.yearsOldLabel.text = [NSString stringWithFormat:@"%d",pdtyear.pyminage];
     }
     
@@ -386,25 +391,31 @@
 - (IBAction)onJobTypeClick:(UIButton *)sender 
 {
     mCurrentJobType = mCurrentJobType % 6 + 1;
+    [self changeJobType:mCurrentJobType];
+}
+
+- (void) changeJobType:(int) type
+{
+    mCurrentJobType = type;
     switch (mCurrentJobType)
     {
         case 1:
-            [sender setTitle:@"第一类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第一类别" forState:UIControlStateNormal];
             break;
         case 2:
-            [sender setTitle:@"第二类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第二类别" forState:UIControlStateNormal];
             break;
         case 3:
-            [sender setTitle:@"第三类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第三类别" forState:UIControlStateNormal];
             break;
         case 4:
-            [sender setTitle:@"第四类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第四类别" forState:UIControlStateNormal];
             break;
         case 5:
-            [sender setTitle:@"第五类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第五类别" forState:UIControlStateNormal];
             break;
         case 6:
-            [sender setTitle:@"第六类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第六类别" forState:UIControlStateNormal];
             break;
         default:
             break;
@@ -413,7 +424,7 @@
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
-    
+    [self.amountTextField resignFirstResponder];
     NSString * rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
  
     if(!self.currentPli_pdt_m)
@@ -524,6 +535,21 @@
     [wController release];
 }
 
+- (IBAction)onJobTypePopClick:(UIButton *)sender 
+{
+    PopComboController * wComboController = [[PopComboController alloc]init];
+    wComboController.selectedModel = self.comboModel;
+    self.popComboController = wComboController;
+    wComboController.popComboDelegate = self;
+    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wComboController];
+    wController.popoverContentSize = wComboController.view.frame.size;
+    self.popOverController = wController;
+    [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+    [wComboController release];
+    [wController release];
+}
+
+
 -(void)onOkClick:(NSDate *)date
 {
     NSString * birthday = [self.twDateFormatter stringFromDate:date];
@@ -535,6 +561,19 @@
 }
 
 - (void)onCancelClick
+{
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+- (void)onComboOkClick:(ComboModel *)model
+{
+    self.comboModel = model;
+    [self changeJobType: model.thirdLevel.value.intValue];
+    self.jobTypeLabel.text = [NSString stringWithFormat:@"%@/%@/%@",model.firstLevel.codecname,model.secondLevel.codecname,model.thirdLevel.codecname];
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+- (void)onComboCancelClick
 {
     [self.popOverController dismissPopoverAnimated:true];
 }
