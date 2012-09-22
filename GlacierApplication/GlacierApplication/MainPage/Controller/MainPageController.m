@@ -379,7 +379,6 @@
     mCurrentSex = (bool)sender.tag;
     self.maleButton.selected = !mCurrentSex;
     self.femaleButton.selected = mCurrentSex;
-    sender.selected = !sender.selected;
     if (!mCurrentSex) {
         self.sexLabel.text = @"先生";
     }

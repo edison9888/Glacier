@@ -31,6 +31,8 @@
 		58203B93160B45BC00694989 /* pdm_img_53.png in Resources */ = {isa = PBXBuildFile; fileRef = 58203B7E160B45BC00694989 /* pdm_img_53.png */; };
 		58203B97160B5A3500694989 /* PopDateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58203B95160B5A3500694989 /* PopDateController.m */; };
 		58203B98160B5A3500694989 /* PopDateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58203B96160B5A3500694989 /* PopDateController.xib */; };
+		5825C8FA160DA80C001A6EAC /* full2_15(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5825C8F9160DA80C001A6EAC /* full2_15(1).png */; };
+		5825C8FC160DA999001A6EAC /* full2_17(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5825C8FB160DA999001A6EAC /* full2_17(1).png */; };
 		582B00BF1609FA90008C453E /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 582B00AD1609FA90008C453E /* bg.png */; };
 		582B00D3160A00E8008C453E /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582B00D2160A00E8008C453E /* ProductCell.m */; };
 		582B00D5160A011C008C453E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582B00D4160A011C008C453E /* ProductCell.xib */; };
@@ -100,6 +102,8 @@
 		58203B94160B5A3500694989 /* PopDateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopDateController.h; sourceTree = "<group>"; };
 		58203B95160B5A3500694989 /* PopDateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopDateController.m; sourceTree = "<group>"; };
 		58203B96160B5A3500694989 /* PopDateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopDateController.xib; sourceTree = "<group>"; };
+		5825C8F9160DA80C001A6EAC /* full2_15(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "full2_15(1).png"; sourceTree = "<group>"; };
+		5825C8FB160DA999001A6EAC /* full2_17(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "full2_17(1).png"; sourceTree = "<group>"; };
 		582B00AD1609FA90008C453E /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		582B00D1160A00E8008C453E /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCell.h; path = GlacierApplication/MainPage/View/ProductCell.h; sourceTree = SOURCE_ROOT; };
 		582B00D2160A00E8008C453E /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCell.m; path = GlacierApplication/MainPage/View/ProductCell.m; sourceTree = SOURCE_ROOT; };
@@ -192,7 +196,9 @@
 				5833F7E9160C99AE00197F12 /* pdm_img_09 2.png */,
 				5833F7EA160C99AE00197F12 /* pdm_img_10 (2).png */,
 				5833F7EB160C99AE00197F12 /* pdm_img_10 2.png */,
+				5825C8F9160DA80C001A6EAC /* full2_15(1).png */,
 				58203B6A160B45BC00694989 /* full2_15.png */,
+				5825C8FB160DA999001A6EAC /* full2_17(1).png */,
 				58203B6B160B45BC00694989 /* full2_17.png */,
 				58203B6C160B45BC00694989 /* full2_50.png */,
 				58203B6D160B45BC00694989 /* pdm_img_02.png */,
@@ -442,6 +448,8 @@
 				5833F7F7160C9D8B00197F12 /* pdm_img_46 2.png in Resources */,
 				5833F7F8160C9D8B00197F12 /* pdm_img_49 2.png in Resources */,
 				5833F800160CA2C800197F12 /* PopComboController.xib in Resources */,
+				5825C8FA160DA80C001A6EAC /* full2_15(1).png in Resources */,
+				5825C8FC160DA999001A6EAC /* full2_17(1).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
