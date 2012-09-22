@@ -50,10 +50,10 @@
 		5833F7FB160CA13100197F12 /* vocationlevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833F7FA160CA13100197F12 /* vocationlevel.m */; };
 		5833F7FF160CA2C800197F12 /* PopComboController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833F7FD160CA2C800197F12 /* PopComboController.m */; };
 		5833F800160CA2C800197F12 /* PopComboController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5833F7FE160CA2C800197F12 /* PopComboController.xib */; };
+		585EFF07160E071600D75C7F /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585EFF06160E071600D75C7F /* libxml2.2.dylib */; };
 		5864B44316042BD7009072F2 /* plipdtrate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5864B44216042BD7009072F2 /* plipdtrate.m */; };
 		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
 		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
-		58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */; };
 		589579A8160482E200609C0F /* glacierapplication.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 589579A7160482E200609C0F /* glacierapplication.sqlite3 */; };
 		589579AB1604863D00609C0F /* plipdtyear.m in Sources */ = {isa = PBXBuildFile; fileRef = 589579AA1604863D00609C0F /* plipdtyear.m */; };
 		58EB36061603668D00FF668B /* SKLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36031603668D00FF668B /* SKLSlider.m */; };
@@ -125,12 +125,12 @@
 		5833F7FC160CA2C800197F12 /* PopComboController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopComboController.h; sourceTree = "<group>"; };
 		5833F7FD160CA2C800197F12 /* PopComboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopComboController.m; sourceTree = "<group>"; };
 		5833F7FE160CA2C800197F12 /* PopComboController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopComboController.xib; sourceTree = "<group>"; };
+		585EFF06160E071600D75C7F /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		5864B44116042BD7009072F2 /* plipdtrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtrate.h; sourceTree = "<group>"; };
 		5864B44216042BD7009072F2 /* plipdtrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtrate.m; sourceTree = "<group>"; };
 		587943531600C64400EE61CC /* MainPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageController.h; sourceTree = "<group>"; };
 		587943541600C64400EE61CC /* MainPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageController.m; sourceTree = "<group>"; };
 		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
-		58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 		589579A7160482E200609C0F /* glacierapplication.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glacierapplication.sqlite3; sourceTree = "<group>"; };
 		589579A91604863D00609C0F /* plipdtyear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtyear.h; sourceTree = "<group>"; };
 		589579AA1604863D00609C0F /* plipdtyear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtyear.m; sourceTree = "<group>"; };
@@ -168,10 +168,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				585EFF07160E071600D75C7F /* libxml2.2.dylib in Frameworks */,
 				58EB360A1603684200FF668B /* MessageUI.framework in Frameworks */,
 				580200BC15D607F1002A854F /* Security.framework in Frameworks */,
 				58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */,
-				58844CA315BBC044003EF5C1 /* libxml2.2.7.3.dylib in Frameworks */,
 				DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */,
 				DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */,
 				DD867D4E15ADC48000BEF6E8 /* Foundation.framework in Frameworks */,
@@ -293,7 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */,
-				58844CA215BBC044003EF5C1 /* libxml2.2.7.3.dylib */,
+				585EFF06160E071600D75C7F /* libxml2.2.dylib */,
 				DDBC22FC15AF2B4500457BB3 /* libz.dylib */,
 				DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */,
 				58EB36091603684200FF668B /* MessageUI.framework */,
