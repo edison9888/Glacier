@@ -357,6 +357,19 @@
 //    [wAlertView release];
 }
 
+- (IBAction)onResetClick:(UIButton *)sender
+{
+    self.insuranceNameLabel.text = @"";
+    self.currentPli_pdt_m = nil;
+    self.yearsOldLabel.text = @"0";
+    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
+    [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
+    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    self.amountTextField.text = @"";
+    self.codeLabel.text = @"商品代码";
+    self.jobTypeLabel.text = @"";
+    
+}
 
 - (IBAction)onPdtYearClick:(UIButton *)sender 
 {

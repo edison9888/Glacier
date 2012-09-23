@@ -96,7 +96,6 @@
 						<string key="NSFrame">{{649, 889}, {99, 89}}</string>
 						<reference key="NSSuperview" ref="776283854"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -303,7 +302,6 @@
 								<string key="NSFrame">{{0, 123}, {243, 881}}</string>
 								<reference key="NSSuperview" ref="227084456"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="197680930">
 									<int key="NSColorSpace">3</int>
@@ -1066,7 +1064,6 @@
 						<string key="NSFrame">{{259, 22}, {34, 21}}</string>
 						<reference key="NSSuperview" ref="369277408"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -1344,6 +1341,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onResetClick:</string>
+						<reference key="source" ref="779865654"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">136</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1768,7 +1774,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">136</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1787,9 +1793,12 @@
 						<string key="onBirthdayClick:">UIButton</string>
 						<string key="onCalculateClick:">UIButton</string>
 						<string key="onJobTypeClick:">UIButton</string>
+						<string key="onJobTypePopClick:">UIButton</string>
 						<string key="onPdkindClick:">UIButton</string>
 						<string key="onPdtYearClick:">UIButton</string>
+						<string key="onResetClick:">UIButton</string>
 						<string key="onSexClick:">UIButton</string>
+						<string key="userClickMail:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="onBirthdayClick:">
@@ -1804,6 +1813,10 @@
 							<string key="name">onJobTypeClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBActionInfo" key="onJobTypePopClick:">
+							<string key="name">onJobTypePopClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onPdkindClick:">
 							<string key="name">onPdkindClick:</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1812,9 +1825,17 @@
 							<string key="name">onPdtYearClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBActionInfo" key="onResetClick:">
+							<string key="name">onResetClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onSexClick:">
 							<string key="name">onSexClick:</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="userClickMail:">
+							<string key="name">userClickMail:</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
