@@ -439,6 +439,12 @@
     [self displayMailComposerSheet];
 }
 
+- (IBAction)onCollectClick:(UIButton *)sender
+{
+    NSURL *appURL = [NSURL URLWithString:@"SKLMAgent://com.vit.SKLMAgent"];
+    [[UIApplication sharedApplication] openURL:appURL];
+}
+
 - (IBAction)onResetClick:(UIButton *)sender
 {
     self.insuranceNameLabel.text = @"";

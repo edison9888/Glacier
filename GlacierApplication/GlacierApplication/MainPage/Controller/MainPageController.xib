@@ -302,6 +302,7 @@
 								<string key="NSFrame">{{0, 123}, {243, 881}}</string>
 								<reference key="NSSuperview" ref="227084456"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="679887607"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="197680930">
 									<int key="NSColorSpace">3</int>
@@ -961,6 +962,30 @@
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
+					<object class="IBUIButton" id="165864010">
+						<reference key="NSNextResponder" ref="776283854"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{296, 886}, {84, 92}}</string>
+						<reference key="NSSuperview" ref="776283854"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIHighlightedTitleColor" ref="670203881"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="529657851"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">full2_56.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="376115192"/>
+						<reference key="IBUIFont" ref="629848242"/>
+					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 				<reference key="NSSuperview"/>
@@ -1432,6 +1457,15 @@
 					</object>
 					<int key="connectionID">130</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onCollectClick:</string>
+						<reference key="source" ref="165864010"/>
+						<reference key="destination" ref="841351856"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1488,6 +1522,7 @@
 							<reference ref="1031009137"/>
 							<reference ref="718746696"/>
 							<reference ref="111626926"/>
+							<reference ref="165864010"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1714,6 +1749,11 @@
 						<reference key="object" ref="111626926"/>
 						<reference key="parent" ref="776283854"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">138</int>
+						<reference key="object" ref="165864010"/>
+						<reference key="parent" ref="776283854"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1743,6 +1783,7 @@
 				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="134.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="138.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1774,7 +1815,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">136</int>
+			<int key="maxID">139</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1793,12 +1834,9 @@
 						<string key="onBirthdayClick:">UIButton</string>
 						<string key="onCalculateClick:">UIButton</string>
 						<string key="onJobTypeClick:">UIButton</string>
-						<string key="onJobTypePopClick:">UIButton</string>
 						<string key="onPdkindClick:">UIButton</string>
 						<string key="onPdtYearClick:">UIButton</string>
-						<string key="onResetClick:">UIButton</string>
 						<string key="onSexClick:">UIButton</string>
-						<string key="userClickMail:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="onBirthdayClick:">
@@ -1813,10 +1851,6 @@
 							<string key="name">onJobTypeClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBActionInfo" key="onJobTypePopClick:">
-							<string key="name">onJobTypePopClick:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBActionInfo" key="onPdkindClick:">
 							<string key="name">onPdkindClick:</string>
 							<string key="candidateClassName">UIButton</string>
@@ -1825,17 +1859,9 @@
 							<string key="name">onPdtYearClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBActionInfo" key="onResetClick:">
-							<string key="name">onResetClick:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
 						<object class="IBActionInfo" key="onSexClick:">
 							<string key="name">onSexClick:</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBActionInfo" key="userClickMail:">
-							<string key="name">userClickMail:</string>
-							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
@@ -1971,6 +1997,7 @@
 			<string key="full2_15.png">{50, 56}</string>
 			<string key="full2_17(1).png">{50, 56}</string>
 			<string key="full2_17.png">{50, 56}</string>
+			<string key="full2_56.png">{84, 92}</string>
 			<string key="pdm_img_02.png">{131, 46}</string>
 			<string key="pdm_img_03.png">{132, 46}</string>
 			<string key="pdm_img_04.png">{130, 46}</string>
