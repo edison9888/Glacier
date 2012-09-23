@@ -87,35 +87,6 @@
 @synthesize minAgeDate;
 @synthesize comboModel;
 
-//- (void)dealloc {
-//    [_yearsOldLabel release];
-//    [_twDateFormatter release];
-//    [_insuranceNameLabel release];
-//    [_maleButton release];
-//    [_femaleButton release];
-//    [_amountTextField release];
-//    [_pdtYearButton release];
-//    [_pdKindButtonArr release];
-//    [_tableListView release];
-//    [_minAgeTextField release];
-//    [_maxAgeTextField release];
-//    [_yearAmountLabel release];
-//    [_halfYearAmountLabel release];
-//    [_quarterAmountLabel release];
-//    [_monthAmountLabel release];
-//    [_onePayAmountLabel release];
-//    [_codeLabel release];
-//    [_tipLabel release];
-//    [_sexLabel release];
-//    [_birthdayButton release];
-//    [_popDateController release];
-//    [_popOverController release];
-//    [_jobTypeButton release];
-//    [_jobTypeLabel release];
-//    [comboModel release];
-//    [super dealloc];
-//}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -134,6 +105,7 @@
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -141,35 +113,6 @@
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
-}
-
-
-- (void)viewDidUnload
-{
-    [self setYearsOldLabel:nil];
-    [self setInsuranceNameLabel:nil];
-    [self setMaleButton:nil];
-    [self setFemaleButton:nil];
-    [self setAmountTextField:nil];
-    [self setPdtYearButton:nil];
-    [self setPdKindButtonArr:nil];
-    [self setTableListView:nil];
-    [self setMinAgeTextField:nil];
-    [self setMaxAgeTextField:nil];
-    [self setYearAmountLabel:nil];
-    [self setHalfYearAmountLabel:nil];
-    [self setQuarterAmountLabel:nil];
-    [self setMonthAmountLabel:nil];
-    [self setOnePayAmountLabel:nil];
-    [self setCodeLabel:nil];
-    [self setTipLabel:nil];
-    [self setSexLabel:nil];
-    [self setBirthdayButton:nil];
-    [self setJobTypeButton:nil];
-    [self setJobTypeLabel:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
@@ -238,9 +181,7 @@
 
 #pragma mark 界面操作相关
 
-- (IBAction)userClickMail:(id)sender {
-    [self displayMailComposerSheet];
-}
+
 
 #pragma mark 邮件相关
 
@@ -345,7 +286,6 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-#pragma mark - 
 #pragma mark util
 
 - (void)showAlertMsg:(NSString *)msg 
@@ -357,53 +297,11 @@
 //    [wAlertView release];
 }
 
-- (IBAction)onResetClick:(UIButton *)sender
-{
-    self.insuranceNameLabel.text = @"";
-    self.currentPli_pdt_m = nil;
-    self.yearsOldLabel.text = @"0";
-    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
-    [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
-    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
-    self.amountTextField.text = @"";
-    self.codeLabel.text = @"商品代码";
-    self.jobTypeLabel.text = @"";
-    
-}
-
-- (IBAction)onPdtYearClick:(UIButton *)sender 
-{
-    if(self.plipdtyear_list)
-    {
-        mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
-        
-        [self adjustPdtYearText];
-    }
-}
+#pragma mark 处理函数
 
 - (void) adjustPdtYearText
 {
     [self.pdtYearButton setTitle:((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyearna forState:UIControlStateNormal];
-}
-
-
-- (IBAction)onSexClick:(UIButton *)sender
-{
-    mCurrentSex = (bool)sender.tag;
-    self.maleButton.selected = !mCurrentSex;
-    self.femaleButton.selected = mCurrentSex;
-    if (!mCurrentSex) {
-        self.sexLabel.text = @"先生";
-    }
-    else {
-        self.sexLabel.text = @"女士";
-    }
-}
-
-- (IBAction)onJobTypeClick:(UIButton *)sender 
-{
-    mCurrentJobType = mCurrentJobType % 6 + 1;
-    [self changeJobType:mCurrentJobType];
 }
 
 - (void) changeJobType:(int) type
@@ -434,6 +332,158 @@
     }
 }
 
+- (NSString *) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
+{
+    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
+    
+    long long amount = self.amountTextField.text.longLongValue;
+    
+    
+    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
+    {
+        if (isShow)
+        {
+            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
+        }
+        return nil;
+    }
+    
+    
+    //获得年期
+    int pdt = pdtyear.pypdtyear;
+    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,age,pdt,mCurrentJobType];
+    NSArray * reslutArr = [plipdtrate findByCriteria:query];
+    NSString * rate = nil;
+    plipdtrate * plir = nil;
+    if (reslutArr.count > 0)
+    {
+        plir  = [reslutArr objectAtIndex:0];
+    }
+    
+    if (plir)
+    {
+        if (!mCurrentSex)
+        {
+            rate = plir.prmrate;
+        }
+        else
+        {
+            rate = plir.prfrate;
+        }
+        return rate;
+    }
+    else
+    {
+        return  nil;
+    }
+    
+}
+
+
+- (void) generateOutput:(NSString *) rate
+{
+    long long resultAmount = self.amountTextField.text.longLongValue * rate.floatValue;
+    NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
+    NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
+    NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
+    NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
+    NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
+    
+    
+    self.yearAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
+    self.halfYearAmountLabel.text = [halfYearStr stringByAppendingString:@" 元"];
+    self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
+    self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
+    
+    if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"])
+    {
+        
+        self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
+    }
+    else
+    {
+        self.onePayAmountLabel.text = [@"--" stringByAppendingString:@" 元"];
+    }
+    
+}
+
+-(void)adjustCurrentPkClassList
+{
+    NSMutableArray * wArr = [self.pkclass_list mutableCopy];
+    for (int i = wArr.count - 1; i>=0; i--)
+    {
+        pkclass * wClass = [wArr objectAtIndex:i];
+        int count = 0;
+        if (mCurrentPdKind != 0)
+        {
+            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@' and pdkind = '%d'",wClass.code,mCurrentPdKind];
+            count = [plipdtm countByCriteria:query];
+        }
+        else
+        {
+            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@'",wClass.code];
+            count = [plipdtm countByCriteria:query];
+        }
+        if(count == 0)
+        {
+            [wArr removeObject:wClass];
+        }
+    }
+    self.currentPkClass_list = wArr;
+}
+
+
+#pragma mark 点击事件
+
+- (IBAction)userClickMail:(id)sender {
+    [self displayMailComposerSheet];
+}
+
+- (IBAction)onResetClick:(UIButton *)sender
+{
+    self.insuranceNameLabel.text = @"";
+    self.currentPli_pdt_m = nil;
+    self.yearsOldLabel.text = @"0";
+    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
+    [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
+    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    self.amountTextField.text = @"";
+    self.codeLabel.text = @"商品代码";
+    self.jobTypeLabel.text = @"";
+    
+}
+
+- (IBAction)onPdtYearClick:(UIButton *)sender 
+{
+    if(self.plipdtyear_list)
+    {
+        mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
+        
+        [self adjustPdtYearText];
+    }
+}
+
+- (IBAction)onSexClick:(UIButton *)sender
+{
+    mCurrentSex = (bool)sender.tag;
+    self.maleButton.selected = !mCurrentSex;
+    self.femaleButton.selected = mCurrentSex;
+    if (!mCurrentSex) {
+        self.sexLabel.text = @"先生";
+    }
+    else {
+        self.sexLabel.text = @"女士";
+    }
+}
+
+- (IBAction)onJobTypeClick:(UIButton *)sender 
+{
+    mCurrentJobType = mCurrentJobType % 6 + 1;
+    [self changeJobType:mCurrentJobType];
+}
+
+
+
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
     [self.amountTextField resignFirstResponder];
@@ -456,81 +506,6 @@
     }
 }
 
-
-- (NSString *) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
-{
-    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
-    
-    long long amount = self.amountTextField.text.longLongValue;
-    
-    
-    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
-    {
-        if (isShow) 
-        {
-            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
-        }
-        return nil;
-    }
-   
-    
-    //获得年期
-    int pdt = pdtyear.pypdtyear;
-    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,age,pdt,mCurrentJobType];
-    NSArray * reslutArr = [plipdtrate findByCriteria:query];
-    NSString * rate = nil;
-    plipdtrate * plir = nil;
-    if (reslutArr.count > 0) 
-    {
-        plir  = [reslutArr objectAtIndex:0];
-    }
-    
-    if (plir)
-    {
-        if (!mCurrentSex)
-        {
-            rate = plir.prmrate;
-        }
-        else 
-        {
-            rate = plir.prfrate;
-        }
-        return rate;
-    }
-    else 
-    {
-        return  nil;
-    }
-
-}
-
-
-- (void) generateOutput:(NSString *) rate
-{
-    long long resultAmount = self.amountTextField.text.longLongValue * rate.floatValue; 
-    NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
-
-    
-    self.yearAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
-    self.halfYearAmountLabel.text = [halfYearStr stringByAppendingString:@" 元"];
-    self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
-    self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
-    
-    if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"]) 
-    {
-       
-        self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
-    }
-    else 
-    {
-        self.onePayAmountLabel.text = [@"--" stringByAppendingString:@" 元"];
-    }
-
-}
 
 - (IBAction)onBirthdayClick:(UIButton *)sender 
 {
@@ -602,31 +577,6 @@
     [self.tableListView reloadData];
 }
 
--(void)adjustCurrentPkClassList
-{
-    NSMutableArray * wArr = [self.pkclass_list mutableCopy];
-    for (int i = wArr.count - 1; i>=0; i--)
-    {
-        pkclass * wClass = [wArr objectAtIndex:i];
-        int count = 0;
-        if (mCurrentPdKind != 0)
-        {
-            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@' and pdkind = '%d'",wClass.code,mCurrentPdKind];
-            count = [plipdtm countByCriteria:query];
-        }
-        else 
-        {
-            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@'",wClass.code];
-            count = [plipdtm countByCriteria:query];
-        }
-        if(count == 0)
-        {
-            [wArr removeObject:wClass];
-        }
-    }
-    self.currentPkClass_list = wArr;
-}
-
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     mCurrentCalcMode = item.tag;
@@ -639,31 +589,5 @@
         [self.view viewWithTag:20].hidden = false;
     }
 }
-
-
 @end
 
-
-@interface NSString(webTable)
--(NSString *) wrapTD;
--(NSString *) wrapTR;
--(NSString *) wrapTable;
-@end
-
-@implementation NSString (webTable)
-
--(NSString *) wrapTD
-{
-    return [NSString stringWithFormat:@"<td> %@ </td>",self];
-}
-
--(NSString *) wrapTR
-{
-    return [NSString stringWithFormat:@"<td> %@ </td>",self];
-}
-
-- (NSString *)wrapTable
-{
-    return [NSString stringWithFormat:@"<table> %@ </table>",self];
-}
-@end

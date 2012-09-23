@@ -211,11 +211,4 @@
         [self.popComboDelegate onComboCancelClick];
     }
 }
-
-//- (void)dealloc {
-//    [onePicker release];
-//    [twoPicker release];
-//    [threePicker release];
-//    [super dealloc];
-//}
 @end
