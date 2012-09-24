@@ -584,7 +584,7 @@
 				DD87036D15AF1BBA0067B66C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		DD87036E15AF1BBA0067B66C /* Build configuration list for PBXNativeTarget "GlacierFramework" */ = {
 			isa = XCConfigurationList;
@@ -593,7 +593,7 @@
 				DD87037015AF1BBA0067B66C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

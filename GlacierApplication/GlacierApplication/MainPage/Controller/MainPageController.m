@@ -113,6 +113,7 @@
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

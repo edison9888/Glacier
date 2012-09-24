@@ -552,15 +552,19 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierApplication/GlacierApplication-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "GlacierApplication/GlacierApplication-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -571,15 +575,19 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierApplication/GlacierApplication-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
 				INFOPLIST_FILE = "GlacierApplication/GlacierApplication-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = 2;
+				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -595,7 +603,7 @@
 				DD867D6415ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		DD867D6515ADC48000BEF6E8 /* Build configuration list for PBXNativeTarget "GlacierApplication" */ = {
 			isa = XCConfigurationList;
@@ -604,7 +612,7 @@
 				DD867D6715ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
