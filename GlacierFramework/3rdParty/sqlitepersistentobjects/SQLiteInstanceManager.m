@@ -92,12 +92,12 @@ static SQLiteInstanceManager *sharedSQLiteManager = nil;
 		}
 		else
 		{
-//			// Default to UTF-8 encoding
-//			[self executeUpdateSQL:@"PRAGMA encoding = \"UTF-8\""];
-//			
-//			// Turn on full auto-vacuuming to keep the size of the database down
-//			// This setting can be changed per database using the setAutoVacuum instance method
-//			[self executeUpdateSQL:@"PRAGMA auto_vacuum=1"];
+			// Default to UTF-8 encoding
+			[self executeUpdateSQL:@"PRAGMA encoding = \"UTF-8\""];
+			
+			// Turn on full auto-vacuuming to keep the size of the database down
+			// This setting can be changed per database using the setAutoVacuum instance method
+			[self executeUpdateSQL:@"PRAGMA auto_vacuum=1"];
 			
 		}
 	}
