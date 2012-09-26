@@ -25,7 +25,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSString * dbFilePath = [[NSBundle mainBundle]pathForResource:@"glacierapplication" ofType:@"sqlite3"];
-    [[SQLiteInstanceManager sharedManager] setDatabaseFilepath:dbFilePath];
+    
+    NSFileManager * wFm = [NSFileManager defaultManager];
+    NSError * wError = nil ;
+    [wFm copyItemAtPath:dbFilePath toPath:((SQLiteInstanceManager *)[SQLiteInstanceManager sharedManager]).databaseFilepath error:&wError];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
     self.viewController = [[MainPageController alloc] init];
     self.window.rootViewController = self.viewController;
