@@ -566,6 +566,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -589,6 +590,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
+				VALID_ARCHS = "armv6 armv7";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
