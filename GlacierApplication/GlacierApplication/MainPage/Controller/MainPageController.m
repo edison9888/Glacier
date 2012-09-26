@@ -110,10 +110,13 @@
 {
     [super viewDidLoad];
     mCurrentJobType = 1;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
     self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
-
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
