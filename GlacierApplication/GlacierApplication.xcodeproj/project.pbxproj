@@ -51,6 +51,8 @@
 		5833F7FB160CA13100197F12 /* vocationlevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833F7FA160CA13100197F12 /* vocationlevel.m */; };
 		5833F7FF160CA2C800197F12 /* PopComboController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5833F7FD160CA2C800197F12 /* PopComboController.m */; };
 		5833F800160CA2C800197F12 /* PopComboController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5833F7FE160CA2C800197F12 /* PopComboController.xib */; };
+		5846A41C16147EF300596F4B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5846A41B16147EF300596F4B /* Default.png */; };
+		5846A41E161481A600596F4B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5846A41D161481A600596F4B /* icon.png */; };
 		585EFF07160E071600D75C7F /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585EFF06160E071600D75C7F /* libxml2.2.dylib */; };
 		5864B44316042BD7009072F2 /* plipdtrate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5864B44216042BD7009072F2 /* plipdtrate.m */; };
 		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
@@ -127,6 +129,8 @@
 		5833F7FC160CA2C800197F12 /* PopComboController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopComboController.h; sourceTree = "<group>"; };
 		5833F7FD160CA2C800197F12 /* PopComboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopComboController.m; sourceTree = "<group>"; };
 		5833F7FE160CA2C800197F12 /* PopComboController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopComboController.xib; sourceTree = "<group>"; };
+		5846A41B16147EF300596F4B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		5846A41D161481A600596F4B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		585EFF06160E071600D75C7F /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		5864B44116042BD7009072F2 /* plipdtrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plipdtrate.h; sourceTree = "<group>"; };
 		5864B44216042BD7009072F2 /* plipdtrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plipdtrate.m; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 		DD867D3C15ADC48000BEF6E8 = {
 			isa = PBXGroup;
 			children = (
+				5846A41D161481A600596F4B /* icon.png */,
+				5846A41B16147EF300596F4B /* Default.png */,
 				DD867D5115ADC48000BEF6E8 /* GlacierApplication */,
 				DD867D4A15ADC48000BEF6E8 /* Frameworks */,
 				DD867D4815ADC48000BEF6E8 /* Products */,
@@ -454,6 +460,8 @@
 				5825C8FA160DA80C001A6EAC /* full2_15(1).png in Resources */,
 				5825C8FC160DA999001A6EAC /* full2_17(1).png in Resources */,
 				5833A33F160F59FA005D5F18 /* full2_56.png in Resources */,
+				5846A41C16147EF300596F4B /* Default.png in Resources */,
+				5846A41E161481A600596F4B /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -566,7 +574,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -575,7 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -590,7 +598,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
-				VALID_ARCHS = "armv6 armv7";
+				VALID_ARCHS = "armv6 armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
