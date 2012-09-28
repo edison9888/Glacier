@@ -9,10 +9,6 @@
 #import "vocationlevel.h"
 
 @implementation vocationlevel
-@synthesize codeid = _codeid;
-@synthesize codecname = _codecname;
-@synthesize parentcodeid = _parentcodeid;
-@synthesize value = _value;
 
 - (void)dealloc
 {

@@ -14,6 +14,14 @@
 @synthesize firstSelected;
 @synthesize secondSelected;
 @synthesize thirdSelected;
+
+//- (void)dealloc
+//{
+//    self.firstLevel = nil;
+//    self.secondLevel = nil;
+//    self.thirdLevel = nil;
+//    [super dealloc];
+//}
 @end
 
 
@@ -36,6 +44,18 @@
 @synthesize typeThreeArr = _typeThreeArr;
 @synthesize popComboDelegate;
 @synthesize selectedModel;
+
+//- (void)dealloc
+//{
+//    self.selectedModel = nil;
+//    self.typeOneArr = nil;
+//    self.typeTwoArr = nil;
+//    self.typeThreeArr = nil;
+//    [onePicker release];
+//    [twoPicker release];
+//    [threePicker release];
+//    [super dealloc];
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -143,12 +163,19 @@
         
         self.typeTwoArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).codeid];
         [twoPicker reloadAllComponents];
+        [twoPicker selectRow:-1 inComponent:0 animated:false];
+        [threePicker selectRow:-1 inComponent:0 animated:false];
+        self.selectedModel.secondSelected = 0;
+        self.selectedModel.thirdSelected = 0;
+        
     }
     else if (pickerView.tag == 1)
     {
         self.selectedModel.secondSelected = row;
         self.typeThreeArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).codeid];
         [threePicker reloadAllComponents];
+        [threePicker selectRow:-1 inComponent:0 animated:false];
+        self.selectedModel.thirdSelected = 0;
     }
     else if (pickerView.tag == 2)
     {

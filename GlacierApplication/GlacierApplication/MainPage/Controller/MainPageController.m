@@ -135,11 +135,11 @@
     
     if (mCurrentPdKind != 0)
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@' and self.pdkind == '%d'",wClass.code, mCurrentPdKind];
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@ and self.pdkind == %d",wClass.code, mCurrentPdKind];
     }
     else 
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@'",wClass.code];
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@",wClass.code];
     }
 
     
@@ -159,17 +159,24 @@
     
     if (mCurrentPdKind != 0)
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@' and self.pdkind == '%d'",wClass.code, mCurrentPdKind];
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@ and self.pdkind == %d",wClass.code, mCurrentPdKind];
     }
     else 
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == '%@'",wClass.code];
+        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@",wClass.code];
     }
 
     wCell.nameLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).pdpdtname;
     return wCell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
+    self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %d",wClass.code.intValue]] objectAtIndex:indexPath.row]);
+    [self initComponent];
+    
+}
 
 //#pragma mark SKLSliderDelegate
 //
@@ -217,13 +224,6 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];    
-    self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %@",wClass.code]] objectAtIndex:indexPath.row]);
-    [self initComponent];
-    
-}
 
 -(void) initComponent
 {
@@ -332,20 +332,20 @@
     }
 }
 
-- (NSString *) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
+- (float) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
 {
     plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
     
     long long amount = self.amountTextField.text.longLongValue;
     
     
-    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt))
+    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt.longLongValue)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt.longLongValue))
     {
         if (isShow)
         {
-            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%d-%d之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
+            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%@-%@之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
         }
-        return nil;
+        return  - 1;
     }
     
     
@@ -353,7 +353,7 @@
     int pdt = pdtyear.pypdtyear;
     NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,age,pdt,mCurrentJobType];
     NSArray * reslutArr = [plipdtrate findByCriteria:query];
-    NSString * rate = nil;
+    float rate;
     plipdtrate * plir = nil;
     if (reslutArr.count > 0)
     {
@@ -374,15 +374,15 @@
     }
     else
     {
-        return  nil;
+        return  - 1;
     }
     
 }
 
 
-- (void) generateOutput:(NSString *) rate
+- (void) generateOutput:(float) rate
 {
-    long long resultAmount = self.amountTextField.text.longLongValue * rate.floatValue;
+    long long resultAmount = self.amountTextField.text.longLongValue * rate;
     NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
     NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
@@ -395,7 +395,7 @@
     self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
     self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
     
-    if ([self.currentPli_pdt_m.pdonepay isEqualToString:@"1"])
+    if (self.currentPli_pdt_m.pdonepay == 1.0f)
     {
         
         self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
@@ -493,7 +493,7 @@
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
     [self.amountTextField resignFirstResponder];
-    NSString * rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
+    float rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
  
     if(!self.currentPli_pdt_m)
     {
@@ -502,7 +502,7 @@
         return;
     }
     
-    if (rate)
+    if (rate > 0)
     {
         [self generateOutput:rate];
     }
@@ -530,6 +530,10 @@
 
 - (IBAction)onJobTypePopClick:(UIButton *)sender 
 {
+    if ( self.popComboController)
+    {
+        [self.popComboController.view removeFromSuperview];
+    }
     PopComboController * wComboController = [[PopComboController alloc]init];
     wComboController.selectedModel = self.comboModel;
     self.popComboController = wComboController;

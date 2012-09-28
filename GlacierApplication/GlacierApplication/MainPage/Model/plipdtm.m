@@ -9,9 +9,4 @@
 #import "plipdtm.h"
 
 @implementation plipdtm
-@synthesize pdkind;
-@synthesize pdpdtcode;
-@synthesize pdpdtname;
-@synthesize pkclass;
-@synthesize pdonepay;
 @end

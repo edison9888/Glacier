@@ -9,10 +9,13 @@
 #import "SQLitePersistentObject.h"
 
 @interface plipdtrate : SQLitePersistentObject
-@property (nonatomic,copy) NSString * prpdtcode;
-@property (nonatomic,copy) NSString * prpdtyear;
-@property (nonatomic,copy) NSString * prage;
-@property (nonatomic, assign) int prsales;
-@property (nonatomic,copy) NSString * prmrate;
-@property (nonatomic,copy) NSString * prfrate;
+@property (nonatomic,copy) NSString * prpdtcode; 
+@property (nonatomic,assign) float prpdtyear; 
+@property (nonatomic,assign) float prage; 
+@property (nonatomic,assign) float prsales; 
+@property (nonatomic,assign) float prmrate; 
+@property (nonatomic,assign) float prfrate; 
+@property (nonatomic,assign) float prmodeno;
+@property (nonatomic,copy) NSString * modidate; 
+@property (nonatomic,copy) NSString * modistate;
 @end

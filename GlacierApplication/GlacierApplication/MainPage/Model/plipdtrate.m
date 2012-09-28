@@ -9,10 +9,4 @@
 #import "plipdtrate.h"
 
 @implementation plipdtrate
-@synthesize prage;
-@synthesize prfrate;
-@synthesize prmrate;
-@synthesize prsales;
-@synthesize prpdtcode;
-@synthesize prpdtyear;
 @end
