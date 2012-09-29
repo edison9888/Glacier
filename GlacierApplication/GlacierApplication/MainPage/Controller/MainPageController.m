@@ -7,10 +7,10 @@
 //
 
 #import "MainPageController.h"
-#import "plipdtm.h"
-#import "pkclass.h"
-#import "plipdtrate.h"
-#import "plipdtyear.h"
+#import "PLI_PDT_M.h"
+#import "PK_CLASS.h"
+#import "PLI_PDTRATE.h"
+#import "PLI_PDTYEAR.h"
 #import "UIView+SKLCurrentImage.h"
 #import "ResultModel.h"
 #import "ProductCell.h"
@@ -29,7 +29,7 @@
 @property (nonatomic,retain) NSArray * currentPkClass_list;
 @property (nonatomic,retain) NSArray * plipdtrate_list;
 @property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
-@property (nonatomic,retain) plipdtm * currentPli_pdt_m;
+@property (nonatomic,retain) PLI_PDT_M * currentPli_pdt_m;
 @property (nonatomic,retain) UIAlertView * alertView;
 @property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
 @property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
@@ -110,8 +110,8 @@
 {
     [super viewDidLoad];
     mCurrentJobType = 1;
-    self.plipdtm_list = [plipdtm findByCriteria:@"group by pdpdtcode"];
-    self.pkclass_list = [pkclass findByCriteria:@"order by pk"];
+    self.plipdtm_list = [PLI_PDT_M findByCriteria:@"group by PD_PDTCODE"];
+    self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
 }
 
@@ -123,23 +123,23 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ProductSectionView * wView = [[[NSBundle mainBundle]loadNibNamed:@"ProductSectionView" owner:nil options:nil] objectAtIndex:0];
-    wView.nameLabel.text = ((pkclass *) [self.currentPkClass_list objectAtIndex:section]).name;
+    wView.nameLabel.text = ((PK_CLASS *) [self.currentPkClass_list objectAtIndex:section]).PK_CLASS_NAME;
     return wView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    pkclass * wClass = [self.currentPkClass_list objectAtIndex:section];
+    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:section];
     
     NSString * predicateStr;
     
     if (mCurrentPdKind != 0)
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@ and self.pdkind == %d",wClass.code, mCurrentPdKind];
+        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
     }
     else 
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@",wClass.code];
+        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@",wClass.PK_CLASS_CODE];
     }
 
     
@@ -153,27 +153,27 @@
     if (!wCell) {
         wCell = [[[NSBundle mainBundle]loadNibNamed:@"ProductCell" owner:nil options:nil] objectAtIndex:0];
     }
-    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
+    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
     
     NSString * predicateStr;
     
     if (mCurrentPdKind != 0)
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@ and self.pdkind == %d",wClass.code, mCurrentPdKind];
+        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
     }
     else 
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.pkclass == %@",wClass.code];
+        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@",wClass.PK_CLASS_CODE];
     }
 
-    wCell.nameLabel.text = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).pdpdtname;
+    wCell.nameLabel.text = ((PLI_PDT_M *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).PD_PDTNAME;
     return wCell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    pkclass * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
-    self.currentPli_pdt_m = ((plipdtm *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.pkclass == %d",wClass.code.intValue]] objectAtIndex:indexPath.row]);
+    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
+    self.currentPli_pdt_m = ((PLI_PDT_M *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.PK_CLASS == %d",wClass.PK_CLASS_CODE.intValue]] objectAtIndex:indexPath.row]);
     [self initComponent];
     
 }
@@ -227,34 +227,34 @@
 
 -(void) initComponent
 {
-    self.plipdtyear_list = [plipdtyear findByCriteria:@"where pdpdtcode = '%@' group by pypdtyear order by pypdtyear",self.currentPli_pdt_m.pdpdtcode];
+    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE]; //等到修改
     mCurrentPdtYearIndex = 0;
-    self.insuranceNameLabel.text = self.currentPli_pdt_m.pdpdtname; 
-    self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.pdpdtcode];
-    plipdtyear * pdtyear;
+    self.insuranceNameLabel.text = self.currentPli_pdt_m.PD_PDTNAME;
+    self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
+    PLI_PDTYEAR * pdtyear;
     
     if(self.plipdtyear_list.count > 0)
     {
         pdtyear =  [self.plipdtyear_list objectAtIndex:0];
         
         NSDateComponents* minCom = [[NSDateComponents alloc] init];
-        [minCom setYear:-pdtyear.pyminage];
+        [minCom setYear:-pdtyear.PY_MINAGE];
         NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
         self.minAgeDate = wMinDate;
 //        [minCom release];
         
         NSDateComponents* maxCom = [[NSDateComponents alloc] init];
-        [maxCom setYear:-pdtyear.pymaxage];
+        [maxCom setYear:-pdtyear.PY_MAXAGE];
         NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
         self.maxAgeDate = wMaxDate;
 //        [maxCom release];
         
-        mCurrentAge = pdtyear.pyminage;
+        mCurrentAge = pdtyear.PY_MINAGE;
 //        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
-        self.yearsOldLabel.text = [NSString stringWithFormat:@"%d",pdtyear.pyminage];
+        self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",pdtyear.PY_MINAGE];
     }
     
-    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%d-%d万元",pdtyear.pyminage,pdtyear.pymaxage,pdtyear.pyminamt,pdtyear.pymaxamt];
+    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%.0f-%.0f万元",(int)pdtyear.PY_MINAGE, (int)pdtyear.PY_MAXAGE,pdtyear.PY_MINAMT.floatValue ,pdtyear.PY_MAXAMT.floatValue];
     
     [self adjustPdtYearText];
 }
@@ -301,7 +301,7 @@
 
 - (void) adjustPdtYearText
 {
-    [self.pdtYearButton setTitle:((plipdtyear *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).pypdtyearna forState:UIControlStateNormal];
+    [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
 }
 
 - (void) changeJobType:(int) type
@@ -334,27 +334,27 @@
 
 - (float) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
 {
-    plipdtyear * pdtyear = ((plipdtyear *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
+    PLI_PDTYEAR * pdtyear = ((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
     
     long long amount = self.amountTextField.text.longLongValue;
     
     
-    if ((pdtyear.pyminamt != 0 && amount < pdtyear.pyminamt.longLongValue)||(pdtyear.pymaxamt!=0 && amount > pdtyear.pymaxamt.longLongValue))
+    if ((pdtyear.PY_MINAMT != 0 && amount < pdtyear.PY_MINAMT.longLongValue)||(pdtyear.PY_MAXAMT!=0 && amount > pdtyear.PY_MAXAMT.longLongValue))
     {
         if (isShow)
         {
-            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%@-%@之间",pdtyear.pyminamt,pdtyear.pymaxamt]];
+            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%@-%@之间",pdtyear.PY_MINAMT,pdtyear.PY_MAXAMT]];
         }
         return  - 1;
     }
     
     
     //获得年期
-    int pdt = pdtyear.pypdtyear;
-    NSString * query = [NSString stringWithFormat:@"where prpdtcode = '%@' and prage = '%d' and prpdtyear = %d and(prsales = 0 or prsales = %d) ",self.currentPli_pdt_m.pdpdtcode,age,pdt,mCurrentJobType];
-    NSArray * reslutArr = [plipdtrate findByCriteria:query];
+    int pdt = pdtyear.PY_PDTYEAR;
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and pr_age = '%d' and pr_pdtyear = %d and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE,age,pdt,mCurrentJobType];
+    NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     float rate;
-    plipdtrate * plir = nil;
+    PLI_PDTRATE * plir = nil;
     if (reslutArr.count > 0)
     {
         plir  = [reslutArr objectAtIndex:0];
@@ -364,11 +364,11 @@
     {
         if (!mCurrentSex)
         {
-            rate = plir.prmrate;
+            rate = plir.PR_MRATE;
         }
         else
         {
-            rate = plir.prfrate;
+            rate = plir.PR_FRATE;
         }
         return rate;
     }
@@ -395,7 +395,7 @@
     self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
     self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
     
-    if (self.currentPli_pdt_m.pdonepay == 1.0f)
+    if (self.currentPli_pdt_m.PD_ONEPAY == 1.0f)
     {
         
         self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
@@ -412,17 +412,17 @@
     NSMutableArray * wArr = [self.pkclass_list mutableCopy];
     for (int i = wArr.count - 1; i>=0; i--)
     {
-        pkclass * wClass = [wArr objectAtIndex:i];
+        PK_CLASS * wClass = [wArr objectAtIndex:i];
         int count = 0;
         if (mCurrentPdKind != 0)
         {
-            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@' and pdkind = '%d'",wClass.code,mCurrentPdKind];
-            count = [plipdtm countByCriteria:query];
+            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
+            count = [PLI_PDT_M countByCriteria:query];
         }
         else
         {
-            NSString * query = [NSString stringWithFormat:@"where pkclass = '%@'",wClass.code];
-            count = [plipdtm countByCriteria:query];
+            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@'",wClass.PK_CLASS_CODE];
+            count = [PLI_PDT_M countByCriteria:query];
         }
         if(count == 0)
         {
@@ -565,8 +565,8 @@
 - (void)onComboOkClick:(ComboModel *)model
 {
     self.comboModel = model;
-    [self changeJobType: model.thirdLevel.value.intValue];
-    self.jobTypeLabel.text = [NSString stringWithFormat:@"%@/%@/%@",model.firstLevel.codecname,model.secondLevel.codecname,model.thirdLevel.codecname];
+    [self changeJobType: model.thirdLevel.VALUE.intValue];
+    self.jobTypeLabel.text = [NSString stringWithFormat:@"%@/%@/%@",model.firstLevel.CODE_CNAME,model.secondLevel.CODE_CNAME,model.thirdLevel.CODE_CNAME];
     [self.popOverController dismissPopoverAnimated:true];
 }
 

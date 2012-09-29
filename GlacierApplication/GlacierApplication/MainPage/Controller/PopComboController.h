@@ -7,12 +7,12 @@
 //
 
 #import "GlacierController.h"
-#import "vocationlevel.h"
+#import "VOCATIONLEVEL.h"
 
 @interface ComboModel : NSObject
-@property (nonatomic,retain) vocationlevel * firstLevel;
-@property (nonatomic,retain) vocationlevel * secondLevel;
-@property (nonatomic,retain) vocationlevel * thirdLevel;
+@property (nonatomic,retain) VOCATIONLEVEL * firstLevel;
+@property (nonatomic,retain) VOCATIONLEVEL * secondLevel;
+@property (nonatomic,retain) VOCATIONLEVEL * thirdLevel;
 @property (nonatomic,assign) int firstSelected;
 @property (nonatomic,assign) int secondSelected;
 @property (nonatomic,assign) int thirdSelected;

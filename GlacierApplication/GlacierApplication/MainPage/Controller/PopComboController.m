@@ -94,15 +94,15 @@
 
 - (void) initPicker
 {
-    self.typeOneArr = [vocationlevel findByCriteria:@"where parentcodeid = ''"];
+    self.typeOneArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = ''"];
     
    
     
-    self.typeTwoArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).codeid];
+    self.typeTwoArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).CODE_ID];
     [twoPicker reloadAllComponents];
   
     
-    self.typeThreeArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).codeid];
+    self.typeThreeArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID];
     [threePicker reloadAllComponents];
     
     [onePicker selectRow:self.selectedModel.firstSelected inComponent:0 animated:false];
@@ -140,15 +140,15 @@
 {
     if (pickerView.tag == 0)
     {
-        return ((vocationlevel *)[self.typeOneArr objectAtIndex:row]).codecname;
+        return ((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:row]).CODE_CNAME;
     }
     else if (pickerView.tag == 1)
     {
-        return ((vocationlevel *)[self.typeTwoArr objectAtIndex:row]).codecname;
+        return ((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:row]).CODE_CNAME;
     }
     else if (pickerView.tag == 2)
     {
-        return ((vocationlevel *)[self.typeThreeArr objectAtIndex:row]).codecname;
+        return ((VOCATIONLEVEL *)[self.typeThreeArr objectAtIndex:row]).CODE_CNAME;
     }
     return nil;
 }
@@ -161,7 +161,7 @@
         
       
         
-        self.typeTwoArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).codeid];
+        self.typeTwoArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).CODE_ID];
         [twoPicker reloadAllComponents];
         [twoPicker selectRow:-1 inComponent:0 animated:false];
         [threePicker selectRow:-1 inComponent:0 animated:false];
@@ -172,7 +172,7 @@
     else if (pickerView.tag == 1)
     {
         self.selectedModel.secondSelected = row;
-        self.typeThreeArr = [vocationlevel findByCriteria:@"where parentcodeid = '%@'",((vocationlevel *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).codeid];
+        self.typeThreeArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID];
         [threePicker reloadAllComponents];
         [threePicker selectRow:-1 inComponent:0 animated:false];
         self.selectedModel.thirdSelected = 0;
@@ -189,7 +189,7 @@
 {  
     if(self.typeOneArr.count > 0)
     {
-        self.selectedModel.firstLevel = ((vocationlevel *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]);
+        self.selectedModel.firstLevel = ((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]);
     }
     else 
     {
@@ -197,7 +197,7 @@
     }
     if(self.typeTwoArr >0)
     {
-        self.selectedModel.secondLevel = ((vocationlevel *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]);
+        self.selectedModel.secondLevel = ((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]);
     }
     else
     {
@@ -206,7 +206,7 @@
     
     if (self.typeThreeArr.count > 0) 
     {
-        self.selectedModel.thirdLevel = ((vocationlevel *)[self.typeThreeArr objectAtIndex:self.selectedModel.thirdSelected]);
+        self.selectedModel.thirdLevel = ((VOCATIONLEVEL *)[self.typeThreeArr objectAtIndex:self.selectedModel.thirdSelected]);
     }
     else 
     {

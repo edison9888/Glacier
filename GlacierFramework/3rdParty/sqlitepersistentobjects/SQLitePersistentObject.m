@@ -234,6 +234,7 @@ NSMutableArray *checkedTables;
 	NSString *queryString = [[NSString alloc] initWithFormat:criteriaString arguments:argumentList];
 	
 	NSString *query = [NSString stringWithFormat:@"SELECT pk,* FROM %@ %@", [[self class] tableName], queryString];
+    NSLog(@"%@",query);
 	[queryString release];
 	sqlite3_stmt *statement;
 	if (sqlite3_prepare_v2( database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK)
@@ -1242,7 +1243,7 @@ NSMutableArray *checkedTables;
 			NSRange theRange = NSMakeRange(6, [methodBeingCalled length] - 7);
 			NSString *property = [[methodBeingCalled substringWithRange:theRange] stringByLowercasingFirstLetter];
 			NSDictionary *properties = [self propertiesWithEncodedTypes];
-			NSLog(@"Property: %@", property);	
+
 			if ([[properties allKeys] containsObject:property])
 			{
 				SEL newMethodSelector = sel_registerName([methodBeingCalled UTF8String]);
@@ -1362,25 +1363,25 @@ NSMutableArray *checkedTables;
 		return [classNamesForTables objectForKey:theTable];
 	
 	
-	NSMutableString *ret = [NSMutableString string];
+	NSString *ret = theTable;
 	
-	BOOL lastCharacterWasUnderscore = NO;
-	for (int i = 0; i < theTable.length; i++)
-	{
-		NSRange range = NSMakeRange(i, 1);
-		NSString *oneChar = [theTable substringWithRange:range];
-		if ([oneChar isEqualToString:@"_"])
-			lastCharacterWasUnderscore = YES;
-		else
-		{
-			if (lastCharacterWasUnderscore || i == 0)
-				[ret appendString:[oneChar uppercaseString]];
-			else
-				[ret appendString:oneChar];
-			
-			lastCharacterWasUnderscore = NO;
-		}
-	}
+//	BOOL lastCharacterWasUnderscore = NO;
+//	for (int i = 0; i < theTable.length; i++)
+//	{
+//		NSRange range = NSMakeRange(i, 1);
+//		NSString *oneChar = [theTable substringWithRange:range];
+//		if ([oneChar isEqualToString:@"_"])
+//			lastCharacterWasUnderscore = YES;
+//		else
+//		{
+//			if (lastCharacterWasUnderscore || i == 0)
+//				[ret appendString:[oneChar uppercaseString]];
+//			else
+//				[ret appendString:oneChar];
+//			
+//			lastCharacterWasUnderscore = NO;
+//		}
+//	}
 	[classNamesForTables setObject:ret forKey:theTable];
 	
 	return ret;
@@ -1411,18 +1412,7 @@ NSMutableArray *checkedTables;
 	// will cause problems because the static variable will 
 	// be shared by instances of classes and their subclasses
 	// Cache in the instances, not here...
-	NSMutableString *ret = [NSMutableString string];
-	NSString *className = [self className];
-	for (int i = 0; i < className.length; i++)
-	{
-		NSRange range = NSMakeRange(i, 1);
-		NSString *oneChar = [className substringWithRange:range];
-		if ([oneChar isEqualToString:[oneChar uppercaseString]] && i > 0)
-			[ret appendFormat:@"_%@", [oneChar lowercaseString]];
-		else
-			[ret appendString:[oneChar lowercaseString]];
-	}
-	
+	NSString *ret = [self className];
 	[tableNamesByClass setObject:ret forKey:[self className]];
 	return ret;
 }

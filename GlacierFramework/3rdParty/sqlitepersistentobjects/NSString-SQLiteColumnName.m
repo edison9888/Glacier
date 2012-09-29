@@ -24,38 +24,40 @@
 - (NSString *)stringAsSQLColumnName
 {
 	
-	NSMutableString *ret = [NSMutableString string];
-	for (int i=0; i < [self length]; i++)
-	{
-		NSRange sRange = NSMakeRange(i,1);
-		NSString *oneChar = [self substringWithRange:sRange];
-		if ([oneChar isEqualToString:[oneChar uppercaseString]] && i > 0)
-			[ret appendFormat:@"_%@", [oneChar lowercaseString]];
-		else
-			[ret appendString:[oneChar lowercaseString]];
-	}
-	return ret;
+//	NSMutableString *ret = [NSMutableString string];
+//	for (int i=0; i < [self length]; i++)
+//	{
+//		NSRange sRange = NSMakeRange(i,1);
+//		NSString *oneChar = [self substringWithRange:sRange];
+//		if ([oneChar isEqualToString:[oneChar uppercaseString]] && i > 0)
+//			[ret appendFormat:@"_%@", [oneChar lowercaseString]];
+//		else
+//			[ret appendString:[oneChar lowercaseString]];
+//	}
+//	return ret;
+    return self;
 }
 - (NSString *)stringAsPropertyString
 {
-	BOOL lastWasUnderscore = NO;
-	NSMutableString *ret = [NSMutableString string];
-	for (int i=0; i < [self length]; i++)
-	{
-		NSRange sRange = NSMakeRange(i,1);
-		NSString *oneChar = [self substringWithRange:sRange];
-		if ([oneChar isEqualToString:@"_"])
-			lastWasUnderscore = YES;
-		else
-		{
-			if (lastWasUnderscore)
-				[ret appendString:[oneChar uppercaseString]];
-			else
-				[ret appendString:oneChar];
-			
-			lastWasUnderscore = NO;
-		}
-	}
-	return ret;
+//	BOOL lastWasUnderscore = NO;
+//	NSMutableString *ret = [NSMutableString string];
+//	for (int i=0; i < [self length]; i++)
+//	{
+//		NSRange sRange = NSMakeRange(i,1);
+//		NSString *oneChar = [self substringWithRange:sRange];
+//		if ([oneChar isEqualToString:@"_"])
+//			lastWasUnderscore = YES;
+//		else
+//		{
+//			if (lastWasUnderscore)
+//				[ret appendString:[oneChar uppercaseString]];
+//			else
+//				[ret appendString:oneChar];
+//			
+//			lastWasUnderscore = NO;
+//		}
+//	}
+//	return ret;
+    return self;
 }
 @end

@@ -23,15 +23,17 @@
 @implementation NSString(UppercaseFirst)
 - (NSString *) stringByUppercasingFirstLetter
 {
-	NSRange firstLetterRange = NSMakeRange(0,1);
-	NSRange restOfWordRange = NSMakeRange(1,[self length]-1);
-	return [NSString stringWithFormat:@"%@%@", [[self substringWithRange:firstLetterRange] uppercaseString], [self substringWithRange:restOfWordRange]];
+//	NSRange firstLetterRange = NSMakeRange(0,1);
+//	NSRange restOfWordRange = NSMakeRange(1,[self length]-1);
+//	return [NSString stringWithFormat:@"%@%@", [[self substringWithRange:firstLetterRange] uppercaseString], [self substringWithRange:restOfWordRange]];
+    return self;
 	
 }
 - (NSString *) stringByLowercasingFirstLetter
 {
-	NSRange firstLetterRange = NSMakeRange(0,1);
-	NSRange restOfWordRange = NSMakeRange(1,[self length]-1);
-	return [NSString stringWithFormat:@"%@%@", [[self substringWithRange:firstLetterRange] lowercaseString], [self substringWithRange:restOfWordRange]];
+//	NSRange firstLetterRange = NSMakeRange(0,1);
+//	NSRange restOfWordRange = NSMakeRange(1,[self length]-1);
+//	return [NSString stringWithFormat:@"%@%@", [[self substringWithRange:firstLetterRange] lowercaseString], [self substringWithRange:restOfWordRange]];
+    return self;
 }
 @end

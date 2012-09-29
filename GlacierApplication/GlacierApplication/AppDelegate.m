@@ -10,6 +10,7 @@
 
 #import "MainPageController.h"
 #import "SQLiteInstanceManager.h"
+#import "PLI_PDT_M.h"
 @implementation AppDelegate
 
 @synthesize window = _window;

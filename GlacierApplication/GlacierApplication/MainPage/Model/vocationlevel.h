@@ -1,16 +1,16 @@
 //
-//  vocationlevel.h
+//  VOCATIONLEVEL.h
 //  GlacierApplication
 //
-//  Created by chang liang on 12-9-21.
+//  Created by cnzhao on 12-9-29.
 //  Copyright (c) 2012年 Glacier. All rights reserved.
 //
 
 #import "SQLitePersistentObject.h"
 
-@interface vocationlevel : SQLitePersistentObject
-@property (nonatomic,copy) NSString * codeid;
-@property (nonatomic,copy) NSString * parentcodeid;
-@property (nonatomic,copy) NSString * codecname;
-@property (nonatomic,copy) NSString * value;
+@interface VOCATIONLEVEL : SQLitePersistentObject
+@property (nonatomic,copy) NSString * CODE_ID;
+@property (nonatomic,copy) NSString * PARENT_CODE_ID;
+@property (nonatomic,copy) NSString * CODE_CNAME;
+@property (nonatomic,copy) NSString * VALUE;
 @end
