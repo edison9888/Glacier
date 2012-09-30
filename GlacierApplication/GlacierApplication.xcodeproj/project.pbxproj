@@ -36,6 +36,9 @@
 		5822E4F21616E8F500A9A5BC /* PLI_PDTRATE.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4F11616E8F500A9A5BC /* PLI_PDTRATE.m */; };
 		5822E4F51616E9D200A9A5BC /* PLI_PDTYEAR.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4F41616E9D200A9A5BC /* PLI_PDTYEAR.m */; };
 		5822E4F81616EE1900A9A5BC /* VOCATIONLEVEL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4F71616EE1900A9A5BC /* VOCATIONLEVEL.m */; };
+		5822E4FB1617020500A9A5BC /* PLI_PDTAMTRANGE.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4FA1617020500A9A5BC /* PLI_PDTAMTRANGE.m */; };
+		5822E4FE1617029500A9A5BC /* PLI_PDTRATEDIFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4FD1617029500A9A5BC /* PLI_PDTRATEDIFF.m */; };
+		5822E5011617036600A9A5BC /* CALCSETTING.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E5001617036600A9A5BC /* CALCSETTING.m */; };
 		5825C8FA160DA80C001A6EAC /* full2_15(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5825C8F9160DA80C001A6EAC /* full2_15(1).png */; };
 		5825C8FC160DA999001A6EAC /* full2_17(1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5825C8FB160DA999001A6EAC /* full2_17(1).png */; };
 		582B00BF1609FA90008C453E /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 582B00AD1609FA90008C453E /* bg.png */; };
@@ -115,6 +118,12 @@
 		5822E4F41616E9D200A9A5BC /* PLI_PDTYEAR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLI_PDTYEAR.m; sourceTree = "<group>"; };
 		5822E4F61616EE1900A9A5BC /* VOCATIONLEVEL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOCATIONLEVEL.h; sourceTree = "<group>"; };
 		5822E4F71616EE1900A9A5BC /* VOCATIONLEVEL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOCATIONLEVEL.m; sourceTree = "<group>"; };
+		5822E4F91617020500A9A5BC /* PLI_PDTAMTRANGE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLI_PDTAMTRANGE.h; sourceTree = "<group>"; };
+		5822E4FA1617020500A9A5BC /* PLI_PDTAMTRANGE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLI_PDTAMTRANGE.m; sourceTree = "<group>"; };
+		5822E4FC1617029400A9A5BC /* PLI_PDTRATEDIFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLI_PDTRATEDIFF.h; sourceTree = "<group>"; };
+		5822E4FD1617029500A9A5BC /* PLI_PDTRATEDIFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLI_PDTRATEDIFF.m; sourceTree = "<group>"; };
+		5822E4FF1617036500A9A5BC /* CALCSETTING.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CALCSETTING.h; sourceTree = "<group>"; };
+		5822E5001617036600A9A5BC /* CALCSETTING.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CALCSETTING.m; sourceTree = "<group>"; };
 		5825C8F9160DA80C001A6EAC /* full2_15(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "full2_15(1).png"; sourceTree = "<group>"; };
 		5825C8FB160DA999001A6EAC /* full2_17(1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "full2_17(1).png"; sourceTree = "<group>"; };
 		582B00AD1609FA90008C453E /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -265,6 +274,12 @@
 				5822E4F41616E9D200A9A5BC /* PLI_PDTYEAR.m */,
 				5822E4F61616EE1900A9A5BC /* VOCATIONLEVEL.h */,
 				5822E4F71616EE1900A9A5BC /* VOCATIONLEVEL.m */,
+				5822E4F91617020500A9A5BC /* PLI_PDTAMTRANGE.h */,
+				5822E4FA1617020500A9A5BC /* PLI_PDTAMTRANGE.m */,
+				5822E4FC1617029400A9A5BC /* PLI_PDTRATEDIFF.h */,
+				5822E4FD1617029500A9A5BC /* PLI_PDTRATEDIFF.m */,
+				5822E4FF1617036500A9A5BC /* CALCSETTING.h */,
+				5822E5001617036600A9A5BC /* CALCSETTING.m */,
 			);
 			name = Model;
 			path = GlacierApplication/MainPage/Model;
@@ -487,6 +502,9 @@
 				5822E4F21616E8F500A9A5BC /* PLI_PDTRATE.m in Sources */,
 				5822E4F51616E9D200A9A5BC /* PLI_PDTYEAR.m in Sources */,
 				5822E4F81616EE1900A9A5BC /* VOCATIONLEVEL.m in Sources */,
+				5822E4FB1617020500A9A5BC /* PLI_PDTAMTRANGE.m in Sources */,
+				5822E4FE1617029500A9A5BC /* PLI_PDTRATEDIFF.m in Sources */,
+				5822E5011617036600A9A5BC /* CALCSETTING.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

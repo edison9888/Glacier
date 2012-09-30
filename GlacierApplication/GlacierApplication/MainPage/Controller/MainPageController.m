@@ -15,7 +15,9 @@
 #import "ResultModel.h"
 #import "ProductCell.h"
 #import "ProductSectionView.h"
-
+#import "CALCSETTING.h"
+#import "PLI_PDTAMTRANGE.h"
+#import "PLI_PDTRATEDIFF.h"
 
 @interface MainPageController ()
 
@@ -26,13 +28,11 @@
 @property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
 @property (nonatomic,retain) NSArray * plipdtm_list;
 @property (nonatomic,retain) NSArray * pkclass_list;
-@property (nonatomic,retain) NSArray * currentPkClass_list;
+
 @property (nonatomic,retain) NSArray * plipdtrate_list;
 @property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
-@property (nonatomic,retain) PLI_PDT_M * currentPli_pdt_m;
+@property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
 @property (nonatomic,retain) UIAlertView * alertView;
-@property (retain, nonatomic) IBOutlet UITextField *minAgeTextField;
-@property (retain, nonatomic) IBOutlet UITextField *maxAgeTextField;
 @property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
 @property (nonatomic,retain) PopDateController * popDateController;
 @property (retain, nonatomic) UIPopoverController * popOverController;
@@ -40,52 +40,22 @@
 @property (nonatomic,retain) NSDate * maxAgeDate;
 @property (nonatomic,retain) NSDate * minAgeDate;
 @property (nonatomic,retain) ComboModel * comboModel;
+
+@property (nonatomic,retain) NSArray * currentPkClass_list;
+@property (nonatomic,retain) PLI_PDT_M * currentPli_pdt_m;
+@property (nonatomic,retain) CALCSETTING * currentCALCSETTING;
+@property (nonatomic,retain) PLI_PDTAMTRANGE * currentPLI_PDTAMTRANGE;
 @end
 
 @implementation MainPageController
 {
-    bool mCurrentSex;
+    bool mCurrentSex; //1为男性 0为女性
     int mCurrentJobType;
     int mCurrentAge;
     int mCurrentPdtYearIndex;
     int mCurrentPdKind;
     int mCurrentCalcMode;//当前计算模式
 }
-@synthesize jobTypeLabel = _jobTypeLabel;
-@synthesize birthdayButton = _birthdayButton;
-@synthesize sexLabel = _sexLabel;
-@synthesize minAgeTextField = _minAgeTextField;
-@synthesize maxAgeTextField = _maxAgeTextField;
-@synthesize jobTypeButton = _jobTypeButton;
-@synthesize amountTextField = _amountTextField;
-@synthesize yearAmountLabel = _yearAmountLabel;
-@synthesize halfYearAmountLabel = _halfYearAmountLabel;
-@synthesize quarterAmountLabel = _quarterAmountLabel;
-@synthesize monthAmountLabel = _monthAmountLabel;
-@synthesize onePayAmountLabel = _onePayAmountLabel;
-@synthesize codeLabel = _codeLabel;
-@synthesize tipLabel = _tipLabel;
-@synthesize tableListView = _tableListView;
-@synthesize pdKindButtonArr = _pdKindButtonArr;
-@synthesize yearsOldLabel = _yearsOldLabel;
-@synthesize insuranceNameLabel = _insuranceNameLabel;
-@synthesize pdtYearButton = _pdtYearButton;
-@synthesize maleButton = _maleButton;
-@synthesize femaleButton = _femaleButton;
-@synthesize twDateFormatter = _twDateFormatter;
-@synthesize plipdtm_list = _plipdtm_list;
-@synthesize pkclass_list = _pkclass_list;
-@synthesize plipdtrate_list = _plipdtrate_list;
-@synthesize plipdtyear_list = _plipdtyear_list;
-@synthesize currentPli_pdt_m = _currentPli_pdt_m;
-@synthesize alertView;
-@synthesize currentPkClass_list = _currentPkClass_list;
-@synthesize popDateController = _popDateController;
-@synthesize popOverController = _popOverController;
-@synthesize popComboController = _popComboController;
-@synthesize maxAgeDate;
-@synthesize minAgeDate;
-@synthesize comboModel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -114,6 +84,21 @@
     self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
 }
+
+- (PLI_PDTYEAR *)currentPLI_PDTYEAR
+{
+    if (self.plipdtyear_list.count > 0)
+    {
+        return [self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+
+#pragma marks tableview 相关函数
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
@@ -174,127 +159,37 @@
 {
     PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
     self.currentPli_pdt_m = ((PLI_PDT_M *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.PK_CLASS == %d",wClass.PK_CLASS_CODE.intValue]] objectAtIndex:indexPath.row]);
-    [self initComponent];
-    
+    self.currentCALCSETTING = [CALCSETTING findFirstByCriteria:@"where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE];
+    [self initComponentAfterSelected];
 }
 
-//#pragma mark SKLSliderDelegate
-//
-//- (void)yearsOldChanged:(NSInteger)yearsOld birDay:(NSDate *)birDayDate {
-//    _birDayLabel.text = [self.twDateFormatter stringFromDate:birDayDate];
-//    mCurrentAge = yearsOld;
-//    _yearsOldLabel.text = [NSString stringWithFormat:@"%d", yearsOld];
-//}
-
-#pragma mark 界面操作相关
-
-
-
-#pragma mark 邮件相关
-
-- (void)displayMailComposerSheet {
-    if ([MFMailComposeViewController canSendMail]) {
-        MFMailComposeViewController *wMailComposeViewController = [[MFMailComposeViewController alloc] init];
-        wMailComposeViewController.mailComposeDelegate = self;
-        
-        [wMailComposeViewController setSubject:@"屏幕截图"];
-        
-        
-        // 收件人
-//        NSArray *toRecipients = [NSArray arrayWithObject:@"first@example.com"]; 
-//        NSArray *ccRecipients = [NSArray arrayWithObjects:@"second@example.com", @"third@example.com", nil]; 
-//        NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com"]; 
-//        
-//        [wMailComposeViewController setToRecipients:toRecipients];
-//        [wMailComposeViewController setCcRecipients:ccRecipients];  
-//        [wMailComposeViewController setBccRecipients:bccRecipients];
-        
-        // 附件
-        NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
-        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"屏幕截图"];
-        
-        // 邮件正文
-//        NSString *emailBody = @"It is raining in sunny California!";
-//        [wMailComposeViewController setMessageBody:emailBody isHTML:NO];
-        
-        [self presentModalViewController:wMailComposeViewController animated:YES];
-//        [wMailComposeViewController release];
-    } else {
-        [self showAlertMsg:@"邮箱暂未配置，请配置后再使用该功能。"];
-    }
-}
-
-
--(void) initComponent
+-(void) initComponentAfterSelected
 {
     self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE]; //等到修改
     mCurrentPdtYearIndex = 0;
+    [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
     self.insuranceNameLabel.text = self.currentPli_pdt_m.PD_PDTNAME;
     self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
-    PLI_PDTYEAR * pdtyear;
     
-    if(self.plipdtyear_list.count > 0)
-    {
-        pdtyear =  [self.plipdtyear_list objectAtIndex:0];
-        
-        NSDateComponents* minCom = [[NSDateComponents alloc] init];
-        [minCom setYear:-pdtyear.PY_MINAGE];
-        NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
-        self.minAgeDate = wMinDate;
-//        [minCom release];
-        
-        NSDateComponents* maxCom = [[NSDateComponents alloc] init];
-        [maxCom setYear:-pdtyear.PY_MAXAGE];
-        NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
-        self.maxAgeDate = wMaxDate;
-//        [maxCom release];
-        
-        mCurrentAge = pdtyear.PY_MINAGE;
-//        [self.slider setYearsOldMin:pdtyear.pyminage max:pdtyear.pymaxage];
-        self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",pdtyear.PY_MINAGE];
-    }
+
+    NSDateComponents* minCom = [[NSDateComponents alloc] init];
+    [minCom setYear: -self.currentPLI_PDTYEAR.PY_MINAGE];
+    NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
+    self.minAgeDate = wMinDate;
     
-    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%.0f-%.0f万元",(int)pdtyear.PY_MINAGE, (int)pdtyear.PY_MAXAGE,pdtyear.PY_MINAMT.floatValue ,pdtyear.PY_MAXAMT.floatValue];
+    NSDateComponents* maxCom = [[NSDateComponents alloc] init];
+    [maxCom setYear:- self.currentPLI_PDTYEAR.PY_MAXAGE];
+    NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
+    self.maxAgeDate = wMaxDate;
     
+    mCurrentAge = self.currentPLI_PDTYEAR.PY_MINAGE;
+    self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",self.currentPLI_PDTYEAR.PY_MINAGE];
+    
+    
+//    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%.0f-%.0f万元",(int)pdtyear.PY_MINAGE, (int)pdtyear.PY_MAXAGE,pdtyear.PY_MINAMT.floatValue ,pdtyear.PY_MAXAMT.floatValue];
+    self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+
     [self adjustPdtYearText];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    NSString *wResultMsg;
-    switch (result) {
-        case MFMailComposeResultSent:
-            wResultMsg = @"已发送";
-            break;
-            
-        case MFMailComposeResultSaved:
-            wResultMsg = @"已保存";
-            break;
-            
-        case MFMailComposeResultCancelled:
-            wResultMsg = @"已取消";
-            break;
-            
-        case MFMailComposeResultFailed:
-            wResultMsg = error.localizedDescription;
-            break;
-            
-        default:
-            wResultMsg = @"走不到啊走不到";
-            break;
-    }
-    [self showAlertMsg:wResultMsg];
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-#pragma mark util
-
-- (void)showAlertMsg:(NSString *)msg 
-{
-    [self.amountTextField resignFirstResponder];
-    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    self.alertView = wAlertView;
-    [wAlertView show];
-//    [wAlertView release];
 }
 
 #pragma mark 处理函数
@@ -302,6 +197,45 @@
 - (void) adjustPdtYearText
 {
     [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
+}
+
+//调整当前保额范围
+-(void) adjustCurrentAmountRange
+{
+    self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
+    if (self.currentPLI_PDTAMTRANGE)
+    {
+         self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%.0f-%.0f万元",
+           (int)self.currentPLI_PDTYEAR.PY_MINAGE,
+           (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
+            self.currentPLI_PDTAMTRANGE.MINAMT ,
+            self.currentPLI_PDTAMTRANGE.MAXAMT];
+    }
+}
+
+-(void)adjustCurrentPkClassList
+{
+    NSMutableArray * wArr = [self.pkclass_list mutableCopy];
+    for (int i = wArr.count - 1; i>=0; i--)
+    {
+        PK_CLASS * wClass = [wArr objectAtIndex:i];
+        int count = 0;
+        if (mCurrentPdKind != 0)
+        {
+            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
+            count = [PLI_PDT_M countByCriteria:query];
+        }
+        else
+        {
+            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@'",wClass.PK_CLASS_CODE];
+            count = [PLI_PDT_M countByCriteria:query];
+        }
+        if(count == 0)
+        {
+            [wArr removeObject:wClass];
+        }
+    }
+    self.currentPkClass_list = wArr;
 }
 
 - (void) changeJobType:(int) type
@@ -332,26 +266,24 @@
     }
 }
 
-- (float) findRate:(int) age pdtYearIndex:(int)pdtIndex showAlert:(bool) isShow
+//处理type 0，1
+- (void) processTypeZeroAndOne
 {
-    PLI_PDTYEAR * pdtyear = ((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:pdtIndex]);
     
-    long long amount = self.amountTextField.text.longLongValue;
-    
-    
-    if ((pdtyear.PY_MINAMT != 0 && amount < pdtyear.PY_MINAMT.longLongValue)||(pdtyear.PY_MAXAMT!=0 && amount > pdtyear.PY_MAXAMT.longLongValue))
+    float amount = self.amountTextField.text.floatValue;
+    if(self.currentPLI_PDTAMTRANGE)
     {
-        if (isShow)
+        if (amount < self.currentPLI_PDTAMTRANGE.MINAMT || amount > self.currentPLI_PDTAMTRANGE.MAXAMT )
         {
-            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%@-%@之间",pdtyear.PY_MINAMT,pdtyear.PY_MAXAMT]];
+
+                [self showAlertMsg:[NSString stringWithFormat:@"保额应在%.1f-%.1f之间"
+                                    ,self.currentPLI_PDTAMTRANGE.MINAMT
+                                    ,self.currentPLI_PDTAMTRANGE.MAXAMT]];
         }
-        return  - 1;
+        
     }
     
-    
-    //获得年期
-    int pdt = pdtyear.PY_PDTYEAR;
-    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and pr_age = '%d' and pr_pdtyear = %d and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE,age,pdt,mCurrentJobType];
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and (PR_AGE = %d or PR_AGE = 0) and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     float rate;
     PLI_PDTRATE * plir = nil;
@@ -370,30 +302,129 @@
         {
             rate = plir.PR_FRATE;
         }
-        return rate;
+        [self generateOutput:rate calcType:self.currentCALCSETTING.CALCTYPE diffRate:nil];
     }
     else
     {
-        return  - 1;
+        [self showAlertMsg:@"未找到相关记录"];
     }
-    
 }
 
-
-- (void) generateOutput:(float) rate
+//处理type 2
+- (void) processTypeTwo
 {
-    long long resultAmount = self.amountTextField.text.longLongValue * rate;
-    NSString * yearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * halfYearStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.52] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * quarterStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.262] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * monthStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount * 0.088] numberStyle:NSNumberFormatterDecimalStyle];
-    NSString * dayStr = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:resultAmount / 365.0f] numberStyle:NSNumberFormatterDecimalStyle];
+    PLI_PDTRATE * wPLI_PDTRATE = [PLI_PDTRATE findFirstByCriteria:@"where PR_PDTCODE = '%@' and PR_AGE = %d",self.currentPli_pdt_m.PD_PDTCODE,mCurrentJobType];
+    PLI_PDTRATEDIFF * wPLI_PDTRATEDIFF = [PLI_PDTRATEDIFF findFirstByCriteria:@"where PR_PDTCODE = '%@' and PR_AGE = %d and PR_SALES = 0",self.currentPli_pdt_m.PD_PDTCODE,mCurrentJobType];
+    
+    if (wPLI_PDTRATE && wPLI_PDTRATEDIFF)
+    {
+        
+        if (!mCurrentSex)
+        {
+            [self generateOutput:wPLI_PDTRATE.PR_MRATE calcType:self.currentCALCSETTING.CALCTYPE diffRate:wPLI_PDTRATEDIFF];
+        }
+        else
+        {
+            [self generateOutput:wPLI_PDTRATE.PR_FRATE calcType:self.currentCALCSETTING.CALCTYPE diffRate:wPLI_PDTRATEDIFF];
+        }
+    }
+    else
+    {
+        [self showAlertMsg:@"未找到相关记录"];
+    }
+}
+
+//处理type 3
+- (void) processTypeThree
+{
+    float amount = self.amountTextField.text.floatValue;
+    PLI_PDTRATE * wPLI_PDTRATE = [PLI_PDTRATE findFirstByCriteria:@"where PR_PDTCODE = '%@' and PR_AGE = %d and PR_PDTYEAR = %d",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge, amount];
+    if (wPLI_PDTRATE)
+    {
+        if (!mCurrentSex)
+        {
+            [self generateOutput:wPLI_PDTRATE.PR_MRATE calcType:self.currentCALCSETTING.CALCTYPE diffRate:nil];
+        }
+        else
+        {
+            [self generateOutput:wPLI_PDTRATE.PR_FRATE calcType:self.currentCALCSETTING.CALCTYPE diffRate:nil];
+        }
+    }
+    else
+    {
+        [self showAlertMsg:@"未找到相关记录"];
+    }
+}
+
+double roundDown(double figure ,int precision)
+{
+    return floor(figure * pow(10, precision)) / pow(10, precision);
+}
+
+-(double) calcResult:(float)rate payAmount:(float) payAmount  payMode:(float)payMode calcType:(int)calcType diffRate:(float)diffRate
+{
+    if (calcType == 0)
+    {
+        return roundDown(round(rate * payMode) * payAmount, 0) ;
+    }
+    else if(calcType == 1)
+    {
+        return roundDown(round(rate * payMode * payAmount) , 0) ;
+    }
+    else if(calcType == 2)
+    {
+        return roundDown(round(rate * payMode + diffRate) * payAmount,0);
+    }
+    else if(calcType == 3)
+    {
+        return round(rate * payMode);
+    }
+    else
+    {
+        return  -1;
+    }
+}
+
+- (void) generateOutput:(float) rate calcType:(int)calcType diffRate:(PLI_PDTRATEDIFF *) diffRate
+{
+#define caluValue(mode,diff) [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:[self calcResult:rate payAmount:amount payMode:mode calcType:calcType diffRate:diff]]numberStyle:NSNumberFormatterDecimalStyle] 
+    
+    float amount = self.amountTextField.text.floatValue;
+    
+    NSString * yearStr;
+    NSString * halfYearStr;
+    NSString * quarterStr;
+    NSString * monthStr;
+
+    if(diffRate)
+    {
+        yearStr = caluValue(1.0f,0);
+        halfYearStr = caluValue(0.52f,diffRate.PR_RATE6);
+        quarterStr = caluValue(0.262f,diffRate.PR_RATE3);
+        monthStr = caluValue(0.088f,diffRate.PR_RATE1 );
+    }
+    else
+    {
+        yearStr = caluValue(1.0f,-1);
+        halfYearStr = caluValue(0.52f,-1);
+        quarterStr = caluValue(0.262f,-1);
+        monthStr = caluValue(0.088f,-1);
+    }
     
     
     self.yearAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
-    self.halfYearAmountLabel.text = [halfYearStr stringByAppendingString:@" 元"];
-    self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
-    self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
+    if (self.currentPli_pdt_m.PD_MODELIMIT == 1)
+    {
+        self.halfYearAmountLabel.text = @"-- 元";
+        self.quarterAmountLabel.text = @"-- 元";
+        self.monthAmountLabel.text = @"-- 元";
+    }
+    else
+    {
+        self.halfYearAmountLabel.text = [halfYearStr stringByAppendingString:@" 元"];
+        self.quarterAmountLabel.text = [quarterStr stringByAppendingString:@" 元"];
+        self.monthAmountLabel.text = [monthStr stringByAppendingString:@" 元"];
+    }
     
     if (self.currentPli_pdt_m.PD_ONEPAY == 1.0f)
     {
@@ -406,32 +437,6 @@
     }
     
 }
-
--(void)adjustCurrentPkClassList
-{
-    NSMutableArray * wArr = [self.pkclass_list mutableCopy];
-    for (int i = wArr.count - 1; i>=0; i--)
-    {
-        PK_CLASS * wClass = [wArr objectAtIndex:i];
-        int count = 0;
-        if (mCurrentPdKind != 0)
-        {
-            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
-            count = [PLI_PDT_M countByCriteria:query];
-        }
-        else
-        {
-            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@'",wClass.PK_CLASS_CODE];
-            count = [PLI_PDT_M countByCriteria:query];
-        }
-        if(count == 0)
-        {
-            [wArr removeObject:wClass];
-        }
-    }
-    self.currentPkClass_list = wArr;
-}
-
 
 #pragma mark 点击事件
 
@@ -493,25 +498,25 @@
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
     [self.amountTextField resignFirstResponder];
-    float rate =[self findRate:mCurrentAge pdtYearIndex:mCurrentPdtYearIndex showAlert:true];
- 
     if(!self.currentPli_pdt_m)
     {
-
+        
         [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种"]];
         return;
     }
     
-    if (rate > 0)
+    if(self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
-        [self generateOutput:rate];
+        [self processTypeZeroAndOne];
     }
-    else 
+    else if(self.currentCALCSETTING.CALCTYPE == 2)
     {
-        
+        [self processTypeTwo];
     }
+    
 }
 
+#pragma mark 弹出框点击以及回调
 
 - (IBAction)onBirthdayClick:(UIButton *)sender 
 {
@@ -547,6 +552,8 @@
 }
 
 
+
+//生日点击回调
 -(void)onOkClick:(NSDate *)date
 {
     NSString * birthday = [self.twDateFormatter stringFromDate:date];
@@ -555,13 +562,16 @@
     self.yearsOldLabel.text = [NSString stringWithFormat:@"%d", wDateComponents.year];
     [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
     [self.popOverController dismissPopoverAnimated:true];
+    [self adjustCurrentAmountRange];
 }
 
+//生日点击取消
 - (void)onCancelClick
 {
     [self.popOverController dismissPopoverAnimated:true];
 }
 
+//职业类别点击回调
 - (void)onComboOkClick:(ComboModel *)model
 {
     self.comboModel = model;
@@ -570,11 +580,13 @@
     [self.popOverController dismissPopoverAnimated:true];
 }
 
+//职业类别点击取消
 - (void)onComboCancelClick
 {
     [self.popOverController dismissPopoverAnimated:true];
 }
 
+//主副约之间的切换
 - (IBAction)onPdkindClick:(UIButton *)sender 
 {
     for (UIButton * wButton in self.pdKindButtonArr) 
@@ -599,5 +611,68 @@
         [self.view viewWithTag:20].hidden = false;
     }
 }
-@end
 
+#pragma mark util
+
+- (void)showAlertMsg:(NSString *)msg
+{
+    [self.amountTextField resignFirstResponder];
+    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    self.alertView = wAlertView;
+    [wAlertView show];
+    //    [wAlertView release];
+}
+
+#pragma mark 邮件相关
+
+- (void)displayMailComposerSheet
+{
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *wMailComposeViewController = [[MFMailComposeViewController alloc] init];
+        wMailComposeViewController.mailComposeDelegate = self;
+        
+        [wMailComposeViewController setSubject:@"屏幕截图"];
+        
+        
+        // 附件
+        NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
+        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"屏幕截图"];
+        
+        // 邮件正文
+        //        NSString *emailBody = @"It is raining in sunny California!";
+        //        [wMailComposeViewController setMessageBody:emailBody isHTML:NO];
+        
+        [self presentModalViewController:wMailComposeViewController animated:YES];
+        //        [wMailComposeViewController release];
+    } else {
+        [self showAlertMsg:@"邮箱暂未配置，请配置后再使用该功能。"];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    NSString *wResultMsg;
+    switch (result) {
+        case MFMailComposeResultSent:
+            wResultMsg = @"已发送";
+            break;
+            
+        case MFMailComposeResultSaved:
+            wResultMsg = @"已保存";
+            break;
+            
+        case MFMailComposeResultCancelled:
+            wResultMsg = @"已取消";
+            break;
+            
+        case MFMailComposeResultFailed:
+            wResultMsg = error.localizedDescription;
+            break;
+            
+        default:
+            wResultMsg = @"走不到啊走不到";
+            break;
+    }
+    [self showAlertMsg:wResultMsg];
+    [self dismissModalViewControllerAnimated:YES];
+}
+@end
