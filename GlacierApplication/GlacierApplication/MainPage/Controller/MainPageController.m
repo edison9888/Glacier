@@ -167,6 +167,8 @@
     [self initComponentAfterSelected];
 }
 
+#pragma mark 处理函数
+
 -(void) initComponentAfterSelected
 {
     self.currentSelectedBirthday = nil;
@@ -179,32 +181,27 @@
     self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
 
-    NSDateComponents* minCom = [[NSDateComponents alloc] init];
-    [minCom setYear: -self.currentPLI_PDTYEAR.PY_MINAGE];
-    NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
-    self.minAgeDate = wMinDate;
-    
-    NSDateComponents* maxCom = [[NSDateComponents alloc] init];
-    [maxCom setYear:- self.currentPLI_PDTYEAR.PY_MAXAGE];
-    NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
-    self.maxAgeDate = wMaxDate;
-    
-    mCurrentAge = self.currentPLI_PDTYEAR.PY_MINAGE;
-    self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",self.currentPLI_PDTYEAR.PY_MINAGE];
-
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
+        [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
         self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：无限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
     }
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
+        
+        float minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        
+        float maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        
+        [self adjustBirthComponent:minAge max:maxAge];
+        
         mTypeThreeMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
         mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：%.0f-%.0f万元",
-                              (int)self.currentPLI_PDTYEAR.PY_MINAGE,
-                              (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%.0f-%.0f嵗       【保额】：%.0f-%.0f万元",
+                              minAge,
+                              maxAge,
                               mTypeThreeMinAmount,
                               mTypeThreeMaxAmount];
     }
@@ -212,7 +209,21 @@
     [self adjustPdtYearText];
 }
 
-#pragma mark 处理函数
+- (void) adjustBirthComponent:(double)minAge max:(double) maxAge
+{
+    NSDateComponents* minCom = [[NSDateComponents alloc] init];
+    [minCom setYear: - minAge];
+    NSDate * wMinDate = [[NSCalendar currentCalendar] dateByAddingComponents:minCom toDate:[NSDate date] options:0];
+    self.minAgeDate = wMinDate;
+    
+    NSDateComponents* maxCom = [[NSDateComponents alloc] init];
+    [maxCom setYear:- maxAge];
+    NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
+    self.maxAgeDate = wMaxDate;
+    
+    mCurrentAge = minAge;
+    self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",minAge];
+}
 
 - (void) adjustPdtYearText
 {
