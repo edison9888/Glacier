@@ -34,7 +34,7 @@ static SQLiteInstanceManager *sharedSQLiteManager = nil;
 
 #pragma mark -
 #pragma mark Singleton Methods
-+ (id)sharedManager 
++ (SQLiteInstanceManager *)sharedManager
 {
 	@synchronized(self) 
 	{
@@ -151,6 +151,26 @@ static SQLiteInstanceManager *sharedSQLiteManager = nil;
 		NSAssert(0, errorMessage);
 		sqlite3_free(errorMsg);
 	}
+}
+- (double)executeSelectDoubleSQL:(NSString *)selectSQL
+{
+    double result;
+    sqlite3_stmt *statement;
+    if(sqlite3_prepare_v2([self database], [selectSQL UTF8String], -1,
+                       &statement, NULL) == SQLITE_OK)
+    {
+        if (sqlite3_step(statement) == SQLITE_ROW)
+        {
+            result = sqlite3_column_double(statement, 0);
+        } 
+    }
+    else
+    {
+        result = NSNotFound;
+        NSLog(@"Error when select");
+    }
+    sqlite3_finalize(statement);
+    return result;
 }
 #pragma mark -
 - (void)dealloc

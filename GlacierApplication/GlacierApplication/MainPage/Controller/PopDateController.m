@@ -30,6 +30,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.selectedDate)
+    {
+        picker.date = self.selectedDate;
+    }
     picker.minimumDate = self.minDate;
     picker.maximumDate = self.maxDate;
 }

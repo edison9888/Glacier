@@ -56,7 +56,7 @@ typedef enum SQLITE3LockingMode
 
 @property (readwrite,retain) NSString *databaseFilepath;
 
-+ (id)sharedManager;
++ (SQLiteInstanceManager *)sharedManager;
 - (sqlite3 *)database;
 - (BOOL)tableExists:(NSString *)tableName;
 - (void)setAutoVacuum:(SQLITE3AutoVacuum)mode;
@@ -65,4 +65,5 @@ typedef enum SQLITE3LockingMode
 - (void)deleteDatabase;
 - (void)vacuum;
 - (void)executeUpdateSQL:(NSString *) updateSQL;
+- (double)executeSelectDoubleSQL:(NSString *) selectSQL;
 @end

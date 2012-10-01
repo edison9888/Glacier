@@ -19,4 +19,5 @@
 @property (nonatomic,assign)  id<PopDateDelegate> popDateDelegate;
 @property (nonatomic,retain) NSDate * maxDate;
 @property (nonatomic,retain) NSDate * minDate;
+@property (nonatomic,retain) NSDate * selectedDate;
 @end

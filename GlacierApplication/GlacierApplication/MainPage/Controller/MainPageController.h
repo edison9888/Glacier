@@ -14,6 +14,7 @@
 
 @interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate,PopComboDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *jobTypeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *versionNOLabel;
 @property (retain, nonatomic) IBOutlet UIButton *birthdayButton;
 @property (retain, nonatomic) IBOutlet UILabel *sexLabel;
 @property (retain, nonatomic) IBOutlet UILabel *codeLabel;

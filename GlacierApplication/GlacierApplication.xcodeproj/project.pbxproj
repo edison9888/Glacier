@@ -46,6 +46,7 @@
 		582B00D5160A011C008C453E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582B00D4160A011C008C453E /* ProductCell.xib */; };
 		582B00D8160A0306008C453E /* ProductSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582B00D7160A0306008C453E /* ProductSectionView.m */; };
 		582B00DA160A0334008C453E /* ProductSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582B00D9160A0334008C453E /* ProductSectionView.xib */; };
+		582E300216184AEB00180CE9 /* unit_40.png in Resources */ = {isa = PBXBuildFile; fileRef = 582E300116184AEB00180CE9 /* unit_40.png */; };
 		5833A33F160F59FA005D5F18 /* full2_56.png in Resources */ = {isa = PBXBuildFile; fileRef = 5833A33E160F59FA005D5F18 /* full2_56.png */; };
 		5833F7EC160C99AE00197F12 /* pdm_img_08 (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 5833F7E6160C99AE00197F12 /* pdm_img_08 (2).png */; };
 		5833F7ED160C99AE00197F12 /* pdm_img_08 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5833F7E7160C99AE00197F12 /* pdm_img_08 2.png */; };
@@ -133,6 +134,7 @@
 		582B00D6160A0306008C453E /* ProductSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSectionView.h; path = GlacierApplication/MainPage/View/ProductSectionView.h; sourceTree = SOURCE_ROOT; };
 		582B00D7160A0306008C453E /* ProductSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSectionView.m; path = GlacierApplication/MainPage/View/ProductSectionView.m; sourceTree = SOURCE_ROOT; };
 		582B00D9160A0334008C453E /* ProductSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductSectionView.xib; path = GlacierApplication/MainPage/View/ProductSectionView.xib; sourceTree = SOURCE_ROOT; };
+		582E300116184AEB00180CE9 /* unit_40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unit_40.png; sourceTree = "<group>"; };
 		5833A33E160F59FA005D5F18 /* full2_56.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full2_56.png; sourceTree = "<group>"; };
 		5833F7E6160C99AE00197F12 /* pdm_img_08 (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdm_img_08 (2).png"; sourceTree = "<group>"; };
 		5833F7E7160C99AE00197F12 /* pdm_img_08 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pdm_img_08 2.png"; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		582B00AB1609FA6E008C453E /* img */ = {
 			isa = PBXGroup;
 			children = (
+				582E300116184AEB00180CE9 /* unit_40.png */,
 				5833F7F3160C99CB00197F12 /* pdm_img_15.png */,
 				5833F7E6160C99AE00197F12 /* pdm_img_08 (2).png */,
 				5833F7E7160C99AE00197F12 /* pdm_img_08 2.png */,
@@ -477,6 +480,7 @@
 				5833A33F160F59FA005D5F18 /* full2_56.png in Resources */,
 				5846A41C16147EF300596F4B /* Default.png in Resources */,
 				5846A41E161481A600596F4B /* icon.png in Resources */,
+				582E300216184AEB00180CE9 /* unit_40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,7 +635,7 @@
 				DD867D6415ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		DD867D6515ADC48000BEF6E8 /* Build configuration list for PBXNativeTarget "GlacierApplication" */ = {
 			isa = XCConfigurationList;
@@ -640,7 +644,7 @@
 				DD867D6715ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
