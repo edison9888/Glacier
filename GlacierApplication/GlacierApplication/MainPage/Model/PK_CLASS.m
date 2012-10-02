@@ -9,5 +9,7 @@
 #import "PK_CLASS.h"
 
 @implementation PK_CLASS
-
+@synthesize  PK_CLASS_NAME;
+@synthesize  PK_CLASS_CODE;
+@synthesize isFolded;
 @end

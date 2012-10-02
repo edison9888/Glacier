@@ -9,5 +9,12 @@
 #import "CALCSETTING.h"
 
 @implementation CALCSETTING
-
+@synthesize PD_PDTCODE;
+@synthesize AMTPOINTER;
+@synthesize FEEPOINTER;
+@synthesize CALCTYPE;
+@synthesize USEROUND;
+@synthesize USEROUNDDOWN;
+@synthesize AMTRANGE;
+@synthesize CALCRANGE;
 @end

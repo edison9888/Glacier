@@ -21,19 +21,39 @@
 - (void)displayMailComposerSheet;
 - (void)showAlertMsg:(NSString *)msg;
 
-@property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
-@property (nonatomic,retain) NSArray * plipdtm_list;
-@property (nonatomic,retain) NSArray * pkclass_list;
-
-@property (nonatomic,retain) NSArray * plipdtrate_list;
-@property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
-@property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
-@property (nonatomic,retain) UIAlertView * alertView;
+@property (retain, nonatomic) IBOutlet UILabel *jobTypeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *versionNOLabel;
+@property (retain, nonatomic) IBOutlet UIButton *birthdayButton;
+@property (retain, nonatomic) IBOutlet UILabel *sexLabel;
+@property (retain, nonatomic) IBOutlet UILabel *codeLabel;
+@property (retain, nonatomic) IBOutlet UILabel *tipLabel;
+@property (retain, nonatomic) IBOutlet UITableView *tableListView;
+@property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;
+@property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
+@property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
+@property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
+@property (retain, nonatomic) IBOutlet UIButton *maleButton;
+@property (retain, nonatomic) IBOutlet UIButton *femaleButton;
+@property (retain, nonatomic) IBOutlet UITextField *amountTextField;
+@property (retain, nonatomic) IBOutlet UILabel *yearAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *halfYearAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *quarterAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *monthAmountLabel;
+@property (retain, nonatomic) IBOutlet UILabel *onePayAmountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
 @property (strong, nonatomic) IBOutlet UIButton *UnitButton;
 @property (strong, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel1;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel2;
+
+@property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
+@property (nonatomic,retain) NSArray * plipdtm_list;
+@property (nonatomic,retain) NSArray * pkclass_list;
+@property (nonatomic,retain) NSArray * plipdtrate_list;
+@property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
+@property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
+@property (nonatomic,retain) UIAlertView * alertView;
+
 @property (nonatomic,retain) PopDateController * popDateController;
 @property (retain, nonatomic) UIPopoverController * popOverController;
 @property (nonatomic,retain) PopComboController * popComboController;
@@ -59,6 +79,51 @@
     float mTypeThreeMinAmount;
     float mTypeThreeMaxAmount;
 }
+@synthesize jobTypeLabel;
+@synthesize versionNOLabel;
+@synthesize birthdayButton;
+@synthesize sexLabel;
+@synthesize codeLabel;
+@synthesize tipLabel;
+@synthesize tableListView;
+@synthesize pdKindButtonArr;
+@synthesize yearsOldLabel;
+@synthesize insuranceNameLabel;
+@synthesize pdtYearButton;
+@synthesize maleButton;
+@synthesize femaleButton;
+@synthesize amountTextField;
+@synthesize yearAmountLabel;
+@synthesize halfYearAmountLabel;
+@synthesize quarterAmountLabel;
+@synthesize monthAmountLabel;
+@synthesize onePayAmountLabel;
+@synthesize jobTypeButton;
+@synthesize UnitButton;
+@synthesize userNameTextField;
+@synthesize resultTipLabel1;
+@synthesize resultTipLabel2;
+
+@synthesize twDateFormatter = _twDateFormatter;
+@synthesize  plipdtm_list;
+@synthesize  pkclass_list;
+@synthesize  plipdtrate_list;
+@synthesize  plipdtyear_list; //当前年期的列表
+@synthesize  currentPLI_PDTYEAR ;
+@synthesize  alertView;
+
+@synthesize  popDateController;
+@synthesize  popOverController;
+@synthesize  popComboController;
+@synthesize  maxAgeDate;
+@synthesize  minAgeDate;
+@synthesize  comboModel;
+@synthesize  currentSelectedBirthday;
+
+@synthesize  currentPkClass_list;
+@synthesize  currentPli_pdt_m;
+@synthesize  currentCALCSETTING;
+@synthesize  currentPLI_PDTAMTRANGE;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

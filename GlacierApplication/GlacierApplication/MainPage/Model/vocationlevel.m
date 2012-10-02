@@ -9,5 +9,8 @@
 #import "VOCATIONLEVEL.h"
 
 @implementation VOCATIONLEVEL
-
+@synthesize  CODE_ID;
+@synthesize  PARENT_CODE_ID;
+@synthesize  CODE_CNAME;
+@synthesize  VALUE;
 @end

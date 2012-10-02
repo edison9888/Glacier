@@ -17,6 +17,8 @@
 @synthesize popDateDelegate;
 @synthesize maxDate;
 @synthesize minDate;
+@synthesize selectedDate;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
