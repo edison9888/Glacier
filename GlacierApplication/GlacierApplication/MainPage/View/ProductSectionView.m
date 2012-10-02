@@ -20,6 +20,13 @@
     return self;
 }
 
+- (IBAction)onSectionClick:(UIButton *)sender
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(onSectionClcikDelegate:)])
+    {
+        [self.delegate onSectionClcikDelegate:self.tag];
+    }
+}
 
 //- (void)dealloc {
 //    [nameLabel release];

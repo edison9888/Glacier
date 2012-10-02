@@ -635,7 +635,7 @@
 				DD867D6415ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		DD867D6515ADC48000BEF6E8 /* Build configuration list for PBXNativeTarget "GlacierApplication" */ = {
 			isa = XCConfigurationList;
@@ -644,7 +644,7 @@
 				DD867D6715ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

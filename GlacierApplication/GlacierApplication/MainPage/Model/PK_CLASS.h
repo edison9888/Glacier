@@ -11,4 +11,5 @@
 @interface PK_CLASS : SQLitePersistentObject
 @property (nonatomic,copy) NSString * PK_CLASS_NAME;
 @property (nonatomic,copy) NSString * PK_CLASS_CODE;
+@property (nonatomic,assign) bool isFolded;
 @end

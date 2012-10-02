@@ -11,8 +11,10 @@
 #import "SKLSlider.h"
 #import "PopDateController.h"
 #import "PopComboController.h"
+#import "ProductCell.h"
+#import "ProductSectionView.h"
 
-@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate,PopComboDelegate>
+@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate,PopComboDelegate,SectionClickDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *jobTypeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *versionNOLabel;
 @property (retain, nonatomic) IBOutlet UIButton *birthdayButton;

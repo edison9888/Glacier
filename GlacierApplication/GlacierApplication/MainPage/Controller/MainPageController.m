@@ -13,15 +13,11 @@
 #import "PLI_PDTYEAR.h"
 #import "UIView+SKLCurrentImage.h"
 #import "ResultModel.h"
-#import "ProductCell.h"
-#import "ProductSectionView.h"
 #import "CALCSETTING.h"
 #import "PLI_PDTAMTRANGE.h"
 #import "PLI_PDTRATEDIFF.h"
 
 @interface MainPageController ()
-
-
 - (void)displayMailComposerSheet;
 - (void)showAlertMsg:(NSString *)msg;
 
@@ -35,6 +31,9 @@
 @property (nonatomic,retain) UIAlertView * alertView;
 @property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
 @property (strong, nonatomic) IBOutlet UIButton *UnitButton;
+@property (strong, nonatomic) IBOutlet UITextField *userNameTextField;
+@property (strong, nonatomic) IBOutlet UILabel *resultTipLabel1;
+@property (strong, nonatomic) IBOutlet UILabel *resultTipLabel2;
 @property (nonatomic,retain) PopDateController * popDateController;
 @property (retain, nonatomic) UIPopoverController * popOverController;
 @property (nonatomic,retain) PopComboController * popComboController;
@@ -112,11 +111,13 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ProductSectionView * wView = [[[NSBundle mainBundle]loadNibNamed:@"ProductSectionView" owner:nil options:nil] objectAtIndex:0];
+    wView.tag = section;
+    wView.delegate = self;
     wView.nameLabel.text = ((PK_CLASS *) [self.currentPkClass_list objectAtIndex:section]).PK_CLASS_NAME;
     return wView;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSArray *) getCurrentPKClassArray:(NSInteger) section
 {
     PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:section];
     
@@ -126,13 +127,33 @@
     {
         predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
     }
-    else 
+    else
     {
         predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@",wClass.PK_CLASS_CODE];
     }
-
     
-    return [self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]].count;
+    
+    return [self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]];
+}
+
+- (void)onSectionClcikDelegate:(NSInteger)section
+{
+    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:section];
+    wClass.isFolded = !wClass.isFolded;
+    [self.tableListView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ( ((PK_CLASS *)[self.currentPkClass_list objectAtIndex:section]).isFolded)
+    {
+        return 0;
+    }
+    else
+    {
+        return [self getCurrentPKClassArray:section].count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,20 +163,8 @@
     if (!wCell) {
         wCell = [[[NSBundle mainBundle]loadNibNamed:@"ProductCell" owner:nil options:nil] objectAtIndex:0];
     }
-    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
-    
-    NSString * predicateStr;
-    
-    if (mCurrentPdKind != 0)
-    {
-        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
-    }
-    else 
-    {
-        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@",wClass.PK_CLASS_CODE];
-    }
 
-    wCell.nameLabel.text = ((PLI_PDT_M *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateStr]] objectAtIndex:indexPath.row]).PD_PDTNAME;
+    wCell.nameLabel.text = ((PLI_PDT_M *)[[self getCurrentPKClassArray:indexPath.section] objectAtIndex:indexPath.row]).PD_PDTNAME;
     return wCell;
 }
 
@@ -267,6 +276,11 @@
         }
     }
     self.currentPkClass_list = wArr;
+    
+    for (PK_CLASS * wClass in self.currentPkClass_list)
+    {
+        wClass.isFolded = false;
+    }
 }
 
 - (void) changeJobType:(int) type
@@ -407,6 +421,11 @@ double roundDown(double figure ,int precision)
 
 -(double) calcResult:(float)rate payAmount:(float) payAmount  payMode:(float)payMode calcType:(int)calcType diffRate:(float)diffRate
 {
+//    if ([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
+//    {
+//        payAmount /= 10000;
+//    }
+    
     if (calcType == 0)
     {
         return roundDown(round(rate * payMode) * payAmount, 0) ;
@@ -429,8 +448,30 @@ double roundDown(double figure ,int precision)
     }
 }
 
+- (void) showResultTip
+{
+    NSString * dateString =  [self.twDateFormatter stringFromDate:[NSDate date]];
+    NSString * sexString;
+    
+    if (!mCurrentSex)
+    {
+        sexString = @"先生";
+    }
+    else
+    {
+        sexString = @"女士";
+    }
+    self.resultTipLabel1.text = [NSString stringWithFormat:@"敬爱的%@%@ 您於%@",
+                                 self.userNameTextField.text,sexString,dateString];
+    
+    self.resultTipLabel2.text = [NSString stringWithFormat:@"試算%@的結果",
+                                 self.currentPli_pdt_m.PD_PDTNAME];
+}
+
 - (void) generateOutput:(float) rate calcType:(int)calcType diffRate:(PLI_PDTRATEDIFF *) diffRate
 {
+    [self showResultTip];
+    
 #define caluValue(mode,diff) [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:[self calcResult:rate payAmount:amount payMode:mode calcType:calcType diffRate:diff]]numberStyle:NSNumberFormatterDecimalStyle] 
     
     float amount = self.amountTextField.text.floatValue;
@@ -548,6 +589,12 @@ double roundDown(double figure ,int precision)
         return;
     }
     
+    if(self.amountTextField.text.length <=0 )
+    {
+        [self showAlertMsg:[NSString stringWithFormat:@"请先填入金额"]];
+        return;
+    }
+    
     if(self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
         [self processTypeZeroAndOne];
@@ -577,16 +624,12 @@ double roundDown(double figure ,int precision)
     wController.popoverContentSize = wDateController.view.frame.size;
     self.popOverController = wController;
     [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-//    [wDateController release];
-//    [wController release];
+    wDateController = nil;
+    wController = nil;
 }
 
 - (IBAction)onJobTypePopClick:(UIButton *)sender 
 {
-    if ( self.popComboController)
-    {
-        [self.popComboController.view removeFromSuperview];
-    }
     PopComboController * wComboController = [[PopComboController alloc]init];
     wComboController.selectedModel = self.comboModel;
     self.popComboController = wComboController;
@@ -595,8 +638,8 @@ double roundDown(double figure ,int precision)
     wController.popoverContentSize = wComboController.view.frame.size;
     self.popOverController = wController;
     [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-//    [wComboController release];
-//    [wController release];
+    wComboController = nil;
+    wController = nil;
 }
 
 
@@ -645,21 +688,10 @@ double roundDown(double figure ,int precision)
     sender.selected = true;
     mCurrentPdKind = sender.tag;
     [self adjustCurrentPkClassList];
+    
     [self.tableListView reloadData];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    mCurrentCalcMode = item.tag;
-    if (mCurrentCalcMode == 0)
-    {
-        [self.view viewWithTag:20].hidden = true;
-    }
-    else if (mCurrentCalcMode == 1) 
-    {
-        [self.view viewWithTag:20].hidden = false;
-    }
-}
 
 #pragma mark util
 
@@ -727,6 +759,9 @@ double roundDown(double figure ,int precision)
 - (void)viewDidUnload {
     [self setUnitButton:nil];
     [self setVersionNOLabel:nil];
+    [self setResultTipLabel1:nil];
+    [self setResultTipLabel2:nil];
+    [self setUserNameTextField:nil];
     [super viewDidUnload];
 }
 @end

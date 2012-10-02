@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SectionClickDelegate <NSObject>
+
+@required
+- (void) onSectionClcikDelegate:(NSInteger)section;
+@end
+
 @interface ProductSectionView : UIView
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
-
+@property (nonatomic,assign) id<SectionClickDelegate> delegate;
 @end
