@@ -31,8 +31,12 @@
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;
 @property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *updateTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currencyUnitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currencyLabel;
 @property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;
+@property (strong, nonatomic) IBOutlet UILabel *appVersionLabel;
 @property (retain, nonatomic) IBOutlet UIButton *femaleButton;
 @property (retain, nonatomic) IBOutlet UITextField *amountTextField;
 @property (retain, nonatomic) IBOutlet UILabel *yearAmountLabel;
@@ -104,7 +108,7 @@
 @synthesize resultTipLabel1;
 @synthesize resultTipLabel2;
 
-@synthesize twDateFormatter = _twDateFormatter;
+@synthesize twDateFormatter;
 @synthesize  plipdtm_list;
 @synthesize  pkclass_list;
 @synthesize  plipdtrate_list;
@@ -124,22 +128,23 @@
 @synthesize  currentPli_pdt_m;
 @synthesize  currentCALCSETTING;
 @synthesize  currentPLI_PDTAMTRANGE;
+@synthesize  appVersionLabel;
+@synthesize  updateTimeLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _twDateFormatter = [[NSDateFormatter alloc] init];
+        NSDateFormatter * wTwDateFormatter = [[NSDateFormatter alloc] init];
+        twDateFormatter = wTwDateFormatter;
         NSCalendar *wRepublicOfChinaCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSRepublicOfChinaCalendar];
-        _twDateFormatter.calendar = wRepublicOfChinaCalendar;
-//        [wRepublicOfChinaCalendar release];
+        self.twDateFormatter.calendar = wRepublicOfChinaCalendar;
         
         NSLocale *wLocale  = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_TW"];
-        _twDateFormatter.locale = wLocale;
-//        [wLocale release];
+        self.twDateFormatter.locale = wLocale;
         
-        _twDateFormatter.dateFormat = @"G yyy年MM月dd日";
+        self.twDateFormatter.dateFormat = @"G yyy年MM月dd日";
     }
     return self;
 }
@@ -148,6 +153,10 @@
 {
     [super viewDidLoad];
     mCurrentJobType = 1;
+    NSString * appVersion = @"v1.0.1.0";
+    NSString * updateTime = @"2012年10月1日";
+    self.appVersionLabel.text = [NSString stringWithFormat:@"APP版本：%@",appVersion];
+    self.updateTimeLabel.text = [NSString stringWithFormat:@"最近更新：%@",updateTime];
     self.plipdtm_list = [PLI_PDT_M findByCriteria:@"group by PD_PDTCODE"];
     self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];
     [self adjustCurrentPkClassList];
@@ -228,10 +237,18 @@
     if (!wCell) {
         wCell = [[[NSBundle mainBundle]loadNibNamed:@"ProductCell" owner:nil options:nil] objectAtIndex:0];
     }
-
-    wCell.nameLabel.text = ((PLI_PDT_M *)[[self getCurrentPKClassArray:indexPath.section] objectAtIndex:indexPath.row]).PD_PDTNAME;
+    wCell.nameLabel.text = [self trimShortName:((PLI_PDT_M *)[[self getCurrentPKClassArray:indexPath.section] objectAtIndex:indexPath.row]).PD_PDTNAME];
     return wCell;
 }
+
+- (NSString *) trimShortName:(NSString *)fullName
+{
+    NSMutableString * name = [NSMutableString string];
+    [name setString:fullName];
+    [name replaceOccurrencesOfString:@"新光人壽" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, name.length)];
+    return name;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -247,11 +264,13 @@
 {
     self.currentSelectedBirthday = nil;
     self.versionNOLabel.text = [NSString stringWithFormat:@"版数：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
+    self.currencyLabel.text = [NSString stringWithFormat:@"币别：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
+    self.currencyUnitLabel.text = [NSString stringWithFormat:@"单位：%@元",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
     [self.UnitButton setTitle:self.currentPli_pdt_m.PD_UNIT forState:UIControlStateNormal];
-    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE]; //等到修改
+    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE]; 
     mCurrentPdtYearIndex = 0;
     [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
-    self.insuranceNameLabel.text = self.currentPli_pdt_m.PD_PDTNAME;
+    self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
     self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
 
@@ -282,6 +301,25 @@
     
     [self adjustPdtYearText];
 }
+
+- (NSString *) getCurrencyString:(NSString *)currency
+{
+    if ([currency isEqualToString:@"US"])
+    {
+        return @"美元";
+    }
+    else if ([currency isEqualToString:@"NT"])
+    {
+        return @"新台币";
+    }
+    else if ([currency isEqualToString:@"AUD"])
+    {
+        return @"澳元";
+    }
+    else
+        return @"未知";
+}
+
 
 - (void) adjustBirthComponent:(double)minAge max:(double) maxAge
 {
@@ -484,20 +522,36 @@ double roundDown(double figure ,int precision)
     return floor(figure * pow(10, precision)) / pow(10, precision);
 }
 
+double roundPrec(double figure ,int precision)
+{
+    return round(figure * pow(10, precision)) / pow(10, precision);
+}
+
 -(double) calcResult:(float)rate payAmount:(float) payAmount  payMode:(float)payMode calcType:(int)calcType diffRate:(float)diffRate
 {
 //    if ([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
 //    {
 //        payAmount /= 10000;
 //    }
+//    NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
+    
+    //保额取精度
+    payAmount = roundDown(payAmount, self.currentCALCSETTING.AMTPOINTER);
     
     if (calcType == 0)
     {
-        return roundDown(round(rate * payMode) * payAmount, 0) ;
+        if(self.currentCALCSETTING.CALCRANGE != 0)
+        {
+            return roundDown(roundPrec(rate * payMode * self.currentCALCSETTING.CALCRANGE, self.currentCALCSETTING.USEROUND) * payAmount / self.currentCALCSETTING.CALCRANGE,self.currentCALCSETTING.USEROUNDDOWN) ;
+        }
+        else
+        {
+            return roundDown(roundPrec(rate * payMode , self.currentCALCSETTING.USEROUND) * payAmount,self.currentCALCSETTING.USEROUNDDOWN) ;
+        }
     }
     else if(calcType == 1)
     {
-        return roundDown(round(rate * payMode * payAmount) , 0) ;
+        return roundDown(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.USEROUNDDOWN) ;
     }
     else if(calcType == 2)
     {
@@ -590,7 +644,8 @@ double roundDown(double figure ,int precision)
 
 #pragma mark 点击事件
 
-- (IBAction)userClickMail:(id)sender {
+- (IBAction)userClickMail:(id)sender
+{
     [self displayMailComposerSheet];
 }
 
@@ -827,6 +882,10 @@ double roundDown(double figure ,int precision)
     [self setResultTipLabel1:nil];
     [self setResultTipLabel2:nil];
     [self setUserNameTextField:nil];
+    [self setAppVersionLabel:nil];
+    [self setUpdateTimeLabel:nil];
+    [self setCurrencyLabel:nil];
+    [self setCurrencyUnitLabel:nil];
     [super viewDidUnload];
 }
 @end
