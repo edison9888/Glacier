@@ -582,8 +582,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierApplication/GlacierApplication-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -592,8 +592,8 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				PROVISIONING_PROFILE = "986BFA28-6938-4E43-A9A0-5428A888084E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "986BFA28-6938-4E43-A9A0-5428A888084E";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
 				VALID_ARCHS = "armv6 armv7 armv7s";
@@ -606,8 +606,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierApplication/GlacierApplication-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -616,8 +616,8 @@
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
+				PROVISIONING_PROFILE = "986BFA28-6938-4E43-A9A0-5428A888084E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "986BFA28-6938-4E43-A9A0-5428A888084E";
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/** $(SRCROOT)/../** “$(SRCROOT)/..”/**";
 				VALID_ARCHS = "armv6 armv7 armv7s";

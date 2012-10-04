@@ -29,10 +29,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *tipLabel;
 @property (retain, nonatomic) IBOutlet UITableView *tableListView;
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;
-@property (retain, nonatomic) IBOutlet UILabel *yearsOldLabel;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *updateTimeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *currencyUnitLabel;
+@property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UILabel *currencyLabel;
 @property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;
@@ -45,6 +45,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *monthAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *onePayAmountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
+@property (strong, nonatomic) IBOutlet UITextField *ageTextField;
 @property (strong, nonatomic) IBOutlet UIButton *UnitButton;
 @property (strong, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel1;
@@ -91,7 +92,6 @@
 @synthesize tipLabel;
 @synthesize tableListView;
 @synthesize pdKindButtonArr;
-@synthesize yearsOldLabel;
 @synthesize insuranceNameLabel;
 @synthesize pdtYearButton;
 @synthesize maleButton;
@@ -159,7 +159,9 @@
     self.updateTimeLabel.text = [NSString stringWithFormat:@"最近更新：%@",updateTime];
     self.plipdtm_list = [PLI_PDT_M findByCriteria:@"group by PD_PDTCODE"];
     self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];
+    mCurrentPdKind = 1;
     [self adjustCurrentPkClassList];
+    [self.tableListView reloadData];
 }
 
 - (PLI_PDTYEAR *)currentPLI_PDTYEAR
@@ -191,7 +193,7 @@
     return wView;
 }
 
-- (NSArray *) getCurrentPKClassArray:(NSInteger) section
+- (NSArray *) getCurrentPliInPKClassArray:(NSInteger) section
 {
     PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:section];
     
@@ -226,7 +228,7 @@
     }
     else
     {
-        return [self getCurrentPKClassArray:section].count;
+        return [self getCurrentPliInPKClassArray:section].count;
     }
 }
 
@@ -237,7 +239,7 @@
     if (!wCell) {
         wCell = [[[NSBundle mainBundle]loadNibNamed:@"ProductCell" owner:nil options:nil] objectAtIndex:0];
     }
-    wCell.nameLabel.text = [self trimShortName:((PLI_PDT_M *)[[self getCurrentPKClassArray:indexPath.section] objectAtIndex:indexPath.row]).PD_PDTNAME];
+    wCell.nameLabel.text = [self trimShortName:((PLI_PDT_M *)[[self getCurrentPliInPKClassArray:indexPath.section] objectAtIndex:indexPath.row]).PD_PDTNAME];
     return wCell;
 }
 
@@ -252,8 +254,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PK_CLASS * wClass = [self.currentPkClass_list objectAtIndex:indexPath.section];
-    self.currentPli_pdt_m = ((PLI_PDT_M *)[[self.plipdtm_list filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.PK_CLASS == %d",wClass.PK_CLASS_CODE.intValue]] objectAtIndex:indexPath.row]);
+    self.currentPli_pdt_m = ((PLI_PDT_M *)[[self getCurrentPliInPKClassArray:indexPath.section] objectAtIndex:indexPath.row]);
     self.currentCALCSETTING = [CALCSETTING findFirstByCriteria:@"where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE];
     [self initComponentAfterSelected];
 }
@@ -263,21 +264,21 @@
 -(void) initComponentAfterSelected
 {
     self.currentSelectedBirthday = nil;
-    self.versionNOLabel.text = [NSString stringWithFormat:@"版数：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
-    self.currencyLabel.text = [NSString stringWithFormat:@"币别：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
-    self.currencyUnitLabel.text = [NSString stringWithFormat:@"单位：%@元",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
+    self.versionNOLabel.text = [NSString stringWithFormat:@"版數：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
+    self.currencyLabel.text = [NSString stringWithFormat:@"幣別：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
+    self.currencyUnitLabel.text = [NSString stringWithFormat:@"單位：%@",[self getCurrencyUnitString:self.currentPli_pdt_m.PD_CURRENCY]];
     [self.UnitButton setTitle:self.currentPli_pdt_m.PD_UNIT forState:UIControlStateNormal];
-    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE]; 
+    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE];
     mCurrentPdtYearIndex = 0;
     [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
     self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
-    self.codeLabel.text = [@"商品代码：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
+    self.codeLabel.text = [@"商品代碼：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
 
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
         [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%d-%d嵗       【保额】：无限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d嵗       【保额】：無限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
     }
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
@@ -292,7 +293,7 @@
         
         mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄】：%.0f-%.0f嵗       【保额】：%.0f-%.0f万元",
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f嵗       【保额】：%.0f-%.0f万元",
                               minAge,
                               maxAge,
                               mTypeThreeMinAmount,
@@ -300,24 +301,6 @@
     }
     
     [self adjustPdtYearText];
-}
-
-- (NSString *) getCurrencyString:(NSString *)currency
-{
-    if ([currency isEqualToString:@"US"])
-    {
-        return @"美元";
-    }
-    else if ([currency isEqualToString:@"NT"])
-    {
-        return @"新台币";
-    }
-    else if ([currency isEqualToString:@"AUD"])
-    {
-        return @"澳元";
-    }
-    else
-        return @"未知";
 }
 
 
@@ -334,7 +317,7 @@
     self.maxAgeDate = wMaxDate;
     
     mCurrentAge = minAge;
-    self.yearsOldLabel.text = [NSString stringWithFormat:@"%.0f",minAge];
+    self.ageTextField.text = [NSString stringWithFormat:@"%.0f",minAge];
 }
 
 - (void) adjustPdtYearText
@@ -348,7 +331,7 @@
     self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
     if (self.currentPLI_PDTAMTRANGE)
     {
-         self.tipLabel.text = [NSString stringWithFormat:@"【投保年龄区间】：%d-%d嵗       【保额】：%.0f-%.0f万元",
+         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗       【保额】：%.0f-%.0f万元",
            (int)self.currentPLI_PDTYEAR.PY_MINAGE,
            (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
             self.currentPLI_PDTAMTRANGE.MINAMT ,
@@ -392,22 +375,22 @@
     switch (mCurrentJobType)
     {
         case 1:
-            [self.jobTypeButton setTitle:@"第一类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第一類別" forState:UIControlStateNormal];
             break;
         case 2:
-            [self.jobTypeButton setTitle:@"第二类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第二類別" forState:UIControlStateNormal];
             break;
         case 3:
-            [self.jobTypeButton setTitle:@"第三类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第三類別" forState:UIControlStateNormal];
             break;
         case 4:
-            [self.jobTypeButton setTitle:@"第四类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第四類別" forState:UIControlStateNormal];
             break;
         case 5:
-            [self.jobTypeButton setTitle:@"第五类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第五類別" forState:UIControlStateNormal];
             break;
         case 6:
-            [self.jobTypeButton setTitle:@"第六类别" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第六類別" forState:UIControlStateNormal];
             break;
         default:
             break;
@@ -424,7 +407,7 @@
         if (amount < self.currentPLI_PDTAMTRANGE.MINAMT || amount > self.currentPLI_PDTAMTRANGE.MAXAMT )
         {
 
-                [self showAlertMsg:[NSString stringWithFormat:@"保额应在%.1f-%.1f之间"
+                [self showAlertMsg:[NSString stringWithFormat:@"保额應在%.1f-%.1f之間"
                                     ,self.currentPLI_PDTAMTRANGE.MINAMT
                                     ,self.currentPLI_PDTAMTRANGE.MAXAMT]];
             return;
@@ -454,7 +437,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相关记录"];
+        [self showAlertMsg:@"未找到相關紀錄"];
     }
 }
 
@@ -478,7 +461,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相关记录"];
+        [self showAlertMsg:@"未找到相關紀錄"];
     }
 }
 
@@ -491,7 +474,7 @@
         if (amount < mTypeThreeMinAmount || amount > mTypeThreeMaxAmount )
         {
             
-            [self showAlertMsg:[NSString stringWithFormat:@"保额应在%.1f-%.1f之间"
+            [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
                                 ,mTypeThreeMinAmount
                                 ,mTypeThreeMaxAmount]];
             return;
@@ -513,7 +496,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相关记录"];
+        [self showAlertMsg:@"未找到相關紀錄"];
     }
 }
 
@@ -658,14 +641,12 @@ double roundPrec(double figure ,int precision)
 - (IBAction)onResetClick:(UIButton *)sender
 {
     self.currentSelectedBirthday = nil;
-    self.insuranceNameLabel.text = @"";
-    self.currentPli_pdt_m = nil;
-    self.yearsOldLabel.text = @"0";
+    self.ageTextField.text = @"0";
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
     self.amountTextField.text = @"";
-    self.codeLabel.text = @"商品代码";
+    self.codeLabel.text = @"--";
     self.jobTypeLabel.text = @"";
     
 }
@@ -705,13 +686,13 @@ double roundPrec(double figure ,int precision)
     if(!self.currentPli_pdt_m)
     {
         
-        [self showAlertMsg:[NSString stringWithFormat:@"请选择先品种"]];
+        [self showAlertMsg:[NSString stringWithFormat:@"請先選擇品種"]];
         return;
     }
     
     if(self.amountTextField.text.length <=0 )
     {
-        [self showAlertMsg:[NSString stringWithFormat:@"请先填入金额"]];
+        [self showAlertMsg:[NSString stringWithFormat:@"請先輸入金額请"]];
         return;
     }
     
@@ -730,7 +711,9 @@ double roundPrec(double figure ,int precision)
     
 }
 
+
 #pragma mark 弹出框点击以及回调
+
 
 - (IBAction)onBirthdayClick:(UIButton *)sender 
 {
@@ -771,7 +754,7 @@ double roundPrec(double figure ,int precision)
     self.currentSelectedBirthday = date;
     NSDateComponents *wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
     mCurrentAge = wDateComponents.year;
-    self.yearsOldLabel.text = [NSString stringWithFormat:@"%d", wDateComponents.year];
+    self.ageTextField.text = [NSString stringWithFormat:@"%d", wDateComponents.year];
     [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
     [self.popOverController dismissPopoverAnimated:true];
     [self adjustCurrentAmountRange];
@@ -812,6 +795,38 @@ double roundPrec(double figure ,int precision)
     [self.tableListView reloadData];
 }
 
+#pragma mark textfield
+- (IBAction)onBackClick:(UIButton *)sender
+{
+    [self.ageTextField resignFirstResponder];
+    [self.amountTextField resignFirstResponder];
+    [self.userNameTextField resignFirstResponder];
+    self.backButton.hidden = true;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    self.backButton.hidden = false;
+    [self.view bringSubviewToFront:self.backButton];
+    return true;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 2) // 年龄输入
+    {
+        float age = textField.text.floatValue;
+        
+        if (age < self.currentPLI_PDTYEAR.PY_MINAGE || age > self.currentPLI_PDTYEAR.PY_MAXAGE)
+        {
+            [self showAlertMsg:[NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗",
+                               (int)self.currentPLI_PDTYEAR.PY_MINAGE,
+                                (int)self.currentPLI_PDTYEAR.PY_MAXAGE]];
+            textField.text = [NSString stringWithFormat:@"%d",(int)self.currentPLI_PDTYEAR.PY_MINAGE];
+        }
+    }
+    return true;
+}
 
 #pragma mark util
 
@@ -824,6 +839,47 @@ double roundPrec(double figure ,int precision)
     //    [wAlertView release];
 }
 
+- (NSString *) getCurrencyUnitString:(NSString *)currency
+{
+    if ([currency isEqualToString:@"US"])
+    {
+        return @"美元";
+    }
+    else if ([currency isEqualToString:@"NT"])
+    {
+        return @"新台幣元";
+    }
+    else if ([currency isEqualToString:@"AUD"])
+    {
+        return @"澳元";
+    }
+    else
+    {
+        return @"未知";
+    }
+}
+
+
+- (NSString *) getCurrencyString:(NSString *)currency
+{
+    if ([currency isEqualToString:@"US"])
+    {
+        return @"US美金";
+    }
+    else if ([currency isEqualToString:@"NT"])
+    {
+        return @"NT新臺幣";
+    }
+    else if ([currency isEqualToString:@"AUD"])
+    {
+        return @"AUD澳幣";
+    }
+    else
+    {
+        return @"未知";
+    }
+}
+
 #pragma mark 邮件相关
 
 - (void)displayMailComposerSheet
@@ -832,11 +888,28 @@ double roundPrec(double figure ,int precision)
         MFMailComposeViewController *wMailComposeViewController = [[MFMailComposeViewController alloc] init];
         wMailComposeViewController.mailComposeDelegate = self;
         
-        [wMailComposeViewController setSubject:@"屏幕截图"];
+        [wMailComposeViewController setSubject:self.currentPli_pdt_m.PD_PDTNAME];
         
+        
+        NSString * dateString =  [self.twDateFormatter stringFromDate:[NSDate date]];
+        NSString * sexString;
+        
+        if (!mCurrentSex)
+        {
+            sexString = @"先生";
+        }
+        else
+        {
+            sexString = @"女士";
+        }
+
+        NSString * wBodyString = [NSString stringWithFormat:@"敬爱的%@%@,\r\n您於%@試算%@的結果",
+                                  self.userNameTextField.text,sexString,dateString,self.currentPli_pdt_m.PD_PDTNAME];
+        [wMailComposeViewController setMessageBody:wBodyString isHTML:false];
         
         // 附件
         NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
+        
         [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"屏幕截图"];
         
         // 邮件正文
@@ -876,6 +949,7 @@ double roundPrec(double figure ,int precision)
     [self showAlertMsg:wResultMsg];
     [self dismissModalViewControllerAnimated:YES];
 }
+
 - (void)viewDidUnload {
     [self setUnitButton:nil];
     [self setVersionNOLabel:nil];
@@ -886,6 +960,8 @@ double roundPrec(double figure ,int precision)
     [self setUpdateTimeLabel:nil];
     [self setCurrencyLabel:nil];
     [self setCurrencyUnitLabel:nil];
+    [self setAgeTextField:nil];
+    [self setBackButton:nil];
     [super viewDidUnload];
 }
 @end
