@@ -264,6 +264,8 @@
 -(void) initComponentAfterSelected
 {
     self.currentSelectedBirthday = nil;
+    self.currentPLI_PDTAMTRANGE = nil;
+    
     self.versionNOLabel.text = [NSString stringWithFormat:@"版數：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
     self.currencyLabel.text = [NSString stringWithFormat:@"幣別：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
     self.currencyUnitLabel.text = [NSString stringWithFormat:@"單位：%@",[self getCurrencyUnitString:self.currentPli_pdt_m.PD_CURRENCY]];
@@ -753,8 +755,16 @@ double roundPrec(double figure ,int precision)
     NSString * birthday = [self.twDateFormatter stringFromDate:date];
     self.currentSelectedBirthday = date;
     NSDateComponents *wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
-    mCurrentAge = wDateComponents.year;
-    self.ageTextField.text = [NSString stringWithFormat:@"%d", wDateComponents.year];
+    if(wDateComponents.month >= 6)
+    {
+        mCurrentAge = wDateComponents.year + 1;
+    }
+    else
+    {
+        mCurrentAge = wDateComponents.year;
+    }
+    
+    self.ageTextField.text = [NSString stringWithFormat:@"%d", mCurrentAge];
     [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
     [self.popOverController dismissPopoverAnimated:true];
     [self adjustCurrentAmountRange];
