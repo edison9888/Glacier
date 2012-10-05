@@ -295,11 +295,12 @@
         
         mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f嵗       【保额】：%.0f-%.0f万元",
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f嵗       【保额】：%.0f-%.0f%@",
                               minAge,
                               maxAge,
                               mTypeThreeMinAmount,
-                              mTypeThreeMaxAmount];
+                              mTypeThreeMaxAmount,
+                              self.currentPli_pdt_m.PD_UNIT];
     }
     
     [self adjustPdtYearText];
@@ -333,11 +334,12 @@
     self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
     if (self.currentPLI_PDTAMTRANGE)
     {
-         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗       【保额】：%.0f-%.0f万元",
+         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗       【保额】：%.0f-%.0f%@",
            (int)self.currentPLI_PDTYEAR.PY_MINAGE,
            (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
-            self.currentPLI_PDTAMTRANGE.MINAMT ,
-            self.currentPLI_PDTAMTRANGE.MAXAMT];
+            self.currentPLI_PDTAMTRANGE.MINAMT,
+            self.currentPLI_PDTAMTRANGE.MAXAMT,
+            self.currentPli_pdt_m.PD_UNIT];
     }
 }
 
@@ -406,17 +408,25 @@
     float amount = self.amountTextField.text.floatValue;
     if(self.currentPLI_PDTAMTRANGE)
     {
-        if (amount < self.currentPLI_PDTAMTRANGE.MINAMT || amount > self.currentPLI_PDTAMTRANGE.MAXAMT )
+        float minAmout = self.currentPLI_PDTAMTRANGE.MINAMT;
+        float maxAmout = self.currentPLI_PDTAMTRANGE.MAXAMT;
+        
+//        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
+//        {
+//            minAmout *= 100;
+//            maxAmout *= 100;
+//        }
+        if (amount < minAmout || amount > maxAmout )
         {
 
                 [self showAlertMsg:[NSString stringWithFormat:@"保额應在%.1f-%.1f之間"
-                                    ,self.currentPLI_PDTAMTRANGE.MINAMT
-                                    ,self.currentPLI_PDTAMTRANGE.MAXAMT]];
+                                    ,minAmout
+                                    ,maxAmout]];
             return;
         }
     }
     
-    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and (PR_AGE = %d or PR_AGE = 0) and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and PR_AGE = %d and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     float rate;
     PLI_PDTRATE * plir = nil;
@@ -473,12 +483,21 @@
     float amount = self.amountTextField.text.floatValue;
     if(mTypeThreeMinAmount>= 0 || mTypeThreeMaxAmount>= 0)
     {
-        if (amount < mTypeThreeMinAmount || amount > mTypeThreeMaxAmount )
+        float minAmout = mTypeThreeMinAmount;
+        float maxAmout = mTypeThreeMaxAmount;
+        
+//        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
+//        {
+//            minAmout *= 100;
+//            maxAmout *= 100;
+//        }
+        
+        if (amount < minAmout || amount > maxAmout )
         {
             
             [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
-                                ,mTypeThreeMinAmount
-                                ,mTypeThreeMaxAmount]];
+                                ,minAmout
+                                ,maxAmout]];
             return;
         }
     }
@@ -509,45 +528,50 @@ double roundDown(double figure ,int precision)
 
 double roundPrec(double figure ,int precision)
 {
-    return round(figure * pow(10, precision)) / pow(10, precision);
+    return round(figure * pow(10, precision) - 0.0000001) / pow(10, precision);//减去0.0000001为了和其他版本保持统一 0.5舍去
 }
 
 -(double) calcResult:(float)rate payAmount:(float) payAmount  payMode:(float)payMode calcType:(int)calcType diffRate:(float)diffRate
 {
-//    if ([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
-//    {
-//        payAmount /= 10000;
-//    }
 //    NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
-    
-    //保额取精度
-    payAmount = roundDown(payAmount, self.currentCALCSETTING.AMTPOINTER);
     
     if (calcType == 0)
     {
-        if(self.currentCALCSETTING.CALCRANGE != 0)
+        
+        int calcRange = self.currentCALCSETTING.CALCRANGE; //级距>0则使用级距
+        
+        if (self.currentCALCSETTING.USEROUNDDOWN)
         {
-            return roundDown(roundPrec(rate * payMode * self.currentCALCSETTING.CALCRANGE, self.currentCALCSETTING.USEROUND) * payAmount / self.currentCALCSETTING.CALCRANGE,self.currentCALCSETTING.USEROUNDDOWN) ;
+            return roundDown(roundPrec(rate * payMode * (calcRange > 0 ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (calcRange > 0 ? calcRange: 1),self.currentCALCSETTING.FEEPOINTER) ;
         }
         else
         {
-            return roundDown(roundPrec(rate * payMode , self.currentCALCSETTING.USEROUND) * payAmount,self.currentCALCSETTING.USEROUNDDOWN) ;
+            return roundPrec(roundPrec(rate * payMode * (calcRange > 0 ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (calcRange > 0 ? calcRange: 1),self.currentCALCSETTING.FEEPOINTER) ;
         }
+
     }
     else if(calcType == 1)
     {
-        return roundDown(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.USEROUNDDOWN) ;
+        if (self.currentCALCSETTING.USEROUNDDOWN)
+        {
+            return roundDown(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.FEEPOINTER);
+        }
+        else
+        {
+            return roundPrec(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.FEEPOINTER);
+        }
     }
     else if(calcType == 2)
     {
-        return roundDown(round(rate * payMode + diffRate) * payAmount,0);
+        return roundDown(roundPrec(rate * payMode + diffRate,0) * payAmount,0);
     }
     else if(calcType == 3)
     {
-        return round(rate * payMode);
+        return roundPrec(rate * payMode,0);
     }
     else
     {
+        NSLog(@"错误的类别");
         return  -1;
     }
 }
@@ -698,6 +722,14 @@ double roundPrec(double figure ,int precision)
         return;
     }
     
+    if (self.currentCALCSETTING.AMTRANGE != 0)
+    {
+        if ((int)self.amountTextField.text.floatValue % (int)self.currentCALCSETTING.AMTRANGE != 0 ) {
+            [self showAlertMsg:[NSString stringWithFormat:@"保額必須為%d的倍數",(int)self.currentCALCSETTING.AMTRANGE]];
+            return;
+        }
+    }
+    
     if(self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
         [self processTypeZeroAndOne];
@@ -834,6 +866,7 @@ double roundPrec(double figure ,int precision)
                                 (int)self.currentPLI_PDTYEAR.PY_MAXAGE]];
             textField.text = [NSString stringWithFormat:@"%d",(int)self.currentPLI_PDTYEAR.PY_MINAGE];
         }
+        mCurrentAge = textField.text.floatValue;
     }
     return true;
 }
