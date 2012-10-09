@@ -225,7 +225,7 @@
         }
     }
     else {
-        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择一个职业" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"請選擇一個職業" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [wAlert show];
 //        [wAlert release];
     }

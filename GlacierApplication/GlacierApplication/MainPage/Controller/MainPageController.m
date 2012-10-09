@@ -201,7 +201,12 @@
     
     if (mCurrentPdKind != 0)
     {
-        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
+//        predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
+        if (mCurrentPdKind == 1) {
+            predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND == %d",wClass.PK_CLASS_CODE, mCurrentPdKind];
+        } else if (mCurrentPdKind == 2) {
+            predicateStr = [NSString stringWithFormat:@"SELF.PK_CLASS == %@ and self.PD_KIND <> %d",wClass.PK_CLASS_CODE, 1];
+        }
     }
     else
     {
@@ -276,11 +281,14 @@
     self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
     self.codeLabel.text = [@"商品代碼：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
+    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    self.amountTextField.text = @"";
+    
 
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
         [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d嵗       【保额】：無限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲       【保額】：無限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
     }
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
@@ -295,7 +303,7 @@
         
         mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f嵗       【保额】：%.0f-%.0f%@",
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       【保額】：%.0f-%.0f%@",
                               minAge,
                               maxAge,
                               mTypeThreeMinAmount,
@@ -328,13 +336,13 @@
     [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
 }
 
-//调整当前保额范围
+//调整当前保額范围
 -(void) adjustCurrentAmountRange
 {
     self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
     if (self.currentPLI_PDTAMTRANGE)
     {
-         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗       【保额】：%.0f-%.0f%@",
+         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d歲       【保額】：%.0f-%.0f%@",
            (int)self.currentPLI_PDTYEAR.PY_MINAGE,
            (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
             self.currentPLI_PDTAMTRANGE.MINAMT,
@@ -352,8 +360,18 @@
         int count = 0;
         if (mCurrentPdKind != 0)
         {
-            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
-            count = [PLI_PDT_M countByCriteria:query];
+//            NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
+//            NSLog(@"query = %@",query);
+//            count = [PLI_PDT_M countByCriteria:query];
+            if (mCurrentPdKind == 1) {
+                NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind = '%d'",wClass.PK_CLASS_CODE,mCurrentPdKind];
+                NSLog(@"query = %@",query);
+                count = [PLI_PDT_M countByCriteria:query];
+            } else if (mCurrentPdKind == 2) {
+                NSString * query = [NSString stringWithFormat:@"where pk_class = '%@' and pd_kind <> '%d'",wClass.PK_CLASS_CODE,1];
+                NSLog(@"query = %@",query);
+                count = [PLI_PDT_M countByCriteria:query];
+            }
         }
         else
         {
@@ -419,24 +437,14 @@
         if (amount < minAmout || amount > maxAmout )
         {
 
-                [self showAlertMsg:[NSString stringWithFormat:@"保额應在%.1f-%.1f之間"
+                [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
                                     ,minAmout
                                     ,maxAmout]];
             return;
         }
     }
     
-    NSMutableString * query = [NSMutableString stringWithFormat:@"where pr_pdtcode = '%@' and pr_pdtyear = %.1f ",self.currentPli_pdt_m.PD_PDTCODE ,self.currentPLI_PDTYEAR.PY_PDTYEAR];
-    if ([PLI_PDTRATE checkNeedPR_AGE:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
-    {
-        [query appendFormat:@" and PR_AGE = %d",mCurrentAge];
-    }
-    
-    if ([PLI_PDTRATE checkNeedPR_SALES:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
-    {
-        [query appendFormat:@" and (pr_sales = %d or pr_sales = 0) order by pr_sales desc",mCurrentJobType];
-    }
-    
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and PR_AGE = %d and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     float rate;
     PLI_PDTRATE * plir = nil;
@@ -459,7 +467,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相關紀錄"];
+        [self showAlertMsg:@"不符核保條件"];
     }
 }
 
@@ -483,7 +491,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相關紀錄"];
+        [self showAlertMsg:@"不符核保條件"];
     }
 }
 
@@ -527,7 +535,7 @@
     }
     else
     {
-        [self showAlertMsg:@"未找到相關紀錄"];
+        [self showAlertMsg:@"不符核保條件"];
     }
 }
 
@@ -651,8 +659,8 @@ double roundPrec(double figure ,int precision)
     
     if (self.currentPli_pdt_m.PD_ONEPAY == 1.0f)
     {
-        
         self.onePayAmountLabel.text = [yearStr stringByAppendingString:@" 元"];
+        self.yearAmountLabel.text = @"-- 元";
     }
     else
     {
@@ -728,7 +736,7 @@ double roundPrec(double figure ,int precision)
     
     if(self.amountTextField.text.length <=0 )
     {
-        [self showAlertMsg:[NSString stringWithFormat:@"請先輸入金額请"]];
+        [self showAlertMsg:[NSString stringWithFormat:@"請先輸入金額"]];
         return;
     }
     
@@ -871,7 +879,7 @@ double roundPrec(double figure ,int precision)
         
         if (age < self.currentPLI_PDTYEAR.PY_MINAGE || age > self.currentPLI_PDTYEAR.PY_MAXAGE)
         {
-            [self showAlertMsg:[NSString stringWithFormat:@"【投保年齡區間】：%d-%d嵗",
+            [self showAlertMsg:[NSString stringWithFormat:@"【投保年齡區間】：%d-%d歲",
                                (int)self.currentPLI_PDTYEAR.PY_MINAGE,
                                 (int)self.currentPLI_PDTYEAR.PY_MAXAGE]];
             textField.text = [NSString stringWithFormat:@"%d",(int)self.currentPLI_PDTYEAR.PY_MINAGE];
