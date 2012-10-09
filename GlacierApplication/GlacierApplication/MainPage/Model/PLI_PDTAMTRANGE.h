@@ -10,11 +10,11 @@
 
 @interface PLI_PDTAMTRANGE : SQLitePersistentObject
 @property (nonatomic,copy) NSString * PD_PDTCODE;
-@property (nonatomic,assign) float PY_PDTYEAR;
-@property (nonatomic,assign) float MINAGE;
-@property (nonatomic,assign) float MAXAGE;
-@property (nonatomic,assign) float MINAMT;
-@property (nonatomic,assign) float MAXAMT;
+@property (nonatomic,assign) double PY_PDTYEAR;
+@property (nonatomic,assign) double MINAGE;
+@property (nonatomic,assign) double MAXAGE;
+@property (nonatomic,assign) double MINAMT;
+@property (nonatomic,assign) double MAXAMT;
 @property (nonatomic,copy) NSString * MODIDATE;
 @property (nonatomic,copy) NSString * MODISTATE;
 @property (nonatomic,copy) NSString * PC_Sex;

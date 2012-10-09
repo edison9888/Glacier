@@ -81,8 +81,8 @@
     int mCurrentPdtYearIndex;
     int mCurrentPdKind;
     int mCurrentCalcMode;//当前计算模式
-    float mTypeThreeMinAmount;
-    float mTypeThreeMaxAmount;
+    double mTypeThreeMinAmount;
+    double mTypeThreeMaxAmount;
 }
 @synthesize jobTypeLabel;
 @synthesize versionNOLabel;
@@ -293,9 +293,9 @@
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
         
-        float minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        double minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        float maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        double maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
         [self adjustBirthComponent:minAge max:maxAge];
         
@@ -423,11 +423,11 @@
 - (void) processTypeZeroAndOne
 {
     
-    float amount = self.amountTextField.text.floatValue;
+    double amount = self.amountTextField.text.doubleValue;
     if(self.currentPLI_PDTAMTRANGE)
     {
-        float minAmout = self.currentPLI_PDTAMTRANGE.MINAMT;
-        float maxAmout = self.currentPLI_PDTAMTRANGE.MAXAMT;
+        double minAmout = self.currentPLI_PDTAMTRANGE.MINAMT;
+        double maxAmout = self.currentPLI_PDTAMTRANGE.MAXAMT;
         
 //        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
 //        {
@@ -444,9 +444,21 @@
         }
     }
     
-    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and PR_AGE = %d and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@'and pr_pdtyear = %.1f  ",self.currentPli_pdt_m.PD_PDTCODE,self.currentPLI_PDTYEAR.PY_PDTYEAR];
+    
+    if([PLI_PDTRATE checkNeedPR_AGE:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
+    {
+        query =  [query stringByAppendingFormat:@" and PR_AGE = %d ",mCurrentAge];
+    }
+    
+    if ([PLI_PDTRATE checkNeedPR_SALES:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
+    {
+        query = [query stringByAppendingFormat:@"and pr_sales = %d",mCurrentJobType];
+    }
+    
+    
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
-    float rate;
+    double rate;
     PLI_PDTRATE * plir = nil;
     if (reslutArr.count > 0)
     {
@@ -498,11 +510,11 @@
 //处理type 3
 - (void) processTypeThree
 {
-    float amount = self.amountTextField.text.floatValue;
+    double amount = self.amountTextField.text.doubleValue;
     if(mTypeThreeMinAmount>= 0 || mTypeThreeMaxAmount>= 0)
     {
-        float minAmout = mTypeThreeMinAmount;
-        float maxAmout = mTypeThreeMaxAmount;
+        double minAmout = mTypeThreeMinAmount;
+        double maxAmout = mTypeThreeMaxAmount;
         
 //        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
 //        {
@@ -549,9 +561,9 @@ double roundPrec(double figure ,int precision)
     return round(figure * pow(10, precision) - 0.0000001) / pow(10, precision);//减去0.0000001为了和其他版本保持统一 0.5舍去
 }
 
--(double) calcResult:(float)rate payAmount:(float) payAmount  payMode:(float)payMode calcType:(int)calcType diffRate:(float)diffRate
+-(double) calcResult:(double)rate payAmount:(double) payAmount  payMode:(double)payMode calcType:(int)calcType diffRate:(double)diffRate
 {
-//    NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
+    NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
     
     if (calcType == 0)
     {
@@ -570,13 +582,15 @@ double roundPrec(double figure ,int precision)
     }
     else if(calcType == 1)
     {
+        double value = rate * payMode * payAmount;
+        double fee = roundPrec(value , self.currentCALCSETTING.USEROUND);
         if (self.currentCALCSETTING.USEROUNDDOWN)
         {
-            return roundDown(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.FEEPOINTER);
+            return roundDown(fee, self.currentCALCSETTING.FEEPOINTER);
         }
         else
         {
-            return roundPrec(roundPrec(rate * payMode * payAmount , self.currentCALCSETTING.USEROUND) , self.currentCALCSETTING.FEEPOINTER);
+            return roundPrec(fee, self.currentCALCSETTING.FEEPOINTER);
         }
     }
     else if(calcType == 2)
@@ -614,13 +628,12 @@ double roundPrec(double figure ,int precision)
                                  self.currentPli_pdt_m.PD_PDTNAME];
 }
 
-- (void) generateOutput:(float) rate calcType:(int)calcType diffRate:(PLI_PDTRATEDIFF *) diffRate
+- (void) generateOutput:(double) rate calcType:(int)calcType diffRate:(PLI_PDTRATEDIFF *) diffRate
 {
     [self showResultTip];
+#define caluValue(mode,diff) [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:[self calcResult:rate payAmount:amount payMode:mode calcType:calcType diffRate:diff]]numberStyle:NSNumberFormatterDecimalStyle] 
     
-#define caluValue(mode,diff) [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithLongLong:[self calcResult:rate payAmount:amount payMode:mode calcType:calcType diffRate:diff]]numberStyle:NSNumberFormatterDecimalStyle] 
-    
-    float amount = self.amountTextField.text.floatValue;
+    double amount = self.amountTextField.text.doubleValue;
     
     NSString * yearStr;
     NSString * halfYearStr;
@@ -742,7 +755,7 @@ double roundPrec(double figure ,int precision)
     
     if (self.currentCALCSETTING.AMTRANGE != 0)
     {
-        if ((int)self.amountTextField.text.floatValue % (int)self.currentCALCSETTING.AMTRANGE != 0 ) {
+        if ((int)self.amountTextField.text.doubleValue % (int)self.currentCALCSETTING.AMTRANGE != 0 ) {
             [self showAlertMsg:[NSString stringWithFormat:@"保額必須為%d的倍數",(int)self.currentCALCSETTING.AMTRANGE]];
             return;
         }
@@ -875,7 +888,7 @@ double roundPrec(double figure ,int precision)
 {
     if (textField.tag == 2) // 年龄输入
     {
-        float age = textField.text.floatValue;
+        double age = textField.text.doubleValue;
         
         if (age < self.currentPLI_PDTYEAR.PY_MINAGE || age > self.currentPLI_PDTYEAR.PY_MAXAGE)
         {
@@ -884,7 +897,7 @@ double roundPrec(double figure ,int precision)
                                 (int)self.currentPLI_PDTYEAR.PY_MAXAGE]];
             textField.text = [NSString stringWithFormat:@"%d",(int)self.currentPLI_PDTYEAR.PY_MINAGE];
         }
-        mCurrentAge = textField.text.floatValue;
+        mCurrentAge = textField.text.doubleValue;
     }
     return true;
 }

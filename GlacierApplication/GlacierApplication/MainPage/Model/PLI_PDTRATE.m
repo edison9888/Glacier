@@ -19,7 +19,7 @@
 @synthesize  MODIDATE;
 @synthesize  MODISTATE;
 
-+ (bool)checkNeedPR_AGE:(NSString *)aPR_PDTCODE pdtYear:(float)aPR_PDTYEAR
++ (bool)checkNeedPR_AGE:(NSString *)aPR_PDTCODE pdtYear:(double)aPR_PDTYEAR
 {
     NSString * query = [NSString stringWithFormat:@"select count(1) from (select distinct PR_AGE from PLI_PDTRATE where PR_PDTCODE = '%@' and PR_PDTYEAR = %.1f)",aPR_PDTCODE,aPR_PDTYEAR];
     int count = [[SQLiteInstanceManager sharedManager] executeSelectIntSQL:query
@@ -34,7 +34,7 @@
     }
 }
 
-+ (bool)checkNeedPR_SALES:(NSString *)aPR_PDTCODE pdtYear:(float)aPR_PDTYEAR
++ (bool)checkNeedPR_SALES:(NSString *)aPR_PDTCODE pdtYear:(double)aPR_PDTYEAR
 {
     int count = [[SQLiteInstanceManager sharedManager] executeSelectIntSQL:
                  [NSString stringWithFormat:@"select count(1) from (select distinct PR_SALES from PLI_PDTRATE where PR_PDTCODE = '%@' and PR_PDTYEAR = %.1f)",aPR_PDTCODE,aPR_PDTYEAR]];
