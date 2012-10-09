@@ -426,7 +426,17 @@
         }
     }
     
-    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and PR_AGE = %d and pr_pdtyear = %.1f and(pr_sales = 0 or pr_sales = %d) ",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge ,self.currentPLI_PDTYEAR.PY_PDTYEAR ,mCurrentJobType];
+    NSMutableString * query = [NSMutableString stringWithFormat:@"where pr_pdtcode = '%@' and pr_pdtyear = %.1f ",self.currentPli_pdt_m.PD_PDTCODE ,self.currentPLI_PDTYEAR.PY_PDTYEAR];
+    if ([PLI_PDTRATE checkNeedPR_AGE:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
+    {
+        [query appendFormat:@" and PR_AGE = %d",mCurrentAge];
+    }
+    
+    if ([PLI_PDTRATE checkNeedPR_SALES:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
+    {
+        [query appendFormat:@" and (pr_sales = %d or pr_sales = 0) order by pr_sales desc",mCurrentJobType];
+    }
+    
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     float rate;
     PLI_PDTRATE * plir = nil;

@@ -18,4 +18,6 @@
 @property (nonatomic,assign) float PR_MODENO;
 @property (nonatomic,copy) NSString * MODIDATE;
 @property (nonatomic,copy) NSString * MODISTATE;
++ (bool) checkNeedPR_AGE:(NSString *) aPR_PDTCODE pdtYear:(float) aPR_PDTYEAR;
++ (bool) checkNeedPR_SALES:(NSString *) aPR_PDTCODE pdtYear:(float) aPR_PDTYEAR;
 @end

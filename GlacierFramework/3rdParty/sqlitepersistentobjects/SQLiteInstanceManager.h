@@ -66,4 +66,5 @@ typedef enum SQLITE3LockingMode
 - (void)vacuum;
 - (void)executeUpdateSQL:(NSString *) updateSQL;
 - (double)executeSelectDoubleSQL:(NSString *) selectSQL;
+- (int)executeSelectIntSQL:(NSString *) selectSQL;
 @end

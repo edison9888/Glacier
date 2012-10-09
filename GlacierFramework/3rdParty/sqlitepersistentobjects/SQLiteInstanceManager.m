@@ -172,6 +172,27 @@ static SQLiteInstanceManager *sharedSQLiteManager = nil;
     sqlite3_finalize(statement);
     return result;
 }
+
+- (int)executeSelectIntSQL:(NSString *)selectSQL
+{
+    int result;
+    sqlite3_stmt *statement;
+    if(sqlite3_prepare_v2([self database], [selectSQL UTF8String], -1,
+                          &statement, NULL) == SQLITE_OK)
+    {
+        if (sqlite3_step(statement) == SQLITE_ROW)
+        {
+            result = sqlite3_column_int(statement, 0);
+        }
+    }
+    else
+    {
+        result = NSNotFound;
+        NSLog(@"Error when select");
+    }
+    sqlite3_finalize(statement);
+    return result;
+}
 #pragma mark -
 - (void)dealloc
 {
