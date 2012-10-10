@@ -159,20 +159,47 @@
     {
         self.selectedModel.firstSelected = row;
         
-      
+        if ([VOCATIONLEVEL countByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).CODE_ID] > 0)
+        {
+             self.typeTwoArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).CODE_ID];
+        }
+        else
+        {
+            self.typeTwoArr = [VOCATIONLEVEL emptyArr];
+        }
         
-        self.typeTwoArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeOneArr objectAtIndex:self.selectedModel.firstSelected]).CODE_ID];
         [twoPicker reloadAllComponents];
         [twoPicker selectRow:-1 inComponent:0 animated:false];
         [threePicker selectRow:-1 inComponent:0 animated:false];
         self.selectedModel.secondSelected = 0;
         self.selectedModel.thirdSelected = 0;
         
+        if ([VOCATIONLEVEL countByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID] > 0)
+        {
+            self.typeThreeArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID];
+        }
+        else
+        {
+            self.typeThreeArr = [VOCATIONLEVEL emptyArr];
+        }
+        
+        [threePicker reloadAllComponents];
+        [threePicker selectRow:-1 inComponent:0 animated:false];
+         self.selectedModel.thirdSelected = 0;
     }
     else if (pickerView.tag == 1)
     {
         self.selectedModel.secondSelected = row;
-        self.typeThreeArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID];
+        
+        if ([VOCATIONLEVEL countByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID] > 0)
+        {
+            self.typeThreeArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '%@'",((VOCATIONLEVEL *)[self.typeTwoArr objectAtIndex:self.selectedModel.secondSelected]).CODE_ID];
+        }
+        else
+        {
+            self.typeThreeArr = [VOCATIONLEVEL emptyArr];
+        }
+        
         [threePicker reloadAllComponents];
         [threePicker selectRow:-1 inComponent:0 animated:false];
         self.selectedModel.thirdSelected = 0;
@@ -217,7 +244,7 @@
 
 - (IBAction)onOkClick:(id)sender 
 {
-    if (self.selectedModel.firstLevel && self.selectedModel.secondLevel && self.selectedModel.thirdLevel ) 
+    if (self.selectedModel.firstLevel && self.selectedModel.secondLevel && self.selectedModel.thirdLevel && self.selectedModel.thirdLevel.VALUE.intValue != -1 )
     {
         if (self.popComboDelegate && [self.popComboDelegate respondsToSelector:@selector(onComboOkClick:)])
         {
@@ -225,7 +252,7 @@
         }
     }
     else {
-        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"請選擇一個職業" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"請選擇一個有效職業" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [wAlert show];
 //        [wAlert release];
     }

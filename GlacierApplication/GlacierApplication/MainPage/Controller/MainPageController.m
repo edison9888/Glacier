@@ -703,7 +703,6 @@ double roundPrec(double figure ,int precision)
     [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
     self.amountTextField.text = @"";
-    self.codeLabel.text = @"--";
     self.jobTypeLabel.text = @"";
     
 }
