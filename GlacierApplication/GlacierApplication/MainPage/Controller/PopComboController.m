@@ -169,8 +169,8 @@
         }
         
         [twoPicker reloadAllComponents];
-        [twoPicker selectRow:-1 inComponent:0 animated:false];
-        [threePicker selectRow:-1 inComponent:0 animated:false];
+        [twoPicker selectRow:0 inComponent:0 animated:false];
+        [threePicker selectRow:0 inComponent:0 animated:false];
         self.selectedModel.secondSelected = 0;
         self.selectedModel.thirdSelected = 0;
         
@@ -184,7 +184,7 @@
         }
         
         [threePicker reloadAllComponents];
-        [threePicker selectRow:-1 inComponent:0 animated:false];
+        [threePicker selectRow:0 inComponent:0 animated:false];
          self.selectedModel.thirdSelected = 0;
     }
     else if (pickerView.tag == 1)
@@ -201,7 +201,7 @@
         }
         
         [threePicker reloadAllComponents];
-        [threePicker selectRow:-1 inComponent:0 animated:false];
+        [threePicker selectRow:0 inComponent:0 animated:false];
         self.selectedModel.thirdSelected = 0;
     }
     else if (pickerView.tag == 2)

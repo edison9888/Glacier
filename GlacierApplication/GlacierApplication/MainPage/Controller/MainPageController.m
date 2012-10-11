@@ -59,9 +59,11 @@
 @property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
 @property (nonatomic,retain) UIAlertView * alertView;
 
-@property (nonatomic,retain) PopDateController * popDateController;
 @property (retain, nonatomic) UIPopoverController * popOverController;
+@property (nonatomic,retain) PopDateController * popDateController;
 @property (nonatomic,retain) PopComboController * popComboController;
+@property (nonatomic,retain) PopPickerController * popPickerController;
+
 @property (nonatomic,retain) NSDate * maxAgeDate;
 @property (nonatomic,retain) NSDate * minAgeDate;
 @property (nonatomic,retain) ComboModel * comboModel;
@@ -153,7 +155,8 @@
 {
     [super viewDidLoad];
     mCurrentJobType = 1;
-    NSString * appVersion = @"v1.0.1.0";
+    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+    NSString * appVersion =[infoDict objectForKey:@"CFBundleVersion"];
     NSString * updateTime = @"2012年10月1日";
     self.appVersionLabel.text = [NSString stringWithFormat:@"APP版本：%@",appVersion];
     self.updateTimeLabel.text = [NSString stringWithFormat:@"最近更新：%@",updateTime];
@@ -285,6 +288,11 @@
     self.amountTextField.text = @"";
     
 
+    [self adjustPdtYearRange];
+}
+
+- (void) adjustPdtYearRange
+{
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
         [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
@@ -313,7 +321,6 @@
     
     [self adjustPdtYearText];
 }
-
 
 - (void) adjustBirthComponent:(double)minAge max:(double) maxAge
 {
@@ -707,15 +714,6 @@ double roundPrec(double figure ,int precision)
     
 }
 
-- (IBAction)onPdtYearClick:(UIButton *)sender 
-{
-    if(self.plipdtyear_list)
-    {
-        mCurrentPdtYearIndex = (mCurrentPdtYearIndex + 1) % self.plipdtyear_list.count;
-        
-        [self adjustPdtYearText];
-    }
-}
 
 - (IBAction)onSexClick:(UIButton *)sender
 {
@@ -730,11 +728,6 @@ double roundPrec(double figure ,int precision)
     }
 }
 
-- (IBAction)onJobTypeClick:(UIButton *)sender 
-{
-    mCurrentJobType = mCurrentJobType % 6 + 1;
-    [self changeJobType:mCurrentJobType];
-}
 
 - (IBAction)onCalculateClick:(UIButton *)sender 
 {
@@ -776,25 +769,76 @@ double roundPrec(double figure ,int precision)
 }
 
 
-#pragma mark 弹出框点击以及回调
+#pragma mark 普通职业类别弹出框点击以及回调
 
-
-- (IBAction)onBirthdayClick:(UIButton *)sender 
+- (IBAction)onJobTypeClick:(UIButton *)sender
 {
-    PopDateController * wDateController = [[PopDateController alloc]init];
-    self.popDateController = wDateController;
-    wDateController.popDateDelegate = self;
-    wDateController.selectedDate = self.currentSelectedBirthday;
-    wDateController.maxDate = self.minAgeDate;
-    wDateController.minDate = self.maxAgeDate;
-    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wDateController];
-    wController.popoverContentSize = wDateController.view.frame.size;
+    
+    PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
+    wPopPickerController.tag = 100;
+    self.popPickerController = wPopPickerController;
+    wPopPickerController.selectedIndex = mCurrentJobType - 1;
+    wPopPickerController.pickerDataSource = [NSArray arrayWithObjects:@"第一類別" ,@"第二類別" ,@"第三類別" ,@"第四類別" ,@"第五類別",@"第六類別",nil];
+    wPopPickerController.popPickerDelegate = self;
+    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
+    wController.popoverContentSize = wPopPickerController.view.frame.size;
     self.popOverController = wController;
     [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-    wDateController = nil;
+    wPopPickerController = nil;
     wController = nil;
 }
 
+#pragma mark 年期选择弹出框
+- (IBAction)onPdtYearClick:(UIButton *)sender
+{
+    if(self.plipdtyear_list)
+    {
+        
+        PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
+        wPopPickerController.tag = 101;
+        self.popPickerController = wPopPickerController;
+        wPopPickerController.selectedIndex = mCurrentPdtYearIndex;
+        
+        NSMutableArray * wArr = [NSMutableArray array];
+        for (PLI_PDTYEAR * wYear in self.plipdtyear_list)
+        {
+            [wArr addObject:wYear.PY_PDTYEARNA];
+        }
+        wPopPickerController.pickerDataSource = wArr;
+        wPopPickerController.popPickerDelegate = self;
+        UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
+        wController.popoverContentSize = wPopPickerController.view.frame.size;
+        self.popOverController = wController;
+        [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+        wPopPickerController = nil;
+        wController = nil;
+        
+       
+    }
+}
+
+- (void)onPopPickerOKClick:(int)index viewTag:(NSInteger)tag
+{
+    if (tag == 100) //职业类别
+    {
+        mCurrentJobType = index + 1;
+        [self changeJobType:mCurrentJobType];
+    }
+    else if (tag == 101) //年期
+    {
+        mCurrentPdtYearIndex = index;
+        [self adjustPdtYearRange];
+        [self adjustPdtYearText];
+    }
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+- (void)onPopPickerCancelClick
+{
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+#pragma mark 列表选择职业类别弹出框点击以及回调
 - (IBAction)onJobTypePopClick:(UIButton *)sender 
 {
     PopComboController * wComboController = [[PopComboController alloc]init];
@@ -809,6 +853,37 @@ double roundPrec(double figure ,int precision)
     wController = nil;
 }
 
+//职业类别点击回调
+- (void)onComboOkClick:(ComboModel *)model
+{
+    self.comboModel = model;
+    [self changeJobType: model.thirdLevel.VALUE.intValue];
+    self.jobTypeLabel.text = [NSString stringWithFormat:@"%@/%@/%@",model.firstLevel.CODE_CNAME,model.secondLevel.CODE_CNAME,model.thirdLevel.CODE_CNAME];
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+//职业类别点击取消
+- (void)onComboCancelClick
+{
+    [self.popOverController dismissPopoverAnimated:true];
+}
+
+#pragma mark 生日选择弹出框
+- (IBAction)onBirthdayClick:(UIButton *)sender
+{
+    PopDateController * wDateController = [[PopDateController alloc]init];
+    self.popDateController = wDateController;
+    wDateController.popDateDelegate = self;
+    wDateController.selectedDate = self.currentSelectedBirthday;
+    wDateController.maxDate = self.minAgeDate;
+    wDateController.minDate = self.maxAgeDate;
+    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wDateController];
+    wController.popoverContentSize = wDateController.view.frame.size;
+    self.popOverController = wController;
+    [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+    wDateController = nil;
+    wController = nil;
+}
 
 
 //生日点击回调
@@ -838,20 +913,7 @@ double roundPrec(double figure ,int precision)
     [self.popOverController dismissPopoverAnimated:true];
 }
 
-//职业类别点击回调
-- (void)onComboOkClick:(ComboModel *)model
-{
-    self.comboModel = model;
-    [self changeJobType: model.thirdLevel.VALUE.intValue];
-    self.jobTypeLabel.text = [NSString stringWithFormat:@"%@/%@/%@",model.firstLevel.CODE_CNAME,model.secondLevel.CODE_CNAME,model.thirdLevel.CODE_CNAME];
-    [self.popOverController dismissPopoverAnimated:true];
-}
 
-//职业类别点击取消
-- (void)onComboCancelClick
-{
-    [self.popOverController dismissPopoverAnimated:true];
-}
 
 //主副约之间的切换
 - (IBAction)onPdkindClick:(UIButton *)sender 
@@ -906,7 +968,7 @@ double roundPrec(double figure ,int precision)
 - (void)showAlertMsg:(NSString *)msg
 {
     [self.amountTextField resignFirstResponder];
-    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    UIAlertView *wAlertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"確定" otherButtonTitles:nil];
     self.alertView = wAlertView;
     [wAlertView show];
     //    [wAlertView release];
@@ -963,7 +1025,6 @@ double roundPrec(double figure ,int precision)
         
         [wMailComposeViewController setSubject:self.currentPli_pdt_m.PD_PDTNAME];
         
-        
         NSString * dateString =  [self.twDateFormatter stringFromDate:[NSDate date]];
         NSString * sexString;
         
@@ -983,7 +1044,7 @@ double roundPrec(double figure ,int precision)
         // 附件
         NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
         
-        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"屏幕截图"];
+        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"insurance calculate"];
         
         // 邮件正文
         //        NSString *emailBody = @"It is raining in sunny California!";

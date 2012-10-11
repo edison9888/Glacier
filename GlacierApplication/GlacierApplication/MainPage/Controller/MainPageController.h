@@ -11,10 +11,11 @@
 #import "SKLSlider.h"
 #import "PopDateController.h"
 #import "PopComboController.h"
+#import "PopPickerController.h"
 #import "ProductCell.h"
 #import "ProductSectionView.h"
 
-@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate,PopComboDelegate,SectionClickDelegate>
+@interface MainPageController : GlacierController <MFMailComposeViewControllerDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,UITabBarDelegate,PopDateDelegate,PopComboDelegate,SectionClickDelegate,PopPickerDelegate>
 
 - (IBAction)onCalculateClick:(UIButton *)sender;
 - (IBAction)onBirthdayClick:(UIButton *)sender;

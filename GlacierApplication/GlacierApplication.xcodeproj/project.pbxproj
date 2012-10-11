@@ -64,6 +64,8 @@
 		585EFF07160E071600D75C7F /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585EFF06160E071600D75C7F /* libxml2.2.dylib */; };
 		587943561600C64400EE61CC /* MainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 587943541600C64400EE61CC /* MainPageController.m */; };
 		5879435E1600CFB400EE61CC /* MainPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5879435D1600CFB400EE61CC /* MainPageController.xib */; };
+		58825EF11626F1C7005D44CD /* PopPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58825EEF1626F1C7005D44CD /* PopPickerController.m */; };
+		58825EF21626F1C7005D44CD /* PopPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58825EF01626F1C7005D44CD /* PopPickerController.xib */; };
 		589579A8160482E200609C0F /* glacierapplication.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 589579A7160482E200609C0F /* glacierapplication.sqlite3 */; };
 		58EB36061603668D00FF668B /* SKLSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36031603668D00FF668B /* SKLSlider.m */; };
 		58EB36071603668D00FF668B /* UIView+SKLCurrentImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB36051603668D00FF668B /* UIView+SKLCurrentImage.m */; };
@@ -154,6 +156,9 @@
 		587943531600C64400EE61CC /* MainPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainPageController.h; sourceTree = "<group>"; };
 		587943541600C64400EE61CC /* MainPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainPageController.m; sourceTree = "<group>"; };
 		5879435D1600CFB400EE61CC /* MainPageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPageController.xib; sourceTree = "<group>"; };
+		58825EEE1626F1C7005D44CD /* PopPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopPickerController.h; sourceTree = "<group>"; };
+		58825EEF1626F1C7005D44CD /* PopPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopPickerController.m; sourceTree = "<group>"; };
+		58825EF01626F1C7005D44CD /* PopPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopPickerController.xib; sourceTree = "<group>"; };
 		589579A7160482E200609C0F /* glacierapplication.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = glacierapplication.sqlite3; sourceTree = "<group>"; };
 		58EB36021603668D00FF668B /* SKLSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SKLSlider.h; path = GlacierApplication/MainPage/View/SKLSlider.h; sourceTree = SOURCE_ROOT; };
 		58EB36031603668D00FF668B /* SKLSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SKLSlider.m; path = GlacierApplication/MainPage/View/SKLSlider.m; sourceTree = SOURCE_ROOT; };
@@ -257,6 +262,9 @@
 				5833F7FC160CA2C800197F12 /* PopComboController.h */,
 				5833F7FD160CA2C800197F12 /* PopComboController.m */,
 				5833F7FE160CA2C800197F12 /* PopComboController.xib */,
+				58825EEE1626F1C7005D44CD /* PopPickerController.h */,
+				58825EEF1626F1C7005D44CD /* PopPickerController.m */,
+				58825EF01626F1C7005D44CD /* PopPickerController.xib */,
 			);
 			name = Controller;
 			path = GlacierApplication/MainPage/Controller;
@@ -481,6 +489,7 @@
 				5846A41C16147EF300596F4B /* Default.png in Resources */,
 				5846A41E161481A600596F4B /* icon.png in Resources */,
 				582E300216184AEB00180CE9 /* unit_40.png in Resources */,
+				58825EF21626F1C7005D44CD /* PopPickerController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +518,7 @@
 				5822E4FB1617020500A9A5BC /* PLI_PDTAMTRANGE.m in Sources */,
 				5822E4FE1617029500A9A5BC /* PLI_PDTRATEDIFF.m in Sources */,
 				5822E5011617036600A9A5BC /* CALCSETTING.m in Sources */,
+				58825EF11626F1C7005D44CD /* PopPickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +645,7 @@
 				DD867D6415ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		DD867D6515ADC48000BEF6E8 /* Build configuration list for PBXNativeTarget "GlacierApplication" */ = {
 			isa = XCConfigurationList;
@@ -644,7 +654,7 @@
 				DD867D6715ADC48000BEF6E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
