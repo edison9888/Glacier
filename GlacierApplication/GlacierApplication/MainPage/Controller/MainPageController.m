@@ -69,6 +69,7 @@
 @property (nonatomic,retain) ComboModel * comboModel;
 @property (nonatomic,retain) NSDate * currentSelectedBirthday;
 
+@property (nonatomic,retain) NSArray * currentAge_list;
 @property (nonatomic,retain) NSArray * currentPkClass_list;
 @property (nonatomic,retain) PLI_PDT_M * currentPli_pdt_m;
 @property (nonatomic,retain) CALCSETTING * currentCALCSETTING;
@@ -126,6 +127,7 @@
 @synthesize  comboModel;
 @synthesize  currentSelectedBirthday;
 
+@synthesize currentAge_list;
 @synthesize  currentPkClass_list;
 @synthesize  currentPli_pdt_m;
 @synthesize  currentCALCSETTING;
@@ -293,7 +295,7 @@
 
 - (void) adjustPdtYearRange
 {
-    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
+    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
     {
         [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲       【保額】：無限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
@@ -572,18 +574,21 @@ double roundPrec(double figure ,int precision)
 {
     NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
     
+    bool hasRange = self.currentCALCSETTING.CALCRANGE > 0;
+  
     if (calcType == 0)
     {
         
         int calcRange = self.currentCALCSETTING.CALCRANGE; //级距>0则使用级距
         
+        double wTemp = roundPrec(rate * payMode * (hasRange ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (hasRange ? calcRange: 1);
         if (self.currentCALCSETTING.USEROUNDDOWN)
         {
-            return roundDown(roundPrec(rate * payMode * (calcRange > 0 ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (calcRange > 0 ? calcRange: 1),self.currentCALCSETTING.FEEPOINTER) ;
+            return roundDown(wTemp,self.currentCALCSETTING.FEEPOINTER) ;
         }
         else
         {
-            return roundPrec(roundPrec(rate * payMode * (calcRange > 0 ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (calcRange > 0 ? calcRange: 1),self.currentCALCSETTING.FEEPOINTER) ;
+            return roundPrec(wTemp,self.currentCALCSETTING.FEEPOINTER) ;
         }
 
     }
@@ -602,7 +607,25 @@ double roundPrec(double figure ,int precision)
     }
     else if(calcType == 2)
     {
-        return roundDown(roundPrec(rate * payMode + diffRate,0) * payAmount,0);
+        double wTemp = 0.0f;
+        if (self.currentCALCSETTING.USEROUND == 4)
+        {
+            wTemp = rate * payMode * payAmount;
+        }
+        else
+        {
+            wTemp = roundPrec(rate * payMode *  (hasRange ? self.currentCALCSETTING.CALCRANGE : 1 ) + diffRate, self.currentCALCSETTING.USEROUND) * payAmount / (hasRange ? self.currentCALCSETTING.CALCRANGE : 1 );
+        }
+        wTemp = roundPrec(wTemp, 4);
+        
+        if (self.currentCALCSETTING.USEROUNDDOWN)
+        {
+            return roundDown(wTemp, self.currentCALCSETTING.FEEPOINTER);
+        }
+        else
+        {
+            return roundPrec(wTemp, self.currentCALCSETTING.FEEPOINTER);
+        }
     }
     else if(calcType == 3)
     {
@@ -698,7 +721,7 @@ double roundPrec(double figure ,int precision)
 
 - (IBAction)onCollectClick:(UIButton *)sender
 {
-    NSURL *appURL = [NSURL URLWithString:@"http://com.vit.SKLMAgent"];
+    NSURL * appURL = [NSURL URLWithString:@"SKLMAgent://com.vit.SKLMAgent"];
     [[UIApplication sharedApplication] openURL:appURL];
 }
 
@@ -769,6 +792,7 @@ double roundPrec(double figure ,int precision)
 }
 
 
+
 #pragma mark 普通职业类别弹出框点击以及回调
 
 - (IBAction)onJobTypeClick:(UIButton *)sender
@@ -793,7 +817,6 @@ double roundPrec(double figure ,int precision)
 {
     if(self.plipdtyear_list)
     {
-        
         PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
         wPopPickerController.tag = 101;
         self.popPickerController = wPopPickerController;
@@ -817,6 +840,48 @@ double roundPrec(double figure ,int precision)
     }
 }
 
+#pragma mark 年龄弹出框
+- (IBAction)onAgePopClick:(UIButton *)sender
+{
+    
+    PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
+    wPopPickerController.tag = 102;
+    self.popPickerController = wPopPickerController;
+    
+    
+    
+    double minAge,maxAge;
+    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1 || self.currentCALCSETTING.CALCTYPE == 2)
+    {
+        minAge = self.currentPLI_PDTYEAR.PY_MINAGE;
+        maxAge = self.currentPLI_PDTYEAR.PY_MAXAGE;
+    }
+    else if (self.currentCALCSETTING.CALCTYPE == 3)
+    {
+        minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+    }
+    
+    NSMutableArray * wAgeArr = [NSMutableArray array];
+    
+    for (int i = minAge; i<= maxAge ;i++)
+    {
+        [wAgeArr addObject:[NSString stringWithFormat:@"%d歲",i]];
+    }
+    
+    wPopPickerController.selectedIndex = mCurrentAge - minAge;
+    
+    wPopPickerController.pickerDataSource = wAgeArr;
+    self.currentAge_list = wAgeArr;
+    wPopPickerController.popPickerDelegate = self;
+    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
+    wController.popoverContentSize = wPopPickerController.view.frame.size;
+    self.popOverController = wController;
+    [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+    wPopPickerController = nil;
+    wController = nil;
+}
+
 - (void)onPopPickerOKClick:(int)index viewTag:(NSInteger)tag
 {
     if (tag == 100) //职业类别
@@ -829,6 +894,12 @@ double roundPrec(double figure ,int precision)
         mCurrentPdtYearIndex = index;
         [self adjustPdtYearRange];
         [self adjustPdtYearText];
+    }
+    else if (tag == 102)
+    {
+        NSString * wStr = ((NSString *)[self.currentAge_list objectAtIndex:index]);
+        mCurrentAge =  [wStr substringToIndex:wStr.length - 1].intValue;
+        self.ageTextField.text = [NSString stringWithFormat:@"%d",mCurrentAge];
     }
     [self.popOverController dismissPopoverAnimated:true];
 }

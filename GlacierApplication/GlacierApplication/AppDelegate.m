@@ -25,6 +25,10 @@
     NSError * wError = nil ;
     [wFm copyItemAtPath:dbFilePath toPath:((SQLiteInstanceManager *)[SQLiteInstanceManager sharedManager]).databaseFilepath error:&wError];
     
+    if (wError)
+    {
+        NSLog(@"error %@",wError.description);
+    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
     self.viewController = [[MainPageController alloc] init];
     self.window.rootViewController = self.viewController;
