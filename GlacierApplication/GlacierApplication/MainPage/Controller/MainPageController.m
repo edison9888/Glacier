@@ -437,12 +437,6 @@
     {
         double minAmout = self.currentPLI_PDTAMTRANGE.MINAMT;
         double maxAmout = self.currentPLI_PDTAMTRANGE.MAXAMT;
-        
-//        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
-//        {
-//            minAmout *= 100;
-//            maxAmout *= 100;
-//        }
         if (amount < minAmout || amount > maxAmout )
         {
 
@@ -453,7 +447,7 @@
         }
     }
     
-    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@'and pr_pdtyear = %.1f  ",self.currentPli_pdt_m.PD_PDTCODE,self.currentPLI_PDTYEAR.PY_PDTYEAR];
+    NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and pr_pdtyear = %.1f  ",self.currentPli_pdt_m.PD_PDTCODE,self.currentPLI_PDTYEAR.PY_PDTYEAR];
     
     if([PLI_PDTRATE checkNeedPR_AGE:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
     {
@@ -462,9 +456,8 @@
     
     if ([PLI_PDTRATE checkNeedPR_SALES:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
     {
-        query = [query stringByAppendingFormat:@"and pr_sales = %d",mCurrentJobType];
+        query = [query stringByAppendingFormat:@" and pr_sales = %d",mCurrentJobType];
     }
-    
     
     NSArray * reslutArr = [PLI_PDTRATE findByCriteria:query];
     double rate;
@@ -484,7 +477,16 @@
         {
             rate = plir.PR_FRATE;
         }
-        [self generateOutput:rate calcType:self.currentCALCSETTING.CALCTYPE diffRate:nil];
+        
+        
+        if ([PLI_PDTRATEDIFF countByCriteria:query] == 2)
+        {
+            query = [query stringByAppendingFormat:@" and PR_SEX = '%@'",(!mCurrentSex ? @"男" : @"女")];
+        }
+        
+        PLI_PDTRATEDIFF * diff = [PLI_PDTRATEDIFF findFirstByCriteria:query];
+        
+        [self generateOutput:rate calcType:self.currentCALCSETTING.CALCTYPE diffRate:diff];
     }
     else
     {
@@ -575,13 +577,21 @@ double roundPrec(double figure ,int precision)
     NSLog(@"rate:%f payAmount:%f payMode:%f calcType:%i diffRate:%f",rate,payAmount,payMode,calcType,diffRate);
     
     bool hasRange = self.currentCALCSETTING.CALCRANGE > 0;
-  
     if (calcType == 0)
     {
-        
+        double wTemp = 0.0;
+        int useRound = self.currentCALCSETTING.USEROUND;
         int calcRange = self.currentCALCSETTING.CALCRANGE; //级距>0则使用级距
         
-        double wTemp = roundPrec(rate * payMode * (hasRange ? calcRange: 1)  , self.currentCALCSETTING.USEROUND) * payAmount / (hasRange ? calcRange: 1);
+        if((int)round == 4)
+        {
+            wTemp = rate * payMode * payAmount;
+        }
+        else
+        {
+            wTemp = roundPrec(rate * payMode * ( hasRange ? calcRange :1) + diffRate, useRound) * payAmount / ( hasRange ? calcRange :1);
+        }
+        
         if (self.currentCALCSETTING.USEROUNDDOWN)
         {
             return roundDown(wTemp,self.currentCALCSETTING.FEEPOINTER) ;
@@ -675,14 +685,14 @@ double roundPrec(double figure ,int precision)
         yearStr = caluValue(1.0f,0);
         halfYearStr = caluValue(0.52f,diffRate.PR_RATE6);
         quarterStr = caluValue(0.262f,diffRate.PR_RATE3);
-        monthStr = caluValue(0.088f,diffRate.PR_RATE1 );
+        monthStr = caluValue(0.088f,diffRate.PR_RATE1);
     }
     else
     {
-        yearStr = caluValue(1.0f,-1);
-        halfYearStr = caluValue(0.52f,-1);
-        quarterStr = caluValue(0.262f,-1);
-        monthStr = caluValue(0.088f,-1);
+        yearStr = caluValue(1.0f,0);
+        halfYearStr = caluValue(0.52f,0);
+        quarterStr = caluValue(0.262f,0);
+        monthStr = caluValue(0.088f,0);
     }
     
     
