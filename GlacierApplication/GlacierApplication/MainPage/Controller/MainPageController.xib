@@ -974,7 +974,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">職業類別</string>
+						<string key="IBUINormalTitle">職業等級</string>
 						<reference key="IBUIHighlightedTitleColor" ref="670203881"/>
 						<reference key="IBUINormalTitleColor" ref="655466009"/>
 						<reference key="IBUINormalTitleShadowColor" ref="529657851"/>
@@ -2083,6 +2083,7 @@
 					<string key="className">MainPageController</string>
 					<string key="superclassName">GlacierController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="onBackClick:">UIButton</string>
 						<string key="onBirthdayClick:">UIButton</string>
 						<string key="onCalculateClick:">UIButton</string>
 						<string key="onJobTypeClick:">UIButton</string>
@@ -2091,6 +2092,10 @@
 						<string key="onSexClick:">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="onBackClick:">
+							<string key="name">onBackClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onBirthdayClick:">
 							<string key="name">onBirthdayClick:</string>
 							<string key="candidateClassName">UIButton</string>

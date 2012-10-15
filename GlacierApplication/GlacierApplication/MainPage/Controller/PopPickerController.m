@@ -19,6 +19,7 @@
 @synthesize pickerDataSource;
 @synthesize popPickerDelegate;
 @synthesize tag;
+@synthesize selectedIndex;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

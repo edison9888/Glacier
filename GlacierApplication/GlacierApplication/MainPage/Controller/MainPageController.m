@@ -1142,7 +1142,7 @@ double roundPrec(double figure ,int precision)
     NSString *wResultMsg;
     switch (result) {
         case MFMailComposeResultSent:
-            wResultMsg = @"已发送";
+            wResultMsg = @"已發送";
             break;
             
         case MFMailComposeResultSaved:

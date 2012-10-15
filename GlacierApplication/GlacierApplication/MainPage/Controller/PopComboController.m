@@ -252,7 +252,7 @@
         }
     }
     else {
-        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"請選擇一個有效職業" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        UIAlertView * wAlert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"請選擇一個有效職業" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
         [wAlert show];
 //        [wAlert release];
     }
