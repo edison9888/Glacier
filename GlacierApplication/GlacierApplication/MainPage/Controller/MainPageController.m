@@ -21,6 +21,8 @@
 - (void)displayMailComposerSheet;
 - (void)showAlertMsg:(NSString *)msg;
 
+@property (strong, nonatomic) IBOutlet UILabel *amoutRestrLabel;
+@property (strong, nonatomic) IBOutlet UIButton *ageButton;
 @property (retain, nonatomic) IBOutlet UILabel *jobTypeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *versionNOLabel;
 @property (retain, nonatomic) IBOutlet UIButton *birthdayButton;
@@ -45,7 +47,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *monthAmountLabel;
 @property (retain, nonatomic) IBOutlet UILabel *onePayAmountLabel;
 @property (retain, nonatomic) IBOutlet UIButton *jobTypeButton;
-@property (strong, nonatomic) IBOutlet UITextField *ageTextField;
 @property (strong, nonatomic) IBOutlet UIButton *UnitButton;
 @property (strong, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel1;
@@ -95,6 +96,7 @@
 @synthesize tipLabel;
 @synthesize tableListView;
 @synthesize pdKindButtonArr;
+@synthesize amoutRestrLabel;
 @synthesize insuranceNameLabel;
 @synthesize pdtYearButton;
 @synthesize maleButton;
@@ -134,6 +136,12 @@
 @synthesize  currentPLI_PDTAMTRANGE;
 @synthesize  appVersionLabel;
 @synthesize  updateTimeLabel;
+@synthesize ageButton;
+
+@synthesize currencyUnitLabel;
+@synthesize backButton;
+@synthesize currencyLabel;
+@synthesize popPickerController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -298,7 +306,8 @@
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
     {
         [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲       【保額】：無限制",(int)self.currentPLI_PDTYEAR.PY_MINAGE, (int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲",(int)self.currentPLI_PDTYEAR.PY_MINAGE,(int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+        self.amoutRestrLabel.text = [NSString stringWithFormat:@"【保額】：無限制"];
     }
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
@@ -313,12 +322,14 @@
         
         mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       【保額】：%.0f-%.0f%@",
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       ",
                               minAge,
-                              maxAge,
-                              mTypeThreeMinAmount,
-                              mTypeThreeMaxAmount,
-                              self.currentPli_pdt_m.PD_UNIT];
+                              maxAge];
+        self.amoutRestrLabel.text =
+        [NSString stringWithFormat:@"【保額】：%.0f-%.0f%@",
+         mTypeThreeMinAmount,
+         mTypeThreeMaxAmount,
+         self.currentPli_pdt_m.PD_UNIT];
     }
     
     [self adjustPdtYearText];
@@ -337,7 +348,8 @@
     self.maxAgeDate = wMaxDate;
     
     mCurrentAge = minAge;
-    self.ageTextField.text = [NSString stringWithFormat:@"%.0f",minAge];
+    [self.ageButton setTitle:[NSString stringWithFormat:@"%.0f",minAge] forState:UIControlStateNormal];
+//    self.ageTextField.text = [NSString stringWithFormat:@"%.0f",minAge];
 }
 
 - (void) adjustPdtYearText
@@ -738,7 +750,8 @@ double roundPrec(double figure ,int precision)
 - (IBAction)onResetClick:(UIButton *)sender
 {
     self.currentSelectedBirthday = nil;
-    self.ageTextField.text = @"0";
+    [self.ageButton setTitle:@"0" forState:UIControlStateNormal];
+//    self.ageTextField.text = @"0";
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
@@ -909,7 +922,7 @@ double roundPrec(double figure ,int precision)
     {
         NSString * wStr = ((NSString *)[self.currentAge_list objectAtIndex:index]);
         mCurrentAge =  [wStr substringToIndex:wStr.length - 1].intValue;
-        self.ageTextField.text = [NSString stringWithFormat:@"%d",mCurrentAge];
+        [self.ageButton setTitle:[NSString stringWithFormat:@"%d",mCurrentAge] forState:UIControlStateNormal];
     }
     [self.popOverController dismissPopoverAnimated:true];
 }
@@ -981,8 +994,7 @@ double roundPrec(double figure ,int precision)
     {
         mCurrentAge = wDateComponents.year;
     }
-    
-    self.ageTextField.text = [NSString stringWithFormat:@"%d", mCurrentAge];
+    [self.ageButton setTitle:[NSString stringWithFormat:[NSString stringWithFormat:@"%d", mCurrentAge],mCurrentAge] forState:UIControlStateNormal];
     [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
     [self.popOverController dismissPopoverAnimated:true];
     [self adjustCurrentAmountRange];
@@ -1013,7 +1025,6 @@ double roundPrec(double figure ,int precision)
 #pragma mark textfield
 - (IBAction)onBackClick:(UIButton *)sender
 {
-    [self.ageTextField resignFirstResponder];
     [self.amountTextField resignFirstResponder];
     [self.userNameTextField resignFirstResponder];
     self.backButton.hidden = true;
@@ -1175,8 +1186,9 @@ double roundPrec(double figure ,int precision)
     [self setUpdateTimeLabel:nil];
     [self setCurrencyLabel:nil];
     [self setCurrencyUnitLabel:nil];
-    [self setAgeTextField:nil];
     [self setBackButton:nil];
+    [self setAgeButton:nil];
+    [self setAmoutRestrLabel:nil];
     [super viewDidUnload];
 }
 @end

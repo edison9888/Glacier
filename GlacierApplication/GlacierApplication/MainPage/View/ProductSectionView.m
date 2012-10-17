@@ -10,6 +10,7 @@
 
 @implementation ProductSectionView
 @synthesize nameLabel;
+@synthesize delegate;
 
 - (id)initWithCoder:(NSCoder *)coder
 {
