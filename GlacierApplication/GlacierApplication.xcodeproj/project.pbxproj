@@ -64,6 +64,13 @@
 		58EB360A1603684200FF668B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EB36091603684200FF668B /* MessageUI.framework */; };
 		58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */; };
 		58F8FB161608BE6D00381A50 /* ResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8FB151608BE6D00381A50 /* ResultModel.m */; };
+		A5083FC816311326003A0D66 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = A5083FC716311326003A0D66 /* logout.png */; };
+		A5BF20B91630EBB900EDE716 /* CheckAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */; };
+		A5BF20BA1630EBB900EDE716 /* DoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20AF1630EBB900EDE716 /* DoLogin.m */; };
+		A5BF20BB1630EBB900EDE716 /* DownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B21630EBB900EDE716 /* DownloadRequest.m */; };
+		A5BF20BC1630EBB900EDE716 /* LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B41630EBB900EDE716 /* LoginAlertView.m */; };
+		A5BF20BD1630EBB900EDE716 /* LoginProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B61630EBB900EDE716 /* LoginProcess.m */; };
+		A5BF20BE1630EBB900EDE716 /* SKLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B81630EBB900EDE716 /* SKLUtility.m */; };
 		DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */; };
 		DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4B15ADC48000BEF6E8 /* UIKit.framework */; };
 		DD867D4E15ADC48000BEF6E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4D15ADC48000BEF6E8 /* Foundation.framework */; };
@@ -152,6 +159,20 @@
 		58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F8FB141608BE6D00381A50 /* ResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultModel.h; sourceTree = "<group>"; };
 		58F8FB151608BE6D00381A50 /* ResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultModel.m; sourceTree = "<group>"; };
+		A5083FC716311326003A0D66 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		A5BF20AC1630EBB900EDE716 /* CheckAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAppInfo.h; sourceTree = "<group>"; };
+		A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAppInfo.m; sourceTree = "<group>"; };
+		A5BF20AE1630EBB900EDE716 /* DoLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoLogin.h; sourceTree = "<group>"; };
+		A5BF20AF1630EBB900EDE716 /* DoLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoLogin.m; sourceTree = "<group>"; };
+		A5BF20B01630EBB900EDE716 /* DownLoadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadDelegate.h; sourceTree = "<group>"; };
+		A5BF20B11630EBB900EDE716 /* DownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadRequest.h; sourceTree = "<group>"; };
+		A5BF20B21630EBB900EDE716 /* DownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRequest.m; sourceTree = "<group>"; };
+		A5BF20B31630EBB900EDE716 /* LoginAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAlertView.h; sourceTree = "<group>"; };
+		A5BF20B41630EBB900EDE716 /* LoginAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginAlertView.m; sourceTree = "<group>"; };
+		A5BF20B51630EBB900EDE716 /* LoginProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProcess.h; sourceTree = "<group>"; };
+		A5BF20B61630EBB900EDE716 /* LoginProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProcess.m; sourceTree = "<group>"; };
+		A5BF20B71630EBB900EDE716 /* SKLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLUtility.h; sourceTree = "<group>"; };
+		A5BF20B81630EBB900EDE716 /* SKLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLUtility.m; sourceTree = "<group>"; };
 		DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DD867D4715ADC48000BEF6E8 /* GlacierApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlacierApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD867D4B15ADC48000BEF6E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -196,8 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				58502046162EFFD100C28726 /* bgImg.png */,
-				58E40B2B162F145200861B54 /* imfu_1_19.png */,
-				58E40B2C162F145200861B54 /* imfu_1_21.png */,
+				5850205C162EFFD100C28726 /* imfu1_06.png */,
+				5850205D162EFFD100C28726 /* imfu1_07.png */,
+				5850205E162EFFD100C28726 /* imfu1_08.png */,
 				58502047162EFFD100C28726 /* imfu_02.png */,
 				58502048162EFFD100C28726 /* imfu_03.png */,
 				58502049162EFFD100C28726 /* imfu_04.png */,
@@ -209,6 +231,8 @@
 				5850204F162EFFD100C28726 /* imfu_14.png */,
 				58502050162EFFD100C28726 /* imfu_17.png */,
 				58502051162EFFD100C28726 /* imfu_19.png */,
+				58E40B2B162F145200861B54 /* imfu_1_19.png */,
+				58E40B2C162F145200861B54 /* imfu_1_21.png */,
 				58502052162EFFD100C28726 /* imfu_21.png */,
 				58502053162EFFD100C28726 /* imfu_25.png */,
 				58502054162EFFD100C28726 /* imfu_30.png */,
@@ -219,9 +243,7 @@
 				58502059162EFFD100C28726 /* imfu_48.png */,
 				5850205A162EFFD100C28726 /* imfu_51.png */,
 				5850205B162EFFD100C28726 /* imfu_54.png */,
-				5850205C162EFFD100C28726 /* imfu1_06.png */,
-				5850205D162EFFD100C28726 /* imfu1_07.png */,
-				5850205E162EFFD100C28726 /* imfu1_08.png */,
+				A5083FC716311326003A0D66 /* logout.png */,
 			);
 			path = imgs;
 			sourceTree = "<group>";
@@ -281,6 +303,26 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		A5BF20AB1630EBB900EDE716 /* LoginAndCheckApp */ = {
+			isa = PBXGroup;
+			children = (
+				A5BF20AC1630EBB900EDE716 /* CheckAppInfo.h */,
+				A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */,
+				A5BF20AE1630EBB900EDE716 /* DoLogin.h */,
+				A5BF20AF1630EBB900EDE716 /* DoLogin.m */,
+				A5BF20B01630EBB900EDE716 /* DownLoadDelegate.h */,
+				A5BF20B11630EBB900EDE716 /* DownloadRequest.h */,
+				A5BF20B21630EBB900EDE716 /* DownloadRequest.m */,
+				A5BF20B31630EBB900EDE716 /* LoginAlertView.h */,
+				A5BF20B41630EBB900EDE716 /* LoginAlertView.m */,
+				A5BF20B51630EBB900EDE716 /* LoginProcess.h */,
+				A5BF20B61630EBB900EDE716 /* LoginProcess.m */,
+				A5BF20B71630EBB900EDE716 /* SKLUtility.h */,
+				A5BF20B81630EBB900EDE716 /* SKLUtility.m */,
+			);
+			path = LoginAndCheckApp;
+			sourceTree = "<group>";
+		};
 		DD867D3C15ADC48000BEF6E8 = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +364,7 @@
 		DD867D5115ADC48000BEF6E8 /* GlacierApplication */ = {
 			isa = PBXGroup;
 			children = (
+				A5BF20AB1630EBB900EDE716 /* LoginAndCheckApp */,
 				DD867D5A15ADC48000BEF6E8 /* AppDelegate.h */,
 				DD867D5B15ADC48000BEF6E8 /* AppDelegate.m */,
 				DDE8890D15B265BB00C66888 /* MainPage */,
@@ -458,6 +501,7 @@
 				58502077162EFFD100C28726 /* imfu1_08.png in Resources */,
 				58E40B2D162F145200861B54 /* imfu_1_19.png in Resources */,
 				58E40B2E162F145200861B54 /* imfu_1_21.png in Resources */,
+				A5083FC816311326003A0D66 /* logout.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +531,12 @@
 				5822E4FE1617029500A9A5BC /* PLI_PDTRATEDIFF.m in Sources */,
 				5822E5011617036600A9A5BC /* CALCSETTING.m in Sources */,
 				58825EF11626F1C7005D44CD /* PopPickerController.m in Sources */,
+				A5BF20B91630EBB900EDE716 /* CheckAppInfo.m in Sources */,
+				A5BF20BA1630EBB900EDE716 /* DoLogin.m in Sources */,
+				A5BF20BB1630EBB900EDE716 /* DownloadRequest.m in Sources */,
+				A5BF20BC1630EBB900EDE716 /* LoginAlertView.m in Sources */,
+				A5BF20BD1630EBB900EDE716 /* LoginProcess.m in Sources */,
+				A5BF20BE1630EBB900EDE716 /* SKLUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

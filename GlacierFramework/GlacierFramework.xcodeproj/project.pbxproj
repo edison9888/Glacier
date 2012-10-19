@@ -73,6 +73,8 @@
 		58EDDDFA15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDBE15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m */; };
 		58EDDDFB15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDDBF15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h */; };
 		58EDDDFC15D5F4EF00D9AADC /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDDC015D5F4EF00D9AADC /* UIImage-SQLitePersistence.m */; };
+		A5BF20C31630EBC100EDE716 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */; };
+		A5BF20C41630EBC100EDE716 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */; };
 		DD832FBD15B263FD00FBF9DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD832FBC15B263FD00FBF9DE /* UIKit.framework */; };
 		DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD87036415AF1BBA0067B66C /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -144,6 +146,8 @@
 		58EDDDBE15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-SQLitePersistentObject.m"; sourceTree = "<group>"; };
 		58EDDDBF15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		58EDDDC015D5F4EF00D9AADC /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
+		A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		DD832FBC15B263FD00FBF9DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD87036115AF1BBA0067B66C /* libGlacierFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD87036415AF1BBA0067B66C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -177,6 +181,7 @@
 		58EDDD7D15D5F4EF00D9AADC /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				A5BF20C01630EBC100EDE716 /* GDataXML */,
 				58EDDE1115D5F89A00D9AADC /* CocoaAsyncSocket */,
 				58EDDD7E15D5F4EF00D9AADC /* ASI */,
 				58EDDD9B15D5F4EF00D9AADC /* JSONKit */,
@@ -307,6 +312,15 @@
 			path = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
+		A5BF20C01630EBC100EDE716 /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */,
+				A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */,
+			);
+			path = GDataXML;
+			sourceTree = "<group>";
+		};
 		DD87035615AF1BBA0067B66C = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +407,7 @@
 				58EDDDF515D5F4EF00D9AADC /* SQLiteInstanceManager.h in Headers */,
 				58EDDDF915D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.h in Headers */,
 				58EDDDFB15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h in Headers */,
+				A5BF20C31630EBC100EDE716 /* GDataXMLNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +493,7 @@
 				58EDDDFA15D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.m in Sources */,
 				58EDDDFC15D5F4EF00D9AADC /* UIImage-SQLitePersistence.m in Sources */,
 				580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */,
+				A5BF20C41630EBC100EDE716 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
