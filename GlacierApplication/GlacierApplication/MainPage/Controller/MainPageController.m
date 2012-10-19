@@ -887,9 +887,11 @@ double roundPrec(double figure ,int precision)
     if (amount < mMinAmount || amount > mMaxAmount)
     {
         
-        [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
-                            ,mMinAmount
-                            ,mMaxAmount]];
+//        [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
+//                            ,mMinAmount
+//                            ,mMaxAmount]];
+        [self showAlertMsg:[NSString stringWithFormat:@"保額輸入資料超出容許範圍"]];
+        
         self.amountTextField.text = self.lastAmount;
         return;
     }
@@ -1021,6 +1023,10 @@ double roundPrec(double figure ,int precision)
         mCurrentPdtYearIndex = index;
         [self adjustPdtYearText];
         [self adjustRestructAfterPdtYear];
+        
+        double tempMin = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PY_MINAGE) from PLI_PDTYEAR where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR]];
+        double tempMax = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PY_MAXAGE) from PLI_PDTYEAR where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR]];
+        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲",tempMin,tempMax];
     }
     else if (tag == 102)//年龄弹出框
     {
@@ -1071,6 +1077,10 @@ double roundPrec(double figure ,int precision)
 #pragma mark 生日选择弹出框
 - (IBAction)onBirthdayClick:(UIButton *)sender
 {
+    if (!self.currentPli_pdt_m) {
+        return;
+    }
+    
     PopDateController * wDateController = [[PopDateController alloc]init];
     self.popDateController = wDateController;
     wDateController.popDateDelegate = self;
@@ -1092,7 +1102,7 @@ double roundPrec(double figure ,int precision)
     NSString * birthday = [self.twDateFormatter stringFromDate:date];
     self.currentSelectedBirthday = date;
     NSDateComponents *wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
-    if(wDateComponents.month > 6 || (wDateComponents.month == 6 && wDateComponents.day >= 0) )
+    if(wDateComponents.month > 6 || (wDateComponents.month == 6 && wDateComponents.day >= 1) )
     {
         mCurrentAge = wDateComponents.year + 1;
     }
@@ -1128,7 +1138,9 @@ double roundPrec(double figure ,int precision)
     [self.tableListView reloadData];
 }
 
-- (IBAction)onLogout:(UIButton *)sender {
+
+// 用戶做重新登錄
+- (IBAction)doLogout:(UIButton *)sender {
     [[LoginProcess sharedInstance] doLogout];
 }
 
