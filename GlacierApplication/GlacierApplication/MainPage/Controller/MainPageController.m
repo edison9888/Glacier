@@ -56,7 +56,8 @@
 @property (nonatomic,retain) NSArray * plipdtm_list;
 @property (nonatomic,retain) NSArray * pkclass_list;
 @property (nonatomic,retain) NSArray * plipdtrate_list;
-@property (nonatomic,retain) NSArray * plipdtyear_list; //当前年期的列表
+@property (nonatomic,retain) NSArray * currentPlipdtyear_list; //当前年期的列表
+@property (nonatomic,retain) NSArray * allPliPdtYear_list; //全部年期列表
 @property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
 @property (nonatomic,retain) UIAlertView * alertView;
 
@@ -125,7 +126,8 @@
 @synthesize  plipdtm_list;
 @synthesize  pkclass_list;
 @synthesize  plipdtrate_list;
-@synthesize  plipdtyear_list; //当前年期的列表
+@synthesize  currentPlipdtyear_list; //当前年期的列表
+@synthesize allPliPdtYear_list;
 @synthesize  currentPLI_PDTYEAR ;
 @synthesize  alertView;
 
@@ -187,9 +189,9 @@
 
 - (PLI_PDTYEAR *)currentPLI_PDTYEAR
 {
-    if (self.plipdtyear_list.count > 0)
+    if (self.currentPlipdtyear_list.count > 0)
     {
-        return [self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex];
+        return [self.currentPlipdtyear_list objectAtIndex:mCurrentPdtYearIndex];
     }
     else
     {
@@ -291,7 +293,7 @@
 {
     self.currentSelectedBirthday = nil;
     self.currentPLI_PDTAMTRANGE = nil;
-    self.plipdtyear_list = nil;
+    self.currentPlipdtyear_list = nil;
         
     self.versionNOLabel.text = [NSString stringWithFormat:@"版數：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
     self.currencyLabel.text = [NSString stringWithFormat:@"幣別：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
@@ -400,11 +402,11 @@
 {
     if (mCurrentPdtYearIndex < 0)
     {
-        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:0]).PY_PDTYEARNA forState:UIControlStateNormal];
+        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.currentPlipdtyear_list objectAtIndex:0]).PY_PDTYEARNA forState:UIControlStateNormal];
     }
     else
     {
-        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
+        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.currentPlipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
     }
 }
 
@@ -412,7 +414,8 @@
 //调整年期范围
 - (void) initPdtYear
 {
-    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' and PY_MINAGE <= %d and PY_MAXAGE >= %d   group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE,(int)mCurrentAge, (int)mCurrentAge];
+    self.allPliPdtYear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE];
+    self.currentPlipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' and PY_MINAGE <= %d and PY_MAXAGE >= %d ",self.currentPli_pdt_m.PD_PDTCODE,(int)mCurrentAge, (int)mCurrentAge];
     mCurrentPdtYearIndex = -1;
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     //    [self adjustPdtYearText];
@@ -820,7 +823,7 @@ double roundPrec(double figure ,int precision)
     self.jobTypeLabel.text = @"";
     [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
-    self.plipdtyear_list = nil;
+    self.currentPlipdtyear_list = nil;
     mCurrentPdtYearIndex = -1;
     mCurrentAge = -1;
     mCurrentJobType = 1;
@@ -932,7 +935,7 @@ double roundPrec(double figure ,int precision)
 #pragma mark 年期选择弹出框
 - (IBAction)onPdtYearClick:(UIButton *)sender
 {
-    if(self.plipdtyear_list)
+    if(self.currentPlipdtyear_list)
     {
         PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
         wPopPickerController.tag = 101;
@@ -940,11 +943,22 @@ double roundPrec(double figure ,int precision)
         wPopPickerController.selectedIndex = mCurrentPdtYearIndex < 0 ? 0 :mCurrentPdtYearIndex;
         
         NSMutableArray * wArr = [NSMutableArray array];
-        for (PLI_PDTYEAR * wYear in self.plipdtyear_list)
+        for (PLI_PDTYEAR * wYear in self.allPliPdtYear_list)
         {
+            NSLog(@"all %@",wYear.PY_PDTYEARNA);
             [wArr addObject:wYear.PY_PDTYEARNA];
         }
         wPopPickerController.pickerDataSource = wArr;
+        
+        NSMutableArray * wAvaArr = [NSMutableArray array];
+        for (PLI_PDTYEAR * wYear in self.currentPlipdtyear_list)
+        {
+            NSLog(@"ava %@",wYear.PY_PDTYEARNA);
+            [wAvaArr addObject:wYear.PY_PDTYEARNA];
+        }
+        wPopPickerController.availDataSource = wAvaArr;
+        
+        
         wPopPickerController.popPickerDelegate = self;
         UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
         wController.popoverContentSize = wPopPickerController.view.frame.size;
@@ -971,9 +985,8 @@ double roundPrec(double figure ,int precision)
         {
             [wAgeArr addObject:[NSString stringWithFormat:@"%d歲",i]];
         }
-        if(mCurrentAge <0)
-            wPopPickerController.selectedIndex = mCurrentAge >= 0 ? mCurrentAge - (int)mMinAge : 0;
-        NSLog(@"-- %d", wPopPickerController.selectedIndex);
+        
+        wPopPickerController.selectedIndex = mCurrentAge >= 0 ? mCurrentAge - (int)mMinAge : 0;
         wPopPickerController.pickerDataSource = wAgeArr;
         self.currentAge_list = wAgeArr;
         wPopPickerController.popPickerDelegate = self;

@@ -20,4 +20,5 @@
 @property (nonatomic,assign) id<PopPickerDelegate> popPickerDelegate;
 @property (nonatomic,retain) NSArray * pickerDataSource;
 @property (nonatomic,assign) int tag;
+@property (nonatomic,retain) NSArray * availDataSource;
 @end
