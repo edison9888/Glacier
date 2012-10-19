@@ -728,9 +728,8 @@ double roundPrec(double figure ,int precision)
 
 - (void) showResultTip
 {
-    NSDateFormatter * wFormatter = [[NSDateFormatter alloc] init];
-    wFormatter.dateFormat = @"yyyy年MM月dd日";
-    NSString * dateString =  [wFormatter stringFromDate:[NSDate date]];
+   
+    NSString * dateString =  [self.twDateFormatter stringFromDate:[NSDate date]];
     
     
     self.calcTimeLabel.text = [NSString stringWithFormat:@"試算日期：%@",dateString];
