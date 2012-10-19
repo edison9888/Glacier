@@ -54,17 +54,20 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+
     self.selectedIndex = row;
 }
 
 
 - (IBAction)onOkClick:(id)sender
 {
-    if (self.popPickerDelegate && [self.popPickerDelegate respondsToSelector:@selector(onPopPickerOKClick:viewTag:)])
+    if (self.selectedIndex < self.pickerDataSource.count && self.selectedIndex >= 0)
     {
-        [self.popPickerDelegate onPopPickerOKClick:self.selectedIndex viewTag:self.tag];
+        if (self.popPickerDelegate && [self.popPickerDelegate respondsToSelector:@selector(onPopPickerOKClick:viewTag:)])
+        {
+            [self.popPickerDelegate onPopPickerOKClick:self.selectedIndex viewTag:self.tag];
+        }
     }
-    
 }
 
 - (IBAction)onCancelClick:(id)sender

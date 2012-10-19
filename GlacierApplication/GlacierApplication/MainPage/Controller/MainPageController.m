@@ -60,6 +60,7 @@
 @property (nonatomic,readonly) PLI_PDTYEAR * currentPLI_PDTYEAR ;
 @property (nonatomic,retain) UIAlertView * alertView;
 
+@property (strong, nonatomic) IBOutlet UILabel *calcTimeLabel;
 @property (retain, nonatomic) UIPopoverController * popOverController;
 @property (nonatomic,retain) PopDateController * popDateController;
 @property (nonatomic,retain) PopComboController * popComboController;
@@ -75,6 +76,7 @@
 @property (nonatomic,retain) PLI_PDT_M * currentPli_pdt_m;
 @property (nonatomic,retain) CALCSETTING * currentCALCSETTING;
 @property (nonatomic,retain) PLI_PDTAMTRANGE * currentPLI_PDTAMTRANGE;
+@property (nonatomic,copy) NSString * lastAmount;
 @end
 
 @implementation MainPageController
@@ -87,6 +89,11 @@
     int mCurrentCalcMode;//当前计算模式
     double mTypeThreeMinAmount;
     double mTypeThreeMaxAmount;
+    
+    double mMinAge;
+    double mMaxAge;
+    double mMinAmount;
+    double mMaxAmount;
 }
 @synthesize jobTypeLabel;
 @synthesize versionNOLabel;
@@ -112,6 +119,7 @@
 @synthesize userNameTextField;
 @synthesize resultTipLabel1;
 @synthesize resultTipLabel2;
+@synthesize lastAmount;
 
 @synthesize twDateFormatter;
 @synthesize  plipdtm_list;
@@ -136,6 +144,7 @@
 @synthesize  currentPLI_PDTAMTRANGE;
 @synthesize  appVersionLabel;
 @synthesize  updateTimeLabel;
+@synthesize calcTimeLabel;
 @synthesize ageButton;
 
 @synthesize currencyUnitLabel;
@@ -155,7 +164,6 @@
         
         NSLocale *wLocale  = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_TW"];
         self.twDateFormatter.locale = wLocale;
-        
         self.twDateFormatter.dateFormat = @"G yyy年MM月dd日";
     }
     return self;
@@ -170,7 +178,7 @@
     NSString * updateTime = @"2012年10月1日";
     self.appVersionLabel.text = [NSString stringWithFormat:@"APP版本：%@",appVersion];
     self.updateTimeLabel.text = [NSString stringWithFormat:@"最近更新：%@",updateTime];
-    self.plipdtm_list = [PLI_PDT_M findByCriteria:@"group by PD_PDTCODE"];
+    self.plipdtm_list = [PLI_PDT_M findByCriteria:@"order by PD_KIND"];
     self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];
     mCurrentPdKind = 1;
     [self adjustCurrentPkClassList];
@@ -283,57 +291,94 @@
 {
     self.currentSelectedBirthday = nil;
     self.currentPLI_PDTAMTRANGE = nil;
-    
+    self.plipdtyear_list = nil;
+        
     self.versionNOLabel.text = [NSString stringWithFormat:@"版數：%.0f",self.currentPli_pdt_m.PD_VERSIONNO];
     self.currencyLabel.text = [NSString stringWithFormat:@"幣別：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
     self.currencyUnitLabel.text = [NSString stringWithFormat:@"單位：%@",[self getCurrencyUnitString:self.currentPli_pdt_m.PD_CURRENCY]];
     [self.UnitButton setTitle:self.currentPli_pdt_m.PD_UNIT forState:UIControlStateNormal];
-    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE];
-    mCurrentPdtYearIndex = 0;
+//    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE];
+//    mCurrentPdtYearIndex = 0;
     [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
     self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
     self.codeLabel.text = [@"商品代碼：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
+    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
+    self.calcTimeLabel.text = @"";
     self.amountTextField.text = @"";
-    
-
-    [self adjustPdtYearRange];
+    [self adjustAgeRange];
+    [self adjustAmount];
+    mCurrentAge = -1;
+    mCurrentPdtYearIndex = -1;
+    self.lastAmount = nil;
 }
 
-- (void) adjustPdtYearRange
+//调整保额范围
+- (void) adjustAmount
 {
     if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
     {
-        [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲",(int)self.currentPLI_PDTYEAR.PY_MINAGE,(int)self.currentPLI_PDTYEAR.PY_MAXAGE];
-        self.amoutRestrLabel.text = [NSString stringWithFormat:@"【保額】：無限制"];
+        mMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PY_MINAMT) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+        mMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PY_MAXAMT) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
     }
     else if (self.currentCALCSETTING.CALCTYPE == 3)
     {
+        mMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         
-        double minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        
-        double maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        
-        [self adjustBirthComponent:minAge max:maxAge];
-        
-        mTypeThreeMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        
-        mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        
-        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       ",
-                              minAge,
-                              maxAge];
-        self.amoutRestrLabel.text =
-        [NSString stringWithFormat:@"【保額】：%.0f-%.0f%@",
-         mTypeThreeMinAmount,
-         mTypeThreeMaxAmount,
-         self.currentPli_pdt_m.PD_UNIT];
+        mMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
     }
-    
-    [self adjustPdtYearText];
+    [self adjustAmountRest];
 }
+
+//调整年龄范围
+- (void) adjustAgeRange
+{
+    mMinAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PY_MINAGE) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+    
+    mMaxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PY_MAXAGE) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+    self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲",mMinAge,mMaxAge];
+
+    [self adjustBirthComponent:mMinAge max:mMaxAge];
+}
+
+
+
+
+//- (void) adjustPdtYearRange //废弃
+//{
+//    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
+//    {
+//        [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
+//        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲",(int)self.currentPLI_PDTYEAR.PY_MINAGE,(int)self.currentPLI_PDTYEAR.PY_MAXAGE];
+//        self.amoutRestrLabel.text = [NSString stringWithFormat:@"【保額】：無限制"];
+//    }
+//    else if (self.currentCALCSETTING.CALCTYPE == 3)
+//    {
+//        
+//        double minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+//        
+//        double maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+//        
+//        [self adjustBirthComponent:minAge max:maxAge];
+//        
+//        mTypeThreeMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+//        
+//        mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
+//        
+//        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       ",
+//                              minAge,
+//                              maxAge];
+//        self.amoutRestrLabel.text =
+//        [NSString stringWithFormat:@"【保額】：%.1f-%.1f%@",
+//         mTypeThreeMinAmount,
+//         mTypeThreeMaxAmount,
+//         self.currentPli_pdt_m.PD_UNIT];
+//    }
+//    
+//    [self adjustPdtYearText];
+//}
 
 - (void) adjustBirthComponent:(double)minAge max:(double) maxAge
 {
@@ -348,29 +393,73 @@
     self.maxAgeDate = wMaxDate;
     
     mCurrentAge = minAge;
-    [self.ageButton setTitle:[NSString stringWithFormat:@"%.0f",minAge] forState:UIControlStateNormal];
 //    self.ageTextField.text = [NSString stringWithFormat:@"%.0f",minAge];
 }
 
 - (void) adjustPdtYearText
 {
-    [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
-}
-
-//调整当前保額范围
--(void) adjustCurrentAmountRange
-{
-    self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
-    if (self.currentPLI_PDTAMTRANGE)
+    if (mCurrentPdtYearIndex < 0)
     {
-         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d歲       【保額】：%.0f-%.0f%@",
-           (int)self.currentPLI_PDTYEAR.PY_MINAGE,
-           (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
-            self.currentPLI_PDTAMTRANGE.MINAMT,
-            self.currentPLI_PDTAMTRANGE.MAXAMT,
-            self.currentPli_pdt_m.PD_UNIT];
+        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:0]).PY_PDTYEARNA forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.pdtYearButton setTitle:((PLI_PDTYEAR *)[self.plipdtyear_list objectAtIndex:mCurrentPdtYearIndex]).PY_PDTYEARNA forState:UIControlStateNormal];
     }
 }
+
+
+//调整年期范围
+- (void) initPdtYear
+{
+    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' and PY_MINAGE <= %d and PY_MAXAGE >= %d   group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE,(int)mCurrentAge, (int)mCurrentAge];
+    mCurrentPdtYearIndex = -1;
+    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
+    //    [self adjustPdtYearText];
+}
+
+- (void) adjustRestructAfterPdtYear
+{
+    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2) {
+        self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
+        
+        if (self.currentPLI_PDTAMTRANGE)
+        {
+            mMinAmount = self.currentPLI_PDTAMTRANGE.MINAMT;
+            mMaxAmount = self.currentPLI_PDTAMTRANGE.MAXAMT;
+        }
+        else 
+        {
+            mMinAmount = self.currentPLI_PDTYEAR.PY_MINAMT;
+            mMaxAmount = self.currentPLI_PDTYEAR.PY_MAXAMT;
+        }
+        [self adjustAmountRest];
+    }
+}
+
+- (void) adjustAmountRest
+{
+    self.amoutRestrLabel.text =
+    [NSString stringWithFormat:@"【保額】：%@-%@%@",
+     [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:mMinAmount]numberStyle:NSNumberFormatterDecimalStyle],
+     [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:mMaxAmount]numberStyle:NSNumberFormatterDecimalStyle],
+     self.currentPli_pdt_m.PD_UNIT];
+}
+
+////调整当前保額范围
+//-(void) adjustCurrentAmountRange
+//{
+//    self.currentPLI_PDTAMTRANGE = [PLI_PDTAMTRANGE findFirstByCriteria:@"where PD_PDTCODE = '%@' and PY_PDTYEAR = %.1f and MINAGE <= %d and MAXAGE >= %d",self.currentPli_pdt_m.PD_PDTCODE, self.currentPLI_PDTYEAR.PY_PDTYEAR, mCurrentAge, mCurrentAge];
+//    if (self.currentPLI_PDTAMTRANGE)
+//    {
+//         self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡區間】：%d-%d歲       【保額】：%.0f-%.0f%@",
+//           (int)self.currentPLI_PDTYEAR.PY_MINAGE,
+//           (int)self.currentPLI_PDTYEAR.PY_MAXAGE,
+//            self.currentPLI_PDTAMTRANGE.MINAMT,
+//            self.currentPLI_PDTAMTRANGE.MAXAMT,
+//            self.currentPli_pdt_m.PD_UNIT];
+//    }
+//}
 
 -(void)adjustCurrentPkClassList
 {
@@ -418,22 +507,22 @@
     switch (mCurrentJobType)
     {
         case 1:
-            [self.jobTypeButton setTitle:@"第一類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第一類" forState:UIControlStateNormal];
             break;
         case 2:
-            [self.jobTypeButton setTitle:@"第二類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第二類" forState:UIControlStateNormal];
             break;
         case 3:
-            [self.jobTypeButton setTitle:@"第三類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第三類" forState:UIControlStateNormal];
             break;
         case 4:
-            [self.jobTypeButton setTitle:@"第四類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第四類" forState:UIControlStateNormal];
             break;
         case 5:
-            [self.jobTypeButton setTitle:@"第五類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第五類" forState:UIControlStateNormal];
             break;
         case 6:
-            [self.jobTypeButton setTitle:@"第六類別" forState:UIControlStateNormal];
+            [self.jobTypeButton setTitle:@"第六類" forState:UIControlStateNormal];
             break;
         default:
             break;
@@ -443,22 +532,7 @@
 //处理type 0，1
 - (void) processTypeZeroAndOne
 {
-    
-    double amount = self.amountTextField.text.doubleValue;
-    if(self.currentPLI_PDTAMTRANGE)
-    {
-        double minAmout = self.currentPLI_PDTAMTRANGE.MINAMT;
-        double maxAmout = self.currentPLI_PDTAMTRANGE.MAXAMT;
-        if (amount < minAmout || amount > maxAmout )
-        {
 
-                [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
-                                    ,minAmout
-                                    ,maxAmout]];
-            return;
-        }
-    }
-    
     NSString * query = [NSString stringWithFormat:@"where pr_pdtcode = '%@' and pr_pdtyear = %.1f  ",self.currentPli_pdt_m.PD_PDTCODE,self.currentPLI_PDTYEAR.PY_PDTYEAR];
     
     if([PLI_PDTRATE checkNeedPR_AGE:self.currentPli_pdt_m.PD_PDTCODE pdtYear:self.currentPLI_PDTYEAR.PY_PDTYEAR])
@@ -534,27 +608,6 @@
 - (void) processTypeThree
 {
     double amount = self.amountTextField.text.doubleValue;
-    if(mTypeThreeMinAmount>= 0 || mTypeThreeMaxAmount>= 0)
-    {
-        double minAmout = mTypeThreeMinAmount;
-        double maxAmout = mTypeThreeMaxAmount;
-        
-//        if([self.currentPli_pdt_m.PD_UNIT isEqualToString:@"百元"])
-//        {
-//            minAmout *= 100;
-//            maxAmout *= 100;
-//        }
-        
-        if (amount < minAmout || amount > maxAmout )
-        {
-            
-            [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
-                                ,minAmout
-                                ,maxAmout]];
-            return;
-        }
-    }
-    
     
     PLI_PDTRATE * wPLI_PDTRATE = [PLI_PDTRATE findFirstByCriteria:@"where PR_PDTCODE = '%@' and PR_AGE = %d and PR_PDTYEAR = %.1f",self.currentPli_pdt_m.PD_PDTCODE, mCurrentAge, amount];
     if (wPLI_PDTRATE)
@@ -576,7 +629,7 @@
 
 double roundDown(double figure ,int precision)
 {
-    return floor(figure * pow(10, precision)) / pow(10, precision);
+    return floor(figure * pow(10, precision) + 0.0000005) / pow(10, precision);
 }
 
 double roundPrec(double figure ,int precision)
@@ -660,24 +713,31 @@ double roundPrec(double figure ,int precision)
     }
 }
 
+
+
 - (void) showResultTip
 {
-    NSString * dateString =  [self.twDateFormatter stringFromDate:[NSDate date]];
-    NSString * sexString;
+    NSDateFormatter * wFormatter = [[NSDateFormatter alloc] init];
+    wFormatter.dateFormat = @"yyyy年MM月dd日";
+    NSString * dateString =  [wFormatter stringFromDate:[NSDate date]];
     
-    if (!mCurrentSex)
-    {
-        sexString = @"先生";
-    }
-    else
-    {
-        sexString = @"女士";
-    }
-    self.resultTipLabel1.text = [NSString stringWithFormat:@"敬爱的%@%@ 您於%@",
-                                 self.userNameTextField.text,sexString,dateString];
     
-    self.resultTipLabel2.text = [NSString stringWithFormat:@"試算%@的結果",
-                                 self.currentPli_pdt_m.PD_PDTNAME];
+    self.calcTimeLabel.text = [NSString stringWithFormat:@"試算日期：%@",dateString];
+    
+//    NSString * sexString;
+//    if (!mCurrentSex)
+//    {
+//        sexString = @"先生";
+//    }
+//    else
+//    {
+//        sexString = @"女士";
+//    }
+//    self.resultTipLabel1.text = [NSString stringWithFormat:@"敬爱的%@%@ 您於%@",
+//                                 self.userNameTextField.text,sexString,dateString];
+//    
+//    self.resultTipLabel2.text = [NSString stringWithFormat:@"試算%@的結果",
+//                                 self.currentPli_pdt_m.PD_PDTNAME];
 }
 
 - (void) generateOutput:(double) rate calcType:(int)calcType diffRate:(PLI_PDTRATEDIFF *) diffRate
@@ -753,11 +813,18 @@ double roundPrec(double figure ,int precision)
     [self.ageButton setTitle:@"0" forState:UIControlStateNormal];
 //    self.ageTextField.text = @"0";
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
-    [self.birthdayButton setTitle:@"" forState:UIControlStateNormal];
+    [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
     self.amountTextField.text = @"";
+    self.calcTimeLabel.text = @"";
     self.jobTypeLabel.text = @"";
-    
+    [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
+    [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
+    self.plipdtyear_list = nil;
+    mCurrentPdtYearIndex = -1;
+    mCurrentAge = -1;
+    mCurrentJobType = 1;
+    [self changeJobType:mCurrentJobType];
 }
 
 
@@ -781,13 +848,38 @@ double roundPrec(double figure ,int precision)
     if(!self.currentPli_pdt_m)
     {
         
-        [self showAlertMsg:[NSString stringWithFormat:@"請先選擇品種"]];
+        [self showAlertMsg:[NSString stringWithFormat:@"請先選擇保險商品"]];
+        return;
+    }
+    
+    if(mCurrentAge < 0)
+    {
+        [self showAlertMsg:@"請先選擇出生年月日或保險年齡"];
+        return;
+
+    }
+    
+    if(mCurrentPdtYearIndex < 0)
+    {
+        [self showAlertMsg:@"請先選擇年期"];
         return;
     }
     
     if(self.amountTextField.text.length <=0 )
     {
         [self showAlertMsg:[NSString stringWithFormat:@"請先輸入金額"]];
+        return;
+    }
+    
+    double amount = self.amountTextField.text.doubleValue;
+    
+    if (amount < mMinAmount || amount > mMaxAmount)
+    {
+        
+        [self showAlertMsg:[NSString stringWithFormat:@"保額應在%.1f-%.1f之間"
+                            ,mMinAmount
+                            ,mMaxAmount]];
+        self.amountTextField.text = self.lastAmount;
         return;
     }
     
@@ -798,6 +890,8 @@ double roundPrec(double figure ,int precision)
             return;
         }
     }
+    
+    
     
     if(self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
@@ -811,7 +905,7 @@ double roundPrec(double figure ,int precision)
     {
         [self processTypeThree];
     }
-    
+    self.lastAmount = self.amountTextField.text;
 }
 
 
@@ -825,7 +919,7 @@ double roundPrec(double figure ,int precision)
     wPopPickerController.tag = 100;
     self.popPickerController = wPopPickerController;
     wPopPickerController.selectedIndex = mCurrentJobType - 1;
-    wPopPickerController.pickerDataSource = [NSArray arrayWithObjects:@"第一類別" ,@"第二類別" ,@"第三類別" ,@"第四類別" ,@"第五類別",@"第六類別",nil];
+    wPopPickerController.pickerDataSource = [NSArray arrayWithObjects:@"第一類" ,@"第二類" ,@"第三類" ,@"第四類" ,@"第五類",@"第六類",nil];
     wPopPickerController.popPickerDelegate = self;
     UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
     wController.popoverContentSize = wPopPickerController.view.frame.size;
@@ -843,7 +937,7 @@ double roundPrec(double figure ,int precision)
         PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
         wPopPickerController.tag = 101;
         self.popPickerController = wPopPickerController;
-        wPopPickerController.selectedIndex = mCurrentPdtYearIndex;
+        wPopPickerController.selectedIndex = mCurrentPdtYearIndex < 0 ? 0 :mCurrentPdtYearIndex;
         
         NSMutableArray * wArr = [NSMutableArray array];
         for (PLI_PDTYEAR * wYear in self.plipdtyear_list)
@@ -858,51 +952,39 @@ double roundPrec(double figure ,int precision)
         [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
         wPopPickerController = nil;
         wController = nil;
-        
-       
     }
 }
 
 #pragma mark 年龄弹出框
 - (IBAction)onAgePopClick:(UIButton *)sender
 {
-    
-    PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
-    wPopPickerController.tag = 102;
-    self.popPickerController = wPopPickerController;
-    
-    
-    
-    double minAge,maxAge;
-    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1 || self.currentCALCSETTING.CALCTYPE == 2)
+    if (self.currentPli_pdt_m)
     {
-        minAge = self.currentPLI_PDTYEAR.PY_MINAGE;
-        maxAge = self.currentPLI_PDTYEAR.PY_MAXAGE;
+        PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
+        wPopPickerController.tag = 102;
+        self.popPickerController = wPopPickerController;
+        
+        
+        NSMutableArray * wAgeArr = [NSMutableArray array];
+        
+        for (int i = mMinAge; i<= mMaxAge ;i++)
+        {
+            [wAgeArr addObject:[NSString stringWithFormat:@"%d歲",i]];
+        }
+        if(mCurrentAge <0)
+            wPopPickerController.selectedIndex = mCurrentAge >= 0 ? mCurrentAge - (int)mMinAge : 0;
+        NSLog(@"-- %d", wPopPickerController.selectedIndex);
+        wPopPickerController.pickerDataSource = wAgeArr;
+        self.currentAge_list = wAgeArr;
+        wPopPickerController.popPickerDelegate = self;
+        UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
+        wController.popoverContentSize = wPopPickerController.view.frame.size;
+        self.popOverController = wController;
+        [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
+        wPopPickerController = nil;
+        wController = nil;
     }
-    else if (self.currentCALCSETTING.CALCTYPE == 3)
-    {
-        minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-    }
     
-    NSMutableArray * wAgeArr = [NSMutableArray array];
-    
-    for (int i = minAge; i<= maxAge ;i++)
-    {
-        [wAgeArr addObject:[NSString stringWithFormat:@"%d歲",i]];
-    }
-    
-    wPopPickerController.selectedIndex = mCurrentAge - minAge;
-    
-    wPopPickerController.pickerDataSource = wAgeArr;
-    self.currentAge_list = wAgeArr;
-    wPopPickerController.popPickerDelegate = self;
-    UIPopoverController * wController = [[UIPopoverController alloc]initWithContentViewController:wPopPickerController];
-    wController.popoverContentSize = wPopPickerController.view.frame.size;
-    self.popOverController = wController;
-    [wController presentPopoverFromRect:sender.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:true];
-    wPopPickerController = nil;
-    wController = nil;
 }
 
 - (void)onPopPickerOKClick:(int)index viewTag:(NSInteger)tag
@@ -911,18 +993,21 @@ double roundPrec(double figure ,int precision)
     {
         mCurrentJobType = index + 1;
         [self changeJobType:mCurrentJobType];
+        self.jobTypeLabel.text = @"";
     }
     else if (tag == 101) //年期
     {
         mCurrentPdtYearIndex = index;
-        [self adjustPdtYearRange];
         [self adjustPdtYearText];
+        [self adjustRestructAfterPdtYear];
     }
-    else if (tag == 102)
+    else if (tag == 102)//年龄弹出框
     {
         NSString * wStr = ((NSString *)[self.currentAge_list objectAtIndex:index]);
-        mCurrentAge =  [wStr substringToIndex:wStr.length - 1].intValue;
+        mCurrentAge = [wStr substringToIndex:wStr.length - 1].intValue;
         [self.ageButton setTitle:[NSString stringWithFormat:@"%d",mCurrentAge] forState:UIControlStateNormal];
+        [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
+        [self initPdtYear];
     }
     [self.popOverController dismissPopoverAnimated:true];
 }
@@ -986,7 +1071,7 @@ double roundPrec(double figure ,int precision)
     NSString * birthday = [self.twDateFormatter stringFromDate:date];
     self.currentSelectedBirthday = date;
     NSDateComponents *wDateComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
-    if(wDateComponents.month >= 6)
+    if(wDateComponents.month > 6 || (wDateComponents.month == 6 && wDateComponents.day >= 0) )
     {
         mCurrentAge = wDateComponents.year + 1;
     }
@@ -997,7 +1082,7 @@ double roundPrec(double figure ,int precision)
     [self.ageButton setTitle:[NSString stringWithFormat:[NSString stringWithFormat:@"%d", mCurrentAge],mCurrentAge] forState:UIControlStateNormal];
     [self.birthdayButton setTitle:birthday forState:UIControlStateNormal] ;
     [self.popOverController dismissPopoverAnimated:true];
-    [self adjustCurrentAmountRange];
+    [self initPdtYear];
 }
 
 //生日点击取消
@@ -1129,7 +1214,7 @@ double roundPrec(double figure ,int precision)
             sexString = @"女士";
         }
 
-        NSString * wBodyString = [NSString stringWithFormat:@"敬爱的%@%@,\r\n您於%@試算%@的結果",
+        NSString * wBodyString = [NSString stringWithFormat:@"敬愛的%@%@,\r\n您於%@試算%@的結果",
                                   self.userNameTextField.text,sexString,dateString,self.currentPli_pdt_m.PD_PDTNAME];
         [wMailComposeViewController setMessageBody:wBodyString isHTML:false];
         
@@ -1189,6 +1274,7 @@ double roundPrec(double figure ,int precision)
     [self setBackButton:nil];
     [self setAgeButton:nil];
     [self setAmoutRestrLabel:nil];
+    [self setCalcTimeLabel:nil];
     [super viewDidUnload];
 }
 @end

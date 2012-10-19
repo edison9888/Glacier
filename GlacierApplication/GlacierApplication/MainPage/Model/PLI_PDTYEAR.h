@@ -14,8 +14,8 @@
 @property (nonatomic,copy) NSString * PY_PDTYEARTYPE;
 @property (nonatomic,copy) NSString * PY_PDTYEARNA;
 @property (nonatomic,copy) NSString * PY_RATECODE;
-@property (nonatomic,copy) NSString * PY_MINAMT;
-@property (nonatomic,copy) NSString * PY_MAXAMT;
+@property (nonatomic,assign) double PY_MINAMT;
+@property (nonatomic,assign) double PY_MAXAMT;
 @property (nonatomic,assign) double PY_AMTUNIT;
 @property (nonatomic,assign) double PY_MINAGE;
 @property (nonatomic,assign) double PY_MAXAGE;
