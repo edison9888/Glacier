@@ -16,6 +16,7 @@
 #import "CALCSETTING.h"
 #import "PLI_PDTAMTRANGE.h"
 #import "PLI_PDTRATEDIFF.h"
+#import "LoginProcess.h"
 
 @interface MainPageController ()
 - (void)displayMailComposerSheet;
@@ -33,6 +34,8 @@
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *updateTimeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *countDownLabel;
+@property (strong, nonatomic) IBOutlet UIButton *logoutButton;
 @property (strong, nonatomic) IBOutlet UILabel *currencyUnitLabel;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UILabel *currencyLabel;
@@ -146,6 +149,8 @@
 @synthesize  currentPLI_PDTAMTRANGE;
 @synthesize  appVersionLabel;
 @synthesize  updateTimeLabel;
+@synthesize countDownLabel;
+@synthesize logoutButton;
 @synthesize calcTimeLabel;
 @synthesize ageButton;
 
@@ -185,6 +190,9 @@
     mCurrentPdKind = 1;
     [self adjustCurrentPkClassList];
     [self.tableListView reloadData];
+    
+    [[LoginProcess sharedInstance] setCountDownLabel:countDownLabel];
+    [[LoginProcess sharedInstance] refreshCountDown];
 }
 
 - (PLI_PDTYEAR *)currentPLI_PDTYEAR
@@ -1118,6 +1126,10 @@ double roundPrec(double figure ,int precision)
     [self adjustCurrentPkClassList];
     
     [self.tableListView reloadData];
+}
+
+- (IBAction)onLogout:(UIButton *)sender {
+    [[LoginProcess sharedInstance] doLogout];
 }
 
 #pragma mark textfield

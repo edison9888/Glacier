@@ -23,4 +23,7 @@
 - (IBAction)onPdtYearClick:(UIButton *)sender;
 - (IBAction)onSexClick:(UIButton *)sender;
 - (IBAction)onJobTypeClick:(UIButton *)sender;
+
+- (IBAction)onLogout:(UIButton *)sender;
+
 @end

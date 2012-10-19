@@ -48,6 +48,9 @@ static LoginProcess *shared = nil;
 //}
 
 - (BOOL) needLogin {
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:kLastLoginDateTime]) {
+        return YES;
+    }
     NSTimeInterval time=[[NSDate date] timeIntervalSinceDate:[[NSUserDefaults standardUserDefaults] valueForKey:kLastLoginDateTime]];
     
     int days=((int)time)/(3600*24);

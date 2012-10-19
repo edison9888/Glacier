@@ -11,6 +11,7 @@
 #import "MainPageController.h"
 #import "SQLiteInstanceManager.h"
 #import "PLI_PDT_M.h"
+#import "LoginProcess.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -56,6 +57,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if ([[LoginProcess sharedInstance]needLogin]) {
+        [[LoginProcess sharedInstance] doLogin];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
