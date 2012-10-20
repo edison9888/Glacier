@@ -741,7 +741,7 @@ double roundPrec(double figure ,int precision)
 //    }
 //    else
 //    {
-//        sexString = @"女士";
+//        sexString = @"小姐";
 //    }
 //    self.resultTipLabel1.text = [NSString stringWithFormat:@"敬爱的%@%@ 您於%@",
 //                                 self.userNameTextField.text,sexString,dateString];
@@ -847,7 +847,7 @@ double roundPrec(double figure ,int precision)
         self.sexLabel.text = @"先生";
     }
     else {
-        self.sexLabel.text = @"女士";
+        self.sexLabel.text = @"小姐";
     }
 }
 
@@ -877,7 +877,7 @@ double roundPrec(double figure ,int precision)
     
     if(self.amountTextField.text.length <=0 )
     {
-        [self showAlertMsg:[NSString stringWithFormat:@"請先輸入金額"]];
+        [self showAlertMsg:[NSString stringWithFormat:@"請先輸入保額"]];
         return;
     }
     
@@ -1247,7 +1247,7 @@ double roundPrec(double figure ,int precision)
         }
         else
         {
-            sexString = @"女士";
+            sexString = @"小姐";
         }
 
         NSString * wBodyString = [NSString stringWithFormat:@"敬愛的%@%@,\r\n您於%@試算%@的結果",
