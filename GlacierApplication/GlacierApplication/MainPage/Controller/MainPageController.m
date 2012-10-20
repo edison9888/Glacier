@@ -313,7 +313,7 @@
     self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
     self.codeLabel.text = [@"商品代碼：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
-    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    [self cleanResultTips];
     [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     self.calcTimeLabel.text = @"";
@@ -328,17 +328,9 @@
 //调整保额范围
 - (void) adjustAmount
 {
-    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
-    {
+
         mMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PY_MINAMT) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
         mMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PY_MAXAMT) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-    }
-    else if (self.currentCALCSETTING.CALCTYPE == 3)
-    {
-        mMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-        
-        mMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-    }
     [self adjustAmountRest];
 }
 
@@ -353,42 +345,6 @@
     [self adjustBirthComponent:mMinAge max:mMaxAge];
 }
 
-
-
-
-//- (void) adjustPdtYearRange //废弃
-//{
-//    if (self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1  || self.currentCALCSETTING.CALCTYPE == 2)
-//    {
-//        [self adjustBirthComponent:self.currentPLI_PDTYEAR.PY_MINAGE max:self.currentPLI_PDTYEAR.PY_MAXAGE];
-//        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%d-%d歲",(int)self.currentPLI_PDTYEAR.PY_MINAGE,(int)self.currentPLI_PDTYEAR.PY_MAXAGE];
-//        self.amoutRestrLabel.text = [NSString stringWithFormat:@"【保額】：無限制"];
-//    }
-//    else if (self.currentCALCSETTING.CALCTYPE == 3)
-//    {
-//        
-//        double minAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-//        
-//        double maxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_AGE) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-//        
-//        [self adjustBirthComponent:minAge max:maxAge];
-//        
-//        mTypeThreeMinAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MIN(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-//        
-//        mTypeThreeMaxAmount = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PR_PDTYEAR) from PLI_PDTRATE where PR_PDTCODE =  '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
-//        
-//        self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲       ",
-//                              minAge,
-//                              maxAge];
-//        self.amoutRestrLabel.text =
-//        [NSString stringWithFormat:@"【保額】：%.1f-%.1f%@",
-//         mTypeThreeMinAmount,
-//         mTypeThreeMaxAmount,
-//         self.currentPli_pdt_m.PD_UNIT];
-//    }
-//    
-//    [self adjustPdtYearText];
-//}
 
 - (void) adjustBirthComponent:(double)minAge max:(double) maxAge
 {
@@ -824,7 +780,7 @@ double roundPrec(double figure ,int precision)
 //    self.ageTextField.text = @"0";
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
-    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    [self cleanResultTips];
     self.amountTextField.text = @"";
     self.calcTimeLabel.text = @"";
     self.jobTypeLabel.text = @"";
@@ -837,6 +793,11 @@ double roundPrec(double figure ,int precision)
     [self changeJobType:mCurrentJobType];
 }
 
+- (void) cleanResultTips
+{
+    self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
+    self.calcTimeLabel.text = @"";
+}
 
 - (IBAction)onSexClick:(UIButton *)sender
 {
@@ -926,7 +887,7 @@ double roundPrec(double figure ,int precision)
 
 - (IBAction)onJobTypeClick:(UIButton *)sender
 {
-    
+    [self cleanResultTips];
     PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
     wPopPickerController.tag = 100;
     self.popPickerController = wPopPickerController;
@@ -944,6 +905,7 @@ double roundPrec(double figure ,int precision)
 #pragma mark 年期选择弹出框
 - (IBAction)onPdtYearClick:(UIButton *)sender
 {
+    [self cleanResultTips];
     if(self.currentPlipdtyear_list)
     {
         PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
@@ -981,6 +943,7 @@ double roundPrec(double figure ,int precision)
 #pragma mark 年龄弹出框
 - (IBAction)onAgePopClick:(UIButton *)sender
 {
+    [self cleanResultTips];
     if (self.currentPli_pdt_m)
     {
         PopPickerController * wPopPickerController = [[PopPickerController alloc]init];
@@ -1046,6 +1009,7 @@ double roundPrec(double figure ,int precision)
 #pragma mark 列表选择职业类别弹出框点击以及回调
 - (IBAction)onJobTypePopClick:(UIButton *)sender 
 {
+    [self cleanResultTips];
     PopComboController * wComboController = [[PopComboController alloc]init];
     wComboController.selectedModel = self.comboModel;
     self.popComboController = wComboController;
@@ -1076,6 +1040,7 @@ double roundPrec(double figure ,int precision)
 #pragma mark 生日选择弹出框
 - (IBAction)onBirthdayClick:(UIButton *)sender
 {
+    [self cleanResultTips];
     if (!self.currentPli_pdt_m) {
         return;
     }
