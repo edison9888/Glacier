@@ -24,11 +24,18 @@
     
     NSFileManager * wFm = [NSFileManager defaultManager];
     NSError * wError = nil ;
-    [wFm copyItemAtPath:dbFilePath toPath:((SQLiteInstanceManager *)[SQLiteInstanceManager sharedManager]).databaseFilepath error:&wError];
-    
+    NSString * dest = ((SQLiteInstanceManager *)[SQLiteInstanceManager sharedManager]).databaseFilepath;
+    if([wFm fileExistsAtPath:dest])
+    {
+        [wFm removeItemAtPath:dest error:&wError];
+    }
+    if (!wError)
+    {
+        [wFm copyItemAtPath:dbFilePath toPath:((SQLiteInstanceManager *)[SQLiteInstanceManager sharedManager]).databaseFilepath error:&wError];
+    }
     if (wError)
     {
-        NSLog(@"error %@",wError.description);
+        NSLog(@"error %@",wError);
     }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
     self.viewController = [[MainPageController alloc] init];
