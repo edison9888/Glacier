@@ -53,6 +53,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *UnitButton;
 @property (strong, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel1;
+@property (strong, nonatomic) IBOutlet UIButton *emailButton;
 @property (strong, nonatomic) IBOutlet UILabel *resultTipLabel2;
 
 @property (nonatomic, readonly) NSDateFormatter *twDateFormatter;
@@ -155,6 +156,7 @@
 @synthesize ageButton;
 
 @synthesize currencyUnitLabel;
+@synthesize emailButton;
 @synthesize backButton;
 @synthesize currencyLabel;
 @synthesize popPickerController;
@@ -795,12 +797,14 @@ double roundPrec(double figure ,int precision)
 
 - (void) cleanResultTips
 {
+    self.emailButton.enabled = false;
     self.yearAmountLabel.text = self.halfYearAmountLabel.text = self.quarterAmountLabel.text = self.onePayAmountLabel.text = self.monthAmountLabel.text = @"--";
     self.calcTimeLabel.text = @"";
 }
 
 - (IBAction)onSexClick:(UIButton *)sender
 {
+    [self cleanResultTips];
     mCurrentSex = (bool)sender.tag;
     self.maleButton.selected = !mCurrentSex;
     self.femaleButton.selected = mCurrentSex;
@@ -864,7 +868,7 @@ double roundPrec(double figure ,int precision)
         }
     }
     
-    
+    self.emailButton.enabled = true;
     
     if(self.currentCALCSETTING.CALCTYPE == 0 || self.currentCALCSETTING.CALCTYPE == 1)
     {
@@ -1138,6 +1142,10 @@ double roundPrec(double figure ,int precision)
         }
         mCurrentAge = textField.text.doubleValue;
     }
+    else if(textField.tag == 3)
+    {
+        [self cleanResultTips];
+    }
     return true;
 }
 
@@ -1160,7 +1168,7 @@ double roundPrec(double figure ,int precision)
     }
     else if ([currency isEqualToString:@"NT"])
     {
-        return @"新台幣元";
+        return @"新臺幣元";
     }
     else if ([currency isEqualToString:@"AUD"])
     {
@@ -1276,6 +1284,7 @@ double roundPrec(double figure ,int precision)
     [self setAgeButton:nil];
     [self setAmoutRestrLabel:nil];
     [self setCalcTimeLabel:nil];
+    [self setEmailButton:nil];
     [super viewDidUnload];
 }
 @end

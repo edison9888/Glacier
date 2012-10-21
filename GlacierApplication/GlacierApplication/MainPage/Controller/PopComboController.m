@@ -94,7 +94,7 @@
 
 - (void) initPicker
 {
-    self.typeOneArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = ''"];
+    self.typeOneArr = [VOCATIONLEVEL findByCriteria:@"where parent_code_id = '' or parent_code_id is NULL"];
     
    
     
