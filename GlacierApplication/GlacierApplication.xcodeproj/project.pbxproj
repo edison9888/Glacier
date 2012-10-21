@@ -18,6 +18,7 @@
 		5822E4FB1617020500A9A5BC /* PLI_PDTAMTRANGE.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4FA1617020500A9A5BC /* PLI_PDTAMTRANGE.m */; };
 		5822E4FE1617029500A9A5BC /* PLI_PDTRATEDIFF.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E4FD1617029500A9A5BC /* PLI_PDTRATEDIFF.m */; };
 		5822E5011617036600A9A5BC /* CALCSETTING.m in Sources */ = {isa = PBXBuildFile; fileRef = 5822E5001617036600A9A5BC /* CALCSETTING.m */; };
+		5828E5731633A75000272A7C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5828E5721633A75000272A7C /* icon@2x.png */; };
 		582B00D3160A00E8008C453E /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 582B00D2160A00E8008C453E /* ProductCell.m */; };
 		582B00D5160A011C008C453E /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582B00D4160A011C008C453E /* ProductCell.xib */; };
 		582B00D8160A0306008C453E /* ProductSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582B00D7160A0306008C453E /* ProductSectionView.m */; };
@@ -105,6 +106,7 @@
 		5822E4FD1617029500A9A5BC /* PLI_PDTRATEDIFF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLI_PDTRATEDIFF.m; sourceTree = "<group>"; };
 		5822E4FF1617036500A9A5BC /* CALCSETTING.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CALCSETTING.h; sourceTree = "<group>"; };
 		5822E5001617036600A9A5BC /* CALCSETTING.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CALCSETTING.m; sourceTree = "<group>"; };
+		5828E5721633A75000272A7C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		582B00D1160A00E8008C453E /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCell.h; path = GlacierApplication/MainPage/View/ProductCell.h; sourceTree = SOURCE_ROOT; };
 		582B00D2160A00E8008C453E /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCell.m; path = GlacierApplication/MainPage/View/ProductCell.m; sourceTree = SOURCE_ROOT; };
 		582B00D4160A011C008C453E /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCell.xib; path = GlacierApplication/MainPage/View/ProductCell.xib; sourceTree = SOURCE_ROOT; };
@@ -326,6 +328,7 @@
 		DD867D3C15ADC48000BEF6E8 = {
 			isa = PBXGroup;
 			children = (
+				5828E5721633A75000272A7C /* icon@2x.png */,
 				5846A41D161481A600596F4B /* icon.png */,
 				5846A41B16147EF300596F4B /* Default.png */,
 				DD867D5115ADC48000BEF6E8 /* GlacierApplication */,
@@ -502,6 +505,7 @@
 				58E40B2D162F145200861B54 /* imfu_1_19.png in Resources */,
 				58E40B2E162F145200861B54 /* imfu_1_21.png in Resources */,
 				A5083FC816311326003A0D66 /* logout.png in Resources */,
+				5828E5731633A75000272A7C /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
