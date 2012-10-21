@@ -772,7 +772,11 @@ double roundPrec(double figure ,int precision)
 - (IBAction)onCollectClick:(UIButton *)sender
 {
     NSURL * appURL = [NSURL URLWithString:@"SKLMAgent://com.vit.SKLMAgent"];
-    [[UIApplication sharedApplication] openURL:appURL];
+    if ([[UIApplication sharedApplication] canOpenURL:appURL]) {
+        [[UIApplication sharedApplication] openURL:appURL];
+    } else {
+        [self showAlertMsg:@"您尚未安裝多媒體典藏功能，請至新光人園地下載。"];
+    }
 }
 
 - (IBAction)onResetClick:(UIButton *)sender
