@@ -364,10 +364,10 @@
 		DD867D5115ADC48000BEF6E8 /* GlacierApplication */ = {
 			isa = PBXGroup;
 			children = (
-				A5BF20AB1630EBB900EDE716 /* LoginAndCheckApp */,
 				DD867D5A15ADC48000BEF6E8 /* AppDelegate.h */,
 				DD867D5B15ADC48000BEF6E8 /* AppDelegate.m */,
 				DDE8890D15B265BB00C66888 /* MainPage */,
+				A5BF20AB1630EBB900EDE716 /* LoginAndCheckApp */,
 				58EB35F81602347700FF668B /* Resource */,
 				DD867D5215ADC48000BEF6E8 /* Supporting Files */,
 			);
