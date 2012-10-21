@@ -1239,7 +1239,7 @@ double roundPrec(double figure ,int precision)
         [self presentModalViewController:wMailComposeViewController animated:YES];
         //        [wMailComposeViewController release];
     } else {
-        [self showAlertMsg:@"邮箱暂未配置，请配置后再使用该功能。"];
+        [self showAlertMsg:@"請先設定郵件再使用此功能"];
     }
 }
 
