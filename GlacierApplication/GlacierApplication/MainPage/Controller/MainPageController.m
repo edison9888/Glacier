@@ -1104,7 +1104,7 @@ double roundPrec(double figure ,int precision)
 
 
 // 用戶做重新登錄
-- (IBAction)doLogout:(UIButton *)sender {
+- (IBAction)onLogout:(UIButton *)sender {
     [[LoginProcess sharedInstance] doLogout];
 }
 
