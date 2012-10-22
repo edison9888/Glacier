@@ -1234,7 +1234,7 @@ double roundPrec(double figure ,int precision)
         // 附件
         NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
         
-        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"insurance calculate"];
+        [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"insurance calculate.jpg"];
         
         // 邮件正文
         //        NSString *emailBody = @"It is raining in sunny California!";
