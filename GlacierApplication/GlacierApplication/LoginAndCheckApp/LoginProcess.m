@@ -74,17 +74,19 @@ static LoginProcess *shared = nil;
     
     NSString *dateContent=[[NSString alloc] initWithFormat:@"%i天%i小时%i分",days,hours,minutes];
     NSLog(@"相距%@",dateContent);
-    int count = days*24 + hours;
-    NSLog(@"共%d小時%d分鐘",count,minutes);
+    int count = days*24*60 + hours*60 + minutes;
+    NSLog(@"共%d分钟",count);
     
-    NSInteger down = 24-count;
-    if (minutes>0) down--;
-    if (down < 0) down = 0;
-    NSInteger down_min = 60-minutes;
-    if (down_min < 0) down_min = 0;
+    NSInteger Logon_expire_interval = 1440;
     
-    if (countDownLabel) {
-        [countDownLabel setText:[NSString stringWithFormat:@"登入有效期：%d小時%d分鐘",down,down_min]];
+    NSInteger countDown = Logon_expire_interval - count;
+    if (countDown < 0) countDown = 0;
+    
+    NSString *hour_down = countDown/60>0?[NSString stringWithFormat:@"%d小時",countDown/60]:@"";
+    NSString *min_down = countDown%60>0?[NSString stringWithFormat:@"%d分鐘",countDown%60]:@"";
+    
+    if (self.countDownLabel) {
+        [self.countDownLabel setText: [NSString stringWithFormat:@"登入有效期：%@%@",hour_down,min_down]];
     }
 }
 

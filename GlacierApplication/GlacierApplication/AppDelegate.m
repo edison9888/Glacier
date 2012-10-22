@@ -37,6 +37,16 @@
     {
         NSLog(@"error %@",wError);
     }
+    
+    NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
+    NSString * newVersion =[infoDict objectForKey:@"CFBundleVersion"];
+    NSString * lastVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"currentVersion"];
+    
+    if (!lastVersion||![newVersion isEqualToString:lastVersion]) {
+        [[NSUserDefaults standardUserDefaults] setObject:newVersion forKey:@"currentVersion"];
+        [[NSUserDefaults standardUserDefaults] setObject:[SKLUtility getDateTimeStr:@"yyyy/MM/dd HH:mm"] forKey:@"lastUpDate"];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
     self.viewController = [[MainPageController alloc] init];
     self.window.rootViewController = self.viewController;
