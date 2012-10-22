@@ -184,8 +184,8 @@
     mCurrentJobType = 1;
     NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
     NSString * appVersion =[infoDict objectForKey:@"CFBundleVersion"];
-    NSString * updateTime = @"2012/10/1 16:00:00";
-    self.appVersionLabel.text = [NSString stringWithFormat:@"APP版本：%@",appVersion];
+    NSString * updateTime = @"2012/10/22 12:00";
+    self.appVersionLabel.text = [NSString stringWithFormat:@"程式版本：%@",appVersion];
     self.updateTimeLabel.text = [NSString stringWithFormat:@"最新同步：%@",updateTime];
     self.plipdtm_list = [PLI_PDT_M findByCriteria:@"order by PD_KIND"];
     self.pkclass_list = [PK_CLASS findByCriteria:@"order by pk"];

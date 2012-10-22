@@ -399,7 +399,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<string key="IBUIText">APP版本：--</string>
+								<string key="IBUIText">程式版本：--</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -2159,15 +2159,29 @@
 					<string key="className">MainPageController</string>
 					<string key="superclassName">GlacierController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="onAgePopClick:">UIButton</string>
+						<string key="onBackClick:">UIButton</string>
 						<string key="onBirthdayClick:">UIButton</string>
 						<string key="onCalculateClick:">UIButton</string>
+						<string key="onCollectClick:">UIButton</string>
 						<string key="onJobTypeClick:">UIButton</string>
+						<string key="onJobTypePopClick:">UIButton</string>
 						<string key="onLogout:">UIButton</string>
 						<string key="onPdkindClick:">UIButton</string>
 						<string key="onPdtYearClick:">UIButton</string>
+						<string key="onResetClick:">UIButton</string>
 						<string key="onSexClick:">UIButton</string>
+						<string key="userClickMail:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="onAgePopClick:">
+							<string key="name">onAgePopClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="onBackClick:">
+							<string key="name">onBackClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onBirthdayClick:">
 							<string key="name">onBirthdayClick:</string>
 							<string key="candidateClassName">UIButton</string>
@@ -2176,8 +2190,16 @@
 							<string key="name">onCalculateClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBActionInfo" key="onCollectClick:">
+							<string key="name">onCollectClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onJobTypeClick:">
 							<string key="name">onJobTypeClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="onJobTypePopClick:">
+							<string key="name">onJobTypePopClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBActionInfo" key="onLogout:">
@@ -2192,9 +2214,17 @@
 							<string key="name">onPdtYearClick:</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBActionInfo" key="onResetClick:">
+							<string key="name">onResetClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBActionInfo" key="onSexClick:">
 							<string key="name">onSexClick:</string>
 							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="userClickMail:">
+							<string key="name">userClickMail:</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
