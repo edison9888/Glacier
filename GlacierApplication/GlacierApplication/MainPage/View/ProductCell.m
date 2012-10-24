@@ -18,15 +18,26 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        
     }
     return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-        self.bgImg.highlighted = selected;
-        self.nameLabel.highlighted = selected;
+    self.bgImg.highlighted = selected;
+    self.nameLabel.highlighted = selected;
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    self.bgImg.highlighted = highlighted;
+    self.nameLabel.highlighted = highlighted;
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    self.bgImg.highlighted = highlighted;
+    self.nameLabel.highlighted = highlighted;
 }
 
 //- (void)dealloc {
