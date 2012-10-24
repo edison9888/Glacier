@@ -103,7 +103,7 @@ static LoginProcess *shared = nil;
 -(void) doLogin {
 //    [_loginAlertView release];
     _loginAlertView = [[LoginAlertView alloc]initWithTitle:@"登入" message:@"請輸入帳號和密碼" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"確定",nil];
-//    [_loginAlertView show];
+    [_loginAlertView show];
     [_loginAlertView refreshImage];
 }
 
