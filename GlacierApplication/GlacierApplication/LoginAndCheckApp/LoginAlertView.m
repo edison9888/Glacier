@@ -47,9 +47,12 @@
     self = [super initWithTitle:title message:message delegate:delegate cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles, nil];
     if (self != nil)
     {
+        NSString *lastUserCode = [[NSUserDefaults standardUserDefaults]stringForKey:@"userCode"];
+        
         // 初始化自定义控件，注意摆放的位置，可以多试几次位置参数直到满意为止
         // createTextField函数用来初始化UITextField控件，在文件末尾附上
         self.account = [self createTextField:@"帳號"                                   withFrame:CGRectMake(22, 85, 240, 36) isSecure:NO KeyboardType:UIKeyboardTypeDefault ReturnKeyType:UIReturnKeyNext];
+        if (lastUserCode) [self.account setText:lastUserCode];
         [self addSubview:self.account];
         self.pwd = [self createTextField:@"密碼"                                   withFrame:CGRectMake(22, 130, 240, 36)isSecure:YES KeyboardType:UIKeyboardTypeDefault ReturnKeyType:UIReturnKeyNext];
         [self addSubview:self.pwd];

@@ -10,7 +10,6 @@
 #import "SKLUtility.h"
 #import "ASIFormDataRequest.h"
 
-#define LOGIN_URL  @"https://einsurance.skl.com.tw/PTMService/svcportal.aspx"
 #define LOGIN_NAME  @"Login"
 
 @interface DoLogin : NSObject <ASIHTTPRequestDelegate>

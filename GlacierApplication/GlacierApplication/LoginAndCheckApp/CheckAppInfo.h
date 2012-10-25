@@ -10,12 +10,11 @@
 #import "SKLUtility.h"
 #import "ASIFormDataRequest.h"
 
-//#define CHECKAPPINFO_URL  @"http://10.1.2.3/SKLInHouse/CheckAppInfo.aspx"
-//#define CHECKAPPINFO_NAME  @"CheckAppInfo"
-
 @interface CheckAppInfo : NSObject  <ASIHTTPRequestDelegate> 
 
-@property (nonatomic, assign) id checkAppInfoDelegate;
+//@property (nonatomic, assign) id checkAppInfoDelegate;
+
+-(id) initWithCurrApp:(NSString*)curapp Version:(NSString*)ver;
 
 - (void) request;
 

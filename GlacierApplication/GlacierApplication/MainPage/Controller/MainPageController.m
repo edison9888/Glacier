@@ -42,6 +42,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *pdtYearButton;
 @property (retain, nonatomic) IBOutlet UIButton *maleButton;
 @property (strong, nonatomic) IBOutlet UILabel *appVersionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *currentUserNameLabel;
 @property (retain, nonatomic) IBOutlet UIButton *femaleButton;
 @property (retain, nonatomic) IBOutlet UITextField *amountTextField;
 @property (retain, nonatomic) IBOutlet UILabel *yearAmountLabel;
@@ -149,6 +150,7 @@
 @synthesize  currentCALCSETTING;
 @synthesize  currentPLI_PDTAMTRANGE;
 @synthesize  appVersionLabel;
+@synthesize currentUserNameLabel;
 @synthesize  updateTimeLabel;
 @synthesize countDownLabel;
 @synthesize logoutButton;
@@ -193,7 +195,10 @@
     [self adjustCurrentPkClassList];
     [self.tableListView reloadData];
     
+    [self.currentUserNameLabel setText:[NSString stringWithFormat:@"使用者：%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"userName"]]];
+    
     [[LoginProcess sharedInstance] setCountDownLabel:countDownLabel];
+    [[LoginProcess sharedInstance] setUserNameDownLabel:currentUserNameLabel];
     [[LoginProcess sharedInstance] refreshCountDown];
 }
 
@@ -1113,7 +1118,15 @@ double roundPrec(double figure ,int precision)
 
 // 用戶做重新登錄
 - (IBAction)onLogout:(UIButton *)sender {
-    [[LoginProcess sharedInstance] doLogout];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您確定要登出？若網路未連線，您將無法登入" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"確定",nil];
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger) buttonIndex{
+    if (buttonIndex==1) {
+        [[LoginProcess sharedInstance] doLogout];
+    }
 }
 
 #pragma mark textfield

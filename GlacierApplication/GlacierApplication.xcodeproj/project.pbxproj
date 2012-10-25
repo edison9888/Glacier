@@ -67,6 +67,7 @@
 		58EDDE1815D5F8D300D9AADC /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDDE1715D5F8D300D9AADC /* libGlacierFramework.a */; };
 		58F8FB161608BE6D00381A50 /* ResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F8FB151608BE6D00381A50 /* ResultModel.m */; };
 		A5083FC816311326003A0D66 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = A5083FC716311326003A0D66 /* logout.png */; };
+		A559EF151638F1E00037ED82 /* Constans.m in Sources */ = {isa = PBXBuildFile; fileRef = A559EF141638F1E00037ED82 /* Constans.m */; };
 		A5BF20B91630EBB900EDE716 /* CheckAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */; };
 		A5BF20BA1630EBB900EDE716 /* DoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20AF1630EBB900EDE716 /* DoLogin.m */; };
 		A5BF20BB1630EBB900EDE716 /* DownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B21630EBB900EDE716 /* DownloadRequest.m */; };
@@ -164,6 +165,8 @@
 		58F8FB141608BE6D00381A50 /* ResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultModel.h; sourceTree = "<group>"; };
 		58F8FB151608BE6D00381A50 /* ResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultModel.m; sourceTree = "<group>"; };
 		A5083FC716311326003A0D66 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		A559EF131638F1E00037ED82 /* Constans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constans.h; sourceTree = "<group>"; };
+		A559EF141638F1E00037ED82 /* Constans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constans.m; sourceTree = "<group>"; };
 		A5BF20AC1630EBB900EDE716 /* CheckAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAppInfo.h; sourceTree = "<group>"; };
 		A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAppInfo.m; sourceTree = "<group>"; };
 		A5BF20AE1630EBB900EDE716 /* DoLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoLogin.h; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 			children = (
 				A5BF20AC1630EBB900EDE716 /* CheckAppInfo.h */,
 				A5BF20AD1630EBB900EDE716 /* CheckAppInfo.m */,
+				A559EF131638F1E00037ED82 /* Constans.h */,
+				A559EF141638F1E00037ED82 /* Constans.m */,
 				A5BF20AE1630EBB900EDE716 /* DoLogin.h */,
 				A5BF20AF1630EBB900EDE716 /* DoLogin.m */,
 				A5BF20B01630EBB900EDE716 /* DownLoadDelegate.h */,
@@ -545,6 +550,7 @@
 				A5BF20BC1630EBB900EDE716 /* LoginAlertView.m in Sources */,
 				A5BF20BD1630EBB900EDE716 /* LoginProcess.m in Sources */,
 				A5BF20BE1630EBB900EDE716 /* SKLUtility.m in Sources */,
+				A559EF151638F1E00037ED82 /* Constans.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

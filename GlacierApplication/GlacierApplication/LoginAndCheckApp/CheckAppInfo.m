@@ -7,29 +7,42 @@
 //
 
 #import "CheckAppInfo.h"
+#import "Constans.h"
 
 @implementation CheckAppInfo {
     ASIFormDataRequest *_request;
     NSString *returnMessage;
+    NSString *_currApp;
+    NSString *_version;
 }
 //@synthesize checkAppInfoDelegate;
 
 -(id) init
 {
+    _currApp = [[NSString alloc]initWithString:@"sklminsurancecal"];
+    _version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    return self;
+};
+
+-(id) initWithCurrApp:(NSString*)curapp Version:(NSString*)ver
+{
+    _currApp = curapp;
+    _version = ver;
     return self;
 };
 
 //-(void) dealloc
 //{
+//    [_currApp release], _currApp = nil;
 //    [_request release], _request = nil;
 //    [returnMessage release], returnMessage = nil;
 //	[super dealloc];
 //}
 
 -(void)request {
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
     
-    NSString *urlStr = [[NSString alloc]initWithFormat:@"http://10.1.2.3/SKLInHouse/CheckAppInfo.aspx?CurrApp=sklminsurancecal&CurrVer=%@",version];
+    NSString *urlStr = [[NSString alloc]initWithFormat:@"%@?CurrApp=%@&CurrVer=%@",CHECK_APP_ADDRESS, _currApp,_version];
+
     
     NSURL *url = [NSURL URLWithString:urlStr];
     
@@ -51,18 +64,20 @@
 }
 
 -(void)requestStarted:(ASIHTTPRequest *)request{
-    NSLog(@"requestStarted");
+    NSLog(@"CheckAppInfo requestStarted");
 //    [[self checkAppInfoDelegate] performSelector:@selector(CheckAppInfoStarted:) withObject:self];
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request{
-    NSLog(@"requestFinished");
+    NSLog(@"CheckAppInfo requestFinished");
     returnMessage = [[NSString alloc]initWithString:[request responseString]];
-    NSLog(@"returnMessage = %@",returnMessage);
+//    NSLog(@"returnMessage = %@",returnMessage);
     
     
     if ([returnMessage isEqualToString:@"[無新版本]"]) {
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您使用的是最新版本的程式！" delegate:nil cancelButtonTitle:@"確定" otherButtonTitles:nil];
+        [alert show];
+//        [alert release];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"有新版本程式需要更新！" delegate:self cancelButtonTitle:@"確定" otherButtonTitles:nil];
         [alert show];
@@ -75,7 +90,7 @@
 
 -(void)requestFailed:(ASIHTTPRequest *)request{
     NSError *error = [request error];
-    NSLog(@"requestFailed, download failed, error: %@", error);
+    NSLog(@"CheckAppInfo requestFailed, download failed, error: %@", error);
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

@@ -15,14 +15,19 @@
 @interface LoginProcess : NSObject {
     NSDate *_lastLogin;
     NSString *_usercode;
+    NSString *_userSid;
+    NSString *_userName;
 }
 
 @property (nonatomic, assign) id delegate;
 
 @property(nonatomic,retain) NSDate *_lastLogin;
 @property(nonatomic,retain) NSString *_usercode;
+@property(nonatomic,retain) NSString *_userSid;
+@property(nonatomic,retain) NSString *_userName;
 
 @property(nonatomic,retain) UILabel *countDownLabel;
+@property(nonatomic,retain) UILabel *userNameDownLabel;
 
 
 +(LoginProcess *)sharedInstance;
@@ -32,7 +37,7 @@
 -(void) setLastLoginDateTime;
 -(void) setUserCode:(NSString*)usercode;
 
--(void) doLogin;
+-(void) doLogin:(BOOL)sCancel;
 
 -(void) doLogout;
 

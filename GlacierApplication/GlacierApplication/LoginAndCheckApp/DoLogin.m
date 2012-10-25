@@ -7,6 +7,7 @@
 //
 
 #import "DoLogin.h"
+#import "Constans.h"
 
 @implementation DoLogin {
     ASIFormDataRequest *_request;
@@ -49,7 +50,7 @@
     
 //    NSString* requestUrl = [NSString stringWithFormat:@"%@%@", @"https://einsurance.skl.com.tw/PTMService/", @"svcportal.aspx"];
     
-    NSURL *url = [NSURL URLWithString:LOGIN_URL];
+    NSURL *url = [NSURL URLWithString:LOGIN_ADDRESS];
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -68,19 +69,19 @@
 }
 
 -(void)requestStarted:(ASIHTTPRequest *)request{
-    NSLog(@"requestStarted");
+    NSLog(@"DoLogin requestStarted");
     [[self processdelegate] performSelector:@selector(requestStarted:) withObject:request];
 }
 
 -(void)requestFinished:(ASIHTTPRequest *)request{
-    NSLog(@"requestFinished");
-    NSLog(@"%@",[request responseString]);
+    NSLog(@"DoLogin requestFinished");
+//    NSLog(@"%@",[request responseString]);
     [[self processdelegate] performSelector:@selector(requestFinished:) withObject:[request responseString]];
 }
 
 -(void)requestFailed:(ASIHTTPRequest *)request{
     NSError *error = [request error];
-    NSLog(@"requestFailed, download failed, error: %@", error);
+    NSLog(@"DoLogin requestFailed, download failed, error: %@", error);
 
 }
 
