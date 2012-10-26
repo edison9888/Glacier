@@ -195,7 +195,9 @@
     [self adjustCurrentPkClassList];
     [self.tableListView reloadData];
     
-    [self.currentUserNameLabel setText:[NSString stringWithFormat:@"使用者：%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"userName"]]];
+    NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:@"userName"];
+    
+    [self.currentUserNameLabel setText:[NSString stringWithFormat:@"使用者：%@",username?username:@""]];
     
     [[LoginProcess sharedInstance] setCountDownLabel:countDownLabel];
     [[LoginProcess sharedInstance] setUserNameDownLabel:currentUserNameLabel];

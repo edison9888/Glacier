@@ -23,6 +23,7 @@ static LoginProcess *shared = nil;
     CheckAppInfo *_checkApp;
     BOOL _sCancel;
     BOOL _hasLogin;
+    BOOL _isShowLogin;
 }
 @synthesize _lastLogin;
 @synthesize _usercode;
@@ -62,6 +63,9 @@ static LoginProcess *shared = nil;
 //}
 
 - (BOOL) needLogin {
+    if (_isShowLogin) {
+        return NO;
+    }
     if (!_hasLogin||![[NSUserDefaults standardUserDefaults] valueForKey:kLastLoginDateTime]) {
         return YES;
     }
@@ -133,7 +137,7 @@ static LoginProcess *shared = nil;
 -(void) setUserName:(NSString*)username {
     _userName = username;
     [[NSUserDefaults standardUserDefaults] setValue:username forKey:kUserName];
-    if (self.userNameDownLabel) {
+    if (self.userNameDownLabel&&_userName) {
         [self.userNameDownLabel setText:[NSString stringWithFormat:@"使用者：%@", _userName]];
     }
 }
@@ -153,8 +157,10 @@ static LoginProcess *shared = nil;
     } else {
         _loginAlertView = [[LoginAlertView alloc]initWithTitle:@"登入" message:@"請輸入帳號和密碼" delegate:self cancelButtonTitle:nil otherButtonTitles:@"確定",nil];
         [_loginAlertView show];
-        [_loginAlertView refreshImage];}
+        [_loginAlertView refreshImage];
     }
+    _isShowLogin = YES;
+}
     
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -176,7 +182,7 @@ static LoginProcess *shared = nil;
             _checkApp = [[CheckAppInfo alloc]init];
 //            [checkApp setCheckAppInfoDelegate:self];
             [_checkApp request];
-            
+            _isShowLogin = NO;
 //            [[self delegate] performSelector:@selector(loginSuccess:) withObject:self];
         } else  if ([alertView tag]==2){
             [self doLogin:_sCancel];
@@ -207,17 +213,18 @@ static LoginProcess *shared = nil;
     
     NSString *respcode = [[[[document rootElement] elementsForName:@"respcode"]objectAtIndex:0] stringValue];
     NSString *respmsg = [[[[document rootElement] elementsForName:@"respmsg"]objectAtIndex:0] stringValue];
-    NSString *sid = [[[[document rootElement] elementsForName:@"sid"]objectAtIndex:0] stringValue];
-    NSArray *datalist= [[[[[document rootElement] elementsForName:@"datalist"]objectAtIndex:0] stringValue] componentsSeparatedByString:@","];
-
     NSLog(@"respcode = %@",respcode);
     NSLog(@"respcode = %@",respmsg);
-    NSLog(@"sid = %@",sid);
-    NSLog(@"userName = %@",[datalist objectAtIndex:1]);
+    
     
 //    [document release];
     
     if ([respcode isEqualToString:@"000"]) {
+        NSString *sid = [[[[document rootElement] elementsForName:@"sid"]objectAtIndex:0] stringValue];
+        NSArray *datalist= [[[[[document rootElement] elementsForName:@"datalist"]objectAtIndex:0] stringValue] componentsSeparatedByString:@","];
+        NSLog(@"sid = %@",sid);
+        NSLog(@"userName = %@",[datalist objectAtIndex:1]);
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"登錄成功！" delegate:self cancelButtonTitle:@"確定" otherButtonTitles:nil];
         [alert setTag:1];
         [alert show];

@@ -74,6 +74,7 @@
 		A5BF20BC1630EBB900EDE716 /* LoginAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B41630EBB900EDE716 /* LoginAlertView.m */; };
 		A5BF20BD1630EBB900EDE716 /* LoginProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B61630EBB900EDE716 /* LoginProcess.m */; };
 		A5BF20BE1630EBB900EDE716 /* SKLUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20B81630EBB900EDE716 /* SKLUtility.m */; };
+		A5DB8E7716393B8A007FBDF4 /* function_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DB8E7616393B89007FBDF4 /* function_bg.png */; };
 		DD865D8815B1465C00817FE9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */; };
 		DD867D4C15ADC48000BEF6E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4B15ADC48000BEF6E8 /* UIKit.framework */; };
 		DD867D4E15ADC48000BEF6E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD867D4D15ADC48000BEF6E8 /* Foundation.framework */; };
@@ -180,6 +181,7 @@
 		A5BF20B61630EBB900EDE716 /* LoginProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProcess.m; sourceTree = "<group>"; };
 		A5BF20B71630EBB900EDE716 /* SKLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKLUtility.h; sourceTree = "<group>"; };
 		A5BF20B81630EBB900EDE716 /* SKLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKLUtility.m; sourceTree = "<group>"; };
+		A5DB8E7616393B89007FBDF4 /* function_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = function_bg.png; sourceTree = "<group>"; };
 		DD865D8715B1465C00817FE9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		DD867D4715ADC48000BEF6E8 /* GlacierApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlacierApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD867D4B15ADC48000BEF6E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				58502046162EFFD100C28726 /* bgImg.png */,
+				A5DB8E7616393B89007FBDF4 /* function_bg.png */,
 				5850205C162EFFD100C28726 /* imfu1_06.png */,
 				5850205D162EFFD100C28726 /* imfu1_07.png */,
 				5850205E162EFFD100C28726 /* imfu1_08.png */,
@@ -515,6 +518,7 @@
 				A5083FC816311326003A0D66 /* logout.png in Resources */,
 				5828E5731633A75000272A7C /* icon@2x.png in Resources */,
 				5828E5761633A87000272A7C /* iTunesArtwork in Resources */,
+				A5DB8E7716393B8A007FBDF4 /* function_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
