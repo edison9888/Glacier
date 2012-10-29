@@ -1247,7 +1247,8 @@ double roundPrec(double figure ,int precision)
         [wMailComposeViewController setMessageBody:wBodyString isHTML:false];
         
         // 附件
-        NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
+//        NSData *myData = UIImageJPEGRepresentation([UIApplication sharedApplication].keyWindow.currentImage, 1.0);
+        NSData *myData = UIImageJPEGRepresentation(self.view.currentImage, 1.0);
         
         [wMailComposeViewController addAttachmentData:myData mimeType:@"image/jpeg" fileName:@"insurance calculate.jpg"];
         
