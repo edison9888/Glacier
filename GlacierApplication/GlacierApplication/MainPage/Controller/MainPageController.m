@@ -308,7 +308,6 @@
 
 -(void) initComponentAfterSelected
 {
-    self.currentSelectedBirthday = nil;
     self.currentPLI_PDTAMTRANGE = nil;
     self.currentPlipdtyear_list = nil;
         
@@ -316,22 +315,22 @@
     self.currencyLabel.text = [NSString stringWithFormat:@"幣別：%@",[self getCurrencyString:self.currentPli_pdt_m.PD_CURRENCY]];
     self.currencyUnitLabel.text = [NSString stringWithFormat:@"單位：%@",[self getCurrencyUnitString:self.currentPli_pdt_m.PD_CURRENCY]];
     [self.UnitButton setTitle:self.currentPli_pdt_m.PD_UNIT forState:UIControlStateNormal];
-//    self.plipdtyear_list = [PLI_PDTYEAR findByCriteria:@"where PD_PDTCODE = '%@' group by PY_PDTYEAR",self.currentPli_pdt_m.PD_PDTCODE];
-//    mCurrentPdtYearIndex = 0;
-    [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
+//    [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
     self.insuranceNameLabel.text = [self trimShortName: self.currentPli_pdt_m.PD_PDTNAME];
     self.codeLabel.text = [@"商品代碼：" stringByAppendingString:self.currentPli_pdt_m.PD_PDTCODE];
     
     [self cleanResultTips];
-    [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
+//    [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
     [self.pdtYearButton setTitle:@"--" forState:UIControlStateNormal];
     self.calcTimeLabel.text = @"";
     self.amountTextField.text = @"";
     [self adjustAgeRange];
     [self adjustAmount];
-    mCurrentAge = -1;
     mCurrentPdtYearIndex = -1;
     self.lastAmount = nil;
+    
+    
+    [self initPdtYear];
 }
 
 //调整保额范围
@@ -351,6 +350,14 @@
     mMaxAge = [[SQLiteInstanceManager sharedManager] executeSelectDoubleSQL:[NSString stringWithFormat: @"select MAX(PY_MAXAGE) from PLI_PDTYEAR where PD_PDTCODE = '%@'",self.currentPli_pdt_m.PD_PDTCODE]];
     self.tipLabel.text = [NSString stringWithFormat:@"【投保年齡】：%.0f-%.0f歲",mMinAge,mMaxAge];
 
+    if(mCurrentAge > mMaxAge || mCurrentAge < mMinAge)
+    {
+         mCurrentAge = -1;
+        [self.birthdayButton setTitle:@"--" forState:UIControlStateNormal];
+        [self.ageButton setTitle:@"--" forState:UIControlStateNormal];
+        [self showAlertMsg:@"保險年齡輸入資料超過容許範圍"];
+    }
+    
     [self adjustBirthComponent:mMinAge max:mMaxAge];
 }
 
@@ -367,7 +374,7 @@
     NSDate * wMaxDate = [[NSCalendar currentCalendar] dateByAddingComponents:maxCom toDate:[NSDate date] options:0];
     self.maxAgeDate = wMaxDate;
     
-    mCurrentAge = minAge;
+//    mCurrentAge = minAge;
 //    self.ageTextField.text = [NSString stringWithFormat:@"%.0f",minAge];
 }
 
