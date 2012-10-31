@@ -32,6 +32,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *tipLabel;
 @property (retain, nonatomic) IBOutlet UITableView *tableListView;
 @property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *pdKindButtonArr;
+@property (retain, nonatomic) IBOutletCollection(UIButton) NSArray *calcTypeButtonArr;
 @property (retain, nonatomic) IBOutlet UILabel *insuranceNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *updateTimeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *countDownLabel;
@@ -92,7 +93,7 @@
     int mCurrentAge;
     int mCurrentPdtYearIndex;
     int mCurrentPdKind;
-    int mCurrentCalcMode;//当前计算模式
+    int mCurrentCalcMode;//当前计算模式:0-正常，1-年齡區間，2-年期區間，3-回推
     double mTypeThreeMinAmount;
     double mTypeThreeMaxAmount;
     
@@ -109,6 +110,7 @@
 @synthesize tipLabel;
 @synthesize tableListView;
 @synthesize pdKindButtonArr;
+@synthesize calcTypeButtonArr;
 @synthesize amoutRestrLabel;
 @synthesize insuranceNameLabel;
 @synthesize pdtYearButton;
@@ -183,6 +185,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    mCurrentCalcMode = 0;
     mCurrentJobType = 1;
     NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
     NSString * appVersion =[infoDict objectForKey:@"CFBundleVersion"];
@@ -1111,7 +1114,7 @@ double roundPrec(double figure ,int precision)
 
 
 //主副约之间的切换
-- (IBAction)onPdkindClick:(UIButton *)sender 
+- (IBAction)onPdkindClick:(UIButton *)sender
 {
     for (UIButton * wButton in self.pdKindButtonArr) 
     {
@@ -1122,6 +1125,20 @@ double roundPrec(double figure ,int precision)
     [self adjustCurrentPkClassList];
     
     [self.tableListView reloadData];
+}
+
+//計算模式之间的切换
+- (IBAction)onCalcTypeClick:(UIButton *)sender
+{
+    for (UIButton * wButton in self.calcTypeButtonArr)
+    {
+        wButton.selected = false;
+    }
+    sender.selected = true;
+    mCurrentCalcMode = sender.tag;
+//    [self adjustCurrentPkClassList];
+//    
+//    [self.tableListView reloadData];
 }
 
 
