@@ -2,10 +2,13 @@
 //  SharedApp.h
 //  GlacierFramework
 //
-//  Created by chang liang on 12-7-15.
+//  Created by cnzhao on 12-7-15.
 //  Copyright (c) 2012年 Glacier. All rights reserved.
 //
 #import "ASINetworkQueue.h"
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+
 struct SDKVersion 
 {
     int firstVersion;
@@ -22,6 +25,11 @@ typedef struct SDKVersion SDKVersion;
 @end
 
 @interface SharedApp(http)
-- (void) removeNetworkReceiver:(id)receiver;
--(void) doASIHttpRequest:(ASIHTTPRequest *) request;
+- (void)removeNetworkReceiver:(id)receiver;
+- (void)doASIHttpRequest:(ASIHTTPRequest *) request;
+@end
+
+
+@interface SharedApp(FMDatabase)
++ (FMDatabaseQueue *) FMDatabaseQueue;
 @end

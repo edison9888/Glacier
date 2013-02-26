@@ -11,6 +11,7 @@
 #import "ASIHTTPRequest.h"
 #define TIMEOUT_SECONDS 30
 static ASINetworkQueue * _ASINetworkQueue;
+#define FMDBFileName @"db.sqlite"
 
 @implementation SharedApp
 {
@@ -80,3 +81,18 @@ static ASINetworkQueue * _ASINetworkQueue;
     [self.networkQueue addOperation:request];
 }
 @end
+
+@implementation SharedApp(FMDatabase)
++ (FMDatabaseQueue *)FMDatabaseQueue
+{
+    static FMDatabaseQueue * _instance;
+    if (!_instance)
+    {
+        NSArray* paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) ;
+        _instance = [[FMDatabaseQueue alloc]initWithPath:[[paths objectAtIndex:0]stringByAppendingPathComponent:FMDBFileName]];
+    }
+    return _instance;
+}
+@end
+
+

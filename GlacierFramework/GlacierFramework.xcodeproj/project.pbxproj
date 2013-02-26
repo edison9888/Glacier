@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		580200B915D60752002A854F /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 580200B715D60752002A854F /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (); }; };
 		580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 580200B815D60752002A854F /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		581D66A516DBBC51007674F7 /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D669A16DBBC51007674F7 /* FMDatabase.h */; };
+		581D66A616DBBC51007674F7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D669B16DBBC51007674F7 /* FMDatabase.m */; };
+		581D66A716DBBC51007674F7 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D669C16DBBC51007674F7 /* FMDatabaseAdditions.h */; };
+		581D66A816DBBC51007674F7 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D669D16DBBC51007674F7 /* FMDatabaseAdditions.m */; };
+		581D66A916DBBC51007674F7 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D669E16DBBC51007674F7 /* FMDatabasePool.h */; };
+		581D66AA16DBBC51007674F7 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D669F16DBBC51007674F7 /* FMDatabasePool.m */; };
+		581D66AB16DBBC51007674F7 /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A016DBBC51007674F7 /* FMDatabaseQueue.h */; };
+		581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */; };
+		581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A316DBBC51007674F7 /* FMResultSet.h */; };
+		581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A416DBBC51007674F7 /* FMResultSet.m */; };
 		5885340015B2F650009569A5 /* GlacierController.h in Headers */ = {isa = PBXBuildFile; fileRef = 588533FE15B2F650009569A5 /* GlacierController.h */; settings = {ATTRIBUTES = (); }; };
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
@@ -82,6 +92,17 @@
 /* Begin PBXFileReference section */
 		580200B715D60752002A854F /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		580200B815D60752002A854F /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		581D669A16DBBC51007674F7 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		581D669B16DBBC51007674F7 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		581D669C16DBBC51007674F7 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		581D669D16DBBC51007674F7 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		581D669E16DBBC51007674F7 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		581D669F16DBBC51007674F7 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		581D66A016DBBC51007674F7 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		581D66A216DBBC51007674F7 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
+		581D66A316DBBC51007674F7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		581D66A416DBBC51007674F7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		588533FE15B2F650009569A5 /* GlacierController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlacierController.h; sourceTree = "<group>"; };
 		588533FF15B2F650009569A5 /* GlacierController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlacierController.m; sourceTree = "<group>"; };
 		5885340215B2F725009569A5 /* SharedApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApp.h; sourceTree = "<group>"; };
@@ -167,6 +188,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		581D669916DBBC51007674F7 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				581D669A16DBBC51007674F7 /* FMDatabase.h */,
+				581D669B16DBBC51007674F7 /* FMDatabase.m */,
+				581D669C16DBBC51007674F7 /* FMDatabaseAdditions.h */,
+				581D669D16DBBC51007674F7 /* FMDatabaseAdditions.m */,
+				581D669E16DBBC51007674F7 /* FMDatabasePool.h */,
+				581D669F16DBBC51007674F7 /* FMDatabasePool.m */,
+				581D66A016DBBC51007674F7 /* FMDatabaseQueue.h */,
+				581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */,
+				581D66A216DBBC51007674F7 /* fmdb.m */,
+				581D66A316DBBC51007674F7 /* FMResultSet.h */,
+				581D66A416DBBC51007674F7 /* FMResultSet.m */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
 		588533FD15B2F640009569A5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +223,7 @@
 				A5BF20C01630EBC100EDE716 /* GDataXML */,
 				58EDDE1115D5F89A00D9AADC /* CocoaAsyncSocket */,
 				58EDDD7E15D5F4EF00D9AADC /* ASI */,
+				581D669916DBBC51007674F7 /* FMDB */,
 				58EDDD9B15D5F4EF00D9AADC /* JSONKit */,
 				58EDDDA015D5F4EF00D9AADC /* sqlitepersistentobjects */,
 			);
@@ -408,6 +448,11 @@
 				58EDDDF915D5F4EF00D9AADC /* UIColor-SQLitePersistentObject.h in Headers */,
 				58EDDDFB15D5F4EF00D9AADC /* UIImage-SQLitePersistence.h in Headers */,
 				A5BF20C31630EBC100EDE716 /* GDataXMLNode.h in Headers */,
+				581D66A516DBBC51007674F7 /* FMDatabase.h in Headers */,
+				581D66A716DBBC51007674F7 /* FMDatabaseAdditions.h in Headers */,
+				581D66A916DBBC51007674F7 /* FMDatabasePool.h in Headers */,
+				581D66AB16DBBC51007674F7 /* FMDatabaseQueue.h in Headers */,
+				581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +539,11 @@
 				58EDDDFC15D5F4EF00D9AADC /* UIImage-SQLitePersistence.m in Sources */,
 				580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */,
 				A5BF20C41630EBC100EDE716 /* GDataXMLNode.m in Sources */,
+				581D66A616DBBC51007674F7 /* FMDatabase.m in Sources */,
+				581D66A816DBBC51007674F7 /* FMDatabaseAdditions.m in Sources */,
+				581D66AA16DBBC51007674F7 /* FMDatabasePool.m in Sources */,
+				581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */,
+				581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
