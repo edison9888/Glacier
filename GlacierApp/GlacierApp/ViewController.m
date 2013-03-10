@@ -27,11 +27,13 @@
 {
     NSLog(@"i: %d",i.intValue);
     FMDatabaseQueue * dbQueue = [SharedApp FMDatabaseQueue];
-    [dbQueue inDatabase:^(FMDatabase *db)
-     {
-         [db executeUpdate:@"create table if not exists test (a int,b int,c int)"];
-         [db executeUpdate:@"insert into test ('a','b') values (?, ?)",i,@"bb"];
-     }];
+    
+    [dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"insert test ('a','b',aaa) values (?,?,?)",i,@"bb",@"bbd"];
+        
+        NSLog(@"%@",[[db lastError] localizedDescription]);
+    }];
+    
 }
 
 - (void)viewDidLoad
