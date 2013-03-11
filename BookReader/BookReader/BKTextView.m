@@ -8,12 +8,22 @@
 
 #import "BKTextView.h"
 #import <CoreText/CoreText.h>
+
+#define viewHeight self.bounds.size.height
+
 @interface BKTextView()
 {
     int _numberOfLines;
     CGFloat _lineHeight;
     CGFloat _textHeight;
+    UIFont * _font;
+    UIColor *_fontColor;
+    int _lastIndex;
+    int _currentIndex;
+    int _pageLine;
 }
+@property (strong, nonatomic) NSString * fileStr;
+@property (strong, nonatomic) NSMutableArray * indexList;
 @end
 
 @implementation BKTextView
@@ -22,9 +32,99 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.delegate = self;
+        _font = [UIFont fontWithName:@"Symbol" size:20];
+        _fontColor = [UIColor blackColor];
+        _lineHeight = _font.lineHeight;
+        _pageLine = viewHeight / _lineHeight + 1;
+        _textFont = _font;
+        _textColor = _fontColor;
+        self.backgroundColor = [UIColor clearColor];
+        self.showsVerticalScrollIndicator = false;
+        [self fetchbookText];
+        [self generateBookIndex];
+        self.contentSize = CGSizeMake(1, _lineHeight * self.indexList.count);
+        [self processText];
         
     }
     return self;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self processText];
+}
+
+- (void) processText
+{
+    float offset = self.contentOffset.y;
+    _currentIndex = offset / _lineHeight > 0 ? offset / _lineHeight :0;
+    CGFloat scrollOffset = offset - (_currentIndex * _lineHeight);
+    self.scrollOffset = scrollOffset;
+//    NSLog(@"%f",self.scrollOffset);
+    int begin =  _currentIndex > 0 ? _currentIndex: 0;
+    int end = _currentIndex + _pageLine + 1 > self.indexList.count - 1 ? self.indexList.count - 1 : _currentIndex + _pageLine + 1;
+    NSMutableArray * arr = [NSMutableArray array];
+    
+    for (int i = begin; i < end; i++)
+    {
+        int beginIndex =  ((NSNumber *)(self.indexList[i])).intValue;
+        int endInex = ((NSNumber *)(self.indexList[i + 1])).intValue;;
+        
+        [arr addObject:[self.fileStr substringWithRange:NSMakeRange(beginIndex, endInex - beginIndex)]];
+    }
+    
+//    NSLog(@"scrollOffset %f  begin %d end %d",self.scrollOffset,begin,end);
+    self.textList = arr;
+    [self setNeedsDisplay];
+}
+
+- (void)generateBookIndex
+{
+    CTFontRef font = CTFontCreateWithName((CFStringRef)_font.fontName ,
+                                          _font.pointSize,
+                                          NULL);
+    
+    //Setup the attributes dictionary with font and color
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                (id)font, (id)kCTFontAttributeName,
+                                _fontColor.CGColor, kCTForegroundColorAttributeName,
+                                nil];
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc]
+                                            initWithString:self.fileStr
+                                            attributes:attributes];
+    
+    CFRelease(font);
+    
+    //Create a TypeSetter object with the attributed text created earlier on
+    CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+    
+    CFIndex currentIndex = 0;
+    CFIndex lineLength = 0;
+    NSMutableArray * wArr = [NSMutableArray array];
+    while (lineLength + currentIndex < self.fileStr.length)
+    {
+        CFIndex lineLength = CTTypesetterSuggestLineBreak(typeSetter,
+                                                          currentIndex,
+                                                          self.frame.size.width);
+        currentIndex += lineLength;
+        [wArr addObject:@(currentIndex)];
+    }
+    self.indexList = wArr;
+    CFRelease(typeSetter);
+}
+
+- (void)fetchbookText
+{
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    //    NSData * reader = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"盗墓笔记全集（1-8）" ofType:@"txt" ]];
+    //    NSString * str;
+//    str = [[NSString alloc]initWithData:[reader subdataWithRange:NSMakeRange(0, 1024)] encoding:enc];
+    
+    
+    NSString * str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"盗墓笔记全集（1-8）" ofType:@"txt" ]encoding:enc error:nil];
+    self.fileStr = str;
 }
 
 
@@ -52,7 +152,7 @@
                                 (id)font, (id)kCTFontAttributeName,
                                 self.textColor.CGColor, kCTForegroundColorAttributeName,
                                 nil];
-    __block CGFloat y = self.bounds.origin.y + self.bounds.size.height - self.textFont.ascender + self.scrollOffset;
+    __block CGFloat y = -rect.origin.y + rect.size.height - self.textFont.ascender + self.scrollOffset;
     
     [self.textList enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
         

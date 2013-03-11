@@ -35,9 +35,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        _font = [UIFont fontWithName:@"Symbol" size:15];
-        _fontColor = [UIColor blackColor];
-        _lineHeight = _font.lineHeight;
+        
     }
     return self;
 }
@@ -45,37 +43,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _pageLine = viewHeight / _lineHeight + 1;
     
-    _BKTextView = [[BKTextView alloc]initWithFrame:CGRectMake(10, 0, 300, viewHeight * 3)];
-    _BKTextView.textFont = _font;
-    _BKTextView.textColor = _fontColor;
-    _BKTextView.backgroundColor = [UIColor clearColor];
-    [self.scrollBgView addSubview:_BKTextView];
+    _BKTextView = [[BKTextView alloc]initWithFrame:CGRectMake(10, 0, 300, viewHeight)];
+    [self.view addSubview:_BKTextView];
     
-    [self bookText];
-    [self generateBookIndex];
-    self.scrollBgView.contentSize = CGSizeMake(1, _lineHeight * self.indexList.count);
-    [self processText];
+//    [self bookText];
+//    [self generateBookIndex];
+//    [self processText];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.y > 0)
-    {
-          [self processText];
-    }
+
+    [self processText];
 }
 
 - (void) processText
 {
     _currentOffset = self.scrollBgView.contentOffset.y;
-    _currentIndex = _currentOffset / _lineHeight;
+    _currentIndex = _currentOffset / _lineHeight > 0 ? _currentOffset / _lineHeight :0;
     CGFloat scrollOffset = _currentOffset - (_currentIndex * _lineHeight);
     _BKTextView.scrollOffset = scrollOffset;
     _BKTextView.frame = CGRectMake(10, _currentOffset, 300, viewHeight);
     int begin =  _currentIndex > 0 ? _currentIndex: 0;
-    int end = _currentIndex + _pageLine + 1;
+    int end = _currentIndex + _pageLine + 1 > self.indexList.count - 1 ? self.indexList.count - 1 : _currentIndex + _pageLine + 1;
     NSMutableArray * arr = [NSMutableArray array];
     
     for (int i = begin; i < end; i++)
@@ -130,6 +121,11 @@
 - (void)bookText
 {
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+//    NSData * reader = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"盗墓笔记全集（1-8）" ofType:@"txt" ]];
+//    NSString * str;
+//    str = [[NSString alloc]initWithData:[reader subdataWithRange:NSMakeRange(0, 1024)] encoding:enc];
+    
+   
     NSString * str = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"盗墓笔记全集（1-8）" ofType:@"txt" ]encoding:enc error:nil];
     self.fileStr = str;
 }

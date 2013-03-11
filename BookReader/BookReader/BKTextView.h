@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BKTextView : UIView
+@interface BKTextView : UIScrollView<UIScrollViewDelegate>
 @property (retain,nonatomic) NSString * bookText;
 @property (retain,nonatomic) UIFont * textFont;
 @property (retain,nonatomic) UIColor * textColor;
