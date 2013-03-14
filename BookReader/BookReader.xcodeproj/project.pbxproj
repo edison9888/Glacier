@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		582C926216E8F21E00097D54 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 582C926116E8F21E00097D54 /* CoreText.framework */; };
+		582E062016F22DF0006165CB /* SimSun.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 582E061F16F22DF0006165CB /* SimSun.ttf */; };
 		584203A116EAEDD600CAB22E /* BKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 584203A016EAEDD600CAB22E /* BKTextView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		58B1928C16E21BEA0069DE9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B1928B16E21BEA0069DE9D /* UIKit.framework */; };
 		58B1928E16E21BEA0069DE9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B1928D16E21BEA0069DE9D /* Foundation.framework */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		582C926116E8F21E00097D54 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		582E061F16F22DF0006165CB /* SimSun.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimSun.ttf; sourceTree = "<group>"; };
 		5842039F16EAEDD600CAB22E /* BKTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKTextView.h; sourceTree = "<group>"; };
 		584203A016EAEDD600CAB22E /* BKTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BKTextView.m; sourceTree = "<group>"; };
 		58B1928816E21BEA0069DE9D /* BookReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		58B192AE16E21CA80069DE9D /* Book */ = {
 			isa = PBXGroup;
 			children = (
+				582E061F16F22DF0006165CB /* SimSun.ttf */,
 				58B192AF16E21CB00069DE9D /* 盗墓笔记全集（1-8）.txt */,
 			);
 			name = Book;
@@ -185,6 +188,7 @@
 				58B192A216E21BEA0069DE9D /* Default-568h@2x.png in Resources */,
 				58B192A816E21BEA0069DE9D /* ViewController.xib in Resources */,
 				58B192B016E21CB00069DE9D /* 盗墓笔记全集（1-8）.txt in Resources */,
+				582E062016F22DF0006165CB /* SimSun.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

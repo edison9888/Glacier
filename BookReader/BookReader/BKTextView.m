@@ -21,6 +21,7 @@
     int _lastIndex;
     int _currentIndex;
     int _pageLine;
+    float mkCTKernAttributeName;
 }
 @property (strong, nonatomic) NSString * fileStr;
 @property (strong, nonatomic) NSMutableArray * indexList;
@@ -33,7 +34,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.delegate = self;
-        _font = [UIFont fontWithName:@"Symbol" size:20];
+        mkCTKernAttributeName = 2.0f;
+        _font = [UIFont fontWithName:@"Symbol" size:23];
         _fontColor = [UIColor blackColor];
         _lineHeight = _font.lineHeight;
         _pageLine = viewHeight / _lineHeight + 1;
@@ -61,7 +63,6 @@
     _currentIndex = offset / _lineHeight > 0 ? offset / _lineHeight :0;
     CGFloat scrollOffset = offset - (_currentIndex * _lineHeight);
     self.scrollOffset = scrollOffset;
-//    NSLog(@"%f",self.scrollOffset);
     int begin =  _currentIndex > 0 ? _currentIndex: 0;
     int end = _currentIndex + _pageLine + 1 > self.indexList.count - 1 ? self.indexList.count - 1 : _currentIndex + _pageLine + 1;
     NSMutableArray * arr = [NSMutableArray array];
@@ -89,6 +90,7 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 (id)font, (id)kCTFontAttributeName,
                                 _fontColor.CGColor, kCTForegroundColorAttributeName,
+                                @(mkCTKernAttributeName),kCTKernAttributeName,
                                 nil];
     
     NSAttributedString *attributedString = [[NSAttributedString alloc]
@@ -103,11 +105,10 @@
     CFIndex currentIndex = 0;
     CFIndex lineLength = 0;
     NSMutableArray * wArr = [NSMutableArray array];
+    [wArr addObject:@(0)];
     while (lineLength + currentIndex < self.fileStr.length)
     {
-        CFIndex lineLength = CTTypesetterSuggestLineBreak(typeSetter,
-                                                          currentIndex,
-                                                          self.frame.size.width);
+        CFIndex lineLength = CTTypesetterSuggestLineBreakWithOffset(typeSetter, currentIndex, self.frame.size.width, 10);
         currentIndex += lineLength;
         [wArr addObject:@(currentIndex)];
     }
@@ -151,8 +152,9 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 (id)font, (id)kCTFontAttributeName,
                                 self.textColor.CGColor, kCTForegroundColorAttributeName,
+                                @(mkCTKernAttributeName),kCTKernAttributeName,
                                 nil];
-    __block CGFloat y = -rect.origin.y + rect.size.height - self.textFont.ascender + self.scrollOffset;
+    __block CGFloat y = - rect.origin.y + rect.size.height - self.textFont.lineHeight + self.scrollOffset;
     
     [self.textList enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
         
