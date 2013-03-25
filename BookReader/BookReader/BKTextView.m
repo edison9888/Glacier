@@ -34,8 +34,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.delegate = self;
-        mkCTKernAttributeName = 2.0f;
-        _font = [UIFont fontWithName:@"Symbol" size:23];
+        mkCTKernAttributeName = 0.0f;
+        _font = [UIFont fontWithName:@"Helvetica" size:20];
         _fontColor = [UIColor blackColor];
         _lineHeight = _font.lineHeight;
         _pageLine = viewHeight / _lineHeight + 1;
@@ -90,7 +90,7 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 (id)font, (id)kCTFontAttributeName,
                                 _fontColor.CGColor, kCTForegroundColorAttributeName,
-                                @(mkCTKernAttributeName),kCTKernAttributeName,
+//                                @(mkCTKernAttributeName),kCTKernAttributeName,
                                 nil];
     
     NSAttributedString *attributedString = [[NSAttributedString alloc]
@@ -133,6 +133,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    
+    
+    
      _lineHeight = self.textFont.lineHeight;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -152,36 +155,56 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 (id)font, (id)kCTFontAttributeName,
                                 self.textColor.CGColor, kCTForegroundColorAttributeName,
-                                @(mkCTKernAttributeName),kCTKernAttributeName,
+//                                @(mkCTKernAttributeName),kCTKernAttributeName,
                                 nil];
-    __block CGFloat y = - rect.origin.y + rect.size.height - self.textFont.lineHeight + self.scrollOffset;
+    CGFloat y = - rect.origin.y  - self.textFont.lineHeight + self.scrollOffset;
+    
+    NSMutableString * allStr = [[NSMutableString alloc]init];
+    
     
     [self.textList enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
-        
-        NSAttributedString *attributedString = [[[NSAttributedString alloc]
-                                                 initWithString:obj
-                                                 attributes:attributes] autorelease];
-        
-        //Create a TypeSetter object with the attributed text created earlier on
-        CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
-        
-        
-        //Create a new line with from current index to line-break index
-        CFRange lineRange = CFRangeMake(0, obj.length);
-        CTLineRef line = CTTypesetterCreateLine(typeSetter, lineRange);
-        
-        //Setup the line position
-        CGContextSetTextPosition(context, 0, y);
-        CTLineDraw(line, context);
-        
-        CFRelease(line);
-        y -= _lineHeight;
-        
-        CFRelease(typeSetter);
+        [allStr appendString:obj];
+//        NSAttributedString *attributedString = [[[NSAttributedString alloc]
+//                                                 initWithString:obj
+//                                                 attributes:attributes] autorelease];
+//        
+//        //Create a TypeSetter object with the attributed text created earlier on
+//        CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((CFAttributedStringRef)attributedString);
+//        
+//        
+//        //Create a new line with from current index to line-break index
+//        CFRange lineRange = CFRangeMake(0, obj.length);
+//        CTLineRef line = CTTypesetterCreateLine(typeSetter, lineRange);
+//        
+//        //Setup the line position
+//        CGContextSetTextPosition(context, 0, y);
+//        CTLineDraw(line, context);
+//        
+//        CFRelease(line);
+//        y -= _lineHeight;
+//        
+//        CFRelease(typeSetter);
     }];
+    CGMutablePathRef path = CGPathCreateMutable(); //1
+    CGPathAddRect(path, NULL, CGRectMake(0, y, self.bounds.size.width, self.bounds.size.height));
     
-    CFRelease(font);
+    NSMutableAttributedString* attString = [[NSMutableAttributedString alloc] initWithString:allStr attributes:attributes]; //2
+    //    [attString addAttribute:(id)kCTKernAttributeName value:@(6.0f) range:NSMakeRange(0, attString.length)];
+    CTFramesetterRef framesetter =
+    CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attString); //3
+    CTFrameRef frame =
+    CTFramesetterCreateFrame(framesetter,
+                             CFRangeMake(0, [attString length]), path, NULL);
+    CTFrameDraw(frame, context); //4
+//    
+//    CFRelease(frame); //5
+//    CFRelease(path);
+//    CFRelease(framesetter);
+//    
+//    CFRelease(font);
     [super drawRect:rect];
+    [allStr release];
+    [attString release];
 }
 
 
