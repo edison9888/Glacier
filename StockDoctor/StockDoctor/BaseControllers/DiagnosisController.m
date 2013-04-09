@@ -34,8 +34,9 @@
     [super viewDidLoad];
     self.title = @"自选股诊断";
     self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
-    
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {

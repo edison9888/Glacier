@@ -14,6 +14,7 @@
 @interface SearchStockController ()
 @property (strong, nonatomic) IBOutlet UITableView *searchTableView;
 @property (nonatomic,strong) NSArray * modelList;
+@property (nonatomic,strong) NSArray * selfStocksModelList;
 @end
 
 @implementation SearchStockController
@@ -41,6 +42,7 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     self.modelList = [SearchModel extractModelList:request.responseString];
+    self.selfStocksModelList = [SearchModel selectAll];
     [self.searchTableView reloadData];
 }
 
@@ -67,15 +69,59 @@
     cell.codeLabel.text = model.shortCode;
     cell.nameLabel.text = model.shortName;
     cell.addButton.tag = indexPath.row;
+    
+    
+    bool flag = [self.selfStocksModelList any:^BOOL(SearchModel * obj) {
+        if ([obj.fullCode isEqualToString:model.fullCode])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }];
+    
+    if (flag)
+    {
+        [cell.addButton setTitle:@"删除" forState:(UIControlStateNormal)];
+    }
+    else
+    {
+        [cell.addButton setTitle:@"添加" forState:(UIControlStateNormal)];
+    }
+
     [cell.addButton addTarget:self action:@selector(onSearchAddBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
 - (void)onSearchAddBtnClick:(UIButton *)button
 {
-    [SearchModel checkOrCreateTable];
+    
     SearchModel * model = self.modelList[button.tag];
-    [model insertSelf];
+    
+    bool flag = [self.selfStocksModelList any:^BOOL(SearchModel * obj) {
+        if ([obj.fullCode isEqualToString:model.fullCode])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }];
+    
+    if (flag)
+    {
+        [model deleteSelf];
+    }
+    else
+    {
+        [model insertSelf];
+    }
+    
+    self.selfStocksModelList = [SearchModel selectAll];
+    [self.searchTableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

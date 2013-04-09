@@ -89,6 +89,14 @@
         }
     }];
 }
+
+- (void)deleteSelf
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"delete from SelfStock where fullCode = ?",self.fullCode];
+    }];
+}
 @end
 
 

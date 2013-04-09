@@ -23,6 +23,17 @@
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
 		5885340515B2F725009569A5 /* SharedApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5885340315B2F725009569A5 /* SharedApp.m */; };
+		58D341A617145D8D0055E971 /* BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A317145D8D0055E971 /* BlocksKit.h */; };
+		58D341A717145D8D0055E971 /* NSArray+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */; };
+		58D341A817145D8D0055E971 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */; };
+		58D341AA17145DB80055E971 /* BKMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A917145DB80055E971 /* BKMacros.h */; };
+		58D341B117145DFF0055E971 /* NSDictionary+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341AB17145DFF0055E971 /* NSDictionary+BlocksKit.h */; };
+		58D341B217145DFF0055E971 /* NSDictionary+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341AC17145DFF0055E971 /* NSDictionary+BlocksKit.m */; };
+		58D341B317145DFF0055E971 /* NSIndexSet+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341AD17145DFF0055E971 /* NSIndexSet+BlocksKit.h */; };
+		58D341B417145DFF0055E971 /* NSIndexSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341AE17145DFF0055E971 /* NSIndexSet+BlocksKit.m */; };
+		58D341B517145DFF0055E971 /* NSSet+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341AF17145DFF0055E971 /* NSSet+BlocksKit.h */; };
+		58D341B617145DFF0055E971 /* NSSet+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341B017145DFF0055E971 /* NSSet+BlocksKit.m */; };
+		58D341B817145E9B0055E971 /* BKGlobals.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341B717145E9B0055E971 /* BKGlobals.h */; };
 		58EDDDC115D5F4EF00D9AADC /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8015D5F4EF00D9AADC /* ASIAuthenticationDialog.h */; };
 		58EDDDC215D5F4EF00D9AADC /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD8115D5F4EF00D9AADC /* ASIAuthenticationDialog.m */; };
 		58EDDDC315D5F4EF00D9AADC /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD8215D5F4EF00D9AADC /* ASICacheDelegate.h */; };
@@ -75,6 +86,17 @@
 		588533FF15B2F650009569A5 /* GlacierController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlacierController.m; sourceTree = "<group>"; };
 		5885340215B2F725009569A5 /* SharedApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApp.h; sourceTree = "<group>"; };
 		5885340315B2F725009569A5 /* SharedApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedApp.m; sourceTree = "<group>"; };
+		58D341A317145D8D0055E971 /* BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksKit.h; sourceTree = "<group>"; };
+		58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
+		58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
+		58D341A917145DB80055E971 /* BKMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKMacros.h; sourceTree = "<group>"; };
+		58D341AB17145DFF0055E971 /* NSDictionary+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BlocksKit.h"; sourceTree = "<group>"; };
+		58D341AC17145DFF0055E971 /* NSDictionary+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BlocksKit.m"; sourceTree = "<group>"; };
+		58D341AD17145DFF0055E971 /* NSIndexSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+BlocksKit.h"; sourceTree = "<group>"; };
+		58D341AE17145DFF0055E971 /* NSIndexSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+BlocksKit.m"; sourceTree = "<group>"; };
+		58D341AF17145DFF0055E971 /* NSSet+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+BlocksKit.h"; sourceTree = "<group>"; };
+		58D341B017145DFF0055E971 /* NSSet+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+BlocksKit.m"; sourceTree = "<group>"; };
+		58D341B717145E9B0055E971 /* BKGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BKGlobals.h; sourceTree = "<group>"; };
 		58EDDD8015D5F4EF00D9AADC /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		58EDDD8115D5F4EF00D9AADC /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		58EDDD8215D5F4EF00D9AADC /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -153,9 +175,28 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		58D341A217145D8D0055E971 /* BlockKit */ = {
+			isa = PBXGroup;
+			children = (
+				58D341B717145E9B0055E971 /* BKGlobals.h */,
+				58D341A317145D8D0055E971 /* BlocksKit.h */,
+				58D341A917145DB80055E971 /* BKMacros.h */,
+				58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */,
+				58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */,
+				58D341AB17145DFF0055E971 /* NSDictionary+BlocksKit.h */,
+				58D341AC17145DFF0055E971 /* NSDictionary+BlocksKit.m */,
+				58D341AD17145DFF0055E971 /* NSIndexSet+BlocksKit.h */,
+				58D341AE17145DFF0055E971 /* NSIndexSet+BlocksKit.m */,
+				58D341AF17145DFF0055E971 /* NSSet+BlocksKit.h */,
+				58D341B017145DFF0055E971 /* NSSet+BlocksKit.m */,
+			);
+			path = BlockKit;
+			sourceTree = "<group>";
+		};
 		58EDDD7D15D5F4EF00D9AADC /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				58D341A217145D8D0055E971 /* BlockKit */,
 				A5BF20C01630EBC100EDE716 /* GDataXML */,
 				58EDDE1115D5F89A00D9AADC /* CocoaAsyncSocket */,
 				58EDDD7E15D5F4EF00D9AADC /* ASI */,
@@ -333,6 +374,13 @@
 				581D66A916DBBC51007674F7 /* FMDatabasePool.h in Headers */,
 				581D66AB16DBBC51007674F7 /* FMDatabaseQueue.h in Headers */,
 				581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */,
+				58D341A617145D8D0055E971 /* BlocksKit.h in Headers */,
+				58D341A717145D8D0055E971 /* NSArray+BlocksKit.h in Headers */,
+				58D341AA17145DB80055E971 /* BKMacros.h in Headers */,
+				58D341B117145DFF0055E971 /* NSDictionary+BlocksKit.h in Headers */,
+				58D341B317145DFF0055E971 /* NSIndexSet+BlocksKit.h in Headers */,
+				58D341B517145DFF0055E971 /* NSSet+BlocksKit.h in Headers */,
+				58D341B817145E9B0055E971 /* BKGlobals.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +456,10 @@
 				581D66AA16DBBC51007674F7 /* FMDatabasePool.m in Sources */,
 				581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */,
 				581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */,
+				58D341A817145D8D0055E971 /* NSArray+BlocksKit.m in Sources */,
+				58D341B217145DFF0055E971 /* NSDictionary+BlocksKit.m in Sources */,
+				58D341B417145DFF0055E971 /* NSIndexSet+BlocksKit.m in Sources */,
+				58D341B617145DFF0055E971 /* NSSet+BlocksKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,7 @@
 
 #import "ContainerController.h"
 #import "DiagnosisController.h"
+#import "SearchModel.h"
 
 @interface ContainerController ()
 @property (strong, nonatomic) IBOutlet UIView *bgView;
@@ -28,6 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SearchModel checkOrCreateTable];
+    
     [self switchViews:0];
 }
 

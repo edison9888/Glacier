@@ -18,5 +18,6 @@
 
 + (void)checkOrCreateTable;
 - (void)insertSelf;
+- (void)deleteSelf;
 + (NSArray *)selectAll;
 @end
