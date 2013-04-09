@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
+		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
+		58386F781712FDD400B636E7 /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F771712FDD400B636E7 /* TrendModel.m */; };
+		58386F7C1713062200B636E7 /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7B1713062200B636E7 /* TrendView.m */; };
+		58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7E17130B5500B636E7 /* TrendGraphView.m */; };
+		58386F81171316FE00B636E7 /* TrendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F80171316FE00B636E7 /* TrendView.xib */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -16,11 +22,36 @@
 		585087191711A55200EA6820 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 585087181711A55200EA6820 /* Default.png */; };
 		5850871B1711A55200EA6820 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5850871A1711A55200EA6820 /* Default@2x.png */; };
 		5850871D1711A55200EA6820 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5850871C1711A55200EA6820 /* Default-568h@2x.png */; };
-		585087201711A55200EA6820 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850871F1711A55200EA6820 /* ViewController.m */; };
-		585087231711A55200EA6820 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087211711A55200EA6820 /* ViewController.xib */; };
+		5850872A1711A5CF00EA6820 /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087291711A5CF00EA6820 /* libGlacierFramework.a */; };
+		5850872E1711A6AF00EA6820 /* ContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850872C1711A6AF00EA6820 /* ContainerController.m */; };
+		5850872F1711A6AF00EA6820 /* ContainerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5850872D1711A6AF00EA6820 /* ContainerController.xib */; };
+		585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087301711A8B800EA6820 /* libxml2.2.dylib */; };
+		585087331711A8C100EA6820 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087321711A8C100EA6820 /* libz.dylib */; };
+		585087351711A8CA00EA6820 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087341711A8C900EA6820 /* libsqlite3.0.dylib */; };
+		585087371711A8D100EA6820 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087361711A8D100EA6820 /* CFNetwork.framework */; };
+		585087391711A8D700EA6820 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087381711A8D700EA6820 /* Security.framework */; };
+		5850873B1711A8DF00EA6820 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */; };
+		5850873D1711A8E700EA6820 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873C1711A8E700EA6820 /* SystemConfiguration.framework */; };
+		5850873F1711A8EF00EA6820 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873E1711A8EF00EA6820 /* MessageUI.framework */; };
+		585087441711ADA900EA6820 /* DiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087421711ADA900EA6820 /* DiagnosisController.m */; };
+		585087451711ADA900EA6820 /* DiagnosisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087431711ADA900EA6820 /* DiagnosisController.xib */; };
+		585087491711B16700EA6820 /* SearchStockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087471711B16700EA6820 /* SearchStockController.m */; };
+		5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087481711B16700EA6820 /* SearchStockController.xib */; };
+		5850874E1711B98400EA6820 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850874D1711B98400EA6820 /* SearchModel.m */; };
+		585087501711BEE400EA6820 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5850874F1711BEE400EA6820 /* SearchCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
+		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
+		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
+		58386F761712FDD400B636E7 /* TrendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendModel.h; sourceTree = "<group>"; };
+		58386F771712FDD400B636E7 /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
+		58386F7A1713062200B636E7 /* TrendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendView.h; sourceTree = "<group>"; };
+		58386F7B1713062200B636E7 /* TrendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendView.m; sourceTree = "<group>"; };
+		58386F7D17130B5500B636E7 /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
+		58386F7E17130B5500B636E7 /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
+		58386F80171316FE00B636E7 /* TrendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendView.xib; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,9 +65,27 @@
 		585087181711A55200EA6820 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5850871A1711A55200EA6820 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		5850871C1711A55200EA6820 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5850871E1711A55200EA6820 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5850871F1711A55200EA6820 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		585087221711A55200EA6820 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		585087291711A5CF00EA6820 /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../GlacierFramework/build/Release-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
+		5850872B1711A6AF00EA6820 /* ContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerController.h; sourceTree = "<group>"; };
+		5850872C1711A6AF00EA6820 /* ContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerController.m; sourceTree = "<group>"; };
+		5850872D1711A6AF00EA6820 /* ContainerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerController.xib; sourceTree = "<group>"; };
+		585087301711A8B800EA6820 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		585087321711A8C100EA6820 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		585087341711A8C900EA6820 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		585087361711A8D100EA6820 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		585087381711A8D700EA6820 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5850873C1711A8E700EA6820 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5850873E1711A8EF00EA6820 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		585087411711ADA900EA6820 /* DiagnosisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosisController.h; sourceTree = "<group>"; };
+		585087421711ADA900EA6820 /* DiagnosisController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosisController.m; sourceTree = "<group>"; };
+		585087431711ADA900EA6820 /* DiagnosisController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiagnosisController.xib; sourceTree = "<group>"; };
+		585087461711B16700EA6820 /* SearchStockController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStockController.h; sourceTree = "<group>"; };
+		585087471711B16700EA6820 /* SearchStockController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStockController.m; sourceTree = "<group>"; };
+		585087481711B16700EA6820 /* SearchStockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchStockController.xib; sourceTree = "<group>"; };
+		5850874C1711B98400EA6820 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		5850874D1711B98400EA6820 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		5850874F1711BEE400EA6820 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +93,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5850873F1711A8EF00EA6820 /* MessageUI.framework in Frameworks */,
+				5850873D1711A8E700EA6820 /* SystemConfiguration.framework in Frameworks */,
+				5850873B1711A8DF00EA6820 /* MobileCoreServices.framework in Frameworks */,
+				585087391711A8D700EA6820 /* Security.framework in Frameworks */,
+				585087371711A8D100EA6820 /* CFNetwork.framework in Frameworks */,
+				585087351711A8CA00EA6820 /* libsqlite3.0.dylib in Frameworks */,
+				585087331711A8C100EA6820 /* libz.dylib in Frameworks */,
+				585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */,
+				5850872A1711A5CF00EA6820 /* libGlacierFramework.a in Frameworks */,
 				585087071711A55200EA6820 /* UIKit.framework in Frameworks */,
 				585087091711A55200EA6820 /* Foundation.framework in Frameworks */,
 				5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */,
@@ -53,6 +111,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58386F6F1712E85500B636E7 /* DetailController */ = {
+			isa = PBXGroup;
+			children = (
+				58386F79171305B700B636E7 /* TrendViews */,
+				58386F751712FDBC00B636E7 /* TrendModel */,
+				58386F701712E88900B636E7 /* DetailController.h */,
+				58386F711712E88900B636E7 /* DetailController.m */,
+				58386F721712E88900B636E7 /* DetailController.xib */,
+			);
+			path = DetailController;
+			sourceTree = "<group>";
+		};
+		58386F751712FDBC00B636E7 /* TrendModel */ = {
+			isa = PBXGroup;
+			children = (
+				58386F761712FDD400B636E7 /* TrendModel.h */,
+				58386F771712FDD400B636E7 /* TrendModel.m */,
+			);
+			path = TrendModel;
+			sourceTree = "<group>";
+		};
+		58386F79171305B700B636E7 /* TrendViews */ = {
+			isa = PBXGroup;
+			children = (
+				58386F7D17130B5500B636E7 /* TrendGraphView.h */,
+				58386F7E17130B5500B636E7 /* TrendGraphView.m */,
+				58386F7A1713062200B636E7 /* TrendView.h */,
+				58386F7B1713062200B636E7 /* TrendView.m */,
+				58386F80171316FE00B636E7 /* TrendView.xib */,
+			);
+			path = TrendViews;
+			sourceTree = "<group>";
+		};
 		585086FA1711A55200EA6820 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +164,15 @@
 		585087051711A55200EA6820 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				585087291711A5CF00EA6820 /* libGlacierFramework.a */,
+				5850873E1711A8EF00EA6820 /* MessageUI.framework */,
+				5850873C1711A8E700EA6820 /* SystemConfiguration.framework */,
+				5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */,
+				585087381711A8D700EA6820 /* Security.framework */,
+				585087361711A8D100EA6820 /* CFNetwork.framework */,
+				585087341711A8C900EA6820 /* libsqlite3.0.dylib */,
+				585087321711A8C100EA6820 /* libz.dylib */,
+				585087301711A8B800EA6820 /* libxml2.2.dylib */,
 				585087061711A55200EA6820 /* UIKit.framework */,
 				585087081711A55200EA6820 /* Foundation.framework */,
 				5850870A1711A55200EA6820 /* CoreGraphics.framework */,
@@ -83,11 +183,13 @@
 		5850870C1711A55200EA6820 /* StockDoctor */ = {
 			isa = PBXGroup;
 			children = (
+				58386F6F1712E85500B636E7 /* DetailController */,
+				585087401711AC7400EA6820 /* BaseControllers */,
 				585087151711A55200EA6820 /* AppDelegate.h */,
 				585087161711A55200EA6820 /* AppDelegate.m */,
-				5850871E1711A55200EA6820 /* ViewController.h */,
-				5850871F1711A55200EA6820 /* ViewController.m */,
-				585087211711A55200EA6820 /* ViewController.xib */,
+				5850872B1711A6AF00EA6820 /* ContainerController.h */,
+				5850872C1711A6AF00EA6820 /* ContainerController.m */,
+				5850872D1711A6AF00EA6820 /* ContainerController.xib */,
 				5850870D1711A55200EA6820 /* Supporting Files */,
 			);
 			path = StockDoctor;
@@ -105,6 +207,30 @@
 				5850871C1711A55200EA6820 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		585087401711AC7400EA6820 /* BaseControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5850874B1711B97000EA6820 /* SinaSearchModel */,
+				585087411711ADA900EA6820 /* DiagnosisController.h */,
+				585087421711ADA900EA6820 /* DiagnosisController.m */,
+				585087431711ADA900EA6820 /* DiagnosisController.xib */,
+				585087461711B16700EA6820 /* SearchStockController.h */,
+				585087471711B16700EA6820 /* SearchStockController.m */,
+				585087481711B16700EA6820 /* SearchStockController.xib */,
+				5850874F1711BEE400EA6820 /* SearchCell.xib */,
+			);
+			path = BaseControllers;
+			sourceTree = "<group>";
+		};
+		5850874B1711B97000EA6820 /* SinaSearchModel */ = {
+			isa = PBXGroup;
+			children = (
+				5850874C1711B98400EA6820 /* SearchModel.h */,
+				5850874D1711B98400EA6820 /* SearchModel.m */,
+			);
+			path = SinaSearchModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,7 +288,12 @@
 				585087191711A55200EA6820 /* Default.png in Resources */,
 				5850871B1711A55200EA6820 /* Default@2x.png in Resources */,
 				5850871D1711A55200EA6820 /* Default-568h@2x.png in Resources */,
-				585087231711A55200EA6820 /* ViewController.xib in Resources */,
+				5850872F1711A6AF00EA6820 /* ContainerController.xib in Resources */,
+				585087451711ADA900EA6820 /* DiagnosisController.xib in Resources */,
+				5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */,
+				585087501711BEE400EA6820 /* SearchCell.xib in Resources */,
+				58386F741712E88900B636E7 /* DetailController.xib in Resources */,
+				58386F81171316FE00B636E7 /* TrendView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +306,14 @@
 			files = (
 				585087131711A55200EA6820 /* main.m in Sources */,
 				585087171711A55200EA6820 /* AppDelegate.m in Sources */,
-				585087201711A55200EA6820 /* ViewController.m in Sources */,
+				5850872E1711A6AF00EA6820 /* ContainerController.m in Sources */,
+				585087441711ADA900EA6820 /* DiagnosisController.m in Sources */,
+				585087491711B16700EA6820 /* SearchStockController.m in Sources */,
+				5850874E1711B98400EA6820 /* SearchModel.m in Sources */,
+				58386F731712E88900B636E7 /* DetailController.m in Sources */,
+				58386F781712FDD400B636E7 /* TrendModel.m in Sources */,
+				58386F7C1713062200B636E7 /* TrendView.m in Sources */,
+				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +326,6 @@
 				585087101711A55200EA6820 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		585087211711A55200EA6820 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				585087221711A55200EA6820 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -228,6 +358,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -252,6 +383,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -260,10 +392,16 @@
 		585087271711A55200EA6820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -271,10 +409,16 @@
 		585087281711A55200EA6820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -298,6 +442,7 @@
 				585087281711A55200EA6820 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

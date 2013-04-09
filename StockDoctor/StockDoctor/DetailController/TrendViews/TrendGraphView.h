@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 glacier. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TrendModel.h"
 
 @interface TrendGraphView : UIView
-
+@property (nonatomic,strong) TrendModel * trendModel;
 @end

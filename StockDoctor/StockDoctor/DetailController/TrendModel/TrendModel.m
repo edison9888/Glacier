@@ -11,3 +11,7 @@
 @implementation TrendModel
 
 @end
+
+@implementation TrendCellData
+
+@end

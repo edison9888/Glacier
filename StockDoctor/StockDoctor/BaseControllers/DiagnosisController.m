@@ -7,8 +7,10 @@
 //
 
 #import "DiagnosisController.h"
+#import "SearchStockController.h"
 
 @interface DiagnosisController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
 
 @end
 
@@ -26,13 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"自选股诊断";
+    self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)onAddStock:(UIButton *)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    SearchStockController * searchController = [[SearchStockController alloc]init];
+    [[ContainerController instance]pushController:searchController animated:true];
 }
-
 @end

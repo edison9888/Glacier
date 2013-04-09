@@ -8,6 +8,7 @@
 
 #import "GlacierController.h"
 
-@interface ContainerController : GlacierController
-
+@interface ContainerController : GlacierController<UITabBarDelegate>
++ (ContainerController *)instance;
+- (void)pushController:(UIViewController *)controller animated:(BOOL)animated;
 @end

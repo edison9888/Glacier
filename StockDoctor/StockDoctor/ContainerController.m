@@ -7,9 +7,11 @@
 //
 
 #import "ContainerController.h"
+#import "DiagnosisController.h"
 
 @interface ContainerController ()
-
+@property (strong, nonatomic) IBOutlet UIView *bgView;
+@property (strong, nonatomic) UINavigationController * naviController;
 @end
 
 @implementation ContainerController
@@ -26,13 +28,51 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self switchViews:0];
 }
 
-- (void)didReceiveMemoryWarning
++ (ContainerController *)instance
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    static ContainerController * _instance;
+    if (!_instance)
+    {
+        _instance = [[ContainerController alloc]init];
+    }
+    return _instance;
+}
+
+- (void)pushController:(UIViewController *)controller animated:(BOOL)animated
+{
+    [self.naviController pushViewController:controller animated:animated];
+}
+
+- (void)switchViews:(int)index
+{
+    [self.naviController.view removeFromSuperview];
+    
+    GlacierController * contentController = nil;
+    
+    switch (index) {
+        case 0:
+            contentController = [[DiagnosisController alloc]init];
+            break;
+            
+        default:
+            break;
+    }
+    
+    UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:contentController];
+    self.naviController = navigation;
+    self.naviController.view.frame = self.bgView.bounds;
+    [self.bgView addSubview:self.naviController.view];
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if (item.tag == 0)
+    {
+        
+    }
 }
 
 @end

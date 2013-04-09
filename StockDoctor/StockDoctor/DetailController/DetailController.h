@@ -7,7 +7,8 @@
 //
 
 #import "GlacierController.h"
+#import "SearchModel.h"
 
 @interface DetailController : GlacierController
-
+@property (nonatomic,strong) SearchModel * searchModel;
 @end

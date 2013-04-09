@@ -2,12 +2,11 @@
 //  JsonObject.m
 //  GlacierFramework
 //
-//  Created by chang liang on 12-7-14.
+//  Created by cnzhao on 12-7-14.
 //  Copyright (c) 2012年 Glacier. All rights reserved.
 //
 
 #import "JSONObject.h"
-#import "JSONKit.h"
 #if (! TARGET_OS_IPHONE)
 #import <objc/objc-runtime.h>
 #else
