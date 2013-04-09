@@ -9,17 +9,7 @@
 #import "SearchStockController.h"
 #import "SearchModel.h"
 #import "DetailController.h"
-
-@interface SearchCell:UITableViewCell
-@property (strong, nonatomic) IBOutlet UIButton *addButton;
-@property (strong, nonatomic) IBOutlet UILabel *codeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@end
-
-@implementation SearchCell
-
-@end
-
+#import "SearchCell.h"
 
 @interface SearchStockController ()
 @property (strong, nonatomic) IBOutlet UITableView *searchTableView;
@@ -76,7 +66,16 @@
     SearchModel * model = self.modelList[indexPath.row];
     cell.codeLabel.text = model.shortCode;
     cell.nameLabel.text = model.shortName;
+    cell.addButton.tag = indexPath.row;
+    [cell.addButton addTarget:self action:@selector(onSearchAddBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
+}
+
+- (void)onSearchAddBtnClick:(UIButton *)button
+{
+    [SearchModel checkOrCreateTable];
+    SearchModel * model = self.modelList[button.tag];
+    [model insertSelf];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

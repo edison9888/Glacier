@@ -8,6 +8,7 @@
 #import "ASINetworkQueue.h"
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
+#import "FMDatabaseAdditions.h"
 
 struct SDKVersion 
 {

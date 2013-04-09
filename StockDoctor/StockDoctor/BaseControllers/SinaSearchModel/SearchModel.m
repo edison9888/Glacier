@@ -40,4 +40,57 @@
     
     return output;
 }
+
++ (void)checkOrCreateTable
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        if (![db tableExists:@"SelfStock"])
+        {
+            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS SelfStock(PK INTEGER PRIMARY KEY AUTOINCREMENT, keyword1 text,keyword2 text,shortName text,type text, shortCode text,fullCode text)"];
+        }
+    }];
+}
+
++ (NSArray *)selectAll
+{
+    NSMutableArray * allArr = [NSMutableArray array];
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+       
+        FMResultSet * query = [db executeQuery:@"select * from SelfStock"];
+        while ([query next])
+        {
+            SearchModel * model = [[SearchModel alloc]init];
+            model.keyword1 = [query stringForColumn:@"keyword1"];
+            model.keyword2 = [query stringForColumn:@"keyword2"];
+            model.shortName = [query stringForColumn:@"shortName"];
+            model.type = [query stringForColumn:@"type"];
+            model.shortCode = [query stringForColumn:@"shortCode"];
+            model.fullCode = [query stringForColumn:@"fullCode"];
+            [allArr addObject:model];
+        };
+    }];
+    return allArr;
+}
+
+
+- (void)insertSelf
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        FMResultSet * query = [db executeQuery:@"select count(1) from SelfStock where fullCode = ?",self.fullCode];
+        [query next];
+        int count = [query intForColumnIndex:0];
+        if (!count)
+        {
+            [db executeUpdate:@"insert into SelfStock (keyword1,keyword2,shortName,type,shortCode,fullCode) values (?,?,?,?,?,?)"
+             ,self.keyword1,self.keyword2,self.shortName,self.type,self.shortCode,self.fullCode];
+        }
+    }];
+}
 @end
+
+
+
+

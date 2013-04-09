@@ -97,7 +97,7 @@
 							<object class="IBUIButton" id="38564587">
 								<reference key="NSNextResponder" ref="579154387"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{236, 0}, {55, 44}}</string>
+								<string key="NSFrame">{{253, 6}, {55, 33}}</string>
 								<reference key="NSSuperview" ref="579154387"/>
 								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -203,8 +203,8 @@
 						<reference key="object" ref="980010912"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="310588779"/>
-							<reference ref="38564587"/>
 							<reference ref="864094071"/>
+							<reference ref="38564587"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

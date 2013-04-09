@@ -15,4 +15,8 @@
 @property (nonatomic,strong) NSString * fullCode;
 
 + (NSArray *) extractModelList:(NSString *)inputStr;
+
++ (void)checkOrCreateTable;
+- (void)insertSelf;
++ (NSArray *)selectAll;
 @end

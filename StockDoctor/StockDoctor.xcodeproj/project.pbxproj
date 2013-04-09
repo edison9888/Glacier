@@ -13,6 +13,8 @@
 		58386F7C1713062200B636E7 /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7B1713062200B636E7 /* TrendView.m */; };
 		58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7E17130B5500B636E7 /* TrendGraphView.m */; };
 		58386F81171316FE00B636E7 /* TrendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F80171316FE00B636E7 /* TrendView.xib */; };
+		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
+		58386F87171450A200B636E7 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F86171450A200B636E7 /* SearchCell.m */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -38,7 +40,6 @@
 		585087491711B16700EA6820 /* SearchStockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087471711B16700EA6820 /* SearchStockController.m */; };
 		5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087481711B16700EA6820 /* SearchStockController.xib */; };
 		5850874E1711B98400EA6820 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850874D1711B98400EA6820 /* SearchModel.m */; };
-		585087501711BEE400EA6820 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5850874F1711BEE400EA6820 /* SearchCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,9 @@
 		58386F7D17130B5500B636E7 /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
 		58386F7E17130B5500B636E7 /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
 		58386F80171316FE00B636E7 /* TrendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendView.xib; sourceTree = "<group>"; };
+		58386F831714508300B636E7 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		58386F85171450A200B636E7 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
+		58386F86171450A200B636E7 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,7 +89,6 @@
 		585087481711B16700EA6820 /* SearchStockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchStockController.xib; sourceTree = "<group>"; };
 		5850874C1711B98400EA6820 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		5850874D1711B98400EA6820 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
-		5850874F1711BEE400EA6820 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +145,16 @@
 				58386F80171316FE00B636E7 /* TrendView.xib */,
 			);
 			path = TrendViews;
+			sourceTree = "<group>";
+		};
+		58386F821714507800B636E7 /* SearchCell */ = {
+			isa = PBXGroup;
+			children = (
+				58386F831714508300B636E7 /* SearchCell.xib */,
+				58386F85171450A200B636E7 /* SearchCell.h */,
+				58386F86171450A200B636E7 /* SearchCell.m */,
+			);
+			path = SearchCell;
 			sourceTree = "<group>";
 		};
 		585086FA1711A55200EA6820 = {
@@ -212,6 +225,7 @@
 		585087401711AC7400EA6820 /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58386F821714507800B636E7 /* SearchCell */,
 				5850874B1711B97000EA6820 /* SinaSearchModel */,
 				585087411711ADA900EA6820 /* DiagnosisController.h */,
 				585087421711ADA900EA6820 /* DiagnosisController.m */,
@@ -219,7 +233,6 @@
 				585087461711B16700EA6820 /* SearchStockController.h */,
 				585087471711B16700EA6820 /* SearchStockController.m */,
 				585087481711B16700EA6820 /* SearchStockController.xib */,
-				5850874F1711BEE400EA6820 /* SearchCell.xib */,
 			);
 			path = BaseControllers;
 			sourceTree = "<group>";
@@ -291,9 +304,9 @@
 				5850872F1711A6AF00EA6820 /* ContainerController.xib in Resources */,
 				585087451711ADA900EA6820 /* DiagnosisController.xib in Resources */,
 				5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */,
-				585087501711BEE400EA6820 /* SearchCell.xib in Resources */,
 				58386F741712E88900B636E7 /* DetailController.xib in Resources */,
 				58386F81171316FE00B636E7 /* TrendView.xib in Resources */,
+				58386F841714508300B636E7 /* SearchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +327,7 @@
 				58386F781712FDD400B636E7 /* TrendModel.m in Sources */,
 				58386F7C1713062200B636E7 /* TrendView.m in Sources */,
 				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
+				58386F87171450A200B636E7 /* SearchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
