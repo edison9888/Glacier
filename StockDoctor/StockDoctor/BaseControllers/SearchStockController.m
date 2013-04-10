@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     self.title = @"添加股票";
+    self.selfStocksModelList = [SearchModel selectAll];
 }
 
 - (IBAction)onSearchTextChanged:(UITextField *)sender
@@ -42,7 +43,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     self.modelList = [SearchModel extractModelList:request.responseString];
-    self.selfStocksModelList = [SearchModel selectAll];
     [self.searchTableView reloadData];
 }
 

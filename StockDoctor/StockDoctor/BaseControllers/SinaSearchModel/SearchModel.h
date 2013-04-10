@@ -15,7 +15,10 @@
 @property (nonatomic,strong) NSString * fullCode;
 
 + (NSArray *) extractModelList:(NSString *)inputStr;
++ (NSString *) composeUrlForCodes:(NSArray *)codes;
+@end
 
+@interface SearchModel (db)
 + (void)checkOrCreateTable;
 - (void)insertSelf;
 - (void)deleteSelf;

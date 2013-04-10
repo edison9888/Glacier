@@ -40,6 +40,9 @@
 		585087491711B16700EA6820 /* SearchStockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087471711B16700EA6820 /* SearchStockController.m */; };
 		5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087481711B16700EA6820 /* SearchStockController.xib */; };
 		5850874E1711B98400EA6820 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850874D1711B98400EA6820 /* SearchModel.m */; };
+		58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2317159398005A15CC /* SinaBaseDataModel.m */; };
+		58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C271715AF40005A15CC /* DiagnosisCell.m */; };
+		58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C291715AF4D005A15CC /* DiagnosisCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +92,11 @@
 		585087481711B16700EA6820 /* SearchStockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchStockController.xib; sourceTree = "<group>"; };
 		5850874C1711B98400EA6820 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		5850874D1711B98400EA6820 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		58734C2217159398005A15CC /* SinaBaseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaBaseDataModel.h; sourceTree = "<group>"; };
+		58734C2317159398005A15CC /* SinaBaseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaBaseDataModel.m; sourceTree = "<group>"; };
+		58734C261715AF40005A15CC /* DiagnosisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosisCell.h; sourceTree = "<group>"; };
+		58734C271715AF40005A15CC /* DiagnosisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosisCell.m; sourceTree = "<group>"; };
+		58734C291715AF4D005A15CC /* DiagnosisCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiagnosisCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +233,7 @@
 		585087401711AC7400EA6820 /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58734C251715AF25005A15CC /* DiagnosisCell */,
 				58386F821714507800B636E7 /* SearchCell */,
 				5850874B1711B97000EA6820 /* SinaSearchModel */,
 				585087411711ADA900EA6820 /* DiagnosisController.h */,
@@ -242,8 +251,20 @@
 			children = (
 				5850874C1711B98400EA6820 /* SearchModel.h */,
 				5850874D1711B98400EA6820 /* SearchModel.m */,
+				58734C2217159398005A15CC /* SinaBaseDataModel.h */,
+				58734C2317159398005A15CC /* SinaBaseDataModel.m */,
 			);
 			path = SinaSearchModel;
+			sourceTree = "<group>";
+		};
+		58734C251715AF25005A15CC /* DiagnosisCell */ = {
+			isa = PBXGroup;
+			children = (
+				58734C261715AF40005A15CC /* DiagnosisCell.h */,
+				58734C271715AF40005A15CC /* DiagnosisCell.m */,
+				58734C291715AF4D005A15CC /* DiagnosisCell.xib */,
+			);
+			path = DiagnosisCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +328,7 @@
 				58386F741712E88900B636E7 /* DetailController.xib in Resources */,
 				58386F81171316FE00B636E7 /* TrendView.xib in Resources */,
 				58386F841714508300B636E7 /* SearchCell.xib in Resources */,
+				58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +350,8 @@
 				58386F7C1713062200B636E7 /* TrendView.m in Sources */,
 				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
 				58386F87171450A200B636E7 /* SearchCell.m in Sources */,
+				58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */,
+				58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

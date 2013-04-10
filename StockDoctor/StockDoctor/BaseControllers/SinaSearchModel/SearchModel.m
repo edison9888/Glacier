@@ -41,6 +41,32 @@
     return output;
 }
 
++ (NSString *)composeUrlForCodes:(NSArray *)codes
+{
+    if (codes.count == 0)
+    {
+        return nil;
+    }
+    else
+    {
+        NSMutableString * codesUrl = [NSMutableString string];
+        [codes enumerateObjectsUsingBlock:^(SearchModel * obj, NSUInteger idx, BOOL *stop){
+            if (idx == codes.count - 1)
+            {
+                [codesUrl appendString:obj.fullCode];
+            }
+            else
+            {
+                [codesUrl appendFormat:@"%@,",obj.fullCode];
+            }
+        }];
+        return codesUrl;
+    }
+}
+@end
+
+@implementation SearchModel (db)
+
 + (void)checkOrCreateTable
 {
     FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
@@ -57,7 +83,7 @@
     NSMutableArray * allArr = [NSMutableArray array];
     FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-       
+        
         FMResultSet * query = [db executeQuery:@"select * from SelfStock"];
         while ([query next])
         {

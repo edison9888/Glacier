@@ -9,12 +9,14 @@
 #import "DiagnosisController.h"
 #import "SearchStockController.h"
 #import "SearchModel.h"
-#import "SearchCell.h"
 #import "DetailController.h"
+#import "SinaBaseDataModel.h"
+#import "DiagnosisCell.h"
 
 @interface DiagnosisController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
 @property (strong, nonatomic) NSArray * modelList;
+@property (strong, nonatomic) NSArray * sinaDataList;
 @property (strong, nonatomic) IBOutlet UITableView *stockTableView;
 @end
 
@@ -41,6 +43,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.modelList = [SearchModel selectAll];
+    NSString * url = @"http://hq.sinajs.cn/list=%@";
+    [self doHttpRequest:[NSString stringWithFormat:url,[SearchModel composeUrlForCodes:self.modelList]]];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSArray * respArr = [SinaBaseDataModel extractModelList:request.responseString];
+    self.sinaDataList = respArr;
     [self.stockTableView reloadData];
 }
 
@@ -58,15 +68,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * idStr = @"SearchCell";
-    SearchCell * cell = [tableView dequeueReusableCellWithIdentifier:idStr];
+    DiagnosisCell * cell = [tableView dequeueReusableCellWithIdentifier:idStr];
     if (!cell)
     {
-        cell = [[NSBundle mainBundle]loadNibNamed:@"SearchCell" owner:nil options:nil][0];
+        cell = [[NSBundle mainBundle]loadNibNamed:@"DiagnosisCell" owner:nil options:nil][0];
     }
     SearchModel * model = self.modelList[indexPath.row];
-    cell.codeLabel.text = model.shortCode;
-    cell.nameLabel.text = model.shortName;
-    cell.addButton.hidden = true;
+    cell.stockCodeLabel.text = model.shortCode;
+    cell.stockNameLabel.text = model.shortName;
+    
+    [self.sinaDataList each:^(SinaBaseDataModel * sender)
+    {
+        if ([sender.fullCode isEqualToString:model.fullCode])
+        {
+            cell.priceLabel.text = sender.currentPrice;
+            cell.changLabel.text = sender.change;
+            if (sender.changeState > 0)
+            {
+                cell.changLabel.textColor = [UIColor redColor];
+            }
+            else if (sender.changeState < 0)
+            {
+                cell.changLabel.textColor = [UIColor greenColor];
+            }
+            else
+            {
+                cell.changLabel.textColor = [UIColor darkGrayColor];
+            }
+        }
+    }];
+    
     return cell;
 }
 
