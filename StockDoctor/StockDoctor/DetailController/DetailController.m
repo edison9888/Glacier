@@ -8,10 +8,14 @@
 
 #import "DetailController.h"
 #import "TrendModel.h"
-#import "TrendView.h"
+#import "TrendGraphView.h"
+#import "StockInfoView.h"
 
 @interface DetailController ()
-@property (strong, nonatomic) IBOutlet TrendView *trendView;
+@property (strong, nonatomic) IBOutlet TrendGraphView * trendGraphView;
+@property (strong, nonatomic) IBOutlet StockInfoView *stockInfoView;
+@property (strong, nonatomic) TrendModel * trendModel;
+@property (strong, nonatomic) StockBaseInfoModel * stockBaseInfoModel;
 
 @end
 
@@ -54,7 +58,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSArray * respArr = [request.responseString componentsSeparatedByString:@";"];
-    TrendModel * trendModel = [[TrendModel alloc]init];
     
     [respArr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop) {
         if (idx < 2)
@@ -66,27 +69,21 @@
             
             if(idx == 0)
             {
-                trendModel.preClosePrice = arr[3][1];
+                self.stockBaseInfoModel = [StockBaseInfoModel parseJson:arr[3]];
             }
             else if (idx == 1)
             {
-                
-                NSMutableArray * cellList = [NSMutableArray array];
-                NSArray * listArr = arr[3];
-                for (NSArray * cellArr in listArr)
-                {
-                    TrendCellData * cell = [[TrendCellData alloc]init];
-                    cell.price = cellArr[0];
-                    cell.volume = cellArr[1];
-                    cell.amount = cellArr[2];
-                    [cellList addObject:cell];
-                }
-                trendModel.trendCellDataList = cellList;
+               self.trendModel = [TrendModel parseJson:arr[3]];
             }
         }
     }];
     
-    self.trendView.trendModel = trendModel;
+    self.trendGraphView.stockBaseInfoModel = self.stockBaseInfoModel;
+    self.trendGraphView.trendModel = self.trendModel;
+    self.stockInfoView.stockBaseInfoModel = self.stockBaseInfoModel;
+    
+    [self.trendGraphView reloadData];
+    [self.stockInfoView reloadData];
 }
 
 

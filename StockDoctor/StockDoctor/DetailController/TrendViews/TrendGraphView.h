@@ -10,4 +10,6 @@
 
 @interface TrendGraphView : UIView
 @property (nonatomic,strong) TrendModel * trendModel;
-@end
+@property (nonatomic,strong) StockBaseInfoModel * stockBaseInfoModel;
+- (void)reloadData;
+@end 

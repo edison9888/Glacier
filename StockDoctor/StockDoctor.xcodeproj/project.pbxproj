@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
-		58386F781712FDD400B636E7 /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F771712FDD400B636E7 /* TrendModel.m */; };
 		58386F7C1713062200B636E7 /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7B1713062200B636E7 /* TrendView.m */; };
 		58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7E17130B5500B636E7 /* TrendGraphView.m */; };
 		58386F81171316FE00B636E7 /* TrendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F80171316FE00B636E7 /* TrendView.xib */; };
@@ -43,14 +42,15 @@
 		58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2317159398005A15CC /* SinaBaseDataModel.m */; };
 		58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C271715AF40005A15CC /* DiagnosisCell.m */; };
 		58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C291715AF4D005A15CC /* DiagnosisCell.xib */; };
+		58734C2E1716D821005A15CC /* StockInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2D1716D821005A15CC /* StockInfoView.m */; };
+		58734C301716D83F005A15CC /* StockInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C2F1716D83F005A15CC /* StockInfoView.xib */; };
+		58734C341716DCE3005A15CC /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C331716DCE3005A15CC /* TrendModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
-		58386F761712FDD400B636E7 /* TrendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendModel.h; sourceTree = "<group>"; };
-		58386F771712FDD400B636E7 /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
 		58386F7A1713062200B636E7 /* TrendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendView.h; sourceTree = "<group>"; };
 		58386F7B1713062200B636E7 /* TrendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendView.m; sourceTree = "<group>"; };
 		58386F7D17130B5500B636E7 /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
@@ -97,6 +97,11 @@
 		58734C261715AF40005A15CC /* DiagnosisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosisCell.h; sourceTree = "<group>"; };
 		58734C271715AF40005A15CC /* DiagnosisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiagnosisCell.m; sourceTree = "<group>"; };
 		58734C291715AF4D005A15CC /* DiagnosisCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DiagnosisCell.xib; sourceTree = "<group>"; };
+		58734C2C1716D821005A15CC /* StockInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockInfoView.h; sourceTree = "<group>"; };
+		58734C2D1716D821005A15CC /* StockInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockInfoView.m; sourceTree = "<group>"; };
+		58734C2F1716D83F005A15CC /* StockInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockInfoView.xib; sourceTree = "<group>"; };
+		58734C321716DCE3005A15CC /* TrendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendModel.h; sourceTree = "<group>"; };
+		58734C331716DCE3005A15CC /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,22 +130,14 @@
 		58386F6F1712E85500B636E7 /* DetailController */ = {
 			isa = PBXGroup;
 			children = (
+				58734C2B1716D7E0005A15CC /* InfoViews */,
 				58386F79171305B700B636E7 /* TrendViews */,
-				58386F751712FDBC00B636E7 /* TrendModel */,
+				58734C311716DCE3005A15CC /* StockModel */,
 				58386F701712E88900B636E7 /* DetailController.h */,
 				58386F711712E88900B636E7 /* DetailController.m */,
 				58386F721712E88900B636E7 /* DetailController.xib */,
 			);
 			path = DetailController;
-			sourceTree = "<group>";
-		};
-		58386F751712FDBC00B636E7 /* TrendModel */ = {
-			isa = PBXGroup;
-			children = (
-				58386F761712FDD400B636E7 /* TrendModel.h */,
-				58386F771712FDD400B636E7 /* TrendModel.m */,
-			);
-			path = TrendModel;
 			sourceTree = "<group>";
 		};
 		58386F79171305B700B636E7 /* TrendViews */ = {
@@ -267,6 +264,25 @@
 			path = DiagnosisCell;
 			sourceTree = "<group>";
 		};
+		58734C2B1716D7E0005A15CC /* InfoViews */ = {
+			isa = PBXGroup;
+			children = (
+				58734C2C1716D821005A15CC /* StockInfoView.h */,
+				58734C2D1716D821005A15CC /* StockInfoView.m */,
+				58734C2F1716D83F005A15CC /* StockInfoView.xib */,
+			);
+			path = InfoViews;
+			sourceTree = "<group>";
+		};
+		58734C311716DCE3005A15CC /* StockModel */ = {
+			isa = PBXGroup;
+			children = (
+				58734C321716DCE3005A15CC /* TrendModel.h */,
+				58734C331716DCE3005A15CC /* TrendModel.m */,
+			);
+			path = StockModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -329,6 +345,7 @@
 				58386F81171316FE00B636E7 /* TrendView.xib in Resources */,
 				58386F841714508300B636E7 /* SearchCell.xib in Resources */,
 				58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */,
+				58734C301716D83F005A15CC /* StockInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,12 +363,13 @@
 				585087491711B16700EA6820 /* SearchStockController.m in Sources */,
 				5850874E1711B98400EA6820 /* SearchModel.m in Sources */,
 				58386F731712E88900B636E7 /* DetailController.m in Sources */,
-				58386F781712FDD400B636E7 /* TrendModel.m in Sources */,
 				58386F7C1713062200B636E7 /* TrendView.m in Sources */,
 				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
 				58386F87171450A200B636E7 /* SearchCell.m in Sources */,
 				58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */,
 				58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */,
+				58734C2E1716D821005A15CC /* StockInfoView.m in Sources */,
+				58734C341716DCE3005A15CC /* TrendModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

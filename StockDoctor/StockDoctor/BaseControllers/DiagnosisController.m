@@ -43,8 +43,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.modelList = [SearchModel selectAll];
-    NSString * url = @"http://hq.sinajs.cn/list=%@";
-    [self doHttpRequest:[NSString stringWithFormat:url,[SearchModel composeUrlForCodes:self.modelList]]];
+    if (self.modelList.count > 0)
+    {
+        NSString * url = @"http://hq.sinajs.cn/list=%@";
+        [self doHttpRequest:[NSString stringWithFormat:url,[SearchModel composeUrlForCodes:self.modelList]]];
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

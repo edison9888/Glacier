@@ -25,7 +25,7 @@
 {
     __block float halfHeight = FLT_MIN;
     
-    float preClose = self.trendModel.preClosePrice.floatValue;
+    float preClose = self.stockBaseInfoModel.preClose.floatValue;
     
     [self.trendModel.trendCellDataList enumerateObjectsUsingBlock:^(TrendCellData * obj, NSUInteger idx, BOOL *stop) {
         if (ABS(obj.price.floatValue - preClose) > halfHeight)
@@ -50,11 +50,14 @@
     
     [self.trendModel.trendCellDataList enumerateObjectsUsingBlock:^(TrendCellData * obj, NSUInteger idx, BOOL *stop) {
         [bezierPath addLineToPoint:CGPointMake(idx * xStep,yPoint(obj.price.floatValue))];
-//        [bezierPath moveToPoint:CGPointMake(idx * xStep,yPoint(obj.price.floatValue))];
     }];
     return bezierPath;
 }
 
+- (void)reloadData
+{
+    [self setNeedsDisplay];
+}
 
 - (void)drawRect:(CGRect)rect
 {
