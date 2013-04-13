@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
-		58386F7C1713062200B636E7 /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7B1713062200B636E7 /* TrendView.m */; };
 		58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7E17130B5500B636E7 /* TrendGraphView.m */; };
-		58386F81171316FE00B636E7 /* TrendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F80171316FE00B636E7 /* TrendView.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
 		58386F87171450A200B636E7 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F86171450A200B636E7 /* SearchCell.m */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
@@ -45,17 +43,16 @@
 		58734C2E1716D821005A15CC /* StockInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2D1716D821005A15CC /* StockInfoView.m */; };
 		58734C301716D83F005A15CC /* StockInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C2F1716D83F005A15CC /* StockInfoView.xib */; };
 		58734C341716DCE3005A15CC /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C331716DCE3005A15CC /* TrendModel.m */; };
+		58A54266171853F000708CED /* KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A54265171853F000708CED /* KLineView.m */; };
+		58A5426917185F4400708CED /* KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A5426817185F4400708CED /* KLineModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
-		58386F7A1713062200B636E7 /* TrendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendView.h; sourceTree = "<group>"; };
-		58386F7B1713062200B636E7 /* TrendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendView.m; sourceTree = "<group>"; };
 		58386F7D17130B5500B636E7 /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
 		58386F7E17130B5500B636E7 /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
-		58386F80171316FE00B636E7 /* TrendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrendView.xib; sourceTree = "<group>"; };
 		58386F831714508300B636E7 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		58386F85171450A200B636E7 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		58386F86171450A200B636E7 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
@@ -102,6 +99,10 @@
 		58734C2F1716D83F005A15CC /* StockInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockInfoView.xib; sourceTree = "<group>"; };
 		58734C321716DCE3005A15CC /* TrendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendModel.h; sourceTree = "<group>"; };
 		58734C331716DCE3005A15CC /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
+		58A54264171853F000708CED /* KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineView.h; sourceTree = "<group>"; };
+		58A54265171853F000708CED /* KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineView.m; sourceTree = "<group>"; };
+		58A5426717185F4400708CED /* KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineModel.h; sourceTree = "<group>"; };
+		58A5426817185F4400708CED /* KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +133,7 @@
 			children = (
 				58734C2B1716D7E0005A15CC /* InfoViews */,
 				58386F79171305B700B636E7 /* TrendViews */,
+				58A54263171852BF00708CED /* KLineViews */,
 				58734C311716DCE3005A15CC /* StockModel */,
 				58386F701712E88900B636E7 /* DetailController.h */,
 				58386F711712E88900B636E7 /* DetailController.m */,
@@ -145,9 +147,6 @@
 			children = (
 				58386F7D17130B5500B636E7 /* TrendGraphView.h */,
 				58386F7E17130B5500B636E7 /* TrendGraphView.m */,
-				58386F7A1713062200B636E7 /* TrendView.h */,
-				58386F7B1713062200B636E7 /* TrendView.m */,
-				58386F80171316FE00B636E7 /* TrendView.xib */,
 			);
 			path = TrendViews;
 			sourceTree = "<group>";
@@ -279,8 +278,19 @@
 			children = (
 				58734C321716DCE3005A15CC /* TrendModel.h */,
 				58734C331716DCE3005A15CC /* TrendModel.m */,
+				58A5426717185F4400708CED /* KLineModel.h */,
+				58A5426817185F4400708CED /* KLineModel.m */,
 			);
 			path = StockModel;
+			sourceTree = "<group>";
+		};
+		58A54263171852BF00708CED /* KLineViews */ = {
+			isa = PBXGroup;
+			children = (
+				58A54264171853F000708CED /* KLineView.h */,
+				58A54265171853F000708CED /* KLineView.m */,
+			);
+			path = KLineViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,7 +352,6 @@
 				585087451711ADA900EA6820 /* DiagnosisController.xib in Resources */,
 				5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */,
 				58386F741712E88900B636E7 /* DetailController.xib in Resources */,
-				58386F81171316FE00B636E7 /* TrendView.xib in Resources */,
 				58386F841714508300B636E7 /* SearchCell.xib in Resources */,
 				58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */,
 				58734C301716D83F005A15CC /* StockInfoView.xib in Resources */,
@@ -363,13 +372,14 @@
 				585087491711B16700EA6820 /* SearchStockController.m in Sources */,
 				5850874E1711B98400EA6820 /* SearchModel.m in Sources */,
 				58386F731712E88900B636E7 /* DetailController.m in Sources */,
-				58386F7C1713062200B636E7 /* TrendView.m in Sources */,
 				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
 				58386F87171450A200B636E7 /* SearchCell.m in Sources */,
 				58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */,
 				58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */,
 				58734C2E1716D821005A15CC /* StockInfoView.m in Sources */,
 				58734C341716DCE3005A15CC /* TrendModel.m in Sources */,
+				58A54266171853F000708CED /* KLineView.m in Sources */,
+				58A5426917185F4400708CED /* KLineModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,7 +458,7 @@
 		585087271711A55200EA6820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
@@ -465,7 +475,7 @@
 		585087281711A55200EA6820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";

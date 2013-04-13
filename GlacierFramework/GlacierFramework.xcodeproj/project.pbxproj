@@ -23,6 +23,8 @@
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
 		5885340515B2F725009569A5 /* SharedApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5885340315B2F725009569A5 /* SharedApp.m */; };
+		5898FB58171925D600F7616D /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898FB55171925D600F7616D /* DateHelpers.h */; };
+		5898FB59171925D600F7616D /* DateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898FB56171925D600F7616D /* DateHelpers.m */; };
 		58D341A617145D8D0055E971 /* BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A317145D8D0055E971 /* BlocksKit.h */; };
 		58D341A717145D8D0055E971 /* NSArray+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */; };
 		58D341A817145D8D0055E971 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */; };
@@ -86,6 +88,9 @@
 		588533FF15B2F650009569A5 /* GlacierController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlacierController.m; sourceTree = "<group>"; };
 		5885340215B2F725009569A5 /* SharedApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApp.h; sourceTree = "<group>"; };
 		5885340315B2F725009569A5 /* SharedApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedApp.m; sourceTree = "<group>"; };
+		5898FB55171925D600F7616D /* DateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelpers.h; sourceTree = "<group>"; };
+		5898FB56171925D600F7616D /* DateHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelpers.m; sourceTree = "<group>"; };
+		5898FB57171925D600F7616D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		58D341A317145D8D0055E971 /* BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksKit.h; sourceTree = "<group>"; };
 		58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
 		58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
@@ -175,6 +180,16 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		5898FB54171925D600F7616D /* DateHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				5898FB55171925D600F7616D /* DateHelpers.h */,
+				5898FB56171925D600F7616D /* DateHelpers.m */,
+				5898FB57171925D600F7616D /* README */,
+			);
+			path = DateHelpers;
+			sourceTree = "<group>";
+		};
 		58D341A217145D8D0055E971 /* BlockKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +214,7 @@
 				58D341A217145D8D0055E971 /* BlockKit */,
 				A5BF20C01630EBC100EDE716 /* GDataXML */,
 				58EDDE1115D5F89A00D9AADC /* CocoaAsyncSocket */,
+				5898FB54171925D600F7616D /* DateHelpers */,
 				58EDDD7E15D5F4EF00D9AADC /* ASI */,
 				581D669916DBBC51007674F7 /* FMDB */,
 				58EDDD9B15D5F4EF00D9AADC /* JSONKit */,
@@ -381,6 +397,7 @@
 				58D341B317145DFF0055E971 /* NSIndexSet+BlocksKit.h in Headers */,
 				58D341B517145DFF0055E971 /* NSSet+BlocksKit.h in Headers */,
 				58D341B817145E9B0055E971 /* BKGlobals.h in Headers */,
+				5898FB58171925D600F7616D /* DateHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +477,7 @@
 				58D341B217145DFF0055E971 /* NSDictionary+BlocksKit.m in Sources */,
 				58D341B417145DFF0055E971 /* NSIndexSet+BlocksKit.m in Sources */,
 				58D341B617145DFF0055E971 /* NSSet+BlocksKit.m in Sources */,
+				5898FB59171925D600F7616D /* DateHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,11 +10,11 @@
 
 @implementation KLineView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }

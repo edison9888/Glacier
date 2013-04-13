@@ -65,14 +65,13 @@
 {
     TrendModel * trendModel = [[TrendModel alloc]init];
     NSMutableArray * cellList = [NSMutableArray array];
-    for (NSArray * cellArr in jsonArr)
-    {
+    [jsonArr enumerateObjectsUsingBlock:^(NSArray * obj, NSUInteger idx, BOOL *stop) {
         TrendCellData * cell = [[TrendCellData alloc]init];
-        cell.price = cellArr[0];
-        cell.volume = cellArr[1];
-        cell.amount = cellArr[2];
+        cell.price = obj[0];
+        cell.volume = obj[1];
+        cell.amount = obj[2];
         [cellList addObject:cell];
-    }
+    }];
     trendModel.trendCellDataList = cellList;
     return trendModel;
 }
