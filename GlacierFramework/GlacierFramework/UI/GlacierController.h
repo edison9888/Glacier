@@ -19,6 +19,7 @@
 
 @interface GlacierController(http)
 -(void) doHttpRequest:(NSString *) requestUrl;
+-(void) doHttpRequest:(NSString *) requestUrl tag:(int)tag;
 -(void) doHttpRequest:(NSString *) requestUrl userInfo:(NSDictionary *)info;
 -(void) doHttpRequest:(NSString *) requestUrl postData:(NSData *)data;
 -(void) doHttpRequest:(NSString *) requestUrl postJSONData:(JSONObject *)json;

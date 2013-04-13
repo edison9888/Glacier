@@ -34,6 +34,14 @@
     [wRequest release];
 }
 
+-(void) doHttpRequest:(NSString *) requestUrl tag:(int)tag
+{
+    ASIHTTPRequest * wRequest = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
+    wRequest.tag = tag;
+    [self doRawHttpRequest:wRequest];
+    [wRequest release];
+}
+
 -(void) doHttpRequest:(NSString *) requestUrl userInfo:(NSDictionary *)info;
 {
     ASIHTTPRequest * wRequest = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
