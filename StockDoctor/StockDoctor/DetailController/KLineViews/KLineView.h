@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KLineModel.h"
 
 @interface KLineView : UIView
-
+- (void)reloadData:(KLineModel *)model;
 @end

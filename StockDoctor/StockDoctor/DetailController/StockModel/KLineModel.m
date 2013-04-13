@@ -9,6 +9,7 @@
 #import "KLineModel.h"
 
 @implementation KLineModel
+
 + (KLineModel *)parseData:(NSString *)responseString
 {
     KLineModel * model = [[KLineModel alloc]init];
@@ -29,6 +30,7 @@
             cellData.close = subArr[4];
             cellData.volume = subArr[5];
             cellData.adjClose = subArr[6];
+            
             [cellDataList addObject:cellData];
         }
     }];

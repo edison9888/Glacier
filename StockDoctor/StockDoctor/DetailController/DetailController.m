@@ -12,6 +12,7 @@
 #import "StockInfoView.h"
 #import "KLineView.h"
 #import "KLineModel.h"
+#import "DateHelpers.h"
 
 @interface DetailController ()
 @property (strong, nonatomic) IBOutlet TrendGraphView * trendGraphView;
@@ -50,8 +51,28 @@
     NSString * freq = freqs[index - 1];
     
     NSDate * date = [NSDate date];
-        
-    NSString * url = @"http://ichart.yahoo.com/table.csv?s=%@.%@&g=%@&f=2013&d=4&e=10&c=2013&a=3&b=1&ignore=.csv&n=2";
+    
+    NSDate * fromDate = nil;
+    
+    if ([freq isEqualToString:@"d"])
+    {
+        fromDate = shiftDateByXdays(date, -120);
+    }
+    else if([freq isEqualToString:@"w"])
+    {
+        fromDate = shiftDateByXweeks(date, -57);
+    }
+    else
+    {
+        fromDate = shiftDateByXmonths(date, -52);
+    }
+    
+    
+    NSDateComponents * comp = dateComponentFrom(fromDate);
+    
+//    @"http://ichart.yahoo.com/table.csv?s=%@.%@&g=%@&f=2013&d=4&e=10&c=2013&a=3&b=1&ignore=.csv&n=2";
+    
+    NSString * url = @"http://ichart.yahoo.com/table.csv?s=%@.%@&g=%@&c=%d&a=%d&b=%d&ignore=.csv";
 
     NSString * type = nil;
     if ([self.searchModel.fullCode hasPrefix:@"sh"])
@@ -63,7 +84,9 @@
         type = @"sz";
     }
     
-    NSString * requestStr = [NSString stringWithFormat:url,self.searchModel.shortCode,type,freq];
+    //月和日不正确时，会请求到所有的数据，速度很慢，暂时写死1月1日
+    NSString * requestStr = [NSString stringWithFormat:url,self.searchModel.shortCode,type,freq,comp.year,1,1];
+    
     [self doHttpRequest:requestStr tag:1];
 }
 
@@ -104,7 +127,8 @@
 - (void)processKLineData:(ASIHTTPRequest *)request
 {
     self.kLineModel = [KLineModel parseData:request.responseString];
-    NSLog(@"%@",request.responseString);
+//    NSLog(@"%@",request.responseString);
+    [self.kLineView reloadData:self.kLineModel];
 }
 
 - (void)processTrendData:(ASIHTTPRequest *)request

@@ -11,6 +11,9 @@
 #define WidthRate (24/30.0)
 #define HeightRate (26/30.0)
 
+
+#define yPoint(price) (ABS(_topPrice - price) / (2 * _halfHeightPrice) * rect.size.height)
+
 @interface TrendGraphView()
 @property (nonatomic,strong)  NSMutableArray * aveList;
 @property (nonatomic,strong) UIFont * textFont;
@@ -53,7 +56,6 @@
     _buttomPrice = _preClose - _halfHeightPrice;
 }
 
-#define yPoint(price) (ABS(_topPrice - price) / (2 * _halfHeightPrice) * rect.size.height)
 
 - (UIBezierPath *) pathForData:(CGRect)rect
 {
@@ -113,6 +115,8 @@
     self.aveList = arr;
 }
 
+#pragma mark 绘图区域
+
 //数据区域
 - (CGRect)dataRect
 {
@@ -166,6 +170,8 @@
         [self drawButtomString:[self buttomStringRect]];
     }
 }
+
+#pragma mark 绘图方法
 
 - (void)drawLeftString:(CGRect)rect
 {
