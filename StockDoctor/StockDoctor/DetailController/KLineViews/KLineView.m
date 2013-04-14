@@ -35,6 +35,9 @@
     return self;
 }
 
+
+
+
 - (void)reloadData:(KLineModel *)model
 {
     KLineModel * copyModel = [[KLineModel alloc]init];
@@ -63,6 +66,26 @@
     [self setNeedsDisplay];
 }
 
+#pragma mark 绘制区域
+
+//网格区域区域
+- (CGRect)gridRect
+{
+    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 ,
+                      self.bounds.size.height * (1 - HeightRate) / 2,
+                      self.bounds.size.width * WidthRate,
+                      self.bounds.size.height * HeightRate);
+}
+
+//数据区域
+- (CGRect)dataRect
+{
+    CGFloat lineWidth = 1;
+    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 + lineWidth,
+                      self.bounds.size.height * (1 - HeightRate) / 2 + lineWidth,
+                      self.bounds.size.width * WidthRate - lineWidth * 2,
+                      self.bounds.size.height * HeightRate - lineWidth * 2);
+}
 
 
 - (UIBezierPath *) pathForData:(CGRect)rect data:(NSArray *)dataList
@@ -111,8 +134,8 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [self drawHorizontalGridInRect:[self dataRect]];
-    [self drawVerticalGridInRect:[self dataRect]];
+    [self drawHorizontalGridInRect:[self gridRect]];
+    [self drawVerticalGridInRect:[self gridRect]];
     [self calcTopAndButtomPrice];
     [self drawBarSeries:[self dataRect]];
     
@@ -122,17 +145,6 @@
     
     [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
 }
-
-//数据区域
-- (CGRect)dataRect
-{
-    
-    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 ,
-                      self.bounds.size.height * (1 - HeightRate) / 2,
-                      self.bounds.size.width * WidthRate,
-                      self.bounds.size.height * HeightRate);
-}
-
 
 - (void)drawDataLine:(CGRect)rect data:(NSArray *)dataList color:(UIColor *)lineColor
 {
