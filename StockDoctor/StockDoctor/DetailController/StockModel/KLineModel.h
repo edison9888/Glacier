@@ -21,5 +21,4 @@
 @property (nonatomic,strong) NSString * low;
 @property (nonatomic,strong) NSString * close;
 @property (nonatomic,strong) NSString * volume;
-@property (nonatomic,strong) NSString * adjClose;
 @end

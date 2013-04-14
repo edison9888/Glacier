@@ -10,33 +10,42 @@
 
 @implementation KLineModel
 
-+ (KLineModel *)parseData:(NSString *)responseString
++ (KLineModel *)parseData:(NSString *)responseString 
 {
     KLineModel * model = [[KLineModel alloc]init];
     
     NSMutableArray * cellDataList = [NSMutableArray array];
     
-    NSArray * arr = [responseString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
-    {
-        if (idx > 0 && obj.length > 0)
-        {
-            NSArray * subArr = [obj componentsSeparatedByString:@","];
-            KLineCellData * cellData = [[KLineCellData alloc]init];
-            cellData.date = subArr[0];
-            cellData.open = subArr[1];
-            cellData.high = subArr[2];
-            cellData.low = subArr[3];
-            cellData.close = subArr[4];
-            cellData.volume = subArr[5];
-            cellData.adjClose = subArr[6];
-            
-            [cellDataList addObject:cellData];
-        }
-    }];
+    NSDictionary * dict = [responseString objectFromJSONString];
     
-    model.cellDataList = cellDataList;
-    return model;
+    NSNumber * code = dict[@"code"];
+    
+    if (code.intValue == 0)
+    {
+        NSDictionary * dataDict = dict[@"data"];
+        NSDictionary * codeDict = dataDict.allValues[0];
+        NSArray * arr = codeDict.allValues[0];
+        
+        
+        [arr enumerateObjectsUsingBlock:^(NSArray * subArr, NSUInteger idx, BOOL *stop)
+         {
+             
+             KLineCellData * cellData = [[KLineCellData alloc]init];
+             cellData.date = subArr[0];
+             cellData.open = subArr[1];
+             cellData.close = subArr[2];
+             cellData.high = subArr[3];
+             cellData.low = subArr[4];
+             cellData.volume = subArr[5];
+             [cellDataList addObject:cellData];
+         }];
+        
+        model.cellDataList = cellDataList;
+        return model;
+    }
+    else
+        return nil;
+   
 }
 @end
 
