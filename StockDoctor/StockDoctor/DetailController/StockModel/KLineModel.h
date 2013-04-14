@@ -15,6 +15,7 @@
 
 //生成均线数据
 - (NSArray *)generateMAData:(int)range  WithCount:(int)count;
+- (NSArray *)generateVerSepIndexList;
 @end
 
 @interface KLineCellData : NSObject

@@ -212,7 +212,7 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
     CGFloat interval = CGRectGetWidth(rect) / (stringCount - 1);
-    [[UIColor colorWithWhite:0.75 alpha:1] setFill];
+    [[UIColor grayColor] setFill];
     [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
      {
          CGFloat width = [obj sizeWithFont:self.textFont].width;
@@ -246,18 +246,18 @@
     int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path setLineWidth:1.0];
-    [path moveToPoint:CGPointMake(rint(CGRectGetMinX(rect)),
-                                  rint(CGRectGetMinY(rect)) + 0.5)];
-    [path addLineToPoint:CGPointMake(rint(CGRectGetMaxX(rect)),
-                                     rint(CGRectGetMinY(rect))+ 0.5)];
-    UIColor * gridColor = [UIColor colorWithWhite:0.25f alpha:1];
+    [path setLineWidth:0.5];
+    [path moveToPoint:CGPointMake(CGRectGetMinX(rect),
+                                  CGRectGetMinY(rect))];
+    [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect),
+                                     CGRectGetMinY(rect))];
+    UIColor * gridColor = [UIColor grayColor];
     [gridColor setStroke];
     
     CGContextSaveGState(context);
     [path stroke];
     for(int i = 0;i < lineCount;i++) {
-        CGContextTranslateCTM(context, 0.0, rint(CGRectGetHeight(rect) / (float)(lineCount )));
+        CGContextTranslateCTM(context, 0.0, CGRectGetHeight(rect) / lineCount);
         [path stroke];
     }
     CGContextRestoreGState(context);

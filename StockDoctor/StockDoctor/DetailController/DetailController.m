@@ -89,14 +89,19 @@
     }
     else
     {
-        [self processKLineData:request];
+        [self processKLineData:request tag:request.tag];
     }
 }
 
-- (void)processKLineData:(ASIHTTPRequest *)request
+- (void)processKLineData:(ASIHTTPRequest *)request tag:(int)tag
 {
     self.kLineModel = [KLineModel parseData:request.responseString];
-    NSLog(@"%@",request.responseString);
+    
+    NSArray * freqs = @[@"day",@"week",@"month"];
+    
+    self.kLineModel.freq = freqs[tag - 1];
+    
+//    NSLog(@"%@",request.responseString);
     [self.kLineView reloadData:self.kLineModel];
 }
 

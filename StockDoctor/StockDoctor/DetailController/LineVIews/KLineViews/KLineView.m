@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSArray * MA5DataList;
 @property (nonatomic,strong) NSArray * MA10DataList;
 @property (nonatomic,strong) NSArray * MA20DataList;
+@property (nonatomic,strong) NSArray * verSepList;
 @end
 
 @implementation KLineView
@@ -63,6 +64,10 @@
     self.MA20DataList = [model generateMAData:20 WithCount:50];
     self.kLineModel = copyModel;
     
+    
+    [self calcTopAndButtomPrice];
+    
+    self.verSepList = [self.kLineModel generateVerSepIndexList];
     [self setNeedsDisplay];
 }
 
@@ -116,7 +121,6 @@
     [super drawRect:rect];
     [self drawHorizontalGridInRect:[self gridRect]];
     [self drawVerticalGridInRect:[self gridRect]];
-    [self calcTopAndButtomPrice];
     [self drawBarSeries:[self dataRect]];
     
     [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
@@ -126,6 +130,8 @@
     [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
     
     [self drawLeftString:[self leftStringRect]];
+    [self drawRightString:[self rightStringRect]];
+    [self drawButtomString:[self buttomStringRect]];
 }
 
 - (void)drawLeftString:(CGRect)rect
@@ -153,6 +159,75 @@
     CGContextRestoreGState(ctx);
 }
 
+- (void)drawRightString:(CGRect)rect
+{
+    int stringCount = 5;
+    NSMutableArray * arr = [NSMutableArray array];
+    for (int i = 0; i< stringCount; i++)
+    {
+        float price = _topPrice - i * ((_topPrice - _buttomPrice) /(stringCount - 1));
+        [arr addObject:[NSString stringWithFormat:@"%.2f",price]];
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGFloat interval = CGRectGetHeight(rect) / (stringCount - 1);
+    
+    [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
+     {
+         [[UIColor grayColor] setFill];
+         CGRect stringRect = CGRectMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) * 1 / 10.0, CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+         [obj drawInRect:stringRect withFont:self.textFont];
+     }];
+    CGContextRestoreGState(ctx);
+}
+
+- (void)drawButtomString:(CGRect)rect
+{
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    
+    [[UIColor grayColor] setFill];
+    
+    CGFloat cellWidth = CGRectGetWidth(rect) / self.kLineModel.cellDataList.count;
+    
+    int count = self.verSepList.count;
+    
+    for (int i = 0; i < count; i++)
+    {
+        NSNumber * idx = self.verSepList[i];
+        CGFloat xOffset = (idx.intValue + 0.5) * cellWidth;
+        
+        CGFloat xAxis = CGRectGetMaxX(rect) - xOffset;
+        
+        KLineCellData * data = self.kLineModel.cellDataList[idx.intValue];
+        
+        NSString * drawStr = nil;
+        
+        if ([self.kLineModel.freq isEqualToString:@"month"])
+        {
+            //月线只显示年
+            drawStr = [data.date substringToIndex:4];
+        }
+        else
+        {
+            //其他显示年和月
+            drawStr = [data.date substringToIndex:7];
+        }
+
+        
+        
+        CGFloat width = [drawStr sizeWithFont:self.textFont].width;
+        
+        CGFloat drawX = xAxis - width / 2;
+        CGRect stringRect = CGRectMake(drawX, CGRectGetMinY(rect) , width, CGRectGetHeight(rect));
+        
+        [drawStr drawInRect:stringRect withFont:self.textFont];
+    }
+    CGContextRestoreGState(ctx);
+}
+
 - (void)drawDataLine:(CGRect)rect data:(NSArray *)dataList color:(UIColor *)lineColor
 {
     UIBezierPath * path = [self pathForData:rect data:dataList];
@@ -173,18 +248,18 @@
     int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIBezierPath *path = [UIBezierPath bezierPath];
-    [path setLineWidth:1.0];
-    [path moveToPoint:CGPointMake(rint(CGRectGetMinX(rect)),
-                                  rint(CGRectGetMinY(rect)) + 0.5)];
-    [path addLineToPoint:CGPointMake(rint(CGRectGetMaxX(rect)),
-                                     rint(CGRectGetMinY(rect))+ 0.5)];
-    UIColor * gridColor = [UIColor colorWithWhite:0.25f alpha:1];
+    [path setLineWidth:0.5];
+    [path moveToPoint:CGPointMake(CGRectGetMinX(rect),
+                                  CGRectGetMinY(rect))];
+    [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect),
+                                     CGRectGetMinY(rect))];
+    UIColor * gridColor = [UIColor grayColor];
     [gridColor setStroke];
     
     CGContextSaveGState(context);
     [path stroke];
     for(int i = 0;i < lineCount;i++) {
-        CGContextTranslateCTM(context, 0.0, rint(CGRectGetHeight(rect) / (float)(lineCount )));
+        CGContextTranslateCTM(context, 0.0, CGRectGetHeight(rect) / lineCount);
         [path stroke];
     }
     CGContextRestoreGState(context);
@@ -193,27 +268,47 @@
 //绘制纵向网格线
 - (void)drawVerticalGridInRect:(CGRect)rect
 {
-    int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path setLineWidth:1.0];
-    [path moveToPoint:CGPointMake(rint(CGRectGetMinX(rect)),
-                                  rint(CGRectGetMinY(rect)) + 0.5)];
-    [path addLineToPoint:CGPointMake(rint(CGRectGetMinX(rect)) + 0.5,
-                                     rint(CGRectGetMaxY(rect)))];
+    [path moveToPoint:CGPointMake((CGRectGetMinX(rect)),
+                                  (CGRectGetMinY(rect)))];
+    [path addLineToPoint:CGPointMake((CGRectGetMinX(rect)),
+                                     (CGRectGetMaxY(rect)))];
+    
+    [path moveToPoint:CGPointMake((CGRectGetMaxX(rect)),
+                                  (CGRectGetMinY(rect)))];
+    [path addLineToPoint:CGPointMake((CGRectGetMaxX(rect)),
+                                     (CGRectGetMaxY(rect)))];
+    
     CGFloat dashPatern[2] = {1.0, 1.0};
     [path setLineDash:dashPatern count:2 phase:0.0];
     UIColor * gridColor = [UIColor colorWithWhite:0.25f alpha:1];
     [gridColor setStroke];
     
     CGContextSaveGState(context);
-    [path stroke];
-    for(int i = 0;i < lineCount;i++) {
-        CGContextTranslateCTM(context, (CGRectGetWidth(rect) / (float)(lineCount)), 0.0);
-        [path stroke];
+    
+    CGFloat cellWidth = CGRectGetWidth(rect) / self.kLineModel.cellDataList.count;
+    
+    int count = self.verSepList.count;
+    
+    for (int i = 0; i < count; i++)
+    {
+        NSNumber * idx = self.verSepList[i];
+        CGFloat xOffset = (idx.intValue + 0.5) * cellWidth;
+        
+        [path moveToPoint:CGPointMake(CGRectGetMaxX(rect) - xOffset,
+                                      CGRectGetMinY(rect))];
+        [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect) - xOffset,
+                                         CGRectGetMaxY(rect))];
     }
+    [path stroke];
+    
     CGContextRestoreGState(context);
 }
+
+
+
 
 - (void)drawBarSeries:(CGRect)rect
 {

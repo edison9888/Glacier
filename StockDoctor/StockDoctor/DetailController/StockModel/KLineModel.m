@@ -7,6 +7,7 @@
 //
 
 #import "KLineModel.h"
+#import "DateHelpers.h"
 
 @implementation KLineModel
 
@@ -70,12 +71,53 @@
     }
     return arr;
 }
+
+- (NSArray *)generateVerSepIndexList
+{
+    NSMutableArray * arr = [NSMutableArray array];
+     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    __block int last = INT_MIN;
+    __block NSDate * lastDate= nil;
+    
+    [self.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
+        NSDate * date = [formatter dateFromString:obj.date];
+        NSDateComponents * comp = dateComponentFrom(date);
+        NSLog(@"data %@  last %@",date,lastDate);
+        
+        if ([self.freq isEqualToString:@"month"])
+        {
+            if (last > 0  && comp.year != last)
+            {
+                [arr addObject:@(idx)];
+            }
+            last = comp.year;
+        }
+        else if([self.freq isEqualToString:@"week"])
+        {
+            if (last > 0  && comp.month != last && (!lastDate || ABS(monthsBetween(date, lastDate))>=6))
+            {
+                [arr addObject:@(idx)];
+                lastDate = date;
+            }
+            
+            last = comp.month;
+        }
+        else
+        {
+            if (last > 0  && comp.month != last)
+            {
+                [arr addObject:@(idx)];
+            }
+            last = comp.month;
+        }
+    }];
+    
+    return arr;
+}
+
 @end
 
 @implementation KLineCellData
-
-@end
-
-@implementation MADataModel
 
 @end

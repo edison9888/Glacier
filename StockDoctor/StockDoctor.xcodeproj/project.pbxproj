@@ -39,6 +39,8 @@
 		5866A20A171A7E000095C4FE /* KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A206171A7E000095C4FE /* KLineView.m */; };
 		5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A209171A7E000095C4FE /* TrendGraphView.m */; };
 		5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */; };
+		5866A215171A83BD0095C4FE /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5866A214171A83BD0095C4FE /* icon@2x.png */; };
+		5866A219171A84AE0095C4FE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5866A218171A84AE0095C4FE /* icon.png */; };
 		58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2317159398005A15CC /* SinaBaseDataModel.m */; };
 		58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C271715AF40005A15CC /* DiagnosisCell.m */; };
 		58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C291715AF4D005A15CC /* DiagnosisCell.xib */; };
@@ -94,6 +96,8 @@
 		5866A209171A7E000095C4FE /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
 		5866A20C171A7E5C0095C4FE /* LineGraphicsBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphicsBaseView.h; sourceTree = "<group>"; };
 		5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphicsBaseView.m; sourceTree = "<group>"; };
+		5866A214171A83BD0095C4FE /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		5866A218171A84AE0095C4FE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		58734C2217159398005A15CC /* SinaBaseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaBaseDataModel.h; sourceTree = "<group>"; };
 		58734C2317159398005A15CC /* SinaBaseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaBaseDataModel.m; sourceTree = "<group>"; };
 		58734C261715AF40005A15CC /* DiagnosisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosisCell.h; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				5850870C1711A55200EA6820 /* StockDoctor */,
+				5866A20F171A83480095C4FE /* Resource */,
 				585087051711A55200EA6820 /* Frameworks */,
 				585087041711A55200EA6820 /* Products */,
 			);
@@ -275,6 +280,15 @@
 			path = TrendViews;
 			sourceTree = "<group>";
 		};
+		5866A20F171A83480095C4FE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5866A218171A84AE0095C4FE /* icon.png */,
+				5866A214171A83BD0095C4FE /* icon@2x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		58734C251715AF25005A15CC /* DiagnosisCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +382,8 @@
 				58386F841714508300B636E7 /* SearchCell.xib in Resources */,
 				58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */,
 				58734C301716D83F005A15CC /* StockInfoView.xib in Resources */,
+				5866A215171A83BD0095C4FE /* icon@2x.png in Resources */,
+				5866A219171A84AE0095C4FE /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,15 +488,20 @@
 		585087271711A55200EA6820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "986BFA28-6938-4E43-A9A0-5428A888084E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "986BFA28-6938-4E43-A9A0-5428A888084E";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -489,15 +510,20 @@
 		585087281711A55200EA6820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhu BingQian (9Y885F9XCF)";
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "986BFA28-6938-4E43-A9A0-5428A888084E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "986BFA28-6938-4E43-A9A0-5428A888084E";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				WRAPPER_EXTENSION = app;
 			};
