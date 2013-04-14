@@ -77,7 +77,6 @@
 
 - (UIBezierPath *)pathForAveData:(CGRect)rect
 {
-
     NSNumber * first = self.aveList[0];
     
     float xStep = rect.size.width / self.aveList.count;

@@ -13,6 +13,9 @@
 @interface KLineView()
 @property (nonatomic,strong) UIFont * textFont;
 @property (nonatomic,strong) KLineModel * kLineModel;
+@property (nonatomic,strong) NSArray * MA5DataList;
+@property (nonatomic,strong) NSArray * MA10DataList;
+@property (nonatomic,strong) NSArray * MA20DataList;
 @end
 
 @implementation KLineView
@@ -52,18 +55,34 @@
     NSLog(@"%d",count);
     copyModel.cellDataList = arr;
     
+    self.MA5DataList = [model generateMAData:5 WithCount:50];
+    self.MA10DataList = [model generateMAData:10 WithCount:50];
+    self.MA20DataList = [model generateMAData:20 WithCount:50];
     self.kLineModel = copyModel;
     
     [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect
+
+
+- (UIBezierPath *) pathForData:(CGRect)rect data:(NSArray *)dataList
 {
-    [super drawRect:rect];
-    [self drawHorizontalGridInRect:[self dataRect]];
-    [self drawVerticalGridInRect:[self dataRect]];
-    [self calcTopAndButtomPrice];
-    [self drawBarSeries:[self dataRect]];
+#define yPoint(price) (ABS(_topPrice - price) / (_topPrice - _buttomPrice) * rect.size.height)    
+    
+    //每个横轴间隔的距离
+    float xStep = CGRectGetWidth(rect) / dataList.count;
+    
+    NSNumber * first = dataList[0];
+    
+    UIBezierPath * bezierPath = [UIBezierPath bezierPath];
+    
+    CGPoint fistPoint = CGPointMake(CGRectGetMaxX(rect) -  xStep / 2, rect.origin.y + yPoint(first.floatValue));
+    [bezierPath moveToPoint:fistPoint];
+    
+    [dataList enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL *stop) {
+        [bezierPath addLineToPoint:CGPointMake(fistPoint.x - idx * xStep, rect.origin.y + yPoint(obj.floatValue))];
+    }];
+    return bezierPath;
 }
 
 
@@ -89,6 +108,21 @@
 
 #pragma mark 绘图区域
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    [self drawHorizontalGridInRect:[self dataRect]];
+    [self drawVerticalGridInRect:[self dataRect]];
+    [self calcTopAndButtomPrice];
+    [self drawBarSeries:[self dataRect]];
+    
+    [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
+    
+    [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
+    
+    [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
+}
+
 //数据区域
 - (CGRect)dataRect
 {
@@ -97,6 +131,21 @@
                       self.bounds.size.height * (1 - HeightRate) / 2,
                       self.bounds.size.width * WidthRate,
                       self.bounds.size.height * HeightRate);
+}
+
+
+- (void)drawDataLine:(CGRect)rect data:(NSArray *)dataList color:(UIColor *)lineColor
+{
+    UIBezierPath * path = [self pathForData:rect data:dataList];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    [path setLineWidth:1];
+    [path setLineJoinStyle:kCGLineJoinRound];
+    [path setLineCapStyle:kCGLineCapRound];
+    [lineColor setStroke];
+    [path stroke];
+    CGContextRestoreGState(context);
 }
 
 //绘制横向网格线

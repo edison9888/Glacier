@@ -12,6 +12,9 @@
 @property (nonatomic,strong) NSString * freq;
 @property (nonatomic,strong) NSArray * cellDataList;
 + (KLineModel *)parseData:(NSString *)responseString;
+
+//生成均线数据
+- (NSArray *)generateMAData:(int)range  WithCount:(int)count;
 @end
 
 @interface KLineCellData : NSObject

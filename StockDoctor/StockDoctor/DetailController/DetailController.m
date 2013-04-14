@@ -53,8 +53,7 @@
     int lineCount = 100;
     
     NSString * url = @"http://ifzq.gtimg.cn/stock/kline/kline/kline?param=%@,%@,,,%d";
-    
-    //月和日不正确时，会请求到所有的数据，速度很慢，暂时写死1月1日
+
     NSString * requestStr = [NSString stringWithFormat:url,self.searchModel.fullCode,freq,lineCount];
     
     [self doHttpRequest:requestStr tag:index];

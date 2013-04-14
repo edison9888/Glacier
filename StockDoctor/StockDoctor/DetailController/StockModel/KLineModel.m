@@ -47,8 +47,35 @@
         return nil;
    
 }
+
+- (NSArray *)generateMAData:(int)range WithCount:(int)count
+{
+    NSMutableArray * arr = [NSMutableArray array];
+    
+    
+    for (int i = 0; i < count; i++)
+    {
+        if (i + range < self.cellDataList.count)
+        {
+            double totalClose = 0;
+            for (int j = i; j < i + range; j++)
+            {
+                KLineCellData * cellData = self.cellDataList[j];
+                
+                totalClose += cellData.close.floatValue;
+            }
+            [arr addObject:@(totalClose / range)];
+        }
+        
+    }
+    return arr;
+}
 @end
 
 @implementation KLineCellData
+
+@end
+
+@implementation MADataModel
 
 @end
