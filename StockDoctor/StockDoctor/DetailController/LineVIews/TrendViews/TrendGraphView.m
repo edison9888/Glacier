@@ -8,10 +8,6 @@
 
 #import "TrendGraphView.h"
 
-#define WidthRate (24/30.0)
-#define HeightRate (26/30.0)
-
-
 #define yPoint(price) (ABS(_topPrice - price) / (2 * _halfHeightPrice) * rect.size.height)
 
 @interface TrendGraphView()
@@ -114,41 +110,6 @@
     self.aveList = arr;
 }
 
-#pragma mark 绘图区域
-
-//数据区域
-- (CGRect)dataRect
-{
-
-   return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 ,
-                     self.bounds.size.height * (1 - HeightRate) / 2,
-                     self.bounds.size.width * WidthRate,
-                     self.bounds.size.height * HeightRate);
-}
-
-- (CGRect)leftStringRect
-{
-    return CGRectMake(0 ,
-                      self.bounds.size.height * (1 - HeightRate) / 2,
-                      self.bounds.size.width * (1 - WidthRate) / 2,
-                      self.bounds.size.height * HeightRate);
-}
-
-- (CGRect)buttomStringRect
-{
-    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 ,
-                      self.bounds.size.height * (1 + HeightRate) / 2,
-                      self.bounds.size.width * WidthRate,
-                      self.bounds.size.height * (1 - HeightRate) / 2);
-}
-
-- (CGRect)rightStringRect
-{
-    return CGRectMake(self.bounds.size.width * (1 + WidthRate) / 2,
-                      self.bounds.size.height * (1 - HeightRate) / 2,
-                      self.bounds.size.width * (1 - WidthRate) / 2,
-                      self.bounds.size.height * HeightRate);
-}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -156,8 +117,8 @@
     
     [self generateAverageData];
     [self calcTopAndButtomPrice];
-    [self drawHorizontalGridInRect:[self dataRect]];
-    [self drawVerticalGridInRect:[self dataRect]];
+    [self drawHorizontalGridInRect:[self gridRect]];
+    [self drawVerticalGridInRect:[self gridRect]];
     
     if (self.trendModel.trendCellDataList.count > 0)
     {

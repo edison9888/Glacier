@@ -6,9 +6,9 @@
 //  Copyright (c) 2013年 glacier. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LineGraphicsBaseView.h"
 #import "KLineModel.h"
 
-@interface KLineView : UIView
+@interface KLineView : LineGraphicsBaseView
 - (void)reloadData:(KLineModel *)model;
 @end

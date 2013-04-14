@@ -66,26 +66,6 @@
     [self setNeedsDisplay];
 }
 
-#pragma mark 绘制区域
-
-//网格区域区域
-- (CGRect)gridRect
-{
-    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 ,
-                      self.bounds.size.height * (1 - HeightRate) / 2,
-                      self.bounds.size.width * WidthRate,
-                      self.bounds.size.height * HeightRate);
-}
-
-//数据区域
-- (CGRect)dataRect
-{
-    CGFloat lineWidth = 1;
-    return CGRectMake(self.bounds.size.width * (1 - WidthRate) / 2 + lineWidth,
-                      self.bounds.size.height * (1 - HeightRate) / 2 + lineWidth,
-                      self.bounds.size.width * WidthRate - lineWidth * 2,
-                      self.bounds.size.height * HeightRate - lineWidth * 2);
-}
 
 
 - (UIBezierPath *) pathForData:(CGRect)rect data:(NSArray *)dataList
@@ -144,6 +124,33 @@
     [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
     
     [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
+    
+    [self drawLeftString:[self leftStringRect]];
+}
+
+- (void)drawLeftString:(CGRect)rect
+{
+    int stringCount = 5;
+    NSMutableArray * arr = [NSMutableArray array];
+    for (int i = 0; i< stringCount; i++)
+    {
+        float price = _topPrice - i * ((_topPrice - _buttomPrice) /(stringCount - 1));
+        [arr addObject:[NSString stringWithFormat:@"%.2f",price]];
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    CGFloat interval = CGRectGetHeight(rect) / (stringCount - 1);
+    
+    [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
+     {
+         [[UIColor grayColor] setFill];
+         CGFloat width = [obj sizeWithFont:self.textFont].width;
+         
+         CGRect stringRect = CGRectMake(CGRectGetMinX(rect)+ 9 / 10.0f * CGRectGetWidth(rect) - width  , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+         [obj drawInRect:stringRect withFont:self.textFont];
+     }];
+    CGContextRestoreGState(ctx);
 }
 
 - (void)drawDataLine:(CGRect)rect data:(NSArray *)dataList color:(UIColor *)lineColor

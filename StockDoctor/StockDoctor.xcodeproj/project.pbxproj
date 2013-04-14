@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
-		58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F7E17130B5500B636E7 /* TrendGraphView.m */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
 		58386F87171450A200B636E7 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F86171450A200B636E7 /* SearchCell.m */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
@@ -37,13 +36,15 @@
 		585087491711B16700EA6820 /* SearchStockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087471711B16700EA6820 /* SearchStockController.m */; };
 		5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087481711B16700EA6820 /* SearchStockController.xib */; };
 		5850874E1711B98400EA6820 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850874D1711B98400EA6820 /* SearchModel.m */; };
+		5866A20A171A7E000095C4FE /* KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A206171A7E000095C4FE /* KLineView.m */; };
+		5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A209171A7E000095C4FE /* TrendGraphView.m */; };
+		5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */; };
 		58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2317159398005A15CC /* SinaBaseDataModel.m */; };
 		58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C271715AF40005A15CC /* DiagnosisCell.m */; };
 		58734C2A1715AF4D005A15CC /* DiagnosisCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C291715AF4D005A15CC /* DiagnosisCell.xib */; };
 		58734C2E1716D821005A15CC /* StockInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C2D1716D821005A15CC /* StockInfoView.m */; };
 		58734C301716D83F005A15CC /* StockInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C2F1716D83F005A15CC /* StockInfoView.xib */; };
 		58734C341716DCE3005A15CC /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C331716DCE3005A15CC /* TrendModel.m */; };
-		58A54266171853F000708CED /* KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A54265171853F000708CED /* KLineView.m */; };
 		58A5426917185F4400708CED /* KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A5426817185F4400708CED /* KLineModel.m */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +52,6 @@
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
-		58386F7D17130B5500B636E7 /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
-		58386F7E17130B5500B636E7 /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
 		58386F831714508300B636E7 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		58386F85171450A200B636E7 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		58386F86171450A200B636E7 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
@@ -89,6 +88,12 @@
 		585087481711B16700EA6820 /* SearchStockController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchStockController.xib; sourceTree = "<group>"; };
 		5850874C1711B98400EA6820 /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
 		5850874D1711B98400EA6820 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		5866A205171A7E000095C4FE /* KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineView.h; sourceTree = "<group>"; };
+		5866A206171A7E000095C4FE /* KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineView.m; sourceTree = "<group>"; };
+		5866A208171A7E000095C4FE /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
+		5866A209171A7E000095C4FE /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
+		5866A20C171A7E5C0095C4FE /* LineGraphicsBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphicsBaseView.h; sourceTree = "<group>"; };
+		5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphicsBaseView.m; sourceTree = "<group>"; };
 		58734C2217159398005A15CC /* SinaBaseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaBaseDataModel.h; sourceTree = "<group>"; };
 		58734C2317159398005A15CC /* SinaBaseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaBaseDataModel.m; sourceTree = "<group>"; };
 		58734C261715AF40005A15CC /* DiagnosisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiagnosisCell.h; sourceTree = "<group>"; };
@@ -99,8 +104,6 @@
 		58734C2F1716D83F005A15CC /* StockInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockInfoView.xib; sourceTree = "<group>"; };
 		58734C321716DCE3005A15CC /* TrendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendModel.h; sourceTree = "<group>"; };
 		58734C331716DCE3005A15CC /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
-		58A54264171853F000708CED /* KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineView.h; sourceTree = "<group>"; };
-		58A54265171853F000708CED /* KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineView.m; sourceTree = "<group>"; };
 		58A5426717185F4400708CED /* KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineModel.h; sourceTree = "<group>"; };
 		58A5426817185F4400708CED /* KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,24 +134,14 @@
 		58386F6F1712E85500B636E7 /* DetailController */ = {
 			isa = PBXGroup;
 			children = (
+				5866A203171A7E000095C4FE /* LineVIews */,
 				58734C2B1716D7E0005A15CC /* InfoViews */,
-				58386F79171305B700B636E7 /* TrendViews */,
-				58A54263171852BF00708CED /* KLineViews */,
 				58734C311716DCE3005A15CC /* StockModel */,
 				58386F701712E88900B636E7 /* DetailController.h */,
 				58386F711712E88900B636E7 /* DetailController.m */,
 				58386F721712E88900B636E7 /* DetailController.xib */,
 			);
 			path = DetailController;
-			sourceTree = "<group>";
-		};
-		58386F79171305B700B636E7 /* TrendViews */ = {
-			isa = PBXGroup;
-			children = (
-				58386F7D17130B5500B636E7 /* TrendGraphView.h */,
-				58386F7E17130B5500B636E7 /* TrendGraphView.m */,
-			);
-			path = TrendViews;
 			sourceTree = "<group>";
 		};
 		58386F821714507800B636E7 /* SearchCell */ = {
@@ -253,6 +246,35 @@
 			path = SinaSearchModel;
 			sourceTree = "<group>";
 		};
+		5866A203171A7E000095C4FE /* LineVIews */ = {
+			isa = PBXGroup;
+			children = (
+				5866A20C171A7E5C0095C4FE /* LineGraphicsBaseView.h */,
+				5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */,
+				5866A204171A7E000095C4FE /* KLineViews */,
+				5866A207171A7E000095C4FE /* TrendViews */,
+			);
+			path = LineVIews;
+			sourceTree = "<group>";
+		};
+		5866A204171A7E000095C4FE /* KLineViews */ = {
+			isa = PBXGroup;
+			children = (
+				5866A205171A7E000095C4FE /* KLineView.h */,
+				5866A206171A7E000095C4FE /* KLineView.m */,
+			);
+			path = KLineViews;
+			sourceTree = "<group>";
+		};
+		5866A207171A7E000095C4FE /* TrendViews */ = {
+			isa = PBXGroup;
+			children = (
+				5866A208171A7E000095C4FE /* TrendGraphView.h */,
+				5866A209171A7E000095C4FE /* TrendGraphView.m */,
+			);
+			path = TrendViews;
+			sourceTree = "<group>";
+		};
 		58734C251715AF25005A15CC /* DiagnosisCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,15 +304,6 @@
 				58A5426817185F4400708CED /* KLineModel.m */,
 			);
 			path = StockModel;
-			sourceTree = "<group>";
-		};
-		58A54263171852BF00708CED /* KLineViews */ = {
-			isa = PBXGroup;
-			children = (
-				58A54264171853F000708CED /* KLineView.h */,
-				58A54265171853F000708CED /* KLineView.m */,
-			);
-			path = KLineViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,14 +385,15 @@
 				585087491711B16700EA6820 /* SearchStockController.m in Sources */,
 				5850874E1711B98400EA6820 /* SearchModel.m in Sources */,
 				58386F731712E88900B636E7 /* DetailController.m in Sources */,
-				58386F7F17130B5500B636E7 /* TrendGraphView.m in Sources */,
 				58386F87171450A200B636E7 /* SearchCell.m in Sources */,
 				58734C2417159398005A15CC /* SinaBaseDataModel.m in Sources */,
 				58734C281715AF40005A15CC /* DiagnosisCell.m in Sources */,
 				58734C2E1716D821005A15CC /* StockInfoView.m in Sources */,
 				58734C341716DCE3005A15CC /* TrendModel.m in Sources */,
-				58A54266171853F000708CED /* KLineView.m in Sources */,
 				58A5426917185F4400708CED /* KLineModel.m in Sources */,
+				5866A20A171A7E000095C4FE /* KLineView.m in Sources */,
+				5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */,
+				5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
