@@ -181,6 +181,14 @@
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    
+    SearchModel * from = self.modelList[sourceIndexPath.row];
+    SearchModel * to = self.modelList[destinationIndexPath.row];
+    int temp = to.sortIndex;
+    to.sortIndex = from.sortIndex;
+    from.sortIndex = temp;
+    [[SharedApp FMDatabaseQueue] inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [from updateSortIndex:db];
+        [to updateSortIndex:db];
+    }];
 }
 @end

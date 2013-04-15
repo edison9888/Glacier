@@ -84,7 +84,7 @@
     FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         
-        FMResultSet * query = [db executeQuery:@"select * from SelfStock"];
+        FMResultSet * query = [db executeQuery:@"select * from SelfStock order by sortIndex desc"];
         while ([query next])
         {
             SearchModel * model = [[SearchModel alloc]init];
@@ -94,6 +94,7 @@
             model.type = [query stringForColumn:@"type"];
             model.shortCode = [query stringForColumn:@"shortCode"];
             model.fullCode = [query stringForColumn:@"fullCode"];
+            model.sortIndex = [query intForColumn:@"sortIndex"];
             [allArr addObject:model];
         };
     }];
@@ -101,7 +102,7 @@
 }
 
 
-- (void)insertSelf
+- (void)insertSelfIntoFirst
 {
     FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
@@ -110,10 +111,15 @@
         int count = [query intForColumnIndex:0];
         if (!count)
         {
-            [db executeUpdate:@"insert into SelfStock (keyword1,keyword2,shortName,type,shortCode,fullCode) values (?,?,?,?,?,?)"
+            [db executeUpdate:@"insert into SelfStock (keyword1,keyword2,shortName,type,shortCode,fullCode,sortIndex) values (?,?,?,?,?,?,(SELECT count(1) FROM SelfStock))"
              ,self.keyword1,self.keyword2,self.shortName,self.type,self.shortCode,self.fullCode];
         }
     }];
+}
+
+- (void)updateSortIndex:(FMDatabase *)db
+{
+    [db executeUpdate:@"update SelfStock set sortIndex = ? where fullCode = ?",@(self.sortIndex),self.fullCode];
 }
 
 - (void)deleteSelf

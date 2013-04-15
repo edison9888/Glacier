@@ -117,7 +117,7 @@
     }
     else
     {
-        [model insertSelf];
+        [model insertSelfIntoFirst];
     }
     
     self.selfStocksModelList = [SearchModel selectAll];
