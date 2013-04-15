@@ -19,11 +19,22 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (!editing)
+    {
+        self.changLabel.alpha = 0;
+        [UIView animateWithDuration:0.2f animations:^{
+            self.changLabel.alpha = 1;
+        }];
+    }
+    else
+    {
+        self.changLabel.alpha = 1;
+        [UIView animateWithDuration:0.2f animations:^{
+            self.changLabel.alpha = 0;
+        }];
+    }
+    [super setEditing:editing animated:animated];
 }
-
 @end

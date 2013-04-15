@@ -15,9 +15,11 @@
 
 @interface DiagnosisController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
-@property (strong, nonatomic) NSArray * modelList;
+@property (strong, nonatomic) NSMutableArray * modelList;
 @property (strong, nonatomic) NSArray * sinaDataList;
 @property (strong, nonatomic) IBOutlet UITableView *stockTableView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *leftBarButtonItem;
+@property (strong, nonatomic) NSMutableArray * deleteList;
 @end
 
 @implementation DiagnosisController
@@ -36,13 +38,21 @@
     [super viewDidLoad];
     self.title = @"自选股诊断";
     self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
+    self.navigationItem.leftBarButtonItem = self.leftBarButtonItem;
+    self.deleteList = [NSMutableArray array];
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.modelList = [SearchModel selectAll];
+    [self refreshData];
+}
+
+- (void)refreshData
+{
+    self.modelList = [NSMutableArray arrayWithArray:[SearchModel selectAll]];
+     [self.stockTableView reloadData];
     if (self.modelList.count > 0)
     {
         NSString * url = @"http://hq.sinajs.cn/list=%@";
@@ -59,8 +69,43 @@
 
 - (IBAction)onAddStock:(UIButton *)sender
 {
+    [self.stockTableView setEditing:false];
     SearchStockController * searchController = [[SearchStockController alloc]init];
     [[ContainerController instance]pushController:searchController animated:true];
+}
+
+- (IBAction)onEditSelfStock:(UIButton *)sender
+{
+   
+    if (self.stockTableView.editing)
+    {
+        [sender setTitle:@"编辑" forState:(UIControlStateNormal)];
+        [self deleteStocks];
+        [self.stockTableView setEditing:false animated:true];
+    }
+    else
+    {
+        [self.deleteList removeAllObjects];
+        [sender setTitle:@"完成" forState:(UIControlStateNormal)];
+        [self.stockTableView setEditing:true animated:true];
+    }
+    
+}
+
+- (void)deleteStocks
+{
+    NSMutableArray * deleteArr = [NSMutableArray array];
+    for (int i = 0; i < self.deleteList.count; i++)
+    {
+        NSIndexPath * index = self.deleteList[i];
+        SearchModel * model = self.modelList[index.row];
+        [model deleteSelf];
+        [deleteArr addObject:model];
+    }
+    
+    [self.modelList removeObjectsInArray:deleteArr];
+    
+    [self.stockTableView deleteRowsAtIndexPaths:self.deleteList withRowAnimation:(UITableViewRowAnimationLeft)];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -106,10 +151,36 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    DetailController * detailController = [[DetailController alloc]init];
-    SearchModel * model = self.modelList[indexPath.row];
-    detailController.searchModel = model;
-    [[ContainerController instance]pushController:detailController animated:true];
+    if (self.stockTableView.editing)
+    {
+        [self.deleteList addObject:indexPath];
+    }
+    else
+    {
+        DetailController * detailController = [[DetailController alloc]init];
+        SearchModel * model = self.modelList[indexPath.row];
+        detailController.searchModel = model;
+        [[ContainerController instance]pushController:detailController animated:true];
+    }
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.stockTableView.editing)
+    {
+        for (int i = self.deleteList.count - 1; i>= 0; i--)
+        {
+            NSIndexPath * path = self.deleteList[i];
+            if (path.row == indexPath.row)
+            {
+                [self.deleteList removeObject:path];
+            }
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    
+}
 @end

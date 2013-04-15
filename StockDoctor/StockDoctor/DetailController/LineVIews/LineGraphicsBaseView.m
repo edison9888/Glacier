@@ -10,15 +10,6 @@
 
 @implementation LineGraphicsBaseView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 #pragma mark 绘图区域
 
 //网格区域区域

@@ -8,6 +8,7 @@
 
 #import "GlacierController.h"
 
+
 @interface SearchStockController : GlacierController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @end

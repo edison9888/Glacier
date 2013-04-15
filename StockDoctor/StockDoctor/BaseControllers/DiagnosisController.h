@@ -8,6 +8,6 @@
 
 #import "GlacierController.h"
 
-@interface DiagnosisController : GlacierController
+@interface DiagnosisController : GlacierController<UITableViewDataSource,UITableViewDelegate>
 
 @end

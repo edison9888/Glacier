@@ -253,6 +253,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">SearchStockController</string>
 					<string key="superclassName">GlacierController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">onSearchTextChanged:</string>
+						<string key="NS.object.0">UITextField</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">onSearchTextChanged:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">onSearchTextChanged:</string>
+							<string key="candidateClassName">UITextField</string>
+						</object>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">searchTableView</string>
 						<string key="NS.object.0">UITableView</string>

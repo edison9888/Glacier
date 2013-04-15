@@ -21,7 +21,6 @@
 @property (strong, nonatomic) KLineModel * kLineModel;
 @property (strong, nonatomic) StockBaseInfoModel * stockBaseInfoModel;
 @property (strong, nonatomic) IBOutlet UIView *graphView;
-
 @property (strong, nonatomic) IBOutlet KLineView *kLineView;
 @end
 
@@ -78,7 +77,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    NSLog(@"request failed tag:%d",request.tag);
+//    NSLog(@"request failed tag:%d",request.tag);
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -100,8 +99,6 @@
     NSArray * freqs = @[@"day",@"week",@"month"];
     
     self.kLineModel.freq = freqs[tag - 1];
-    
-//    NSLog(@"%@",request.responseString);
     [self.kLineView reloadData:self.kLineModel];
 }
 

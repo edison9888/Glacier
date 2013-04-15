@@ -298,7 +298,7 @@
     [path setLineWidth:1];
     [path setLineJoinStyle:kCGLineJoinRound];
     [path setLineCapStyle:kCGLineCapRound];
-    [[UIColor colorWithRed:128/255.0 green:189/255.0 blue:151/255.0 alpha:1] setStroke];
+    [[UIColor colorWithRed:0x95/255.0 green:0xd2/255.0 blue:0x64/255.0 alpha:1] setStroke];
     [path stroke];
     CGContextRestoreGState(context);
 }

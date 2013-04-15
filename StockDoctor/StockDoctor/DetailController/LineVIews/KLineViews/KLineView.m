@@ -56,7 +56,6 @@
             count++;
         }
     }];
-    NSLog(@"%d",count);
     copyModel.cellDataList = arr;
     
     self.MA5DataList = [model generateMAData:5 WithCount:50];
@@ -153,8 +152,11 @@
          [[UIColor grayColor] setFill];
          CGFloat width = [obj sizeWithFont:self.textFont].width;
          
-         CGRect stringRect = CGRectMake(CGRectGetMinX(rect)+ 9 / 10.0f * CGRectGetWidth(rect) - width  , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
-         [obj drawInRect:stringRect withFont:self.textFont];
+
+         
+         CGRect stringRect = CGRectMake(CGRectGetMinX(rect)+ 9 / 10.0f * CGRectGetWidth(rect) - width  , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, width, interval);
+         
+          [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
      }];
     CGContextRestoreGState(ctx);
 }
@@ -176,8 +178,13 @@
     [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
      {
          [[UIColor grayColor] setFill];
-         CGRect stringRect = CGRectMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) * 1 / 10.0, CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
-         [obj drawInRect:stringRect withFont:self.textFont];
+         
+         CGFloat width = [obj sizeWithFont:self.textFont].width;
+         
+         CGRect stringRect = CGRectMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) * 1 / 10.0, CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, width, self.textFont.lineHeight);
+         
+         
+        [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
      }];
     CGContextRestoreGState(ctx);
 }

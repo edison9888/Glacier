@@ -83,7 +83,6 @@
     [self.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
         NSDate * date = [formatter dateFromString:obj.date];
         NSDateComponents * comp = dateComponentFrom(date);
-        NSLog(@"data %@  last %@",date,lastDate);
         
         if ([self.freq isEqualToString:@"month"])
         {

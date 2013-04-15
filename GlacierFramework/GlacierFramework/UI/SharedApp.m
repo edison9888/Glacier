@@ -17,7 +17,6 @@ static ASINetworkQueue * _ASINetworkQueue;
 {
     SDKVersion mSDKVersion;
 }
-@synthesize networkQueue;
 
 + (SharedApp *) instance
 {
@@ -47,11 +46,8 @@ static ASINetworkQueue * _ASINetworkQueue;
     }
     return mSDKVersion;
 }
-@end
 
-@implementation SharedApp (http)
-
-- (ASINetworkQueue *)networkQueue
+- (ASINetworkQueue *)httpQueue
 {
     if (!_ASINetworkQueue)
     {
@@ -61,6 +57,11 @@ static ASINetworkQueue * _ASINetworkQueue;
     }
     return _ASINetworkQueue;
 }
+
+@end
+
+@implementation SharedApp (http)
+
 
 - (void)removeNetworkReceiver:(id)receiver
 {
@@ -78,7 +79,7 @@ static ASINetworkQueue * _ASINetworkQueue;
 -(void) doASIHttpRequest:(ASIHTTPRequest *) request
 {
     [request setTimeOutSeconds:TIMEOUT_SECONDS];
-    [self.networkQueue addOperation:request];
+    [self.httpQueue addOperation:request];
 }
 @end
 
