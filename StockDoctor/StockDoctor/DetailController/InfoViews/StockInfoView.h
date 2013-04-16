@@ -10,6 +10,7 @@
 
 @interface StockInfoView : UIView
 @property (strong, nonatomic) IBOutlet UIButton *diagnosisButton;
+@property (strong, nonatomic) IBOutlet UILabel *diagnosisCountLabel;
 @property (strong, nonatomic) StockBaseInfoModel * stockBaseInfoModel;
 - (void)reloadData;
 @end

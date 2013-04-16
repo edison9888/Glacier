@@ -16,7 +16,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *todayHighLabel;
 @property (strong, nonatomic) IBOutlet UILabel *todayLowLabel;
 @property (strong, nonatomic) IBOutlet UILabel *turnoverRateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *diagnosisCountLabel;
 @end
 
 @implementation StockInfoView

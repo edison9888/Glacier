@@ -13,6 +13,8 @@
 @interface ContainerController ()
 @property (strong, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) UINavigationController * naviController;
+@property (strong, nonatomic) IBOutlet UITabBar *tabBarView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *defaultLeftBar;
 @end
 
 @implementation ContainerController
@@ -44,9 +46,55 @@
     return _instance;
 }
 
+- (void)hideTabBar:(bool)isHidden
+{
+    CGFloat yAxis = 0;
+    CGFloat height = CGRectGetHeight(self.tabBarView.frame);
+    
+    if (isHidden)
+    {
+        yAxis = CGRectGetHeight(self.view.bounds) - height;
+    }
+    else
+    {
+        yAxis = CGRectGetHeight(self.view.bounds);
+    }
+    
+    
+    if (isHidden)
+    {
+        yAxis += height;
+    }
+    else
+    {
+        yAxis -= height;
+    }
+
+    self.tabBarView.hidden = isHidden;
+    [self.bgView fixHeight:yAxis];
+    [self.navigationController.view fixHeight:yAxis];
+
+}
+
+- (IBAction)onBackClick:(UIButton *)sender
+{
+    if (self.tabBarView.isHidden)
+    {
+        [self hideTabBar:false];
+        [self.naviController popViewControllerAnimated:true];
+        
+    }
+    else
+    {
+        [self.naviController popViewControllerAnimated:true];
+    }
+}
+
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated
 {
     [self.naviController pushViewController:controller animated:animated];
+    [controller.navigationItem hidesBackButton];
+    controller.navigationItem.leftBarButtonItem = self.defaultLeftBar;
 }
 
 - (void)switchViews:(int)index
@@ -78,4 +126,9 @@
     }
 }
 
+- (void)viewDidUnload {
+    [self setTabBarView:nil];
+    [self setDefaultLeftBar:nil];
+    [super viewDidUnload];
+}
 @end

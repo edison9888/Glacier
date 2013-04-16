@@ -39,8 +39,21 @@
 {
     [super viewDidLoad];
     self.title = self.searchModel.shortName;
+    [[ContainerController instance] hideTabBar:true];
     [self switchTab:0];
     [self requestForStock];
+    [self requestForDiagCount];
+}
+
+- (void)requestForDiagCount
+{
+    NSString * url = @"http://www.9pxdesign.com/cishu.php?code=%@.%@";
+    
+    NSString * prefix = [self.searchModel.fullCode substringToIndex:2];
+    
+    url = [NSString stringWithFormat:url,self.searchModel.shortCode,prefix];
+    
+    [self doHttpRequest:url tag:10];
 }
 
 - (void)requestForKLine:(int)index
@@ -86,10 +99,24 @@
     {
         [self processTrendData:request];
     }
+    else if(request.tag == 10)
+    {
+        [self processDiagCount:request];
+    }
     else
     {
         [self processKLineData:request tag:request.tag];
     }
+}
+
+- (void)processDiagCount:(ASIHTTPRequest *)request
+{
+    NSDictionary * dict = [request.responseString objectFromJSONString];
+
+    NSString * count = dict[@"cishu"];
+    NSString * diagStr = [NSString stringWithFormat:@"现在已有%@人诊断",count ? count :@"0"];
+    
+    self.stockInfoView.diagnosisCountLabel.text = diagStr;
 }
 
 - (void)processKLineData:(ASIHTTPRequest *)request tag:(int)tag

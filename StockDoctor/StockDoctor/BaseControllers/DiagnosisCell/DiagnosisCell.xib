@@ -52,15 +52,11 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">--</string>
-								<object class="NSColor" key="IBUITextColor" id="876111596">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
-								</object>
-								<object class="NSColor" key="IBUIHighlightedColor" id="635909622">
+								<object class="NSColor" key="IBUITextColor" id="635909622">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
+								<reference key="IBUIHighlightedColor" ref="635909622"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="148111808">
 									<int key="type">1</int>
@@ -86,7 +82,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">--</string>
-								<reference key="IBUITextColor" ref="876111596"/>
+								<reference key="IBUITextColor" ref="635909622"/>
 								<reference key="IBUIHighlightedColor" ref="635909622"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
@@ -113,7 +109,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">--</string>
-								<reference key="IBUITextColor" ref="876111596"/>
+								<reference key="IBUITextColor" ref="635909622"/>
 								<reference key="IBUIHighlightedColor" ref="635909622"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="148111808"/>
@@ -133,7 +129,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">--</string>
-								<reference key="IBUITextColor" ref="876111596"/>
+								<reference key="IBUITextColor" ref="635909622"/>
 								<reference key="IBUIHighlightedColor" ref="635909622"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="148111808"/>

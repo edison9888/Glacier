@@ -14,7 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        UIView * access = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+        access.backgroundColor = [UIColor redColor];
+        self.accessoryView = access;
     }
     return self;
 }
