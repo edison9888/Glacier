@@ -8,6 +8,8 @@
 
 #import "ContainerController.h"
 #import "DiagnosisController.h"
+#import "ChooseStocksController.h"
+#import "SettingController.h"
 #import "SearchModel.h"
 
 @interface ContainerController ()
@@ -18,6 +20,9 @@
 @end
 
 @implementation ContainerController
+{
+    int _tabIndex;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +37,7 @@
 {
     [super viewDidLoad];
     [SearchModel checkOrCreateTable];
-    
+    self.tabBarView.selectedItem = self.tabBarView.items[0];
     [self switchViews:0];
 }
 
@@ -107,7 +112,12 @@
         case 0:
             contentController = [[DiagnosisController alloc]init];
             break;
-            
+        case 1:
+            contentController = [[ChooseStocksController alloc]init];
+            break;
+        case 2:
+            contentController = [[SettingController alloc]init];
+            break;
         default:
             break;
     }
@@ -120,10 +130,13 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
-    if (item.tag == 0)
+    if (_tabIndex != item.tag)
     {
-        
+        [self switchViews:item
+         .tag];
+        _tabIndex = item.tag;
     }
+    
 }
 
 - (void)viewDidUnload {

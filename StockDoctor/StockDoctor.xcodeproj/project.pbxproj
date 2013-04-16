@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58004A29171D92D900817E2C /* ChooseStocksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58004A27171D92D900817E2C /* ChooseStocksController.m */; };
+		58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A28171D92D900817E2C /* ChooseStocksController.xib */; };
+		58004A2F171D9D9C00817E2C /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58004A2D171D9D9C00817E2C /* SettingController.m */; };
+		58004A30171D9D9C00817E2C /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A2E171D9D9C00817E2C /* SettingController.xib */; };
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
@@ -51,6 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58004A26171D92D900817E2C /* ChooseStocksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStocksController.h; sourceTree = "<group>"; };
+		58004A27171D92D900817E2C /* ChooseStocksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStocksController.m; sourceTree = "<group>"; };
+		58004A28171D92D900817E2C /* ChooseStocksController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseStocksController.xib; sourceTree = "<group>"; };
+		58004A2C171D9D9C00817E2C /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		58004A2D171D9D9C00817E2C /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		58004A2E171D9D9C00817E2C /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
@@ -135,6 +145,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58004A25171D92C400817E2C /* ChooseStocksController */ = {
+			isa = PBXGroup;
+			children = (
+				58004A26171D92D900817E2C /* ChooseStocksController.h */,
+				58004A27171D92D900817E2C /* ChooseStocksController.m */,
+				58004A28171D92D900817E2C /* ChooseStocksController.xib */,
+			);
+			path = ChooseStocksController;
+			sourceTree = "<group>";
+		};
+		58004A2B171D9CFF00817E2C /* SettingController */ = {
+			isa = PBXGroup;
+			children = (
+				58004A2C171D9D9C00817E2C /* SettingController.h */,
+				58004A2D171D9D9C00817E2C /* SettingController.m */,
+				58004A2E171D9D9C00817E2C /* SettingController.xib */,
+			);
+			path = SettingController;
+			sourceTree = "<group>";
+		};
 		58386F6F1712E85500B636E7 /* DetailController */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +257,8 @@
 		585087401711AC7400EA6820 /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58004A2B171D9CFF00817E2C /* SettingController */,
+				58004A25171D92C400817E2C /* ChooseStocksController */,
 				58734C251715AF25005A15CC /* DiagnosisCell */,
 				58386F821714507800B636E7 /* SearchCell */,
 				5850874B1711B97000EA6820 /* SinaSearchModel */,
@@ -384,6 +416,8 @@
 				58734C301716D83F005A15CC /* StockInfoView.xib in Resources */,
 				5866A215171A83BD0095C4FE /* icon@2x.png in Resources */,
 				5866A219171A84AE0095C4FE /* icon.png in Resources */,
+				58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */,
+				58004A30171D9D9C00817E2C /* SettingController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +444,8 @@
 				5866A20A171A7E000095C4FE /* KLineView.m in Sources */,
 				5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */,
 				5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */,
+				58004A29171D92D900817E2C /* ChooseStocksController.m in Sources */,
+				58004A2F171D9D9C00817E2C /* SettingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
