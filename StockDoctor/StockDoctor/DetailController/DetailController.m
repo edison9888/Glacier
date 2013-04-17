@@ -39,7 +39,6 @@
 {
     [super viewDidLoad];
     self.title = self.searchModel.shortName;
-    [[ContainerController instance] hideTabBar:true];
     [self switchTab:0];
     [self requestForStock];
     [self requestForDiagCount];

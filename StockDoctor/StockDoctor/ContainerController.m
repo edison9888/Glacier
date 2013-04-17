@@ -11,6 +11,7 @@
 #import "ChooseStocksController.h"
 #import "SettingController.h"
 #import "SearchModel.h"
+#define AnimationTime 0.15f
 
 @interface ContainerController ()
 @property (strong, nonatomic) IBOutlet UIView *bgView;
@@ -51,43 +52,18 @@
     return _instance;
 }
 
-- (void)hideTabBar:(bool)isHidden
-{
-    CGFloat yAxis = 0;
-    CGFloat height = CGRectGetHeight(self.tabBarView.frame);
-    
-    if (isHidden)
-    {
-        yAxis = CGRectGetHeight(self.view.bounds) - height;
-    }
-    else
-    {
-        yAxis = CGRectGetHeight(self.view.bounds);
-    }
-    
-    
-    if (isHidden)
-    {
-        yAxis += height;
-    }
-    else
-    {
-        yAxis -= height;
-    }
-
-    self.tabBarView.hidden = isHidden;
-    [self.bgView fixHeight:yAxis];
-    [self.navigationController.view fixHeight:yAxis];
-
-}
-
 - (IBAction)onBackClick:(UIButton *)sender
 {
-    if (self.tabBarView.isHidden)
+    if (self.tabBarView.hidden)
     {
-        [self hideTabBar:false];
+        CGFloat contentHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.tabBarView.bounds);
+        self.tabBarView.hidden = false;
         [self.naviController popViewControllerAnimated:true];
-        
+        [UIView animateWithDuration:AnimationTime animations:^{
+            [self.tabBarView fixY:contentHeight];
+        } completion:^(BOOL finished) {
+            [self.naviController.view fixHeight:contentHeight];
+        }];
     }
     else
     {
@@ -97,9 +73,21 @@
 
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated
 {
+     [self.naviController pushViewController:controller animated:animated];
+}
+
+- (void)pushControllerHideTab:(UIViewController *)controller animated:(BOOL)animated
+{
+    [self.naviController.view fixHeight:CGRectGetHeight(self.view.bounds)];
     [self.naviController pushViewController:controller animated:animated];
     [controller.navigationItem hidesBackButton];
     controller.navigationItem.leftBarButtonItem = self.defaultLeftBar;
+//    [self.view bringSubviewToFront:self.tabBarView];
+    [UIView animateWithDuration:AnimationTime animations:^{
+        [self.tabBarView fixY:CGRectGetHeight(self.view.bounds)];
+    } completion:^(BOOL finished) {
+        self.tabBarView.hidden = true;
+    }];
 }
 
 - (void)switchViews:(int)index
@@ -125,7 +113,8 @@
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:contentController];
     self.naviController = navigation;
     self.naviController.view.frame = self.bgView.bounds;
-    [self.bgView addSubview:self.naviController.view];
+    [self.view addSubview:self.naviController.view];
+    [self.view sendSubviewToBack:self.naviController.view];
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item

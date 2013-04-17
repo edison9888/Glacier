@@ -10,7 +10,6 @@
 
 @interface ContainerController : GlacierController<UITabBarDelegate>
 + (ContainerController *)instance;
-- (void)hideTabBar:(bool)isHidden;
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated;
-
+- (void)pushControllerHideTab:(UIViewController *)controller animated:(BOOL)animated;
 @end

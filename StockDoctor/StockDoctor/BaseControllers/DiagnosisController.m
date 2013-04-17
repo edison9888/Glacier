@@ -160,7 +160,7 @@
         DetailController * detailController = [[DetailController alloc]init];
         SearchModel * model = self.modelList[indexPath.row];
         detailController.searchModel = model;
-        [[ContainerController instance] pushController:detailController animated:true];
+        [[ContainerController instance] pushControllerHideTab:detailController animated:true];
     }
 }
 
