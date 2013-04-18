@@ -22,6 +22,7 @@
 @property (strong, nonatomic) StockBaseInfoModel * stockBaseInfoModel;
 @property (strong, nonatomic) IBOutlet UIView *graphView;
 @property (strong, nonatomic) IBOutlet KLineView *kLineView;
+@property (strong, nonatomic) IBOutlet UIButton *addBtN;
 @end
 
 @implementation DetailController
@@ -39,6 +40,16 @@
 {
     [super viewDidLoad];
     self.title = self.searchModel.shortName;
+    
+    if ([self checkIsInSelfStock])
+    {
+        [self.addBtN setTitle:@"删除" forState:(UIControlStateNormal)];
+    }
+    else
+    {
+        [self.addBtN setTitle:@"添加" forState:(UIControlStateNormal)];
+    }
+    
     [self switchTab:0];
     [self requestForStock];
     [self requestForDiagCount];
@@ -164,6 +175,40 @@
     [self switchTab:sender.selectedSegmentIndex];
 }
 
+- (bool)checkIsInSelfStock
+{
+    NSArray * selfModelList = [SearchModel selectAll];
+    
+    return  [selfModelList any:^BOOL(SearchModel * obj) {
+        if ([obj.fullCode isEqualToString:self.searchModel.fullCode])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }];
+}
+
+- (IBAction)onAddClick:(UIButton *)sender
+{
+    SearchModel * model = self.searchModel;
+    if ([self checkIsInSelfStock])
+    {
+        
+        [model deleteSelf];
+        [self.addBtN setTitle:@"添加" forState:(UIControlStateNormal)];
+        
+    }
+    else
+    {
+        [model insertSelfIntoFirst];
+        [self.addBtN setTitle:@"删除" forState:(UIControlStateNormal)];
+    }
+    
+}
+
 - (void)switchTab:(int)index
 {
     if (index == 0)
@@ -180,4 +225,5 @@
         [self requestForKLine:index];
     }
 }
+
 @end

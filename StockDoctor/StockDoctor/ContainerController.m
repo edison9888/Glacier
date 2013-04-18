@@ -56,13 +56,16 @@
 {
     if (self.tabBarView.hidden)
     {
+        
         CGFloat contentHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.tabBarView.bounds);
+       
         self.tabBarView.hidden = false;
+        [self.naviController.view fixHeight:contentHeight];
         [self.naviController popViewControllerAnimated:true];
         [UIView animateWithDuration:AnimationTime animations:^{
             [self.tabBarView fixY:contentHeight];
         } completion:^(BOOL finished) {
-            [self.naviController.view fixHeight:contentHeight];
+            
         }];
     }
     else

@@ -52,6 +52,9 @@
 		58734C301716D83F005A15CC /* StockInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58734C2F1716D83F005A15CC /* StockInfoView.xib */; };
 		58734C341716DCE3005A15CC /* TrendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58734C331716DCE3005A15CC /* TrendModel.m */; };
 		58A5426917185F4400708CED /* KLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A5426817185F4400708CED /* KLineModel.m */; };
+		58C961BA1720263100ECC0A0 /* ChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C961B91720263100ECC0A0 /* ChooseCell.m */; };
+		58C961BC1720263E00ECC0A0 /* ChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58C961BB1720263E00ECC0A0 /* ChooseCell.xib */; };
+		58C961C017202A2800ECC0A0 /* ChooseStockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58C961BF17202A2800ECC0A0 /* ChooseStockModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +123,11 @@
 		58734C331716DCE3005A15CC /* TrendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendModel.m; sourceTree = "<group>"; };
 		58A5426717185F4400708CED /* KLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineModel.h; sourceTree = "<group>"; };
 		58A5426817185F4400708CED /* KLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineModel.m; sourceTree = "<group>"; };
+		58C961B81720263100ECC0A0 /* ChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCell.h; sourceTree = "<group>"; };
+		58C961B91720263100ECC0A0 /* ChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCell.m; sourceTree = "<group>"; };
+		58C961BB1720263E00ECC0A0 /* ChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseCell.xib; sourceTree = "<group>"; };
+		58C961BE17202A2800ECC0A0 /* ChooseStockModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStockModel.h; sourceTree = "<group>"; };
+		58C961BF17202A2800ECC0A0 /* ChooseStockModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStockModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,8 @@
 		58004A25171D92C400817E2C /* ChooseStocksController */ = {
 			isa = PBXGroup;
 			children = (
+				58C961BD1720279D00ECC0A0 /* Models */,
+				58C961B71720261A00ECC0A0 /* Cells */,
 				58004A26171D92D900817E2C /* ChooseStocksController.h */,
 				58004A27171D92D900817E2C /* ChooseStocksController.m */,
 				58004A28171D92D900817E2C /* ChooseStocksController.xib */,
@@ -352,6 +362,25 @@
 			path = StockModel;
 			sourceTree = "<group>";
 		};
+		58C961B71720261A00ECC0A0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				58C961B81720263100ECC0A0 /* ChooseCell.h */,
+				58C961B91720263100ECC0A0 /* ChooseCell.m */,
+				58C961BB1720263E00ECC0A0 /* ChooseCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		58C961BD1720279D00ECC0A0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58C961BE17202A2800ECC0A0 /* ChooseStockModel.h */,
+				58C961BF17202A2800ECC0A0 /* ChooseStockModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -418,6 +447,7 @@
 				5866A219171A84AE0095C4FE /* icon.png in Resources */,
 				58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */,
 				58004A30171D9D9C00817E2C /* SettingController.xib in Resources */,
+				58C961BC1720263E00ECC0A0 /* ChooseCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +476,8 @@
 				5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */,
 				58004A29171D92D900817E2C /* ChooseStocksController.m in Sources */,
 				58004A2F171D9D9C00817E2C /* SettingController.m in Sources */,
+				58C961BA1720263100ECC0A0 /* ChooseCell.m in Sources */,
+				58C961C017202A2800ECC0A0 /* ChooseStockModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

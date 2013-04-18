@@ -55,7 +55,7 @@
 					</object>
 					<object class="IBUISegmentedControl" id="936134799">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">288</int>
 						<string key="NSFrame">{{15, 176}, {290, 30}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
@@ -103,8 +103,8 @@
 					</object>
 					<object class="IBUIView" id="1042167076">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{0, 207}, {310, 135}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{5, 213}, {310, 135}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -237,6 +237,14 @@
 					<int key="connectionID">17</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">addBtN</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="731308692"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onBarSwitch:</string>
 						<reference key="source" ref="936134799"/>
@@ -244,6 +252,15 @@
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">13</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onAddClick:</string>
+						<reference key="source" ref="731308692"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">23</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -260,8 +277,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="836816806"/>
 							<reference ref="936134799"/>
-							<reference ref="1042167076"/>
 							<reference ref="696820964"/>
+							<reference ref="1042167076"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -338,31 +355,39 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">19</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">DetailController</string>
 					<string key="superclassName">GlacierController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">onBarSwitch:</string>
-						<string key="NS.object.0">UISegmentedControl</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">onBarSwitch:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="onAddClick:">UIButton</string>
+						<string key="onBarSwitch:">UISegmentedControl</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="onAddClick:">
+							<string key="name">onAddClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBActionInfo" key="onBarSwitch:">
 							<string key="name">onBarSwitch:</string>
 							<string key="candidateClassName">UISegmentedControl</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="addBtN">UIButton</string>
 						<string key="graphView">UIView</string>
 						<string key="kLineView">KLineView</string>
 						<string key="stockInfoView">StockInfoView</string>
 						<string key="trendGraphView">TrendGraphView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="addBtN">
+							<string key="name">addBtN</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="graphView">
 							<string key="name">graphView</string>
 							<string key="candidateClassName">UIView</string>
