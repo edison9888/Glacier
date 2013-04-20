@@ -1,7 +1,7 @@
 //
 //  SingleDiagnosisController.h
 //  StockDoctor
-//
+//  单券诊断
 //  Created by cnzhao on 13-4-20.
 //  Copyright (c) 2013年 glacier. All rights reserved.
 //

@@ -84,19 +84,30 @@ static float gIndexValue;
     
     float tempRatio = (currentPrice - expectation) / expectation;
     
-    if (tempRatio > 0.1)
+    float maxRatio = 0.1;
+    
+    if (tempRatio > maxRatio)
     {
-        tempRatio = 0.1;
+        tempRatio = maxRatio;
     }
-    else if(tempRatio < - 0.1)
+    else if(tempRatio < - maxRatio)
     {
-        tempRatio = - 0.1;
+        tempRatio = - maxRatio;
     }
     
-    //数字越大 上涨几率越小
-    tempRatio = -tempRatio;
+    tempRatio = ( maxRatio + tempRatio )/ 2 * maxRatio;
     
-    int score = 50 * (1 + tempRatio) * gIndexValue;
+    int score = tempRatio * 100 * gIndexValue;
+    
+    //score不能为极值
+    if (score == 0)
+    {
+        score = 1;
+    }
+    else if(score == 100)
+    {
+        score = 99;
+    }
     
     self.probabilityLabel.text = [NSString stringWithFormat:@"%d%%",score];
 }
