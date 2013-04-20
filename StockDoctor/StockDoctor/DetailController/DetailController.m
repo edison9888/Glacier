@@ -114,8 +114,10 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+   
     if (request.tag == 0)
     {
+         NSLog(@"%@",request.responseString);
         [self processTrendData:request];
     }
     else if(request.tag == 10)

@@ -136,8 +136,15 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="274946347">
+							<int key="type">1</int>
+							<double key="pointSize">12</double>
+						</object>
+						<object class="NSFont" key="IBUIFont" id="1026719175">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">12</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="185238961">
@@ -157,8 +164,8 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="749609657">
@@ -178,8 +185,8 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="279213715">
@@ -199,8 +206,8 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="429323227">
@@ -220,14 +227,14 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUILabel" id="380140847">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 145}, {42, 21}}</string>
+						<string key="NSFrame">{{16, 145}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="506752129"/>
@@ -241,14 +248,14 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">7</float>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 					</object>
 					<object class="IBUILabel" id="506752129">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 145}, {42, 21}}</string>
+						<string key="NSFrame">{{70, 145}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="945626246"/>
@@ -262,14 +269,14 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">7</float>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 					</object>
 					<object class="IBUILabel" id="945626246">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{132, 145}, {42, 21}}</string>
+						<string key="NSFrame">{{126, 145}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="383305316"/>
@@ -283,14 +290,14 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">7</float>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 					</object>
 					<object class="IBUILabel" id="383305316">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{191, 145}, {42, 21}}</string>
+						<string key="NSFrame">{{182, 145}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="882890987"/>
@@ -304,14 +311,14 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">7</float>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 					</object>
 					<object class="IBUILabel" id="882890987">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{241, 145}, {52, 21}}</string>
+						<string key="NSFrame">{{241, 145}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -324,9 +331,9 @@
 						<reference key="IBUITextColor" ref="718139100"/>
 						<reference key="IBUIHighlightedColor" ref="731512079"/>
 						<int key="IBUIBaselineAdjustment">0</int>
-						<reference key="IBUIFontDescription" ref="1013576264"/>
-						<reference key="IBUIFont" ref="1062319448"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">7</float>
+						<reference key="IBUIFontDescription" ref="274946347"/>
+						<reference key="IBUIFont" ref="1026719175"/>
 					</object>
 					<object class="IBUIButton" id="934434041">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -491,18 +498,18 @@
 							<reference ref="471705208"/>
 							<reference ref="185238961"/>
 							<reference ref="749609657"/>
-							<reference ref="380140847"/>
 							<reference ref="945626246"/>
 							<reference ref="383305316"/>
 							<reference ref="934434041"/>
 							<reference ref="51482421"/>
 							<reference ref="548590968"/>
 							<reference ref="270225173"/>
-							<reference ref="506752129"/>
 							<reference ref="756993399"/>
 							<reference ref="882890987"/>
 							<reference ref="429323227"/>
 							<reference ref="279213715"/>
+							<reference ref="506752129"/>
+							<reference ref="380140847"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

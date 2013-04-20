@@ -11,5 +11,4 @@
 
 @interface SingleDiagnosisController : GlacierController
 @property (nonatomic,assign) DetailController * detailController;
-@property (nonatomic,assign) bool isStock;
 @end
