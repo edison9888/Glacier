@@ -16,6 +16,9 @@
 //生成均线数据
 - (NSArray *)generateMAData:(int)range  WithCount:(int)count;
 - (NSArray *)generateVerSepIndexList;
+
+//生成当日均价
+- (float)todayAvePrice:(int)range;
 @end
 
 @interface KLineCellData : NSObject

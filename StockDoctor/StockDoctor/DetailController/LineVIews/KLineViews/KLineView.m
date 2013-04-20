@@ -118,19 +118,23 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    [self drawHorizontalGridInRect:[self gridRect]];
-    [self drawVerticalGridInRect:[self gridRect]];
-    [self drawBarSeries:[self dataRect]];
     
-    [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
-    
-    [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
-    
-    [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
-    
-    [self drawLeftString:[self leftStringRect]];
-    [self drawRightString:[self rightStringRect]];
-    [self drawButtomString:[self buttomStringRect]];
+    if (self.kLineModel)
+    {
+        [self drawHorizontalGridInRect:[self gridRect]];
+        [self drawVerticalGridInRect:[self gridRect]];
+        [self drawBarSeries:[self dataRect]];
+        
+        [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
+        
+        [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
+        
+        [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
+        
+        [self drawLeftString:[self leftStringRect]];
+        [self drawRightString:[self rightStringRect]];
+        [self drawButtomString:[self buttomStringRect]];
+    }
 }
 
 - (void)drawLeftString:(CGRect)rect

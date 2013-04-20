@@ -11,13 +11,14 @@
 #import "ChooseStocksController.h"
 #import "SettingController.h"
 #import "SearchModel.h"
-#define AnimationTime 0.15f
+#define AnimationTime 0.35f
 
 @interface ContainerController ()
 @property (strong, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) UINavigationController * naviController;
 @property (strong, nonatomic) IBOutlet UITabBar *tabBarView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *defaultLeftBar;
+@property (strong, nonatomic) UIViewController * presentController;
 @end
 
 @implementation ContainerController
@@ -42,6 +43,8 @@
     [self switchViews:0];
 }
 
+
+
 + (ContainerController *)instance
 {
     static ContainerController * _instance;
@@ -60,12 +63,12 @@
         CGFloat contentHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.tabBarView.bounds);
        
         self.tabBarView.hidden = false;
-        [self.naviController.view fixHeight:contentHeight];
+        
         [self.naviController popViewControllerAnimated:true];
         [UIView animateWithDuration:AnimationTime animations:^{
             [self.tabBarView fixY:contentHeight];
         } completion:^(BOOL finished) {
-            
+            [self.naviController.view fixHeight:contentHeight];
         }];
     }
     else
@@ -90,6 +93,27 @@
         [self.tabBarView fixY:CGRectGetHeight(self.view.bounds)];
     } completion:^(BOOL finished) {
         self.tabBarView.hidden = true;
+    }];
+}
+
+- (void)presentControllerFromButtom:(UIViewController *)controller
+{
+    self.presentController = controller;
+    controller.view.frame = self.view.bounds;
+    [controller.view fixY:CGRectGetHeight(self.view.bounds)];
+    [self.view addSubview:controller.view];
+    [UIView animateWithDuration:0.5 animations:^{
+        [controller.view fixY:0];
+    }];
+}
+
+- (void)dismissControllerFromButtom
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.presentController.view fixY:CGRectGetHeight(self.view.bounds)];
+    } completion:^(BOOL finished) {
+        [self.presentController.view removeFromSuperview];
+        self.presentController = nil;
     }];
 }
 

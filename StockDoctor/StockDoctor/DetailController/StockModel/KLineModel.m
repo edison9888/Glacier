@@ -72,6 +72,25 @@
     return arr;
 }
 
+- (float)todayAvePrice:(int)range
+{
+    if (range < self.cellDataList.count)
+    {
+        double totalClose = 0;
+        for (int j = 0; j < range; j++)
+        {
+            KLineCellData * cellData = self.cellDataList[j];
+            
+            totalClose += cellData.close.floatValue;
+        }
+        return totalClose / range;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 - (NSArray *)generateVerSepIndexList
 {
     NSMutableArray * arr = [NSMutableArray array];

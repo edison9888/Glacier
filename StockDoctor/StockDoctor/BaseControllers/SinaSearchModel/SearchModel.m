@@ -73,7 +73,7 @@
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         if (![db tableExists:@"SelfStock"])
         {
-            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS SelfStock(PK INTEGER PRIMARY KEY AUTOINCREMENT, keyword1 text,keyword2 text,shortName text,type text, shortCode text,fullCode text)"];
+            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS SelfStock(PK INTEGER PRIMARY KEY AUTOINCREMENT, keyword1 text,keyword2 text,shortName text,type text, shortCode text,fullCode text,sortIndex INTEGER)"];
         }
     }];
 }

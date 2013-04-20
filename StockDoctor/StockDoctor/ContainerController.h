@@ -12,4 +12,6 @@
 + (ContainerController *)instance;
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated;
 - (void)pushControllerHideTab:(UIViewController *)controller animated:(BOOL)animated;
+- (void)presentControllerFromButtom:(UIViewController *)controller;
+- (void)dismissControllerFromButtom;
 @end

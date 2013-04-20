@@ -18,7 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.modelList = @[@[@"aa",@"bb"],@[@""]];
+    
+        self.modelList = @[@{@"分享设置": @[@"新浪微博"]} ,@{@"其他": @[@"关于股票医生",@"给个好评"]} ];
     }
     return self;
 }
@@ -34,10 +35,17 @@
     return self.modelList.count;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSDictionary * dict = self.modelList[section];
+    return dict.allKeys[0];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray * arr = self.modelList[section];
-    return [arr count];
+    NSDictionary * dict = self.modelList[section];
+    
+    return [dict.allValues[0] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,7 +56,8 @@
     {
         cell = [[UITableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:idStr];
     }
-    cell.textLabel.text = self.modelList[indexPath.section][indexPath.row];
+    NSDictionary * dict = self.modelList[indexPath.section];
+    cell.textLabel.text = dict.allValues[0][indexPath.row];
     return cell;
 }
 

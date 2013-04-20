@@ -7,6 +7,10 @@
 //
 
 #import "DiagnosisCell.h"
+@interface DiagnosisCell()
+@property (strong, nonatomic) IBOutlet UIImageView *selectImg;
+
+@end
 
 @implementation DiagnosisCell
 
@@ -14,21 +18,20 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIView * access = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
-        access.backgroundColor = [UIColor redColor];
-        self.accessoryView = access;
     }
     return self;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+
     if (!editing)
     {
         self.changLabel.alpha = 0;
         [UIView animateWithDuration:0.2f animations:^{
             self.changLabel.alpha = 1;
         }];
+        
     }
     else
     {
@@ -37,6 +40,40 @@
             self.changLabel.alpha = 0;
         }];
     }
+    
     [super setEditing:editing animated:animated];
+    
+    [self.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL *stop) {
+        
+        if ([obj isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
+            obj.hidden= true;
+        }
+    }];
+    
+    if (editing)
+    {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else
+    {
+        self.selectionStyle = UITableViewCellSelectionStyleBlue;
+    }
 }
+
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    if (self.isEditing)
+    {
+        if (selected)
+        {
+            [self.selectImg setImage:[UIImage imageNamed:@"imfu_19.png"]];
+        }
+        else
+        {
+            [self.selectImg setImage:[UIImage imageNamed:@"icon.png"]];
+        }
+    }
+}
+
 @end

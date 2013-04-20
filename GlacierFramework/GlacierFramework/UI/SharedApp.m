@@ -87,11 +87,14 @@ static ASINetworkQueue * _ASINetworkQueue;
 + (FMDatabaseQueue *)FMDatabaseQueue
 {
     static FMDatabaseQueue * _instance;
-    if (!_instance)
-    {
-        NSArray* paths =NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES) ;
-        _instance = [[FMDatabaseQueue alloc]initWithPath:[[paths objectAtIndex:0]stringByAppendingPathComponent:FMDBFileName]];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (!_instance)
+        {
+            NSArray* paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) ;
+            _instance = [[FMDatabaseQueue alloc]initWithPath:[[paths objectAtIndex:0]stringByAppendingPathComponent:FMDBFileName]];
+        }
+    });
     return _instance;
 }
 @end

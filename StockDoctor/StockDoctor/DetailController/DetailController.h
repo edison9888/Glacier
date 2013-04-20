@@ -8,7 +8,11 @@
 
 #import "GlacierController.h"
 #import "SearchModel.h"
+#import "KLineModel.h"
+#import "TrendModel.h"
 
 @interface DetailController : GlacierController
 @property (nonatomic,strong) SearchModel * searchModel;
+@property (strong, nonatomic) NSMutableDictionary * trendKLineModelDict;
+@property (strong, nonatomic) StockBaseInfoModel * stockBaseInfoModel;
 @end

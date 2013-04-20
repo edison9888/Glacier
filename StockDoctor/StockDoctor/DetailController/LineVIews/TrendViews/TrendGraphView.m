@@ -115,19 +115,22 @@
 {
     [super drawRect:rect];
     
-    [self generateAverageData];
-    [self calcTopAndButtomPrice];
-    [self drawHorizontalGridInRect:[self gridRect]];
-    [self drawVerticalGridInRect:[self gridRect]];
-    
-    if (self.trendModel.trendCellDataList.count > 0)
+    if (self.trendModel)
     {
-        [self drawLinePatternUnderClosingData:[self dataRect] clip:true];
-        [self drawAveDataLine:[self dataRect]];
-        [self drawDataLine:[self dataRect]];
-        [self drawLeftString:[self leftStringRect]];
-        [self drawRightString:[self rightStringRect]];
-        [self drawButtomString:[self buttomStringRect]];
+        [self generateAverageData];
+        [self calcTopAndButtomPrice];
+        [self drawHorizontalGridInRect:[self gridRect]];
+        [self drawVerticalGridInRect:[self gridRect]];
+        
+        if (self.trendModel.trendCellDataList.count > 0)
+        {
+            [self drawLinePatternUnderClosingData:[self dataRect] clip:true];
+            [self drawAveDataLine:[self dataRect]];
+            [self drawDataLine:[self dataRect]];
+            [self drawLeftString:[self leftStringRect]];
+            [self drawRightString:[self rightStringRect]];
+            [self drawButtomString:[self buttomStringRect]];
+        }
     }
 }
 
