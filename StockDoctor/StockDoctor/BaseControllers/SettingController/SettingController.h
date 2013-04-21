@@ -7,7 +7,8 @@
 //
 
 #import "GlacierController.h"
+#import "SinaWeiboManager.h"
 
-@interface SettingController : GlacierController<UITableViewDataSource,UITableViewDelegate>
+@interface SettingController : GlacierController<UITableViewDataSource,UITableViewDelegate,SinaWeiboDelegate>
 
 @end

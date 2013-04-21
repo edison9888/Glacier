@@ -28,6 +28,15 @@ static ASINetworkQueue * _ASINetworkQueue;
     return _instance;
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.appDictionary = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
 - (SDKVersion)currentVersion
 {
     if (!mSDKVersion.firstVersion) 

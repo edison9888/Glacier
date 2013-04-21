@@ -23,6 +23,7 @@ typedef struct SDKVersion SDKVersion;
 + (SharedApp *) instance;
 @property (nonatomic,readonly) SDKVersion currentVersion;
 @property (nonatomic,readonly) ASINetworkQueue * httpQueue;
+@property (nonatomic,retain) NSMutableDictionary * appDictionary;
 @end
 
 @interface SharedApp(http)
