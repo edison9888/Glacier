@@ -80,6 +80,8 @@
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated
 {
      [self.naviController pushViewController:controller animated:animated];
+    [controller.navigationItem hidesBackButton];
+    controller.navigationItem.leftBarButtonItem = self.defaultLeftBar;
 }
 
 - (void)pushControllerHideTab:(UIViewController *)controller animated:(BOOL)animated

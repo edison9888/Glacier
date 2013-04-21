@@ -22,6 +22,15 @@
     self = [super init];
     if (self) {
         _sinaWeibo =  [[SinaWeibo alloc]initWithAppKey:kAppKey appSecret:kAppSecret appRedirectURI:kAppRedirectURI andDelegate:self];
+        if ([self isAuth])
+        {
+            NSDictionary * dict = [[NSUserDefaults standardUserDefaults]objectForKey:@"SinaWeiboAuthData"];
+            _sinaWeibo.accessToken = dict[@"AccessTokenKey"];
+            _sinaWeibo.userID = dict[@"UserIDKey"];
+            _sinaWeibo.refreshToken = dict[@"refresh_token"];
+            _sinaWeibo.expirationDate = dict[@"ExpirationDateKey"];
+        }
+        
     }
     return self;
 }
@@ -44,14 +53,6 @@
 - (void)doLogout
 {
     [_sinaWeibo logOut];
-}
-
-- (void)userInfo:(id<SinaWeiboRequestDelegate>)delegate
-{
-    [_sinaWeibo requestWithURL:@"users/show.json"
-                       params:[NSMutableDictionary dictionaryWithObject:_sinaWeibo.userID forKey:@"uid"]
-                   httpMethod:@"GET"
-                     delegate:delegate];
 }
 
 - (void)removeAuthData
@@ -120,6 +121,42 @@
         [self.delegate sinaweibo:sinaweibo accessTokenInvalidOrExpired:error];
     }
 }
+@end
 
+@implementation SinaWeiboManager(post)
+    
+- (void)userInfo:(id<SinaWeiboRequestDelegate>)delegate
+{
+    [_sinaWeibo requestWithURL:@"users/show.json"
+                        params:[NSMutableDictionary dictionaryWithObject:_sinaWeibo.userID forKey:@"uid"]
+                    httpMethod:@"GET"
+                      delegate:delegate];
+}
+
+- (void)followUser:(NSString *)userID receiver:(id<SinaWeiboRequestDelegate>)delegate
+{
+    [_sinaWeibo requestWithURL:@"friendships/create.json"
+                        params:[NSMutableDictionary dictionaryWithObjectsAndKeys:userID, @"uid", nil]
+                    httpMethod:@"POST"
+                      delegate:delegate];
+}
+
+- (void)postWeibo:(NSString *)text receiver:(id<SinaWeiboRequestDelegate>)delegate
+{
+    [_sinaWeibo requestWithURL:@"statuses/update.json"
+                        params:[NSMutableDictionary dictionaryWithObjectsAndKeys:text, @"status", nil]
+                    httpMethod:@"POST"
+                      delegate:delegate];
+}
+
+- (void)postImageWeibo:(NSString *)text image:(UIImage *)image receiver:(id<SinaWeiboRequestDelegate>)delegate
+{
+    [_sinaWeibo requestWithURL:@"statuses/upload.json"
+                       params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                               text, @"status",
+                               image, @"pic", nil]
+                   httpMethod:@"POST"
+                     delegate:delegate];
+}
 
 @end

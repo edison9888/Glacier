@@ -8,7 +8,8 @@
 
 #import "GlacierController.h"
 #import "DetailController.h"
+#import "SinaWeiboManager.h"
 
-@interface SingleDiagnosisController : GlacierController
+@interface SingleDiagnosisController : GlacierController<SinaWeiboRequestDelegate>
 @property (nonatomic,assign) DetailController * detailController;
 @end

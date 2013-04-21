@@ -11,6 +11,8 @@
 		58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A28171D92D900817E2C /* ChooseStocksController.xib */; };
 		58004A2F171D9D9C00817E2C /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58004A2D171D9D9C00817E2C /* SettingController.m */; };
 		58004A30171D9D9C00817E2C /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A2E171D9D9C00817E2C /* SettingController.xib */; };
+		58234A1F172410A500091541 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A1D172410A500091541 /* AboutUsController.m */; };
+		58234A20172410A500091541 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58234A1E172410A500091541 /* AboutUsController.xib */; };
 		582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A288F17238CB0006C9A21 /* SinaWeiboManager.m */; };
 		582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 582A289117239DF1006C9A21 /* SinaWeibo.bundle */; };
 		582A289417239DFC006C9A21 /* imfu_19.png in Resources */ = {isa = PBXBuildFile; fileRef = 582A289317239DFC006C9A21 /* imfu_19.png */; };
@@ -69,6 +71,9 @@
 		58004A2C171D9D9C00817E2C /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		58004A2D171D9D9C00817E2C /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		58004A2E171D9D9C00817E2C /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
+		58234A1C172410A500091541 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
+		58234A1D172410A500091541 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
+		58234A1E172410A500091541 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		582A288E17238CB0006C9A21 /* SinaWeiboManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboManager.h; sourceTree = "<group>"; };
 		582A288F17238CB0006C9A21 /* SinaWeiboManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboManager.m; sourceTree = "<group>"; };
 		582A289117239DF1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
@@ -180,12 +185,23 @@
 		58004A2B171D9CFF00817E2C /* SettingController */ = {
 			isa = PBXGroup;
 			children = (
+				58234A1B1724108E00091541 /* AboutUs */,
 				58BBFED21722DB7300EF7FA4 /* Weibo */,
 				58004A2C171D9D9C00817E2C /* SettingController.h */,
 				58004A2D171D9D9C00817E2C /* SettingController.m */,
 				58004A2E171D9D9C00817E2C /* SettingController.xib */,
 			);
 			path = SettingController;
+			sourceTree = "<group>";
+		};
+		58234A1B1724108E00091541 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				58234A1C172410A500091541 /* AboutUsController.h */,
+				58234A1D172410A500091541 /* AboutUsController.m */,
+				58234A1E172410A500091541 /* AboutUsController.xib */,
+			);
+			path = AboutUs;
 			sourceTree = "<group>";
 		};
 		58386F6F1712E85500B636E7 /* DetailController */ = {
@@ -486,6 +502,7 @@
 				5867D95817226F4300429A34 /* SingleDiagnosisController.xib in Resources */,
 				582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */,
 				582A289417239DFC006C9A21 /* imfu_19.png in Resources */,
+				58234A20172410A500091541 /* AboutUsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +535,7 @@
 				58C961C017202A2800ECC0A0 /* ChooseStockModel.m in Sources */,
 				5867D95717226F4300429A34 /* SingleDiagnosisController.m in Sources */,
 				582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */,
+				58234A1F172410A500091541 /* AboutUsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

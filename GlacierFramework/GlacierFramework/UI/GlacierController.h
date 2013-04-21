@@ -13,6 +13,7 @@
 #import "SharedApp.h"
 #import "BlocksKit.h"
 #import "UIHelper+ViewFixer.h"
+#import "MTStatusBarOverlay.h"
 
 @interface GlacierController : UIViewController<ASIHTTPRequestDelegate>
 @property (nonatomic,readonly) SharedApp * sharedApp;

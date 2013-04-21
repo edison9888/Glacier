@@ -7,6 +7,7 @@
 //
 
 #import "SingleDiagnosisController.h"
+#import "UIView+CurrentScreen.h"
 
 @interface SingleDiagnosisController ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -177,6 +178,16 @@ static float gStockValue; //股票上涨中指数的比例
     }
     
     self.probabilityLabel.text = [NSString stringWithFormat:@"%d%%",score];
+}
+
+- (IBAction)onShareToWeiboClick:(UIButton *)sender
+{
+    [[SinaWeiboManager instance] postImageWeibo:@"来自股票医生的诊断" image:self.view.currentImage receiver:self];
+}
+
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    NSLog(@"%@",result);
 }
 
 - (IBAction)onFinishClick:(UIButton *)sender

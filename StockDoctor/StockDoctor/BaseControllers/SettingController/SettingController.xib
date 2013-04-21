@@ -45,7 +45,6 @@
 						<string key="NSFrameSize">{325, 471}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -130,7 +129,6 @@
 								<string key="NSFrame">{{238, 7}, {62, 33}}</string>
 								<reference key="NSSuperview" ref="414489211"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -176,7 +174,6 @@
 						<string key="NSFrameSize">{320, 46}</string>
 						<reference key="NSSuperview" ref="985724562"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="864380505">
 							<int key="NSColorSpace">3</int>
@@ -242,7 +239,6 @@
 						<string key="NSFrameSize">{300, 43}</string>
 						<reference key="NSSuperview" ref="390739346"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="864380505"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -307,7 +303,6 @@
 						<string key="NSFrameSize">{320, 43}</string>
 						<reference key="NSSuperview" ref="312995183"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
 						<reference key="IBUIBackgroundColor" ref="864380505"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -560,6 +555,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="aboutCell">UITableViewCell</string>
 						<string key="commentCell">UITableViewCell</string>
+						<string key="settingTableView">UITableView</string>
 						<string key="weiboButton">UIButton</string>
 						<string key="weiboCell">UITableViewCell</string>
 						<string key="weiboLabel">UILabel</string>
@@ -572,6 +568,10 @@
 						<object class="IBToOneOutletInfo" key="commentCell">
 							<string key="name">commentCell</string>
 							<string key="candidateClassName">UITableViewCell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="settingTableView">
+							<string key="name">settingTableView</string>
+							<string key="candidateClassName">UITableView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="weiboButton">
 							<string key="name">weiboButton</string>

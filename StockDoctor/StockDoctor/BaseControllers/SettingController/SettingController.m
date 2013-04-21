@@ -8,6 +8,7 @@
 
 #import "SettingController.h"
 #import "SinaWeiboManager.h"
+#import "AboutUsController.h"
 
 @interface SettingController ()
 
@@ -112,13 +113,15 @@
 {
     if (cellIn(0, 0))
     {
-        [[SinaWeiboManager instance] doLogin];
+        
     }
     else if (cellIn(1, 0))
     {
-//        [[SinaWeiboManager instance] userInfo:self];
+        AboutUsController * controller = [[AboutUsController alloc]init];
+        [[ContainerController instance] pushControllerHideTab:controller animated:true];
     }
 }
+
 
 #pragma marks weibo delegate
 

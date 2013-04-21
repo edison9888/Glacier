@@ -21,6 +21,10 @@
 		581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */; };
 		581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A316DBBC51007674F7 /* FMResultSet.h */; };
 		581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A416DBBC51007674F7 /* FMResultSet.m */; };
+		58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A22172429BC00091541 /* MTStatusBarOverlay.h */; };
+		58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A23172429BC00091541 /* MTStatusBarOverlay.m */; };
+		58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A2717242E0A00091541 /* UIView+CurrentScreen.h */; };
+		58234A2A17242E0A00091541 /* UIView+CurrentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A2817242E0A00091541 /* UIView+CurrentScreen.m */; };
 		582A2887172385B1006C9A21 /* SinaWeibo.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2880172385B1006C9A21 /* SinaWeibo.h */; };
 		582A2888172385B1006C9A21 /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A2881172385B1006C9A21 /* SinaWeibo.m */; };
 		582A2889172385B1006C9A21 /* SinaWeiboAuthorizeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2882172385B1006C9A21 /* SinaWeiboAuthorizeView.h */; };
@@ -95,6 +99,10 @@
 		581D66A216DBBC51007674F7 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		581D66A316DBBC51007674F7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		581D66A416DBBC51007674F7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		58234A22172429BC00091541 /* MTStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTStatusBarOverlay.h; sourceTree = "<group>"; };
+		58234A23172429BC00091541 /* MTStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTStatusBarOverlay.m; sourceTree = "<group>"; };
+		58234A2717242E0A00091541 /* UIView+CurrentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CurrentScreen.h"; sourceTree = "<group>"; };
+		58234A2817242E0A00091541 /* UIView+CurrentScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CurrentScreen.m"; sourceTree = "<group>"; };
 		582A287F172385B1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
 		582A2880172385B1006C9A21 /* SinaWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeibo.h; sourceTree = "<group>"; };
 		582A2881172385B1006C9A21 /* SinaWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeibo.m; sourceTree = "<group>"; };
@@ -188,6 +196,24 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		58234A21172429BC00091541 /* MTStatusBarOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				58234A22172429BC00091541 /* MTStatusBarOverlay.h */,
+				58234A23172429BC00091541 /* MTStatusBarOverlay.m */,
+			);
+			path = MTStatusBarOverlay;
+			sourceTree = "<group>";
+		};
+		58234A2617242E0A00091541 /* CurrentScreen */ = {
+			isa = PBXGroup;
+			children = (
+				58234A2717242E0A00091541 /* UIView+CurrentScreen.h */,
+				58234A2817242E0A00091541 /* UIView+CurrentScreen.m */,
+			);
+			path = CurrentScreen;
+			sourceTree = "<group>";
+		};
 		582A287E172385B1006C9A21 /* SinaWeibo */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +232,8 @@
 		588533FD15B2F640009569A5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				58234A2617242E0A00091541 /* CurrentScreen */,
+				58234A21172429BC00091541 /* MTStatusBarOverlay */,
 				58004A21171D7DB900817E2C /* UIHelper+ViewFixer.h */,
 				58004A22171D7DB900817E2C /* UIHelper+ViewFixer.m */,
 				588533FE15B2F650009569A5 /* GlacierController.h */,
@@ -440,6 +468,8 @@
 				582A2889172385B1006C9A21 /* SinaWeiboAuthorizeView.h in Headers */,
 				582A288B172385B1006C9A21 /* SinaWeiboConstants.h in Headers */,
 				582A288C172385B1006C9A21 /* SinaWeiboRequest.h in Headers */,
+				58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */,
+				58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +554,8 @@
 				582A2888172385B1006C9A21 /* SinaWeibo.m in Sources */,
 				582A288A172385B1006C9A21 /* SinaWeiboAuthorizeView.m in Sources */,
 				582A288D172385B1006C9A21 /* SinaWeiboRequest.m in Sources */,
+				58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */,
+				58234A2A17242E0A00091541 /* UIView+CurrentScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

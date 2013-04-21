@@ -37,7 +37,7 @@
 
 - (IBAction)onSearchTextChanged:(UITextField *)sender
 {
-    [self doHttpRequest:[NSString stringWithFormat:@"http://suggest3.sinajs.cn/suggest/type=&key=%@&name=stock",sender.text]];
+    [self doHttpRequest:[NSString stringWithFormat:@"http://suggest3.sinajs.cn/suggest/type=11,12,13,14,15&key=%@&name=stock",sender.text]];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request

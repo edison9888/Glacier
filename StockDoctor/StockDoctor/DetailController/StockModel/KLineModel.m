@@ -94,12 +94,14 @@
 - (NSArray *)generateVerSepIndexList
 {
     NSMutableArray * arr = [NSMutableArray array];
-     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     formatter.dateFormat = @"yyyy-MM-dd";
-    __block int last = INT_MIN;
-    __block NSDate * lastDate= nil;
+    int last = INT_MIN;
+    NSDate * lastDate= nil;
     
-    [self.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
+    for (int idx = 0; idx< self.cellDataList.count; idx++)
+    {
+        KLineCellData * obj = self.cellDataList[idx];
         NSDate * date = [formatter dateFromString:obj.date];
         NSDateComponents * comp = dateComponentFrom(date);
         
@@ -129,7 +131,7 @@
             }
             last = comp.month;
         }
-    }];
+    }
     
     return arr;
 }
