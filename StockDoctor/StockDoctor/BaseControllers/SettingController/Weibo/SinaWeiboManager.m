@@ -46,6 +46,14 @@
     [_sinaWeibo logOut];
 }
 
+- (void)userInfo:(id<SinaWeiboRequestDelegate>)delegate
+{
+    [_sinaWeibo requestWithURL:@"users/show.json"
+                       params:[NSMutableDictionary dictionaryWithObject:_sinaWeibo.userID forKey:@"uid"]
+                   httpMethod:@"GET"
+                     delegate:delegate];
+}
+
 - (void)removeAuthData
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SinaWeiboAuthData"];

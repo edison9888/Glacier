@@ -15,4 +15,5 @@
 - (bool)isAuth;
 - (void)doLogin;
 - (void)doLogout;
+- (void)userInfo:(id<SinaWeiboRequestDelegate>)delegate;
 @end

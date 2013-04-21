@@ -77,10 +77,9 @@
     return [dict.allValues[0] count];
 }
 
+#define cellIn(s,r) (indexPath.section == s && indexPath.row == r)
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#define cellIn(s,r) (indexPath.section == s && indexPath.row == r)
-    
     if (cellIn(0, 0))
     {
         if ([[SinaWeiboManager instance] isAuth])
@@ -111,9 +110,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0)
+    if (cellIn(0, 0))
     {
         [[SinaWeiboManager instance] doLogin];
+    }
+    else if (cellIn(1, 0))
+    {
+//        [[SinaWeiboManager instance] userInfo:self];
     }
 }
 
