@@ -38,7 +38,17 @@ static float gStockValue; //股票上涨中指数的比例
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self doDiagnosis];
+}
+
+- (void)doDiagnosis
+{
     self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",self.detailController.searchModel.shortName,self.detailController.searchModel.shortCode];
+    
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    
+    self.timeLabel.text = [formatter stringFromDate:[NSDate date]];
     
     if ([self isStock])
     {
@@ -183,6 +193,11 @@ static float gStockValue; //股票上涨中指数的比例
 - (IBAction)onShareToWeiboClick:(UIButton *)sender
 {
     [[SinaWeiboManager instance] postImageWeibo:@"来自股票医生的诊断" image:self.view.currentImage receiver:self];
+}
+
+- (IBAction)onDiagnosis:(UIButton *)sender
+{
+    [self doDiagnosis];
 }
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
