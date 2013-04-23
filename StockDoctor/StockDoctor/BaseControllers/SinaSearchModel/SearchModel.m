@@ -132,5 +132,72 @@
 @end
 
 
+@implementation SearchModel (searchRecode)
+
++ (void)checkOrCreateTableForSearch
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        if (![db tableExists:@"SearchStock"])
+        {
+            [db executeUpdate:@"CREATE TABLE IF NOT EXISTS SearchStock(PK INTEGER PRIMARY KEY AUTOINCREMENT, keyword1 text,keyword2 text,shortName text,type text, shortCode text,fullCode text,sortIndex INTEGER)"];
+        }
+    }];
+}
+
++ (NSArray *)selectAllForSearch
+{
+    NSMutableArray * allArr = [NSMutableArray array];
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        
+        FMResultSet * query = [db executeQuery:@"select * from SearchStock order by sortIndex desc limit 20"];
+        while ([query next])
+        {
+            SearchModel * model = [[SearchModel alloc]init];
+            model.keyword1 = [query stringForColumn:@"keyword1"];
+            model.keyword2 = [query stringForColumn:@"keyword2"];
+            model.shortName = [query stringForColumn:@"shortName"];
+            model.type = [query stringForColumn:@"type"];
+            model.shortCode = [query stringForColumn:@"shortCode"];
+            model.fullCode = [query stringForColumn:@"fullCode"];
+            model.sortIndex = [query intForColumn:@"sortIndex"];
+            [allArr addObject:model];
+        };
+    }];
+    return allArr;
+}
+
+
+- (void)insertSelfIntoFirstForSearch
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        FMResultSet * query = [db executeQuery:@"select count(1) from SearchStock where fullCode = ?",self.fullCode];
+        [query next];
+        int count = [query intForColumnIndex:0];
+        if (!count)
+        {
+            [db executeUpdate:@"insert into SearchStock (keyword1,keyword2,shortName,type,shortCode,fullCode,sortIndex) values (?,?,?,?,?,?,(SELECT count(1) FROM SearchStock))"
+             ,self.keyword1,self.keyword2,self.shortName,self.type,self.shortCode,self.fullCode];
+        }
+    }];
+}
+
+- (void)updateSortIndexForSearch:(FMDatabase *)db
+{
+    [db executeUpdate:@"update SearchStock set sortIndex = ? where fullCode = ?",@(self.sortIndex),self.fullCode];
+}
+
+- (void)deleteSelfForSearch
+{
+    FMDatabaseQueue * queue = [SharedApp FMDatabaseQueue];
+    [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [db executeUpdate:@"delete from SearchStock where fullCode = ?",self.fullCode];
+    }];
+}
+@end
+
+
 
 

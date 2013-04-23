@@ -33,11 +33,20 @@
     [super viewDidLoad];
     self.title = @"添加股票";
     self.selfStocksModelList = [SearchModel selectAll];
+    self.modelList = [SearchModel selectAllForSearch];
 }
 
 - (IBAction)onSearchTextChanged:(UITextField *)sender
 {
-    [self doHttpRequest:[NSString stringWithFormat:@"http://suggest3.sinajs.cn/suggest/type=11,12,13,14,15&key=%@&name=stock",sender.text]];
+    if (sender.text.length <= 0)
+    {
+        self.modelList = [SearchModel selectAllForSearch];
+        [self.searchTableView reloadData];
+    }
+    else
+    {
+        [self doHttpRequest:[NSString stringWithFormat:@"http://suggest3.sinajs.cn/suggest/type=11,12,13,14,15&key=%@&name=stock",sender.text]];
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -128,8 +137,9 @@
 {
     DetailController * detailController = [[DetailController alloc]init];
     SearchModel * model = self.modelList[indexPath.row];
+    [model insertSelfIntoFirstForSearch];
     detailController.searchModel = model;
-    [[ContainerController instance]pushController:detailController animated:true];
+    [[ContainerController instance]pushControllerHideTab:detailController animated:true];
 }
 
 @end

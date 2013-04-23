@@ -8,8 +8,7 @@
 
 #import "DiagnosisCell.h"
 @interface DiagnosisCell()
-@property (strong, nonatomic) IBOutlet UIImageView *selectImg;
-
+@property (strong, nonatomic) IBOutlet UIButton *imgButton;
 @end
 
 @implementation DiagnosisCell
@@ -67,11 +66,11 @@
     {
         if (selected)
         {
-            [self.selectImg setImage:[UIImage imageNamed:@"imfu_19.png"]];
+            self.imgButton.selected = false;
         }
         else
         {
-            [self.selectImg setImage:[UIImage imageNamed:@"icon.png"]];
+            self.imgButton.selected = true;
         }
     }
 }

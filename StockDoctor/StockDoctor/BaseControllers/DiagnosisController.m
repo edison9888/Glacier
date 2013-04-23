@@ -86,7 +86,7 @@
     else
     {
         [self.deleteList removeAllObjects];
-        [sender setTitle:@"完成" forState:(UIControlStateNormal)];
+        [sender setTitle:@"删除选中" forState:(UIControlStateNormal)];
         [self.stockTableView setEditing:true animated:true];
     }
     

@@ -22,7 +22,7 @@
 		581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A316DBBC51007674F7 /* FMResultSet.h */; };
 		581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A416DBBC51007674F7 /* FMResultSet.m */; };
 		58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A22172429BC00091541 /* MTStatusBarOverlay.h */; };
-		58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A23172429BC00091541 /* MTStatusBarOverlay.m */; };
+		58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A23172429BC00091541 /* MTStatusBarOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A2717242E0A00091541 /* UIView+CurrentScreen.h */; };
 		58234A2A17242E0A00091541 /* UIView+CurrentScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A2817242E0A00091541 /* UIView+CurrentScreen.m */; };
 		582A2887172385B1006C9A21 /* SinaWeibo.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2880172385B1006C9A21 /* SinaWeibo.h */; };
@@ -37,7 +37,7 @@
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
 		5885340515B2F725009569A5 /* SharedApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5885340315B2F725009569A5 /* SharedApp.m */; };
 		5898FB58171925D600F7616D /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898FB55171925D600F7616D /* DateHelpers.h */; };
-		5898FB59171925D600F7616D /* DateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898FB56171925D600F7616D /* DateHelpers.m */; };
+		5898FB59171925D600F7616D /* DateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898FB56171925D600F7616D /* DateHelpers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		58D341A617145D8D0055E971 /* BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A317145D8D0055E971 /* BlocksKit.h */; };
 		58D341A717145D8D0055E971 /* NSArray+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */; };
 		58D341A817145D8D0055E971 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */; };

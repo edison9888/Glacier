@@ -100,7 +100,7 @@ static ASINetworkQueue * _ASINetworkQueue;
     dispatch_once(&onceToken, ^{
         if (!_instance)
         {
-            NSArray* paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) ;
+            NSArray* paths =NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask, YES) ;
             _instance = [[FMDatabaseQueue alloc]initWithPath:[[paths objectAtIndex:0]stringByAppendingPathComponent:FMDBFileName]];
         }
     });

@@ -202,7 +202,7 @@ static float gStockValue; //股票上涨中指数的比例
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    NSLog(@"%@",result);
+//    NSLog(@"%@",result);
 }
 
 - (IBAction)onFinishClick:(UIButton *)sender

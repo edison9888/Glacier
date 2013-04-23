@@ -11,11 +11,12 @@
 		58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A28171D92D900817E2C /* ChooseStocksController.xib */; };
 		58004A2F171D9D9C00817E2C /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58004A2D171D9D9C00817E2C /* SettingController.m */; };
 		58004A30171D9D9C00817E2C /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A2E171D9D9C00817E2C /* SettingController.xib */; };
+		581C541D1726D08B005635D5 /* checkbox_unchecked_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 581C541B1726D08B005635D5 /* checkbox_unchecked_icon.png */; };
+		581C541E1726D08B005635D5 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 581C541C1726D08B005635D5 /* checkbox.png */; };
 		58234A1F172410A500091541 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A1D172410A500091541 /* AboutUsController.m */; };
 		58234A20172410A500091541 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58234A1E172410A500091541 /* AboutUsController.xib */; };
 		582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A288F17238CB0006C9A21 /* SinaWeiboManager.m */; };
 		582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 582A289117239DF1006C9A21 /* SinaWeibo.bundle */; };
-		582A289417239DFC006C9A21 /* imfu_19.png in Resources */ = {isa = PBXBuildFile; fileRef = 582A289317239DFC006C9A21 /* imfu_19.png */; };
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
@@ -71,13 +72,14 @@
 		58004A2C171D9D9C00817E2C /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		58004A2D171D9D9C00817E2C /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		58004A2E171D9D9C00817E2C /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
+		581C541B1726D08B005635D5 /* checkbox_unchecked_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_unchecked_icon.png; sourceTree = "<group>"; };
+		581C541C1726D08B005635D5 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		58234A1C172410A500091541 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		58234A1D172410A500091541 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		58234A1E172410A500091541 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
 		582A288E17238CB0006C9A21 /* SinaWeiboManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboManager.h; sourceTree = "<group>"; };
 		582A288F17238CB0006C9A21 /* SinaWeiboManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboManager.m; sourceTree = "<group>"; };
 		582A289117239DF1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
-		582A289317239DFC006C9A21 /* imfu_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imfu_19.png; sourceTree = "<group>"; };
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
@@ -355,7 +357,8 @@
 		5866A20F171A83480095C4FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				582A289317239DFC006C9A21 /* imfu_19.png */,
+				581C541B1726D08B005635D5 /* checkbox_unchecked_icon.png */,
+				581C541C1726D08B005635D5 /* checkbox.png */,
 				582A289117239DF1006C9A21 /* SinaWeibo.bundle */,
 				5866A218171A84AE0095C4FE /* icon.png */,
 				5866A214171A83BD0095C4FE /* icon@2x.png */,
@@ -501,8 +504,9 @@
 				58C961BC1720263E00ECC0A0 /* ChooseCell.xib in Resources */,
 				5867D95817226F4300429A34 /* SingleDiagnosisController.xib in Resources */,
 				582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */,
-				582A289417239DFC006C9A21 /* imfu_19.png in Resources */,
 				58234A20172410A500091541 /* AboutUsController.xib in Resources */,
+				581C541D1726D08B005635D5 /* checkbox_unchecked_icon.png in Resources */,
+				581C541E1726D08B005635D5 /* checkbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +582,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -603,7 +607,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -620,7 +624,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
@@ -642,7 +646,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",

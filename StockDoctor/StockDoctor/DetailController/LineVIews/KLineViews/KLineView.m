@@ -99,18 +99,50 @@
     _buttomPrice = FLT_MAX;
     
     [self.kLineModel.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
+    
         if (obj.high.floatValue > _topPrice)
         {
             _topPrice = obj.high.floatValue;
+            _topPrice = [self adjustValue:self.MA5DataList idx:idx val:_topPrice topOrButtom:true];
+            _topPrice = [self adjustValue:self.MA10DataList idx:idx val:_topPrice topOrButtom:true];
+            _topPrice = [self adjustValue:self.MA20DataList idx:idx val:_topPrice topOrButtom:true];
         }
         
         if (obj.low.floatValue < _buttomPrice)
         {
             _buttomPrice = obj.low.floatValue;
+            _buttomPrice = [self adjustValue:self.MA5DataList idx:idx val:_buttomPrice topOrButtom:false];
+            _buttomPrice = [self adjustValue:self.MA10DataList idx:idx val:_buttomPrice topOrButtom:false];
+            _buttomPrice = [self adjustValue:self.MA20DataList idx:idx val:_buttomPrice topOrButtom:false];
         }
     }];
     
     _halfPrice = (_topPrice - _buttomPrice) / 2;
+}
+
+
+- (float)adjustValue:(NSArray *)arr idx:(int)idx val:(float)value topOrButtom:(bool)tOb
+{
+    if (arr.count > idx)
+    {
+        NSNumber * num = arr[idx];
+        if (tOb)
+        {
+            if (num.floatValue > value)
+            {
+                return num.floatValue;
+            }
+        }
+        else
+        {
+            if (num.floatValue < value)
+            {
+                return num.floatValue;
+            }
+        }
+    }
+    
+    return value;
 }
 
 #pragma mark 绘图区域

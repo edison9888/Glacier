@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
     [SearchModel checkOrCreateTable];
+    [SearchModel checkOrCreateTableForSearch];
     self.tabBarView.selectedItem = self.tabBarView.items[0];
     [self switchViews:0];
 }

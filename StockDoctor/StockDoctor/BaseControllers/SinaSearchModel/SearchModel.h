@@ -25,3 +25,11 @@
 - (void)updateSortIndex:(FMDatabase *)db;
 + (NSArray *)selectAll;
 @end
+
+@interface SearchModel (searchRecode)
++ (void)checkOrCreateTableForSearch;
+- (void)insertSelfIntoFirstForSearch; //按sortIndex 逆序排列
+- (void)deleteSelfForSearch;
+- (void)updateSortIndexForSearch:(FMDatabase *)db;
++ (NSArray *)selectAllForSearch;
+@end
