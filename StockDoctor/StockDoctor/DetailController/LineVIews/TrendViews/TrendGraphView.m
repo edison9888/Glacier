@@ -9,6 +9,7 @@
 #import "TrendGraphView.h"
 
 #define yPoint(price) (ABS(_topPrice - price) / (2 * _halfHeightPrice) * rect.size.height)
+#define CellCount 240
 
 @interface TrendGraphView()
 @property (nonatomic,strong)  NSMutableArray * aveList;
@@ -46,6 +47,11 @@
         {
             _halfHeightPrice = ABS(obj.price.floatValue - _preClose);
         }
+        NSNumber * ave = self.aveList[idx];
+        if (ABS(ave.floatValue - _preClose) > _halfHeightPrice)
+        {
+            _halfHeightPrice = ABS(ave.floatValue - _preClose);
+        }
     }];
     
     _topPrice = _preClose + _halfHeightPrice;
@@ -56,7 +62,7 @@
 - (UIBezierPath *) pathForData:(CGRect)rect
 {
     //每个横轴间隔的距离
-    float xStep = rect.size.width / self.trendModel.trendCellDataList.count;
+    float xStep = rect.size.width / CellCount;
     
     TrendCellData * first = self.trendModel.trendCellDataList[0];
     
@@ -75,12 +81,12 @@
 {
     NSNumber * first = self.aveList[0];
     
-    float xStep = rect.size.width / self.aveList.count;
+    float xStep = rect.size.width / CellCount;
     
     UIBezierPath * bezierPath = [UIBezierPath bezierPath];
     
-    _firstPoint = CGPointMake(rect.origin.x, rect.origin.y + yPoint(first.floatValue));
-    [bezierPath moveToPoint:_firstPoint];
+    CGPoint  firstPoint = CGPointMake(rect.origin.x, rect.origin.y + yPoint(first.floatValue));
+    [bezierPath moveToPoint:firstPoint];
     
     [self.aveList enumerateObjectsUsingBlock:^(NSNumber * obj, NSUInteger idx, BOOL *stop) {
         [bezierPath addLineToPoint:CGPointMake(rect.origin.x + idx * xStep, rect.origin.y + yPoint(obj.floatValue))];
@@ -104,12 +110,17 @@
         totalVolumn += obj.amount.doubleValue * obj.price.doubleValue;
         totalAmount += obj.amount.doubleValue ;
         
-        double ave = totalVolumn / totalAmount;
+        double ave = obj.price.floatValue;
+        if (totalAmount > 0)
+        {
+            ave = totalVolumn / totalAmount;
+        }
         [arr addObject:@(ave)];
     }];
     self.aveList = arr;
 }
 
+#pragma mark 绘图方法
 
 - (void)drawRect:(CGRect)rect
 {
@@ -124,17 +135,15 @@
         
         if (self.trendModel.trendCellDataList.count > 0)
         {
-            [self drawLinePatternUnderClosingData:[self dataRect] clip:true];
-            [self drawAveDataLine:[self dataRect]];
+            [self drawLinePatternUnderClosingData:[self gridRect] clip:true];
             [self drawDataLine:[self dataRect]];
+            [self drawAveDataLine:[self dataRect]];
             [self drawLeftString:[self leftStringRect]];
             [self drawRightString:[self rightStringRect]];
             [self drawButtomString:[self buttomStringRect]];
         }
     }
 }
-
-#pragma mark 绘图方法
 
 - (void)drawLeftString:(CGRect)rect
 {
@@ -327,11 +336,21 @@
     if(shouldClip) {
         CGContextSaveGState(ctx);
         UIBezierPath *clipPath = [self pathForData:rect];
-        CGPoint lastPoint = clipPath.currentPoint;
-        [clipPath addLineToPoint:CGPointMake(rect.origin.x + rect.size.width, rect.origin.y +  lastPoint.y)];
-        [clipPath addLineToPoint:CGPointMake(rect.origin.x + rect.size.width,rect.origin.y + rect.size.height)];
-        [clipPath addLineToPoint:CGPointMake(rect.origin.x ,rect.origin.y +  rect.size.height)];
-        [clipPath addLineToPoint:CGPointMake(rect.origin.x,rect.origin.y +  _firstPoint.y)];
+        float xStep = rect.size.width / CellCount;
+        CGFloat lastX = 0;
+        
+        if (self.trendModel.trendCellDataList.count >= CellCount)
+        {
+            lastX = CGRectGetMinX(rect) + xStep * CellCount;
+        }
+        else
+        {
+            lastX = CGRectGetMinX(rect) + xStep * self.trendModel.trendCellDataList.count;
+        }
+        
+        [clipPath addLineToPoint:CGPointMake(lastX, CGRectGetMaxY(rect))];
+        [clipPath addLineToPoint:CGPointMake(CGRectGetMinX(rect),CGRectGetMaxY(rect))];
+        [clipPath addLineToPoint:CGPointMake(CGRectGetMinX(rect),CGRectGetMinY(rect) +  _firstPoint.y)];
         [clipPath closePath];
         [clipPath addClip];
     }
@@ -340,18 +359,19 @@
     CGFloat lineWidth = 1.0;
     [path setLineWidth:lineWidth];
     // because the line width is odd, offset the horizontal lines by 0.5 points
-    [path moveToPoint:CGPointMake(0.0, rint(CGRectGetMinY(rect)) + 0.5)];
-    [path addLineToPoint:CGPointMake(rint(CGRectGetMaxX(rect)), rint(CGRectGetMinY(rect)) + 0.5)];
+    [path moveToPoint:CGPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect))];
+    [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect), CGRectGetMinY(rect))];
     CGFloat alpha = 0.8;
     UIColor *startColor = [UIColor colorWithWhite:0.5 alpha:alpha];
     [startColor setStroke];
-    CGFloat step = 2.0;
+    CGFloat step = 1.5f;
     CGFloat stepCount = CGRectGetHeight(rect) / step;
     // alpha starts at 0.8, ends at 0.2
     CGFloat alphaStep = (0.8 - 0.2) / stepCount;
     CGContextSaveGState(ctx);
     CGFloat translation = CGRectGetMinY(rect);
-    while(translation < CGRectGetMaxY(rect)) {
+    while(translation < CGRectGetMaxY(rect))
+    {
         [path stroke];
         CGContextTranslateCTM(ctx, 0.0, lineWidth * step);
         translation += lineWidth * step;
