@@ -103,18 +103,20 @@
         if (obj.high.floatValue > _topPrice)
         {
             _topPrice = obj.high.floatValue;
-            _topPrice = [self adjustValue:self.MA5DataList idx:idx val:_topPrice topOrButtom:true];
-            _topPrice = [self adjustValue:self.MA10DataList idx:idx val:_topPrice topOrButtom:true];
-            _topPrice = [self adjustValue:self.MA20DataList idx:idx val:_topPrice topOrButtom:true];
         }
+        
+        _topPrice = [self adjustValue:self.MA5DataList idx:idx val:_topPrice topOrButtom:true];
+        _topPrice = [self adjustValue:self.MA10DataList idx:idx val:_topPrice topOrButtom:true];
+        _topPrice = [self adjustValue:self.MA20DataList idx:idx val:_topPrice topOrButtom:true];
         
         if (obj.low.floatValue < _buttomPrice)
         {
             _buttomPrice = obj.low.floatValue;
-            _buttomPrice = [self adjustValue:self.MA5DataList idx:idx val:_buttomPrice topOrButtom:false];
-            _buttomPrice = [self adjustValue:self.MA10DataList idx:idx val:_buttomPrice topOrButtom:false];
-            _buttomPrice = [self adjustValue:self.MA20DataList idx:idx val:_buttomPrice topOrButtom:false];
         }
+        
+        _buttomPrice = [self adjustValue:self.MA5DataList idx:idx val:_buttomPrice topOrButtom:false];
+        _buttomPrice = [self adjustValue:self.MA10DataList idx:idx val:_buttomPrice topOrButtom:false];
+        _buttomPrice = [self adjustValue:self.MA20DataList idx:idx val:_buttomPrice topOrButtom:false];
     }];
     
     _halfPrice = (_topPrice - _buttomPrice) / 2;

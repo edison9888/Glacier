@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIView *graphView;
 @property (strong, nonatomic) IBOutlet UIButton *addBtN;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *trendKlineViewsList;
-
+@property (strong, nonatomic) NSTimer * timer;
 @end
 
 @implementation DetailController
@@ -52,9 +52,22 @@
     
     [self switchTab:0];
     
-    //开始请求k线以便计算
-    [self requestForKLine:1];
+    [self requestForStock];
+    
     [self requestForDiagCount];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+    
+}
+
+- (void)onTimer:(NSTimer *)sender
+{
+    [self requestForStock];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)onDiagnosisClick:(UIButton *)sender
@@ -64,6 +77,7 @@
     [[ContainerController instance] presentControllerFromButtom:controller];
 }
 
+//请求诊断人数
 - (void)requestForDiagCount
 {
     NSString * url = @"http://www.9pxdesign.com/cishu.php?code=%@.%@";
@@ -90,7 +104,7 @@
     [self doHttpRequest:requestStr tag:index];
 }
 
-- (void)requestForStock
+- (void)requestForTrendAndInfo
 {
     NSString * url = @"http://flashquote.stock.hexun.com/Stock_Combo.ASPX?mc=%@_%@&dt=q,MI";
     NSString * type = nil;
@@ -147,6 +161,8 @@
     
     [self.trendKLineModelDict setObject:model forKey:@(tag)];
     
+    //每次收到K线请求后请求分时数据 以便计算最后的K线数据
+    [self requestForTrendAndInfo];
     [self refreshGraphView];
 }
 
@@ -177,7 +193,40 @@
     self.stockInfoView.stockBaseInfoModel = self.stockBaseInfoModel;
     [self.stockInfoView reloadData];
     
+    for (int i = 1; i< 4; i++)
+    {
+        KLineModel * klineModel = self.trendKLineModelDict[@(i)];
+        TrendModel * trendModel = self.trendKLineModelDict[@(0)];
+        [self fixKlineData:trendModel klineModel:klineModel];
+    }
+    
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
     [self refreshGraphView];
+}
+
+- (void)fixKlineData:(TrendModel *)trendModel klineModel:(KLineModel *)klineModel
+{
+    if (trendModel
+        && trendModel.trendCellDataList.count > 0
+        && klineModel
+        && klineModel.cellDataList.count > 0
+        )
+    {
+        TrendCellData * trendCell = trendModel.trendCellDataList.lastObject;
+        KLineCellData * klineCell = klineModel.cellDataList[0];
+        
+        float newPrice = trendCell.price.floatValue;
+        klineCell.close = trendCell.price;
+        if (newPrice > klineCell.high.floatValue)
+        {
+            klineCell.high = trendCell.price;
+        }
+        
+        if (newPrice < klineCell.low.floatValue)
+        {
+            klineCell.low = trendCell.price;
+        }
+    }
 }
 
 - (void)refreshGraphView
@@ -186,8 +235,8 @@
     {
         TrendGraphView * view = self.trendKlineViewsList[_selectedIndex];
         view.stockBaseInfoModel = self.stockBaseInfoModel;
-        view.trendModel = self.trendKLineModelDict[@(_selectedIndex)];
-        [view reloadData];
+        TrendModel * model = self.trendKLineModelDict[@(_selectedIndex)];
+        [view reloadData:model];
     }
     else
     {
@@ -253,14 +302,21 @@
         }
     }];
     
-    if (index == 0)
+    [self requestForStock];
+}
+
+//请求k线
+- (void)requestForStock
+{
+    if (_selectedIndex == 0)
     {
-        [self requestForStock];
+        [self requestForKLine:1];
     }
     else
     {
-        [self requestForKLine:index];
+        [self requestForKLine:_selectedIndex];
     }
+
 }
 
 - (void)viewDidUnload {

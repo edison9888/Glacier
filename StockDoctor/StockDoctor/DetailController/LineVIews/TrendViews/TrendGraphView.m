@@ -94,8 +94,9 @@
     return bezierPath;
 }
 
-- (void)reloadData
+- (void)reloadData:(TrendModel *)model
 {
+    self.trendModel = model;
     [self setNeedsDisplay];
 }
 

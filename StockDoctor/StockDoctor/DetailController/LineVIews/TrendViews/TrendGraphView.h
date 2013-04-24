@@ -11,5 +11,5 @@
 @interface TrendGraphView : LineGraphicsBaseView
 @property (nonatomic,strong) TrendModel * trendModel;
 @property (nonatomic,strong) StockBaseInfoModel * stockBaseInfoModel;
-- (void)reloadData;
+- (void)reloadData:(TrendModel *)model;
 @end 

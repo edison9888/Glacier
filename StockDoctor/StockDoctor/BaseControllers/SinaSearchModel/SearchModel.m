@@ -115,6 +115,8 @@
              ,self.keyword1,self.keyword2,self.shortName,self.type,self.shortCode,self.fullCode];
         }
     }];
+    
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"添加自选完成" duration:2];
 }
 
 - (void)updateSortIndex:(FMDatabase *)db
@@ -128,6 +130,7 @@
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:@"delete from SelfStock where fullCode = ?",self.fullCode];
     }];
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"删除自选完成" duration:2];
 }
 @end
 
