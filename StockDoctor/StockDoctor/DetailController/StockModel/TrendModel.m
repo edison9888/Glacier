@@ -13,7 +13,7 @@
 + (StockBaseInfoModel *)parseJson:(NSArray *)jsonArr
 {
     StockBaseInfoModel * model = [[StockBaseInfoModel alloc]init];
-    
+    model.tradeDate = jsonArr[0];
     model.preClose = jsonArr[1];
     model.openPrice = jsonArr[2];
     model.todayHigh = jsonArr[3];

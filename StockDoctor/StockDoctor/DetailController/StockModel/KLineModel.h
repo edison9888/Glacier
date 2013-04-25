@@ -10,7 +10,7 @@
 
 @interface KLineModel : NSObject
 @property (nonatomic,strong) NSString * freq;
-@property (nonatomic,strong) NSArray * cellDataList;
+@property (nonatomic,strong) NSMutableArray * cellDataList;
 + (KLineModel *)parseData:(NSString *)responseString;
 
 //生成均线数据

@@ -44,8 +44,6 @@
     [self switchViews:0];
 }
 
-
-
 + (ContainerController *)instance
 {
     static ContainerController * _instance;

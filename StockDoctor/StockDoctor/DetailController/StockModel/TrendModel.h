@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface StockBaseInfoModel : NSObject
+@property (nonatomic,strong) NSString * tradeDate;
 @property (nonatomic,strong) NSString * preClose;
 @property (nonatomic,strong) NSString * openPrice;
 @property (nonatomic,strong) NSString * todayHigh;

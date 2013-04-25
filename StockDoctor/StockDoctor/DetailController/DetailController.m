@@ -14,6 +14,7 @@
 #import "SingleDiagnosisController.h"
 
 @interface DetailController ()
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
 @property (strong, nonatomic) IBOutlet StockInfoView *stockInfoView;
 @property (strong, nonatomic) IBOutlet UIView *graphView;
 @property (strong, nonatomic) IBOutlet UIButton *addBtN;
@@ -39,6 +40,7 @@
 {
     [super viewDidLoad];
     self.title = self.searchModel.shortName;
+    self.navigationItem.rightBarButtonItem = self.rightBar;
     
     if ([self checkIsInSelfStock])
     {
@@ -52,11 +54,9 @@
     
     [self switchTab:0];
     
-    [self requestForStock];
-    
     [self requestForDiagCount];
+
     self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
-    
 }
 
 - (void)onTimer:(NSTimer *)sender
@@ -197,14 +197,18 @@
     {
         KLineModel * klineModel = self.trendKLineModelDict[@(i)];
         TrendModel * trendModel = self.trendKLineModelDict[@(0)];
-        [self fixKlineData:trendModel klineModel:klineModel];
+        [self fixKlineData:trendModel klineModel:klineModel index:i];
     }
     
     [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
     [self refreshGraphView];
+    
+    [self.timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
 }
 
-- (void)fixKlineData:(TrendModel *)trendModel klineModel:(KLineModel *)klineModel
+//通过分时修正k线数据
+- (void)fixKlineData:(TrendModel *)trendModel klineModel:(KLineModel *)klineModel index:(int)index
 {
     if (trendModel
         && trendModel.trendCellDataList.count > 0
@@ -212,19 +216,53 @@
         && klineModel.cellDataList.count > 0
         )
     {
+        NSString * trendDate = [self.stockBaseInfoModel.tradeDate substringToIndex:8];
+        
         TrendCellData * trendCell = trendModel.trendCellDataList.lastObject;
         KLineCellData * klineCell = klineModel.cellDataList[0];
         
-        float newPrice = trendCell.price.floatValue;
-        klineCell.close = trendCell.price;
-        if (newPrice > klineCell.high.floatValue)
-        {
-            klineCell.high = trendCell.price;
-        }
+        NSString * klineDate = [klineCell.date stringByReplacingOccurrencesOfString:@"-" withString:@""];
         
-        if (newPrice < klineCell.low.floatValue)
+        if (![trendDate isEqualToString:klineDate] && index == 1)
         {
-            klineCell.low = trendCell.price;
+            KLineCellData * todayKlineCell = [[KLineCellData alloc]init];
+        
+            NSDateFormatter * format = [[NSDateFormatter alloc]init];
+            format.dateFormat = @"yyyyMMdd";
+            NSDate * date = [format dateFromString:trendDate];
+            
+            NSDateFormatter * toFormat = [[NSDateFormatter alloc]init];
+            toFormat.dateFormat = @"yyyy-MM-dd";
+            
+            todayKlineCell.date = [toFormat stringFromDate:date];
+            
+            float newPrice = trendCell.price.floatValue;
+            todayKlineCell.open = self.stockBaseInfoModel.openPrice;
+            todayKlineCell.close = trendCell.price;
+            if (newPrice > todayKlineCell.high.floatValue)
+            {
+                todayKlineCell.high = trendCell.price;
+            }
+            
+            if (newPrice < klineCell.low.floatValue)
+            {
+                todayKlineCell.low = trendCell.price;
+            }
+            [klineModel.cellDataList insertObject:todayKlineCell atIndex:0];
+        }
+        else
+        {
+            float newPrice = trendCell.price.floatValue;
+            klineCell.close = trendCell.price;
+            if (newPrice > klineCell.high.floatValue)
+            {
+                klineCell.high = trendCell.price;
+            }
+            
+            if (newPrice < klineCell.low.floatValue)
+            {
+                klineCell.low = trendCell.price;
+            }
         }
     }
 }
@@ -265,6 +303,11 @@
             return false;
         }
     }];
+}
+
+- (IBAction)onRefreshClick:(UIButton *)sender
+{
+    [self requestForStock];
 }
 
 - (IBAction)onAddClick:(UIButton *)sender
@@ -320,6 +363,7 @@
 }
 
 - (void)viewDidUnload {
+    [self setRightBar:nil];
     [super viewDidUnload];
 }
 @end

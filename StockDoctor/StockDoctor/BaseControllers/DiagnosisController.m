@@ -86,7 +86,7 @@
     else
     {
         [self.deleteList removeAllObjects];
-        [sender setTitle:@"删除选中" forState:(UIControlStateNormal)];
+        [sender setTitle:@"完成编辑" forState:(UIControlStateNormal)];
         [self.stockTableView setEditing:true animated:true];
     }
     
@@ -182,13 +182,20 @@
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     SearchModel * from = self.modelList[sourceIndexPath.row];
-    SearchModel * to = self.modelList[destinationIndexPath.row];
-    int temp = to.sortIndex;
-    to.sortIndex = from.sortIndex;
-    from.sortIndex = temp;
+    
+    [self.modelList removeObject:from];
+    
+    [self.modelList insertObject:from atIndex:destinationIndexPath.row];
+    
+    __block int firstSortIndex = self.modelList.count - 1;
+    
     [[SharedApp FMDatabaseQueue] inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        [from updateSortIndex:db];
-        [to updateSortIndex:db];
+        for (SearchModel * model in self.modelList)
+        {
+            model.sortIndex = firstSortIndex--;
+            [model updateSortIndex:db];
+        }
     }];
+   
 }
 @end

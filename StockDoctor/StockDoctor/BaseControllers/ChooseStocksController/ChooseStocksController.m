@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray * titlesList;
 @property (strong, nonatomic) IBOutlet UILabel *indicatorName;
 @property (strong, nonatomic) NSArray * nameList;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
 @end
 
 @implementation ChooseStocksController
@@ -40,12 +41,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = self.rightBar;
     [self requestForStocks:0];
 }
 
 - (IBAction)onTabClick:(UISegmentedControl *)sender
 {
     mSelectedIndex = sender.selectedSegmentIndex;
+    [self.stockTableView reloadData];
+    [self requestForStocks:mSelectedIndex];
+    self.indicatorName.text = self.nameList[mSelectedIndex];
+}
+
+- (IBAction)onRefreshClick:(UIButton *)sender
+{
     [self.stockTableView reloadData];
     [self requestForStocks:mSelectedIndex];
     self.indicatorName.text = self.nameList[mSelectedIndex];
@@ -130,6 +139,7 @@
 - (void)viewDidUnload {
     [self setHeaderView:nil];
     [self setIndicatorName:nil];
+    [self setRightBar:nil];
     [super viewDidUnload];
 }
 @end

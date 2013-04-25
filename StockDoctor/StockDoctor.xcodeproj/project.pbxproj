@@ -17,6 +17,7 @@
 		58234A20172410A500091541 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58234A1E172410A500091541 /* AboutUsController.xib */; };
 		582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A288F17238CB0006C9A21 /* SinaWeiboManager.m */; };
 		582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 582A289117239DF1006C9A21 /* SinaWeibo.bundle */; };
+		5830073317282C0700D9629F /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 5830073217282C0700D9629F /* iTunesArtwork */; };
 		58386F731712E88900B636E7 /* DetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F711712E88900B636E7 /* DetailController.m */; };
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
@@ -80,6 +81,7 @@
 		582A288E17238CB0006C9A21 /* SinaWeiboManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboManager.h; sourceTree = "<group>"; };
 		582A288F17238CB0006C9A21 /* SinaWeiboManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboManager.m; sourceTree = "<group>"; };
 		582A289117239DF1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
+		5830073217282C0700D9629F /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		58386F701712E88900B636E7 /* DetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailController.h; sourceTree = "<group>"; };
 		58386F711712E88900B636E7 /* DetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailController.m; sourceTree = "<group>"; };
 		58386F721712E88900B636E7 /* DetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailController.xib; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 			children = (
 				581C541B1726D08B005635D5 /* checkbox_unchecked_icon.png */,
 				581C541C1726D08B005635D5 /* checkbox.png */,
+				5830073217282C0700D9629F /* iTunesArtwork */,
 				582A289117239DF1006C9A21 /* SinaWeibo.bundle */,
 				5866A218171A84AE0095C4FE /* icon.png */,
 				5866A214171A83BD0095C4FE /* icon@2x.png */,
@@ -507,6 +510,7 @@
 				58234A20172410A500091541 /* AboutUsController.xib in Resources */,
 				581C541D1726D08B005635D5 /* checkbox_unchecked_icon.png in Resources */,
 				581C541E1726D08B005635D5 /* checkbox.png in Resources */,
+				5830073317282C0700D9629F /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
