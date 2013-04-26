@@ -9,6 +9,8 @@
 #import "DiagnosisCell.h"
 @interface DiagnosisCell()
 @property (strong, nonatomic) IBOutlet UIButton *imgButton;
+@property (strong, nonatomic) IBOutlet UIImageView *changeImgView;
+@property (strong, nonatomic) IBOutlet UIView *imgBgView;
 @end
 
 @implementation DiagnosisCell
@@ -21,22 +23,38 @@
     return self;
 }
 
+- (void)setChangeState:(int)state
+{
+    if (state < 0)
+    {
+        self.changeImgView.image = [UIImage imageNamed:@"greenbg"];
+    }
+    else if (state == 0)
+    {
+        self.changeImgView.image = [UIImage imageNamed:@"graybg"];
+    }
+    if (state > 0)
+    {
+        self.changeImgView.image = [UIImage imageNamed:@"redbg"];
+    }
+}
+
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
 
     if (!editing)
     {
-        self.changLabel.alpha = 0;
+        self.imgBgView.alpha = 0;
         [UIView animateWithDuration:0.2f animations:^{
-            self.changLabel.alpha = 1;
+            self.imgBgView.alpha = 1;
         }];
         
     }
     else
     {
-        self.changLabel.alpha = 1;
+        self.imgBgView.alpha = 1;
         [UIView animateWithDuration:0.2f animations:^{
-            self.changLabel.alpha = 0;
+            self.imgBgView.alpha = 0;
         }];
     }
     

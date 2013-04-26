@@ -13,5 +13,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *stockCodeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *priceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *changLabel;
-
+- (void)setChangeState:(int)state;
 @end

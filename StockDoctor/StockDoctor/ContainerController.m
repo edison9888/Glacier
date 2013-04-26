@@ -11,14 +11,41 @@
 #import "ChooseStocksController.h"
 #import "SettingController.h"
 #import "SearchModel.h"
+#import "STSegmentedControl.h"
 #define AnimationTime 0.35f
+
+@interface UINavigationBar(Custom)
+
+@end
+
+@implementation UINavigationBar(Custom)
+
+- (void)drawRect:(CGRect)rect {
+    if (![self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+        [super drawRect:rect];
+        UIImage *wImage = [UIImage imageNamed:@"topBar.png"];
+
+        [wImage drawInRect:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
+    }
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview {
+    if ([self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
+    {
+            [self setBackgroundImage:[UIImage imageNamed:@"topBar.png"] forBarMetrics:UIBarMetricsDefault];
+    }
+}
+
+@end
+
 
 @interface ContainerController ()
 @property (strong, nonatomic) IBOutlet UIView *bgView;
 @property (strong, nonatomic) UINavigationController * naviController;
-@property (strong, nonatomic) IBOutlet UITabBar *tabBarView;
+@property (strong, nonatomic) IBOutlet STSegmentedControl *tabBarView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *defaultLeftBar;
 @property (strong, nonatomic) UIViewController * presentController;
+@property (strong, nonatomic) IBOutlet UIImageView *bgImg;
 @end
 
 @implementation ContainerController
@@ -30,7 +57,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _tabIndex = -1;
     }
     return self;
 }
@@ -38,10 +65,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarView.segments = [NSMutableArray arrayWithArray:@[@"",@"",@""]];
+    [self.tabBarView addTarget:self action:@selector(onSwitchTab:) forControlEvents:UIControlEventValueChanged];
+    [self.tabBarView setNormalImageLeft:[UIImage imageNamed:@"zixuangu01.png"]];
+    [self.tabBarView setSelectedImageLeft:[UIImage imageNamed:@"zixuangu02.png"]];
+    [self.tabBarView setNormalImageMiddle:[UIImage imageNamed:@"xuangu01.png"]];
+    [self.tabBarView setSelectedImageMiddle:[UIImage imageNamed:@"xuangu02.png"]];
+    [self.tabBarView setNormalImageRight:[UIImage imageNamed:@"shezhi01.png"]];
+    [self.tabBarView setSelectedImageRight:[UIImage imageNamed:@"shezhi02.png"]];
+    self.tabBarView.selectedSegmentIndex = 0;
+    [self initDatabase];
+}
+
+- (void)initDatabase
+{
     [SearchModel checkOrCreateTable];
     [SearchModel checkOrCreateTableForSearch];
-    self.tabBarView.selectedItem = self.tabBarView.items[0];
-    [self switchViews:0];
 }
 
 + (ContainerController *)instance
@@ -89,7 +128,7 @@
     [self.naviController pushViewController:controller animated:animated];
     [controller.navigationItem hidesBackButton];
     controller.navigationItem.leftBarButtonItem = self.defaultLeftBar;
-//    [self.view bringSubviewToFront:self.tabBarView];
+    
     [UIView animateWithDuration:AnimationTime animations:^{
         [self.tabBarView fixY:CGRectGetHeight(self.view.bounds)];
     } completion:^(BOOL finished) {
@@ -143,15 +182,15 @@
     self.naviController.view.frame = self.bgView.bounds;
     [self.view addSubview:self.naviController.view];
     [self.view sendSubviewToBack:self.naviController.view];
+    [self.view sendSubviewToBack:self.bgImg];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+- (void)onSwitchTab:(STSegmentedControl *)sender
 {
-    if (_tabIndex != item.tag)
+    if (_tabIndex != sender.selectedSegmentIndex)
     {
-        [self switchViews:item
-         .tag];
-        _tabIndex = item.tag;
+        [self switchViews:sender.selectedSegmentIndex];
+        _tabIndex = sender.selectedSegmentIndex;
     }
     
 }
@@ -159,6 +198,7 @@
 - (void)viewDidUnload {
     [self setTabBarView:nil];
     [self setDefaultLeftBar:nil];
+    [self setBgImg:nil];
     [super viewDidUnload];
 }
 @end

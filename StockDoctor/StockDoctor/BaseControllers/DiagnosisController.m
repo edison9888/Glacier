@@ -42,8 +42,6 @@
     self.deleteList = [NSMutableArray array];
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [self refreshData];
@@ -76,7 +74,6 @@
 
 - (IBAction)onEditSelfStock:(UIButton *)sender
 {
-   
     if (self.stockTableView.editing)
     {
         [sender setTitle:@"编辑" forState:(UIControlStateNormal)];
@@ -86,10 +83,9 @@
     else
     {
         [self.deleteList removeAllObjects];
-        [sender setTitle:@"完成编辑" forState:(UIControlStateNormal)];
+        [sender setTitle:@"完成" forState:(UIControlStateNormal)];
         [self.stockTableView setEditing:true animated:true];
     }
-    
 }
 
 - (void)deleteStocks
@@ -131,18 +127,7 @@
         {
             cell.priceLabel.text = sender.currentPrice;
             cell.changLabel.text = sender.change;
-            if (sender.changeState > 0)
-            {
-                cell.changLabel.textColor = [UIColor redColor];
-            }
-            else if (sender.changeState < 0)
-            {
-                cell.changLabel.textColor = [UIColor greenColor];
-            }
-            else
-            {
-                cell.changLabel.textColor = [UIColor darkGrayColor];
-            }
+            [cell setChangeState:sender.changeState];
         }
     }];
     
