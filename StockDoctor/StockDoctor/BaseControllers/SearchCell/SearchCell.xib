@@ -53,15 +53,11 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<object class="NSColor" key="IBUITextColor" id="831178865">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
-									<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
-								</object>
-								<object class="NSColor" key="IBUIHighlightedColor" id="344029899">
+								<object class="NSColor" key="IBUITextColor" id="344029899">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
 								</object>
+								<reference key="IBUIHighlightedColor" ref="344029899"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="2775693">
 									<int key="type">1</int>
@@ -87,7 +83,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<reference key="IBUITextColor" ref="831178865"/>
+								<reference key="IBUITextColor" ref="344029899"/>
 								<reference key="IBUIHighlightedColor" ref="344029899"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<reference key="IBUIFontDescription" ref="2775693"/>
@@ -131,7 +127,7 @@
 						<reference key="NSSuperview" ref="980010912"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
+						<object class="NSColor" key="IBUIBackgroundColor" id="405638693">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -147,6 +143,7 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="579154387"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<reference key="IBUIBackgroundColor" ref="405638693"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="579154387"/>
 				<string key="IBUIReuseIdentifier">SearchCell</string>
@@ -202,9 +199,9 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="980010912"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="310588779"/>
 							<reference ref="864094071"/>
 							<reference ref="38564587"/>
+							<reference ref="310588779"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

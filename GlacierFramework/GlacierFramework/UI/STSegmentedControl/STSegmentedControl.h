@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define STSegmentedControlHeight 30.0 // the height of the control. Change this if you're making controls of a different height
+#define STSegmentedControlHeight 49.0 // the height of the control. Change this if you're making controls of a different height
 
 enum {
     STSegmentedControlNoSegment = -1 // segment index for no selected segment

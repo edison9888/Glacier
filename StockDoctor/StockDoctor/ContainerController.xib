@@ -37,7 +37,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="1068933988">
+					<object class="IBUIImageView" id="438457839">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrameSize">{320, 500}</string>
@@ -96,13 +96,13 @@
 				<object class="IBUIButton" key="IBUICustomView" id="345472587">
 					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">292</int>
-					<string key="NSFrame">{{0, 3}, {49, 30}}</string>
+					<string key="NSFrame">{{0, 3}, {60, 30}}</string>
 					<string key="NSReuseIdentifierKey">_NS:9</string>
 					<bool key="IBUIOpaque">NO</bool>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<int key="IBUIContentHorizontalAlignment">0</int>
 					<int key="IBUIContentVerticalAlignment">0</int>
-					<string key="IBUINormalTitle">返回</string>
+					<string key="IBUINormalTitle">   返回</string>
 					<object class="NSColor" key="IBUIHighlightedTitleColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MQA</bytes>
@@ -117,7 +117,7 @@
 					</object>
 					<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 						<string key="NSClassName">NSImage</string>
-						<string key="NSResourceName">edit.png</string>
+						<string key="NSResourceName">back.png</string>
 					</object>
 					<object class="IBUIFontDescription" key="IBUIFontDescription">
 						<int key="type">2</int>
@@ -169,7 +169,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">bgImg</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1068933988"/>
+						<reference key="destination" ref="438457839"/>
 					</object>
 					<int key="connectionID">26</int>
 				</object>
@@ -197,7 +197,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="433708991"/>
 							<reference ref="283914048"/>
-							<reference ref="1068933988"/>
+							<reference ref="438457839"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -237,7 +237,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">25</int>
-						<reference key="object" ref="1068933988"/>
+						<reference key="object" ref="438457839"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -318,8 +318,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="back.png">{120, 61}</string>
 			<string key="bg.png">{640, 1136}</string>
-			<string key="edit.png">{97, 61}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

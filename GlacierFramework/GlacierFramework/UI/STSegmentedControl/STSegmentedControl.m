@@ -30,12 +30,12 @@
 		/*
 		 Set the standard images
 		 */
-		normalImageLeft = [[UIImage imageNamed:@"normal_left.png"] retain];
-		normalImageMiddle = [[UIImage imageNamed:@"normal_middle.png"] retain];
-		normalImageRight= [[UIImage imageNamed:@"normal_right.png"] retain];
-		selectedImageLeft = [[UIImage imageNamed:@"selected_left.png"] retain];
-		selectedImageMiddle = [[UIImage imageNamed:@"selected_middle.png"] retain];
-		selectedImageRight = [[UIImage imageNamed:@"selected_right.png"] retain];
+		normalImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_left.png"] retain];
+		normalImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_middle.png"] retain];
+		normalImageRight= [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_right.png"] retain];
+		selectedImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_left.png"] retain];
+		selectedImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_middle.png"] retain];
+		selectedImageRight = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_right.png"] retain];
 		
 		selectedSegmentIndex = STSegmentedControlNoSegment;
 		momentary = NO;
@@ -50,12 +50,12 @@
 		/*
 		 Set the standard images
 		 */
-		normalImageLeft = [[UIImage imageNamed:@"normal_left.png"] retain];
-		normalImageMiddle = [[UIImage imageNamed:@"normal_middle.png"] retain];
-		normalImageRight= [[UIImage imageNamed:@"normal_right.png"] retain];
-		selectedImageLeft = [[UIImage imageNamed:@"selected_left.png"] retain];
-		selectedImageMiddle = [[UIImage imageNamed:@"selected_middle.png"] retain];
-		selectedImageRight = [[UIImage imageNamed:@"selected_right.png"] retain];
+		normalImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_left.png"] retain];
+		normalImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_middle.png"] retain];
+		normalImageRight= [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_right.png"] retain];
+		selectedImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_left.png"] retain];
+		selectedImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_middle.png"] retain];
+		selectedImageRight = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_right.png"] retain];
 		
 		selectedSegmentIndex = STSegmentedControlNoSegment;
 		momentary = NO;
@@ -79,12 +79,12 @@
 		/*
 		 Set the standard images
 		 */
-		normalImageLeft = [[UIImage imageNamed:@"normal_left.png"] retain];
-		normalImageMiddle = [[UIImage imageNamed:@"normal_middle.png"] retain];
-		normalImageRight= [[UIImage imageNamed:@"normal_right.png"] retain];
-		selectedImageLeft = [[UIImage imageNamed:@"selected_left.png"] retain];
-		selectedImageMiddle = [[UIImage imageNamed:@"selected_middle.png"] retain];
-		selectedImageRight = [[UIImage imageNamed:@"selected_right.png"] retain];
+		normalImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_left.png"] retain];
+		normalImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_middle.png"] retain];
+		normalImageRight= [[UIImage imageNamed:@"STSegmentedControl.bundle/normal_right.png"] retain];
+		selectedImageLeft = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_left.png"] retain];
+		selectedImageMiddle = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_middle.png"] retain];
+		selectedImageRight = [[UIImage imageNamed:@"STSegmentedControl.bundle/selected_right.png"] retain];
 		
 		selectedSegmentIndex = STSegmentedControlNoSegment;
 		momentary = NO;
@@ -259,7 +259,7 @@
 	/*
 	 Making sure we don't call out of bounds
 	 */
-	if(index <= numberOfSegments && index >= 0)
+	if(index <= numberOfSegments)
 	{
 		[segments insertObject:object atIndex:index];
 		[self resetSegments];
@@ -270,7 +270,7 @@
 	/*
 	 Making sure we don't call out of bounds
 	 */
-	if(index < numberOfSegments && index >= 0)
+	if(index < numberOfSegments)
 	{
 		[segments replaceObjectAtIndex:index withObject:object];
 		[self resetSegments];
@@ -292,7 +292,7 @@
 	 Making sure we don't call out of bounds
 	 If you delete a segment when only having two segments, the control won't be shown anymore
 	 */
-	if(index < numberOfSegments && index >= 0)
+	if(index < numberOfSegments)
 	{
 		[segments removeObjectAtIndex:index];
 		[self resetSegments];
