@@ -9,6 +9,7 @@
 #import "SettingController.h"
 #import "SinaWeiboManager.h"
 #import "AboutUsController.h"
+#import "SettingHeaderView.h"
 
 @interface SettingController ()
 
@@ -36,7 +37,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    if ([[SinaWeiboManager instance] isAuth])
+    {
+        self.weiboLabel.text = @"新浪微博(已绑定)";
+        [self.weiboButton setBackgroundImage:[UIImage imageNamed:@"connact1.png"]  forState:(UIControlStateNormal)];
+    }
+    else
+    {
+        self.weiboLabel.text = @"绑定微博";
+        [self.weiboButton setBackgroundImage:[UIImage imageNamed:@"connact2.png"]  forState:(UIControlStateNormal)];
+    }
+    self.title = @"设置";
     [SinaWeiboManager instance].delegate = self;
 }
 
@@ -65,10 +76,12 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    SettingHeaderView * header = [[NSBundle mainBundle] loadNibNamed:@"SettingHeaderView" owner:nil options:nil][0];
     NSDictionary * dict = self.modelList[section];
-    return dict.allKeys[0];
+    header.textLabel.text = dict.allKeys[0];
+    return header;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -78,6 +91,8 @@
     return [dict.allValues[0] count];
 }
 
+
+
 #define cellIn(s,r) (indexPath.section == s && indexPath.row == r)
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -85,13 +100,13 @@
     {
         if ([[SinaWeiboManager instance] isAuth])
         {
-            self.weiboLabel.text = @"新浪微博已绑定";
-            [self.weiboButton setTitle:@"解除绑定" forState:(UIControlStateNormal)];
+            self.weiboLabel.text = @"新浪微博(已绑定)";
+            [self.weiboButton setBackgroundImage:[UIImage imageNamed:@"connact1.png"]  forState:(UIControlStateNormal)];
         }
         else
         {
             self.weiboLabel.text = @"绑定微博";
-            [self.weiboButton setTitle:@"绑定" forState:(UIControlStateNormal)];
+            [self.weiboButton setBackgroundImage:[UIImage imageNamed:@"connact2.png"]  forState:(UIControlStateNormal)];
         }
         return self.weiboCell;
     }

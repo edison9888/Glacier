@@ -76,7 +76,8 @@ static bool isFollowed;
 - (void)changeButton
 {
     self.followButton.enabled = false;
-    [self.followButton setTitle:@"已经关注股票医生微博" forState:(UIControlStateNormal)];
+    [self.followButton setBackgroundImage:[UIImage imageNamed:@"button2"] forState:(UIControlStateNormal)];
+    [self.followButton setTitle:@"已关注股票医生微博" forState:(UIControlStateNormal)];
 }
 
 - (void)viewDidUnload {

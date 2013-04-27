@@ -10,6 +10,7 @@
 #import "ChooseCell.h"
 #import "ChooseStockModel.h"
 #import "DetailController.h"
+#import "STSegmentedControl.h"
 
 @interface ChooseStocksController ()
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *indicatorName;
 @property (strong, nonatomic) NSArray * nameList;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
+@property (strong, nonatomic) IBOutlet STSegmentedControl *stTabView;
 @end
 
 @implementation ChooseStocksController
@@ -42,10 +44,23 @@
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.rightBar;
-    [self requestForStocks:0];
+    [self initTab];
 }
 
-- (IBAction)onTabClick:(UISegmentedControl *)sender
+- (void)initTab
+{
+    self.stTabView.segments = [NSMutableArray arrayWithArray:@[@"活跃股",@"人气股",@"潜力股"]];
+    [self.stTabView addTarget:self action:@selector(onSwitchTab:) forControlEvents:UIControlEventValueChanged];
+    [self.stTabView setNormalImageLeft:[UIImage imageNamed:@"tab1.png"]];
+    [self.stTabView setSelectedImageLeft:[UIImage imageNamed:@"tab1_1.png"]];
+    [self.stTabView setNormalImageMiddle:[UIImage imageNamed:@"tab1.png"]];
+    [self.stTabView setSelectedImageMiddle:[UIImage imageNamed:@"tab1_1.png"]];
+    [self.stTabView setNormalImageRight:[UIImage imageNamed:@"tab1.png"]];
+    [self.stTabView setSelectedImageRight:[UIImage imageNamed:@"tab1_1.png"]];
+    self.stTabView.selectedSegmentIndex = 0;
+}
+
+- (void)onSwitchTab:(STSegmentedControl *)sender
 {
     mSelectedIndex = sender.selectedSegmentIndex;
     [self.stockTableView reloadData];
@@ -140,6 +155,7 @@
     [self setHeaderView:nil];
     [self setIndicatorName:nil];
     [self setRightBar:nil];
+    [self setStTabView:nil];
     [super viewDidUnload];
 }
 @end

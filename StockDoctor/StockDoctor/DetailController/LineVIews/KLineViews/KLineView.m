@@ -9,6 +9,7 @@
 #import "KLineView.h"
 #define WidthRate (24/30.0)
 #define HeightRate (26/30.0)
+#define LineCount 50
 
 @interface KLineView()
 @property (nonatomic,strong) UIFont * textFont;
@@ -50,7 +51,7 @@
     
     [model.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
         //只保留后50个数据，如果有节假日等无效数据也删除
-        if (count < 50 && !(obj.open.floatValue == obj.close.floatValue && obj.volume.floatValue == 0))
+        if (count < LineCount && !(obj.open.floatValue == obj.close.floatValue && obj.volume.floatValue == 0))
         {
             [arr addObject:obj];
             count++;
@@ -58,9 +59,9 @@
     }];
     copyModel.cellDataList = arr;
     
-    self.MA5DataList = [model generateMAData:5 WithCount:50];
-    self.MA10DataList = [model generateMAData:10 WithCount:50];
-    self.MA20DataList = [model generateMAData:20 WithCount:50];
+    self.MA5DataList = [model generateMAData:5 WithCount:LineCount];
+    self.MA10DataList = [model generateMAData:10 WithCount:LineCount];
+    self.MA20DataList = [model generateMAData:20 WithCount:LineCount];
     self.kLineModel = copyModel;
     
     
@@ -77,7 +78,7 @@
 #define yPoint(price) (ABS(_topPrice - price) / (_topPrice - _buttomPrice) * rect.size.height)    
     
     //每个横轴间隔的距离
-    float xStep = CGRectGetWidth(rect) / dataList.count;
+    float xStep = CGRectGetWidth(rect) / LineCount;
     
     NSNumber * first = dataList[0];
     
@@ -159,11 +160,20 @@
         [self drawVerticalGridInRect:[self gridRect]];
         [self drawBarSeries:[self dataRect]];
         
-        [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
+        if (self.MA5DataList.count > 0)
+        {
+            [self drawDataLine:[self dataRect] data:self.MA5DataList color:[UIColor colorWithRed:0xf2/ 255.0 green:0x5d/255.0 blue:0xb5/255.0 alpha:1]];
+        }
         
-        [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
-        
-        [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
+        if (self.MA10DataList.count > 0)
+        {
+             [self drawDataLine:[self dataRect] data:self.MA10DataList color:[UIColor colorWithRed:0xff/ 255.0 green:0x80/255.0 blue:0x00/255.0 alpha:1]];
+        }
+       
+        if (self.MA20DataList.count > 0)
+        {
+            [self drawDataLine:[self dataRect] data:self.MA20DataList color:[UIColor colorWithRed:0x00/ 255.0 green:0xff/255.0 blue:0xff/255.0 alpha:1]];
+        }
         
         [self drawLeftString:[self leftStringRect]];
         [self drawRightString:[self rightStringRect]];
@@ -235,7 +245,7 @@
     
     [[UIColor grayColor] setFill];
     
-    CGFloat cellWidth = CGRectGetWidth(rect) / self.kLineModel.cellDataList.count;
+    CGFloat cellWidth = CGRectGetWidth(rect) / LineCount;
     
     int count = self.verSepList.count;
     
@@ -357,7 +367,7 @@
 
 - (void)drawBarSeries:(CGRect)rect
 {
-    int seriesCount = self.kLineModel.cellDataList.count;
+    int seriesCount = 50;
 
     CGFloat seriesWidth = CGRectGetWidth(rect) / seriesCount;
     

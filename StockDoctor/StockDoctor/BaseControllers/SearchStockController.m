@@ -93,12 +93,15 @@
     
     if (flag)
     {
-        [cell.addButton setTitle:@"删除" forState:(UIControlStateNormal)];
+        [cell.addButton setBackgroundImage:[UIImage imageNamed:@"tianjia.png"] forState:(UIControlStateNormal)];
+        cell.addButton.enabled = false;
     }
     else
     {
-        [cell.addButton setTitle:@"添加" forState:(UIControlStateNormal)];
+        [cell.addButton setBackgroundImage:[UIImage imageNamed:@"zixuan1.png"] forState:(UIControlStateNormal)];
+        cell.addButton.enabled = true;
     }
+    
 
     [cell.addButton addTarget:self action:@selector(onSearchAddBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -122,7 +125,7 @@
     
     if (flag)
     {
-        [model deleteSelf];
+//        [model deleteSelf];
     }
     else
     {

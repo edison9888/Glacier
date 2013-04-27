@@ -14,6 +14,7 @@
 #import "DiagnosisCell.h"
 
 @interface DiagnosisController ()
+@property (strong, nonatomic) IBOutlet UIButton *leftBarButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
 @property (strong, nonatomic) NSMutableArray * modelList;
 @property (strong, nonatomic) NSArray * sinaDataList;
@@ -44,6 +45,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.leftBarButton setTitle:@"编辑" forState:(UIControlStateNormal)];
+    [self.stockTableView setEditing:false];
     [self refreshData];
 }
 
@@ -182,5 +185,9 @@
         }
     }];
    
+}
+- (void)viewDidUnload {
+    [self setLeftBarButton:nil];
+    [super viewDidUnload];
 }
 @end

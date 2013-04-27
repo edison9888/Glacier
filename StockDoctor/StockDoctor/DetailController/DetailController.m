@@ -12,11 +12,13 @@
 #import "KLineView.h"
 #import "DateHelpers.h"
 #import "SingleDiagnosisController.h"
+#import "STSegmentedControl.h"
 
 @interface DetailController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
 @property (strong, nonatomic) IBOutlet StockInfoView *stockInfoView;
 @property (strong, nonatomic) IBOutlet UIView *graphView;
+@property (strong, nonatomic) IBOutlet STSegmentedControl *stTabView;
 @property (strong, nonatomic) IBOutlet UIButton *addBtN;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *trendKlineViewsList;
 @property (strong, nonatomic) NSTimer * timer;
@@ -44,19 +46,34 @@
     
     if ([self checkIsInSelfStock])
     {
-        [self.addBtN setTitle:@"删除" forState:(UIControlStateNormal)];
+        [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_added.png"] forState:(UIControlStateNormal)];
+        
     }
     else
     {
-        [self.addBtN setTitle:@"添加" forState:(UIControlStateNormal)];
+        [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_add.png"] forState:(UIControlStateNormal)];
     }
+    
     [self.stockInfoView.diagnosisButton addTarget:self action:@selector(onDiagnosisClick:) forControlEvents:(UIControlEventTouchUpInside)];
     
-    [self switchTab:0];
+    [self initTab];
     
     [self requestForDiagCount];
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+}
+
+- (void)initTab
+{
+    self.stTabView.segments = [NSMutableArray arrayWithArray:@[@"分时",@"日K",@"周K",@"月K"]];
+    [self.stTabView addTarget:self action:@selector(onSwitchTab:) forControlEvents:UIControlEventValueChanged];
+    [self.stTabView setNormalImageLeft:[UIImage imageNamed:@"sTab1.png"]];
+    [self.stTabView setSelectedImageLeft:[UIImage imageNamed:@"sTab2.png"]];
+    [self.stTabView setNormalImageMiddle:[UIImage imageNamed:@"sTab1.png"]];
+    [self.stTabView setSelectedImageMiddle:[UIImage imageNamed:@"sTab2.png"]];
+    [self.stTabView setNormalImageRight:[UIImage imageNamed:@"sTab1.png"]];
+    [self.stTabView setSelectedImageRight:[UIImage imageNamed:@"sTab2.png"]];
+    self.stTabView.selectedSegmentIndex = 0;
 }
 
 - (void)onTimer:(NSTimer *)sender
@@ -128,6 +145,8 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    NSLog(@"responseString:\n%@",request.responseString);
+    
     if (request.tag == 0)
     {
         [self processTrendData:request];
@@ -284,7 +303,7 @@
     }
 }
 
-- (IBAction)onBarSwitch:(UISegmentedControl *)sender
+- (void)onSwitchTab:(STSegmentedControl *)sender
 {
     [self switchTab:sender.selectedSegmentIndex];
 }
@@ -317,15 +336,14 @@
     {
         
         [model deleteSelf];
-        [self.addBtN setTitle:@"添加" forState:(UIControlStateNormal)];
+        [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_add.png"] forState:(UIControlStateNormal)];
         
     }
     else
     {
         [model insertSelfIntoFirst];
-        [self.addBtN setTitle:@"删除" forState:(UIControlStateNormal)];
+        [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_added.png"] forState:(UIControlStateNormal)];
     }
-    
 }
 
 - (void)switchTab:(int)index
@@ -348,6 +366,7 @@
     [self requestForStock];
 }
 
+
 //请求k线
 - (void)requestForStock
 {
@@ -364,6 +383,7 @@
 
 - (void)viewDidUnload {
     [self setRightBar:nil];
+    [self setStTabView:nil];
     [super viewDidUnload];
 }
 @end

@@ -24,7 +24,8 @@
 #pragma mark Initializer
 
 - (id)initWithFrame:(CGRect)frame {
-    if((self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, STSegmentedControlHeight)])) {
+    if((self = [super initWithFrame:frame]))
+    {
 		self.backgroundColor = [UIColor clearColor];
 		
 		/*
@@ -74,7 +75,6 @@
 - (id)initWithCoder:(NSCoder *)decoder {
     if((self = [super initWithCoder:decoder])) {
 		self.backgroundColor = [UIColor clearColor];
-		self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, STSegmentedControlHeight);
 		
 		/*
 		 Set the standard images
@@ -368,10 +368,12 @@
 	}
 }
 
-- (void)setFrame:(CGRect)rect {
-	[super setFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, STSegmentedControlHeight)];
-	[self updateUI];
-}
+//solve animation invalid problem !!
+
+//- (void)setFrame:(CGRect)rect {
+//	[super setFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, STSegmentedControlHeight)];
+//	[self updateUI];
+//}
 
 #pragma mark -
 #pragma mark Image setters
