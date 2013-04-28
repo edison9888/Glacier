@@ -23,7 +23,7 @@
 - (void)drawRect:(CGRect)rect {
     if (![self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
         [super drawRect:rect];
-        UIImage *wImage = [UIImage imageNamed:@"topBar.png"];
+        UIImage *wImage = [UIImage imageNamed:@"topbar.png"];
 
         [wImage drawInRect:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
     }
@@ -32,7 +32,7 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     if ([self respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
     {
-            [self setBackgroundImage:[UIImage imageNamed:@"topBar.png"] forBarMetrics:UIBarMetricsDefault];
+            [self setBackgroundImage:[UIImage imageNamed:@"topbar.png"] forBarMetrics:UIBarMetricsDefault];
     }
 }
 
@@ -65,6 +65,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+    
+    
     self.tabBarView.segments = [NSMutableArray arrayWithArray:@[@"",@"",@""]];
     [self.tabBarView addTarget:self action:@selector(onSwitchTab:) forControlEvents:UIControlEventValueChanged];
     [self.tabBarView setNormalImageLeft:[UIImage imageNamed:@"zixuangu01.png"]];

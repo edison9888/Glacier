@@ -70,7 +70,6 @@
 
 - (IBAction)onAddStock:(UIButton *)sender
 {
-    [self.stockTableView setEditing:false];
     SearchStockController * searchController = [[SearchStockController alloc]init];
     [[ContainerController instance]pushController:searchController animated:true];
 }

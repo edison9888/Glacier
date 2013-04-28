@@ -14,6 +14,7 @@
 			<string>IBProxyObject</string>
 			<string>IBUIBarButtonItem</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUITableView</string>
 			<string>IBUIView</string>
 		</array>
@@ -42,9 +43,8 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="1013780477">
+						<object class="NSColor" key="IBUIBackgroundColor" id="638682900">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
@@ -66,9 +66,8 @@
 				</array>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="178357503"/>
-				<reference key="IBUIBackgroundColor" ref="1013780477"/>
+				<reference key="IBUIBackgroundColor" ref="638682900"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIBarButtonItem" id="375157213">
@@ -87,7 +86,7 @@
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MQA</bytes>
 					</object>
-					<object class="NSColor" key="IBUINormalTitleColor" id="328362129">
+					<object class="NSColor" key="IBUINormalTitleColor" id="1037835862">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 					</object>
@@ -95,11 +94,11 @@
 						<string key="NSClassName">NSImage</string>
 						<string key="NSResourceName">addstock.png</string>
 					</object>
-					<object class="IBUIFontDescription" key="IBUIFontDescription" id="857683152">
+					<object class="IBUIFontDescription" key="IBUIFontDescription" id="610744748">
 						<int key="type">2</int>
 						<double key="pointSize">14</double>
 					</object>
-					<object class="NSFont" key="IBUIFont" id="727494035">
+					<object class="NSFont" key="IBUIFont" id="713603879">
 						<string key="NSName">Helvetica-Bold</string>
 						<double key="NSSize">14</double>
 						<int key="NSfFlags">16</int>
@@ -119,7 +118,7 @@
 					<int key="IBUIContentVerticalAlignment">0</int>
 					<string key="IBUINormalTitle">编辑</string>
 					<reference key="IBUIHighlightedTitleColor" ref="298421864"/>
-					<reference key="IBUINormalTitleColor" ref="328362129"/>
+					<reference key="IBUINormalTitleColor" ref="1037835862"/>
 					<object class="NSColor" key="IBUINormalTitleShadowColor">
 						<int key="NSColorSpace">3</int>
 						<bytes key="NSWhite">MC41AA</bytes>
@@ -128,9 +127,54 @@
 						<string key="NSClassName">NSImage</string>
 						<string key="NSResourceName">edit.png</string>
 					</object>
-					<reference key="IBUIFontDescription" ref="857683152"/>
-					<reference key="IBUIFont" ref="727494035"/>
+					<reference key="IBUIFontDescription" ref="610744748"/>
+					<reference key="IBUIFont" ref="713603879"/>
 				</object>
+			</object>
+			<object class="IBUIView" id="519636928">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUIImageView" id="542852330">
+						<reference key="NSNextResponder" ref="519636928"/>
+						<int key="NSvFlags">256</int>
+						<string key="NSFrameSize">{320, 45}</string>
+						<reference key="NSSuperview" ref="519636928"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">buttombg.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="381798424">
+						<reference key="NSNextResponder" ref="519636928"/>
+						<int key="NSvFlags">256</int>
+						<string key="NSFrame">{{35, 6}, {251, 33}}</string>
+						<reference key="NSSuperview" ref="519636928"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">delect.png</string>
+						</object>
+					</object>
+				</array>
+				<string key="NSFrameSize">{320, 45}</string>
+				<reference key="NSSuperview"/>
+				<string key="NSReuseIdentifierKey">_NS:9</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MQA</bytes>
+					<object class="NSColorSpace" key="NSCustomColorSpace">
+						<int key="NSID">2</int>
+					</object>
+				</object>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -268,6 +312,25 @@
 						<reference key="object" ref="559974962"/>
 						<reference key="parent" ref="961701098"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">32</int>
+						<reference key="object" ref="519636928"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="542852330"/>
+							<reference ref="381798424"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">33</int>
+						<reference key="object" ref="542852330"/>
+						<reference key="parent" ref="519636928"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">34</int>
+						<reference key="object" ref="381798424"/>
+						<reference key="parent" ref="519636928"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -280,73 +343,26 @@
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="33.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="34.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">34</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<object class="IBPartialClassDescription">
-					<string key="className">DiagnosisController</string>
-					<string key="superclassName">GlacierController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="onAddStock:">UIButton</string>
-						<string key="onEditSelfStock:">UIButton</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="onAddStock:">
-							<string key="name">onAddStock:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBActionInfo" key="onEditSelfStock:">
-							<string key="name">onEditSelfStock:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="leftBarButtonItem">UIBarButtonItem</string>
-						<string key="rightBarButtonItem">UIBarButtonItem</string>
-						<string key="stockTableView">UITableView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="leftBarButtonItem">
-							<string key="name">leftBarButtonItem</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="rightBarButtonItem">
-							<string key="name">rightBarButtonItem</string>
-							<string key="candidateClassName">UIBarButtonItem</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="stockTableView">
-							<string key="name">stockTableView</string>
-							<string key="candidateClassName">UITableView</string>
-						</object>
-					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/DiagnosisController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">GlacierController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GlacierController.h</string>
-					</object>
-				</object>
-			</array>
-		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="addstock.png">{133, 61}</string>
+			<string key="buttombg.png">{640, 90}</string>
+			<string key="delect.png">{503, 65}</string>
 			<string key="edit.png">{97, 61}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>

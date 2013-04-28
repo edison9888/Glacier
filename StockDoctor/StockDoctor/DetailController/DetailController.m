@@ -145,7 +145,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    NSLog(@"responseString:\n%@",request.responseString);
+//    NSLog(@"responseString:\n%@",request.responseString);
     
     if (request.tag == 0)
     {
