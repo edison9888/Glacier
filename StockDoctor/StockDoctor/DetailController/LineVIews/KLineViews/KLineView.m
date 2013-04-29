@@ -7,8 +7,6 @@
 //
 
 #import "KLineView.h"
-#define WidthRate (24/30.0)
-#define HeightRate (26/30.0)
 #define LineCount 50
 
 @interface KLineView()
@@ -25,6 +23,7 @@
     float _topPrice;
     float _buttomPrice;
     float _halfPrice;
+    long _topVolume;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -98,12 +97,18 @@
 {
     _topPrice = FLT_MIN;
     _buttomPrice = FLT_MAX;
+    _topVolume = LONG_MIN;
     
     [self.kLineModel.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
     
         if (obj.high.floatValue > _topPrice)
         {
             _topPrice = obj.high.floatValue;
+        }
+        
+        if (obj.volume.longLongValue > _topVolume)
+        {
+            _topVolume = obj.volume.longLongValue;
         }
         
         _topPrice = [self adjustValue:self.MA5DataList idx:idx val:_topPrice topOrButtom:true];
@@ -156,7 +161,7 @@
     
     if (self.kLineModel)
     {
-        [self drawHorizontalGridInRect:[self gridRect]];
+        [self drawHorizontalGridInRect:[self gridRect] lineCount:4];
         [self drawVerticalGridInRect:[self gridRect]];
         [self drawBarSeries:[self dataRect]];
         
@@ -178,6 +183,39 @@
         [self drawLeftString:[self leftStringRect]];
         [self drawRightString:[self rightStringRect]];
         [self drawButtomString:[self buttomStringRect]];
+        
+        
+        [self drawHorizontalGridInRect:[self volumeGridRect] lineCount:3];
+        [self drawVerticalGridInRect:[self volumeGridRect]];
+        [self drawVolumeBarSeries:[self volumeDataRect]];
+        [self drawLeftVolumeString:[self leftStringVolumeRect]];
+        [self drawRightVolumeString:[self rightStringVolumeRect]];
+    }
+}
+
+- (void)drawString:(CGRect)rect stringList:(NSArray *)list lOrR:(bool)lr
+{
+    if (list.count > 0)
+    {
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(ctx);
+        CGFloat interval = CGRectGetHeight(rect) / (list.count - 1);
+        
+        [list enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
+         {
+             [[UIColor grayColor] setFill];
+             CGRect stringRect = CGRectMake(CGRectGetMinX(rect) , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+             
+             if (lr)
+             {
+                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+             }
+             else
+             {
+                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+             }
+         }];
+        CGContextRestoreGState(ctx);
     }
 }
 
@@ -191,22 +229,7 @@
         [arr addObject:[NSString stringWithFormat:@"%.2f",price]];
     }
     
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(ctx);
-    CGFloat interval = CGRectGetHeight(rect) / (stringCount - 1);
-    
-    [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
-     {
-         [[UIColor grayColor] setFill];
-         CGFloat width = [obj sizeWithFont:self.textFont].width;
-         
-
-         
-         CGRect stringRect = CGRectMake(CGRectGetMinX(rect)+ 9 / 10.0f * CGRectGetWidth(rect) - width  , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, width, interval);
-         
-          [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
-     }];
-    CGContextRestoreGState(ctx);
+    [self drawString:rect stringList:arr lOrR:true];
 }
 
 - (void)drawRightString:(CGRect)rect
@@ -219,22 +242,26 @@
         [arr addObject:[NSString stringWithFormat:@"%.2f",price]];
     }
     
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(ctx);
-    CGFloat interval = CGRectGetHeight(rect) / (stringCount - 1);
+    [self drawString:rect stringList:arr lOrR:false];
+}
+
+
+- (void)drawLeftVolumeString:(CGRect)rect
+{
+    NSMutableArray * arr = [NSMutableArray array];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:@"万手"];
     
-    [arr enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
-     {
-         [[UIColor grayColor] setFill];
-         
-         CGFloat width = [obj sizeWithFont:self.textFont].width;
-         
-         CGRect stringRect = CGRectMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) * 1 / 10.0, CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, width, self.textFont.lineHeight);
-         
-         
-        [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
-     }];
-    CGContextRestoreGState(ctx);
+    [self drawString:rect stringList:arr lOrR:true];
+}
+
+- (void)drawRightVolumeString:(CGRect)rect
+{
+    NSMutableArray * arr = [NSMutableArray array];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:@"万手"];
+    
+    [self drawString:rect stringList:arr lOrR:false];
 }
 
 - (void)drawButtomString:(CGRect)rect
@@ -270,8 +297,6 @@
             //其他显示年和月
             drawStr = [data.date substringToIndex:7];
         }
-
-        
         
         CGFloat width = [drawStr sizeWithFont:self.textFont].width;
         
@@ -298,9 +323,8 @@
 }
 
 //绘制横向网格线
-- (void)drawHorizontalGridInRect:(CGRect)rect
+- (void)drawHorizontalGridInRect:(CGRect)rect lineCount:(int)lineCount
 {
-    int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path setLineWidth:0.5];
@@ -362,22 +386,72 @@
     CGContextRestoreGState(context);
 }
 
+- (void)drawVolumeBarSeries:(CGRect)rect
+{
+    CGFloat seriesWidth = CGRectGetWidth(rect) / LineCount;
+    
+    [self.kLineModel.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
+        CGRect seriesRect = CGRectMake(CGRectGetMaxX(rect) - (idx  + 1)* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
+        [self drawVolumeSeriesBar:seriesRect cellData:obj];
+    }];
+}
+
+//绘制量线单元格
+- (void)drawVolumeSeriesBar:(CGRect)rect cellData:(KLineCellData *)data
+{
+    UIColor * color;
+    
+    if (data.close.floatValue > data.open.floatValue)
+    {
+        color = [UIColor redColor];
+    }
+    else if (data.close.floatValue < data.open.floatValue)
+    {
+        color = [UIColor greenColor];
+    }
+    else
+    {
+        color = [UIColor grayColor];
+    }
+    
+    UIBezierPath * path = [UIBezierPath bezierPath];
+    
+#define heightForVolume(volume) (_topVolume - volume) / (float)( _topVolume) * CGRectGetHeight(rect)
+    
+    
+    CGFloat openPoint = heightForVolume(data.volume.longLongValue);
+    CGFloat closePoint = heightForVolume(0);
+    if (ABS(closePoint - openPoint) < 0.5)
+    {
+        closePoint = openPoint + 0.5;
+    }
+    
+    CGFloat sidePad = 0.5f;
+    
+    [path moveToPoint:CGPointMake(CGRectGetMinX(rect) + sidePad, CGRectGetMinY(rect) +openPoint)];
+    
+    [path addLineToPoint:CGPointMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) - sidePad,CGRectGetMinY(rect) + openPoint)];
+    
+    [path addLineToPoint:CGPointMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) - sidePad,CGRectGetMinY(rect) + closePoint)];
+    
+    [path addLineToPoint:CGPointMake(CGRectGetMinX(rect) + sidePad, CGRectGetMinY(rect) + closePoint)];
+    [color setFill];
+    [path fill];
+}
 
 
-
+//绘制蜡烛图序列
 - (void)drawBarSeries:(CGRect)rect
 {
-    int seriesCount = 50;
-
-    CGFloat seriesWidth = CGRectGetWidth(rect) / seriesCount;
+    CGFloat seriesWidth = CGRectGetWidth(rect) / LineCount;
     
-
     [self.kLineModel.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
         CGRect seriesRect = CGRectMake(CGRectGetMaxX(rect) - (idx  + 1)* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
         [self drawSeriesBar:seriesRect cellData:obj];
     }];
 }
 
+//绘制蜡烛图单元格
 - (void)drawSeriesBar:(CGRect)rect cellData:(KLineCellData *)data
 {
     UIColor * color;

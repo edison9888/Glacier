@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define WidthRate (24/30.0)
-#define HeightRate (26/30.0)
+
 
 @interface LineGraphicsBaseView : UIView
 
@@ -22,4 +21,14 @@
 - (CGRect)buttomStringRect;
 
 - (CGRect)rightStringRect;
+
+- (CGRect)volumeGridRect;
+
+//量线数据区域
+- (CGRect)volumeDataRect;
+
+//左边量线文本区域
+- (CGRect)leftStringVolumeRect;
+//右边量线文本区域
+- (CGRect)rightStringVolumeRect;
 @end

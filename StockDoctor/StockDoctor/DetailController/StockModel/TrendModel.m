@@ -41,14 +41,18 @@
 {
     float price = self.currentPrice.floatValue;
     float pre = self.preClose.floatValue;
-    if (self.changeState > 0)
+    if (pre)
     {
-        return [NSString stringWithFormat:@"+%.2f%%",(price - pre)/pre * 100];
+        if (self.changeState > 0)
+        {
+            return [NSString stringWithFormat:@"+%.2f%%",(price - pre)/pre * 100];
+        }
+        else
+        {
+            return [NSString stringWithFormat:@"%.2f%%",(price - pre)/pre * 100];
+        }
     }
-    else
-    {
-        return [NSString stringWithFormat:@"%.2f%%",(price - pre)/pre * 100];
-    }
+    return @"--%";
 }
 
 - (NSString *)changeValue
