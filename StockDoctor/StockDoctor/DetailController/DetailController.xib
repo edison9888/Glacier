@@ -75,7 +75,7 @@
 							<object class="IBUIView" id="1042167076">
 								<reference key="NSNextResponder" ref="485829605"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{5, 5}, {310, 240}}</string>
+								<string key="NSFrame">{{0, 5}, {320, 240}}</string>
 								<reference key="NSSuperview" ref="485829605"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="696820964"/>
@@ -126,7 +126,6 @@
 								<string key="NSFrame">{{262, 8}, {49, 30}}</string>
 								<reference key="NSSuperview" ref="696820964"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -181,7 +180,6 @@
 				<string key="NSFrameSize">{136, 34}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -192,7 +190,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">1</int>
@@ -204,7 +201,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">3</int>
@@ -216,7 +212,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">2</int>

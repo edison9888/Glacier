@@ -10,7 +10,6 @@
 #define LineCount 50
 
 @interface KLineView()
-@property (nonatomic,strong) UIFont * textFont;
 @property (nonatomic,strong) KLineModel * kLineModel;
 @property (nonatomic,strong) NSArray * MA5DataList;
 @property (nonatomic,strong) NSArray * MA10DataList;
@@ -185,37 +184,12 @@
         [self drawButtomString:[self buttomStringRect]];
         
         
-        [self drawHorizontalGridInRect:[self volumeGridRect] lineCount:3];
+        [self drawHorizontalGridInRect:[self volumeGridRect] lineCount:2];
         [self drawVerticalGridInRect:[self volumeGridRect]];
+        
         [self drawVolumeBarSeries:[self volumeDataRect]];
         [self drawLeftVolumeString:[self leftStringVolumeRect]];
         [self drawRightVolumeString:[self rightStringVolumeRect]];
-    }
-}
-
-- (void)drawString:(CGRect)rect stringList:(NSArray *)list lOrR:(bool)lr
-{
-    if (list.count > 0)
-    {
-        CGContextRef ctx = UIGraphicsGetCurrentContext();
-        CGContextSaveGState(ctx);
-        CGFloat interval = CGRectGetHeight(rect) / (list.count - 1);
-        
-        [list enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
-         {
-             [[UIColor grayColor] setFill];
-             CGRect stringRect = CGRectMake(CGRectGetMinX(rect) , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
-             
-             if (lr)
-             {
-                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
-             }
-             else
-             {
-                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
-             }
-         }];
-        CGContextRestoreGState(ctx);
     }
 }
 

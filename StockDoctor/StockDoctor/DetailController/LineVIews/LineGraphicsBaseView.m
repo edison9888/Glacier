@@ -106,4 +106,31 @@
                       self.bounds.size.height * (volume_end - volume_start));
 }
 
+
+- (void)drawString:(CGRect)rect stringList:(NSArray *)list lOrR:(bool)lr
+{
+    if (list.count > 0)
+    {
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSaveGState(ctx);
+        CGFloat interval = CGRectGetHeight(rect) / (list.count - 1);
+        
+        [list enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
+         {
+             [[UIColor grayColor] setFill];
+             CGRect stringRect = CGRectMake(CGRectGetMinX(rect) , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+             
+             if (lr)
+             {
+                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+             }
+             else
+             {
+                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+             }
+         }];
+        CGContextRestoreGState(ctx);
+    }
+}
+
 @end

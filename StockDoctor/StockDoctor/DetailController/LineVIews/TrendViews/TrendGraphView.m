@@ -13,7 +13,6 @@
 
 @interface TrendGraphView()
 @property (nonatomic,strong)  NSMutableArray * aveList;
-@property (nonatomic,strong) UIFont * textFont;
 @end
 
 @implementation TrendGraphView
@@ -23,6 +22,7 @@
     float _buttomPrice;
     float _halfHeightPrice;
     float _preClose;
+    long _topVolume;
     int _dataStepCount;
 }
 
@@ -39,7 +39,7 @@
 - (void)calcTopAndButtomPrice
 {
     _halfHeightPrice = FLT_MIN;
-    
+    _topVolume = LONG_MIN;
     _preClose = self.stockBaseInfoModel.preClose.floatValue;
 
     [self.trendModel.trendCellDataList enumerateObjectsUsingBlock:^(TrendCellData * obj, NSUInteger idx, BOOL *stop) {
@@ -51,6 +51,11 @@
         if (ABS(ave.floatValue - _preClose) > _halfHeightPrice)
         {
             _halfHeightPrice = ABS(ave.floatValue - _preClose);
+        }
+        
+        if (obj.volume.longLongValue > _topVolume )
+        {
+            _topVolume = obj.volume.longLongValue;
         }
     }];
     
@@ -131,7 +136,7 @@
     {
         [self generateAverageData];
         [self calcTopAndButtomPrice];
-        [self drawHorizontalGridInRect:[self gridRect]];
+        [self drawHorizontalGridInRect:[self gridRect] lineCount:4];
         [self drawVerticalGridInRect:[self gridRect]];
         
         if (self.trendModel.trendCellDataList.count > 0)
@@ -143,6 +148,12 @@
             [self drawRightString:[self rightStringRect]];
             [self drawButtomString:[self buttomStringRect]];
         }
+        
+        [self drawHorizontalGridInRect:[self volumeGridRect]  lineCount:2];
+        [self drawVerticalGridInRect:[self volumeGridRect]];
+        [self drawVolumeBarSeries:[self volumeDataRect]];
+        [self drawLeftVolumeString:[self leftStringVolumeRect]];
+        [self drawRightVolumeString:[self rightStringVolumeRect]];
     }
 }
 
@@ -174,10 +185,8 @@
         {
             [[UIColor greenColor] setFill];
         }
-        CGFloat width = [obj sizeWithFont:self.textFont].width;
-        
-        CGRect stringRect = CGRectMake(CGRectGetMinX(rect)+ 9 / 10.0f * CGRectGetWidth(rect) - width  , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
-        [obj drawInRect:stringRect withFont:self.textFont];
+        CGRect stringRect = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+        [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
     }];
     CGContextRestoreGState(ctx);
 }
@@ -211,10 +220,28 @@
          {
              [[UIColor greenColor] setFill];
          }
-         CGRect stringRect = CGRectMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) * 1 / 10.0, CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
-         [obj drawInRect:stringRect withFont:self.textFont];
+         CGRect stringRect = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+         [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
      }];
     CGContextRestoreGState(ctx);
+}
+
+- (void)drawLeftVolumeString:(CGRect)rect
+{
+    NSMutableArray * arr = [NSMutableArray array];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:@"万手"];
+    
+    [self drawString:rect stringList:arr lOrR:true];
+}
+
+- (void)drawRightVolumeString:(CGRect)rect
+{
+    NSMutableArray * arr = [NSMutableArray array];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:@"万手"];
+    
+    [self drawString:rect stringList:arr lOrR:false];
 }
 
 - (void)drawButtomString:(CGRect)rect
@@ -254,9 +281,8 @@
 
 
 //绘制横向网格线
-- (void)drawHorizontalGridInRect:(CGRect)rect
+- (void)drawHorizontalGridInRect:(CGRect)rect lineCount:(int)lineCount
 {
-    int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path setLineWidth:0.5];
@@ -277,7 +303,7 @@
 }
 
 //绘制纵向网格线
-- (void)drawVerticalGridInRect:(CGRect)rect
+- (void)drawVerticalGridInRect:(CGRect)rect 
 {
     int lineCount = 4;
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -329,6 +355,60 @@
     [[UIColor yellowColor] setStroke];
     [path stroke];
     CGContextRestoreGState(context);
+}
+
+- (void)drawVolumeBarSeries:(CGRect)rect
+{
+    CGFloat seriesWidth = CGRectGetWidth(rect) / CellCount;
+    
+    [self.trendModel.trendCellDataList enumerateObjectsUsingBlock:^(TrendCellData * obj, NSUInteger idx, BOOL *stop) {
+        CGRect seriesRect = CGRectMake(CGRectGetMinX(rect) + idx* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
+        [self drawVolumeSeriesBar:seriesRect cellData:obj];
+    }];
+}
+
+//绘制量线单元格
+- (void)drawVolumeSeriesBar:(CGRect)rect cellData:(TrendCellData *)data
+{
+    UIColor * color = [UIColor lightGrayColor];
+    
+//    if (data.price.floatValue > data.open.floatValue)
+//    {
+//        color = [UIColor redColor];
+//    }
+//    else if (data.close.floatValue < data.open.floatValue)
+//    {
+//        color = [UIColor greenColor];
+//    }
+//    else
+//    {
+//        color = [UIColor grayColor];
+//    }
+    
+    UIBezierPath * path = [UIBezierPath bezierPath];
+    
+#define heightForVolume(volume) (_topVolume - volume) / (float)( _topVolume) * CGRectGetHeight(rect)
+    
+    
+    CGFloat openPoint = heightForVolume(data.volume.longLongValue);
+    CGFloat closePoint = heightForVolume(0);
+    if (ABS(closePoint - openPoint) < 0.5)
+    {
+        closePoint = openPoint + 0.5;
+    }
+    
+    CGFloat highHeight = openPoint;
+    CGPoint highPoint = CGPointMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) / 2 , CGRectGetMinY(rect) + highHeight);
+    [path moveToPoint:highPoint];
+    
+    CGFloat lowHeight = closePoint;
+    CGPoint lowPoint = CGPointMake(CGRectGetMinX(rect) + CGRectGetWidth(rect) / 2 , CGRectGetMinY(rect) + lowHeight);
+    [path addLineToPoint:lowPoint];
+    [path setLineWidth:0.5];
+    
+    [color setStroke];
+    
+    [path stroke];
 }
 
 

@@ -12,6 +12,8 @@
 
 @interface LineGraphicsBaseView : UIView
 
+@property (nonatomic,strong) UIFont * textFont;
+
 - (CGRect)gridRect;
 
 - (CGRect)dataRect;
@@ -31,4 +33,6 @@
 - (CGRect)leftStringVolumeRect;
 //右边量线文本区域
 - (CGRect)rightStringVolumeRect;
+
+- (void)drawString:(CGRect)rect stringList:(NSArray *)list lOrR:(bool)lr;
 @end
