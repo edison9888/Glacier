@@ -6,6 +6,9 @@
 //  Copyright (c) 2013年 Glacier. All rights reserved.
 //
 
+CGRect CGRectMakeInt(CGFloat x, CGFloat y, CGFloat width,
+                     CGFloat height);
+
 @interface UIView(Fixer)
 - (void)fixY:(CGFloat)y;
 - (void)fixHeight:(CGFloat)height;

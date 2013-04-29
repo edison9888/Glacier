@@ -8,6 +8,12 @@
 
 #import "UIHelper+ViewFixer.h"
 
+CGRect CGRectMakeInt(CGFloat x, CGFloat y, CGFloat width,
+                     CGFloat height)
+{
+    return CGRectMake((int)x,(int)y,(int)width,(int)height);
+}
+
 @implementation UIView(Fixer)
 
 - (void)fixY:(CGFloat)y

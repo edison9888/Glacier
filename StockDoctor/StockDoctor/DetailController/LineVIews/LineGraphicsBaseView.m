@@ -113,20 +113,36 @@
     {
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGContextSaveGState(ctx);
+        CGContextSetAllowsAntialiasing(ctx, true);
         CGFloat interval = CGRectGetHeight(rect) / (list.count - 1);
         
         [list enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
          {
-             [[UIColor grayColor] setFill];
-             CGRect stringRect = CGRectMake(CGRectGetMinX(rect) , CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+             [[UIColor lightGrayColor] setFill];
+             CGRect stringRect = CGRectMakeInt(CGRectGetMinX(rect) ,CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
              
              if (lr)
              {
-                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+                 if ([obj isEqualToString:@"万手"])
+                 {
+                     
+                     [obj drawInRect:stringRect withFont:[UIFont boldSystemFontOfSize:8] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+                 }
+                 else
+                 {
+                     [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+                 }
              }
              else
              {
-                 [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+                 if ([obj isEqualToString:@"万手"])
+                 {
+                     [obj drawInRect:stringRect withFont:[UIFont boldSystemFontOfSize:8] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+                 }
+                 else
+                 {
+                     [obj drawInRect:stringRect withFont:self.textFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentLeft];
+                 }
              }
          }];
         CGContextRestoreGState(ctx);

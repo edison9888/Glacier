@@ -229,7 +229,7 @@
 - (void)drawLeftVolumeString:(CGRect)rect
 {
     NSMutableArray * arr = [NSMutableArray array];
-    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 1000000.0f]];
     [arr addObject:@"万手"];
     
     [self drawString:rect stringList:arr lOrR:true];
@@ -238,7 +238,7 @@
 - (void)drawRightVolumeString:(CGRect)rect
 {
     NSMutableArray * arr = [NSMutableArray array];
-    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 10000.0f]];
+    [arr addObject:[NSString stringWithFormat:@"%.2f",_topVolume / 1000000.0f]];
     [arr addObject:@"万手"];
     
     [self drawString:rect stringList:arr lOrR:false];
@@ -362,8 +362,11 @@
     CGFloat seriesWidth = CGRectGetWidth(rect) / CellCount;
     
     [self.trendModel.trendCellDataList enumerateObjectsUsingBlock:^(TrendCellData * obj, NSUInteger idx, BOOL *stop) {
-        CGRect seriesRect = CGRectMake(CGRectGetMinX(rect) + idx* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
-        [self drawVolumeSeriesBar:seriesRect cellData:obj];
+        if (idx < CellCount)
+        {
+            CGRect seriesRect = CGRectMake(CGRectGetMinX(rect) + idx* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
+            [self drawVolumeSeriesBar:seriesRect cellData:obj];
+        }
     }];
 }
 
