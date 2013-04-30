@@ -19,6 +19,7 @@
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
 		58386F87171450A200B636E7 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F86171450A200B636E7 /* SearchCell.m */; };
+		583DF669172F73B40095096B /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 583DF668172F73B40095096B /* save.png */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -42,7 +43,7 @@
 		5850874A1711B16700EA6820 /* SearchStockController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 585087481711B16700EA6820 /* SearchStockController.xib */; };
 		5850874E1711B98400EA6820 /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850874D1711B98400EA6820 /* SearchModel.m */; };
 		5866A20A171A7E000095C4FE /* KLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A206171A7E000095C4FE /* KLineView.m */; };
-		5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A209171A7E000095C4FE /* TrendGraphView.m */; };
+		5866A20B171A7E000095C4FE /* TrendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A209171A7E000095C4FE /* TrendView.m */; };
 		5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */; };
 		5867D95717226F4300429A34 /* SingleDiagnosisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5867D95517226F4300429A34 /* SingleDiagnosisController.m */; };
 		5867D95817226F4300429A34 /* SingleDiagnosisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5867D95617226F4300429A34 /* SingleDiagnosisController.xib */; };
@@ -128,6 +129,7 @@
 		58386F831714508300B636E7 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		58386F85171450A200B636E7 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		58386F86171450A200B636E7 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		583DF668172F73B40095096B /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,8 +162,8 @@
 		5850874D1711B98400EA6820 /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
 		5866A205171A7E000095C4FE /* KLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLineView.h; sourceTree = "<group>"; };
 		5866A206171A7E000095C4FE /* KLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLineView.m; sourceTree = "<group>"; };
-		5866A208171A7E000095C4FE /* TrendGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendGraphView.h; sourceTree = "<group>"; };
-		5866A209171A7E000095C4FE /* TrendGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendGraphView.m; sourceTree = "<group>"; };
+		5866A208171A7E000095C4FE /* TrendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrendView.h; sourceTree = "<group>"; };
+		5866A209171A7E000095C4FE /* TrendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrendView.m; sourceTree = "<group>"; };
 		5866A20C171A7E5C0095C4FE /* LineGraphicsBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphicsBaseView.h; sourceTree = "<group>"; };
 		5866A20D171A7E5C0095C4FE /* LineGraphicsBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraphicsBaseView.m; sourceTree = "<group>"; };
 		5867D95417226F4300429A34 /* SingleDiagnosisController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDiagnosisController.h; sourceTree = "<group>"; };
@@ -435,8 +437,8 @@
 		5866A207171A7E000095C4FE /* TrendViews */ = {
 			isa = PBXGroup;
 			children = (
-				5866A208171A7E000095C4FE /* TrendGraphView.h */,
-				5866A209171A7E000095C4FE /* TrendGraphView.m */,
+				5866A208171A7E000095C4FE /* TrendView.h */,
+				5866A209171A7E000095C4FE /* TrendView.m */,
 			);
 			path = TrendViews;
 			sourceTree = "<group>";
@@ -516,6 +518,7 @@
 		587EEDC71729728600455855 /* FirstSection */ = {
 			isa = PBXGroup;
 			children = (
+				583DF668172F73B40095096B /* save.png */,
 				587EEE4E172C22F200455855 /* delect.png */,
 				587EEDE6172AB64100455855 /* topbar.png */,
 				587EEDDB17297E2B00455855 /* select1.png */,
@@ -756,6 +759,7 @@
 				587EEE4C172C12FA00455855 /* whitexuanxiangbg_01.png in Resources */,
 				587EEE4D172C12FA00455855 /* whitexuanxiangbg_02.png in Resources */,
 				587EEE4F172C22F300455855 /* delect.png in Resources */,
+				583DF669172F73B40095096B /* save.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,7 +784,7 @@
 				58734C341716DCE3005A15CC /* TrendModel.m in Sources */,
 				58A5426917185F4400708CED /* KLineModel.m in Sources */,
 				5866A20A171A7E000095C4FE /* KLineView.m in Sources */,
-				5866A20B171A7E000095C4FE /* TrendGraphView.m in Sources */,
+				5866A20B171A7E000095C4FE /* TrendView.m in Sources */,
 				5866A20E171A7E5C0095C4FE /* LineGraphicsBaseView.m in Sources */,
 				58004A29171D92D900817E2C /* ChooseStocksController.m in Sources */,
 				58004A2F171D9D9C00817E2C /* SettingController.m in Sources */,

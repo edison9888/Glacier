@@ -266,6 +266,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ContainerController</string>
 					<string key="superclassName">GlacierController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">onBackClick:</string>
+						<string key="NS.object.0">UIButton</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">onBackClick:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">onBackClick:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImg">UIImageView</string>
 						<string key="bgView">UIView</string>

@@ -41,39 +41,45 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-
-    if (!editing)
+    if (self.isEditing != editing)
     {
-        self.imgBgView.alpha = 0;
-        [UIView animateWithDuration:0.2f animations:^{
-            self.imgBgView.alpha = 1;
-        }];
-        
-    }
-    else
-    {
-        self.imgBgView.alpha = 1;
-        [UIView animateWithDuration:0.2f animations:^{
+        if (!editing)
+        {
             self.imgBgView.alpha = 0;
-        }];
-    }
-    
-    [super setEditing:editing animated:animated];
-    
-    [self.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL *stop) {
-        
-        if ([obj isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
-            obj.hidden= true;
+            [UIView animateWithDuration:0.2f animations:^{
+                self.imgBgView.alpha = 1;
+            }];
+            
         }
-    }];
-    
-    if (editing)
-    {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        else
+        {
+            self.imgBgView.alpha = 1;
+            [UIView animateWithDuration:0.2f animations:^{
+                self.imgBgView.alpha = 0;
+            }];
+        }
+        
+        [super setEditing:editing animated:animated];
+        
+        [self.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL *stop) {
+            
+            if ([obj isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
+                obj.hidden= true;
+            }
+        }];
+        
+        if (editing)
+        {
+            self.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        else
+        {
+            self.selectionStyle = UITableViewCellSelectionStyleGray;
+        }
     }
     else
     {
-        self.selectionStyle = UITableViewCellSelectionStyleGray;
+        [super setEditing:editing animated:animated];
     }
 }
 

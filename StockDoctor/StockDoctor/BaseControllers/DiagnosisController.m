@@ -20,7 +20,9 @@
 @property (strong, nonatomic) NSArray * sinaDataList;
 @property (strong, nonatomic) IBOutlet UITableView *stockTableView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *leftBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIView *deleteBarView;
 @property (strong, nonatomic) NSMutableArray * deleteList;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 @implementation DiagnosisController
@@ -78,15 +80,40 @@
 {
     if (self.stockTableView.editing)
     {
+        [[ContainerController instance] dissmisViewAndShowTab:self.deleteBarView];
         [sender setTitle:@"编辑" forState:(UIControlStateNormal)];
-        [self deleteStocks];
+        [sender setBackgroundImage:[UIImage imageNamed: @"edit.png"] forState:(UIControlStateNormal)];
+//        [self deleteStocks];
         [self.stockTableView setEditing:false animated:true];
     }
     else
     {
+        [self refreshDeleteButton];
+        [[ContainerController instance] hideTabAndPresentView:self.deleteBarView];
         [self.deleteList removeAllObjects];
-        [sender setTitle:@"完成" forState:(UIControlStateNormal)];
+        [sender setTitle:@"" forState:(UIControlStateNormal)];
+        [sender setBackgroundImage:[UIImage imageNamed:@"save.png"] forState:(UIControlStateNormal)];
         [self.stockTableView setEditing:true animated:true];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if (self.stockTableView.editing)
+    {
+        [[ContainerController instance] dissmisViewAndShowTab:self.deleteBarView];
+        [self.leftBarButton setTitle:@"编辑" forState:(UIControlStateNormal)];
+        [self.leftBarButton  setBackgroundImage:[UIImage imageNamed: @"edit.png"] forState:(UIControlStateNormal)];
+        [self.stockTableView setEditing:false animated:false];
+    }
+}
+
+- (IBAction)onDeleteClick:(UIButton *)sender
+{
+    if (self.deleteList.count > 0)
+    {
+        [self deleteStocks];
+        [self.deleteList removeAllObjects];
     }
 }
 
@@ -136,11 +163,24 @@
     return cell;
 }
 
+- (void)refreshDeleteButton
+{
+    if (self.deleteList.count > 0)
+    {
+        self.deleteButton.enabled = true;
+    }
+    else
+    {
+        self.deleteButton.enabled = false;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.stockTableView.editing)
     {
         [self.deleteList addObject:indexPath];
+        [self refreshDeleteButton];
     }
     else
     {
@@ -164,6 +204,7 @@
             }
         }
     }
+    [self refreshDeleteButton];
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
@@ -187,6 +228,8 @@
 }
 - (void)viewDidUnload {
     [self setLeftBarButton:nil];
+    [self setDeleteBarView:nil];
+    [self setDeleteButton:nil];
     [super viewDidUnload];
 }
 @end

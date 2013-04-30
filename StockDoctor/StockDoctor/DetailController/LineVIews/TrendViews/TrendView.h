@@ -1,5 +1,5 @@
 //
-//  TrendGraphView.h
+//  TrendView.h
 //  StockDoctor
 //
 //  Created by cnzhao on 13-4-8.
@@ -8,7 +8,7 @@
 #import "LineGraphicsBaseView.h"
 #import "TrendModel.h"
 
-@interface TrendGraphView : LineGraphicsBaseView
+@interface TrendView : LineGraphicsBaseView
 @property (nonatomic,strong) TrendModel * trendModel;
 @property (nonatomic,strong) StockBaseInfoModel * stockBaseInfoModel;
 - (void)reloadData:(TrendModel *)model;

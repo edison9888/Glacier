@@ -13,6 +13,7 @@
 #import "SearchModel.h"
 #import "STSegmentedControl.h"
 #define AnimationTime 0.35f
+#define BarAniTime 0.2f
 
 @interface UINavigationBar(Custom)
 
@@ -65,6 +66,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarHidden = false;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     
     
@@ -115,6 +117,43 @@
     else
     {
         [self.naviController popViewControllerAnimated:true];
+    }
+}
+
+- (void)hideTabAndPresentView:(UIView *)view
+{
+    if (!self.tabBarView.hidden)
+    {
+        CGFloat contentHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.tabBarView.bounds);
+        self.tabBarView.hidden = false;
+        [UIView animateWithDuration:BarAniTime animations:^{
+            [self.tabBarView fixY:CGRectGetHeight(self.view.bounds)];
+        } completion:^(BOOL finished) {
+            [self.view addSubview:view];
+            self.tabBarView.hidden = true;
+            view.frame = self.tabBarView.frame;
+            [UIView animateWithDuration:BarAniTime animations:^{
+                [view fixY:contentHeight];
+            }];
+        }];
+    }
+}
+
+- (void)dissmisViewAndShowTab:(UIView *)view
+{
+    if (self.tabBarView.hidden)
+    {
+        CGFloat contentHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(self.tabBarView.bounds);
+        [UIView animateWithDuration:BarAniTime animations:^{
+            [view fixY:CGRectGetHeight(self.view.bounds)];
+        } completion:^(BOOL finished) {
+            [view removeFromSuperview];
+            self.tabBarView.hidden = false;
+            [self.tabBarView fixY:CGRectGetHeight(self.view.bounds)];
+            [UIView animateWithDuration:BarAniTime animations:^{
+                [self.tabBarView fixY:contentHeight];
+            }];
+        }];
     }
 }
 

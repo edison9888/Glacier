@@ -13,3 +13,7 @@ CGRect CGRectMakeInt(CGFloat x, CGFloat y, CGFloat width,
 - (void)fixY:(CGFloat)y;
 - (void)fixHeight:(CGFloat)height;
 @end
+
+@interface UIScrollView(Fixer)
+- (void)fixContentHeight:(CGFloat)height;
+@end

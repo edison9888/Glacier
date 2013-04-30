@@ -7,7 +7,7 @@
 //
 
 #import "DetailController.h"
-#import "TrendGraphView.h"
+#import "TrendView.h"
 #import "StockInfoView.h"
 #import "KLineView.h"
 #import "DateHelpers.h"
@@ -21,7 +21,10 @@
 @property (strong, nonatomic) IBOutlet STSegmentedControl *stTabView;
 @property (strong, nonatomic) IBOutlet UIButton *addBtN;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *trendKlineViewsList;
+@property (strong, nonatomic) IBOutlet UILabel *timerLabel;
 @property (strong, nonatomic) NSTimer * timer;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollBgView;
+@property (strong, nonatomic) IBOutlet UIView *lineGraphicsBgView;
 @end
 
 @implementation DetailController
@@ -55,6 +58,8 @@
     }
     
     [self.stockInfoView.diagnosisButton addTarget:self action:@selector(onDiagnosisClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [self.scrollBgView fixContentHeight:CGRectGetMaxY(self.lineGraphicsBgView.frame)];
     
     [self initTab];
     
@@ -221,6 +226,10 @@
     }
     
     [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    NSString * timeStr = [NSString stringWithFormat:@"最后更新于: %@",[formatter stringFromDate:[NSDate date]]];
+    self.timerLabel.text = timeStr;
     [self refreshGraphView];
     
     [self.timer invalidate];
@@ -291,7 +300,7 @@
 {
     if (_selectedIndex == 0)
     {
-        TrendGraphView * view = self.trendKlineViewsList[_selectedIndex];
+        TrendView * view = self.trendKlineViewsList[_selectedIndex];
         view.stockBaseInfoModel = self.stockBaseInfoModel;
         TrendModel * model = self.trendKLineModelDict[@(_selectedIndex)];
         [view reloadData:model];
@@ -385,6 +394,9 @@
 - (void)viewDidUnload {
     [self setRightBar:nil];
     [self setStTabView:nil];
+    [self setTimerLabel:nil];
+    [self setScrollBgView:nil];
+    [self setLineGraphicsBgView:nil];
     [super viewDidUnload];
 }
 @end

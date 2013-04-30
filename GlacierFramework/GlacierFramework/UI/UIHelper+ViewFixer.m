@@ -31,3 +31,14 @@ CGRect CGRectMakeInt(CGFloat x, CGFloat y, CGFloat width,
 }
 
 @end
+
+@implementation UIScrollView (Fixer)
+
+- (void)fixContentHeight:(CGFloat)height
+{
+    CGSize size = self.contentSize;
+    size.height = height;
+    self.contentSize = size;
+}
+
+@end

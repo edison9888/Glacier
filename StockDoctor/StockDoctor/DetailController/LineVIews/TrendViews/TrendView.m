@@ -1,21 +1,21 @@
 //
-//  TrendGraphView.m
+//  TrendView.m
 //  StockDoctor
 //
 //  Created by cnzhao on 13-4-8.
 //  Copyright (c) 2013年 glacier. All rights reserved.
 //
 
-#import "TrendGraphView.h"
+#import "TrendView.h"
 
 #define yPoint(price) (ABS(_topPrice - price) / (2 * _halfHeightPrice) * rect.size.height)
 #define CellCount 240
 
-@interface TrendGraphView()
+@interface TrendView()
 @property (nonatomic,strong)  NSMutableArray * aveList;
 @end
 
-@implementation TrendGraphView
+@implementation TrendView
 {
     CGPoint _firstPoint;
     float _topPrice;

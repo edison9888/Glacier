@@ -14,4 +14,6 @@
 - (void)pushControllerHideTab:(UIViewController *)controller animated:(BOOL)animated;
 - (void)presentControllerFromButtom:(UIViewController *)controller;
 - (void)dismissControllerFromButtom;
+- (void)hideTabAndPresentView:(UIView *)view;
+- (void)dissmisViewAndShowTab:(UIView *)view;
 @end
