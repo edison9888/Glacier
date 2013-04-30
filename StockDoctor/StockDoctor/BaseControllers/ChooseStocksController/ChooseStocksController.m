@@ -33,8 +33,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"智能选股";
-        self.titlesList = @[@"huoyue",@"qianli",@"renqi"];
-        self.nameList = @[@"换手率",@"上涨概率",@"人气"];
+        self.titlesList = @[@"huoyue",@"renqi",@"qianli"];
+        self.nameList = @[@"换手率",@"关注度",@"潜力值"];
         self.modelDict = [NSMutableDictionary dictionary];
     }
     return self;
@@ -132,8 +132,12 @@
     
     cell.nameLabel.text = model.name;
     cell.codeLabel.text = model.shortCode;
-    if (mSelectedIndex == 1) {
+    if (mSelectedIndex == 0)
+    {
         cell.indicatorLabel.text = [NSString stringWithFormat:@"%@%%", model.indicator ];
+    }
+    else if (mSelectedIndex == 1) {
+        cell.indicatorLabel.text = [NSString stringWithFormat:@"%@人", model.indicator ];
     }
     else
     {

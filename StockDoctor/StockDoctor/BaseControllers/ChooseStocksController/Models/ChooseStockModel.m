@@ -23,7 +23,7 @@
 
 + (NSArray *)parseChooseStockModels:(NSArray *)json tag:(int)tag
 {
-    NSArray * arr = @[@"huanshou",@"gailv",@"renqi"];
+    NSArray * arr = @[@"huanshou",@"renqi",@"gailv"];
     NSMutableArray * output = [NSMutableArray array];
     [json enumerateObjectsUsingBlock:^(NSDictionary * obj, NSUInteger idx, BOOL *stop) {
         ChooseStockModel * model = [[ChooseStockModel alloc]init];

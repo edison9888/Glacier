@@ -135,6 +135,13 @@
         AboutUsController * controller = [[AboutUsController alloc]init];
         [[ContainerController instance] pushControllerHideTab:controller animated:true];
     }
+    else if(cellIn(1, 1))
+    {
+        NSURL *url = [[NSURL alloc]initWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=517609453"];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
 }
 
 

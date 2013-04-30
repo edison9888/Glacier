@@ -106,7 +106,7 @@
 								<int key="IBUIContentMode">7</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<string key="IBUIText">Label</string>
+								<string key="IBUIText">22.33%</string>
 								<reference key="IBUITextColor" ref="133221722"/>
 								<reference key="IBUIHighlightedColor" ref="133221722"/>
 								<int key="IBUIBaselineAdjustment">0</int>
