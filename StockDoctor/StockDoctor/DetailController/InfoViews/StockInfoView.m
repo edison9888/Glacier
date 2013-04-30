@@ -45,11 +45,11 @@
     UIColor * color = nil;
     if (self.stockBaseInfoModel.changeState > 0)
     {
-        color = [UIColor redColor];
+        color = [UIColor colorWithRed:233/255.0f green:0 blue:0 alpha:1];
     }
     else if (self.stockBaseInfoModel.changeState < 0)
     {
-        color = [UIColor greenColor];
+        color = [UIColor colorWithRed:114/255.0f green:186/255.0f blue:0 alpha:1];
     }
     else
     {

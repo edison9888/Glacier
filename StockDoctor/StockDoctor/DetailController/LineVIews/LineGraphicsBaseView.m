@@ -119,7 +119,7 @@
         [list enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL *stop)
          {
              [[UIColor lightGrayColor] setFill];
-             CGRect stringRect = CGRectMakeInt(CGRectGetMinX(rect) ,CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), interval);
+             CGRect stringRect = CGRectMake(CGRectGetMinX(rect) ,CGRectGetMinY(rect) + idx * interval - self.textFont.lineHeight / 2.0f, CGRectGetWidth(rect), [UIFont boldSystemFontOfSize:8].lineHeight);
              
              if (lr)
              {

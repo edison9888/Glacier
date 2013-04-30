@@ -22,7 +22,7 @@
     float _topPrice;
     float _buttomPrice;
     float _halfPrice;
-    long _topVolume;
+    long long _topVolume;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -34,9 +34,6 @@
     }
     return self;
 }
-
-
-
 
 - (void)reloadData:(KLineModel *)model
 {
