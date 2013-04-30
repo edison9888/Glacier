@@ -225,15 +225,29 @@
         [self fixKlineData:trendModel klineModel:klineModel index:i];
     }
     
-    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
-    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
-    NSString * timeStr = [NSString stringWithFormat:@"最后更新于: %@",[formatter stringFromDate:[NSDate date]]];
-    self.timerLabel.text = timeStr;
+    [self reloadTime];
     [self refreshGraphView];
     
     [self.timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+}
+
+- (void)reloadTime
+{
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
+    
+    
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    NSString * timeStr = [NSString stringWithFormat:@"最后更新于: %@",[formatter stringFromDate:[NSDate date]]];
+    self.timerLabel.alpha = 1;
+    [UIView beginAnimations:@"Label show" context:nil];
+    [UIView setAnimationDuration:0.75f];
+    self.timerLabel.alpha = 0.25;
+    self.timerLabel.text = timeStr;
+    self.timerLabel.alpha = 1;
+    [UIView commitAnimations];
+    
 }
 
 //通过分时修正k线数据
