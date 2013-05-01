@@ -63,6 +63,64 @@
         return codesUrl;
     }
 }
+
+- (bool)isStock
+{
+    NSString * prefix = [self.fullCode substringToIndex:2];
+    NSString * code = [self.fullCode substringFromIndex:2];
+    int codeValue = code.intValue;
+    if ([prefix isEqualToString:@"sh"])
+    {
+        if ( codeValue <= 999 && codeValue >= 1)
+        {
+            //上证指数
+            return false;
+        }
+    }
+    else if([prefix isEqualToString:@"sz"])
+    {
+        if ( codeValue <= 399999 && codeValue >= 399001)
+        {
+            //深证指数
+            return false;
+        }
+    }
+    //其余为股票
+    return true;
+}
+
+
+- (void)addSelfStock
+{
+    [self insertSelfIntoFirst];
+    
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"添加自选完成" duration:2];
+    
+    NSString * requestUrl = @"http://www.9pxdesign.com/zixuan1.php?name=%@&code=%@&indexYesOrNo=%d";
+    
+    NSString * escapedUrlString =[self.shortName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.shortCode,[self isStock]];
+    
+    ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:escapedUrlString]];
+    [[SharedApp instance] doASIHttpRequest:request];
+}
+
+- (void)deleteSelfStock
+{
+    [self deleteSelf];
+    
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"删除自选完成" duration:2];
+    
+    NSString * requestUrl = @"http://www.9pxdesign.com/zixuan2.php?name=%@&code=%@&indexYesOrNo=%d";
+    
+    NSString * escapedUrlString =[self.shortName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.shortCode,[self isStock]];
+    
+    ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
+    [[SharedApp instance] doASIHttpRequest:request];
+}
 @end
 
 @implementation SearchModel (db)
@@ -116,7 +174,7 @@
         }
     }];
     
-    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"添加自选完成" duration:2];
+    
 }
 
 - (void)updateSortIndex:(FMDatabase *)db
@@ -130,7 +188,6 @@
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
         [db executeUpdate:@"delete from SelfStock where fullCode = ?",self.fullCode];
     }];
-    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"删除自选完成" duration:2];
 }
 @end
 

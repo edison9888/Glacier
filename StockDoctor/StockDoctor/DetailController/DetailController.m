@@ -13,8 +13,10 @@
 #import "DateHelpers.h"
 #import "SingleDiagnosisController.h"
 #import "STSegmentedControl.h"
+#define refresh_time 10.0f
 
 @interface DetailController ()
+@property (strong, nonatomic) IBOutlet UIView *titleView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
 @property (strong, nonatomic) IBOutlet StockInfoView *stockInfoView;
 @property (strong, nonatomic) IBOutlet UIView *graphView;
@@ -25,6 +27,10 @@
 @property (strong, nonatomic) NSTimer * timer;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollBgView;
 @property (strong, nonatomic) IBOutlet UIView *lineGraphicsBgView;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *codeLabel;
+@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *refreshActivityView;
 @end
 
 @implementation DetailController
@@ -46,6 +52,9 @@
     [super viewDidLoad];
     self.title = self.searchModel.shortName;
     self.navigationItem.rightBarButtonItem = self.rightBar;
+    self.navigationItem.titleView = self.titleView;
+    self.titleLabel.text = self.searchModel.shortName;
+    self.codeLabel.text = self.searchModel.shortCode;
     
     if ([self checkIsInSelfStock])
     {
@@ -65,7 +74,7 @@
     
     [self requestForDiagCount];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
 }
 
 - (void)initTab
@@ -102,11 +111,9 @@
 //请求诊断人数
 - (void)requestForDiagCount
 {
-    NSString * url = @"http://www.9pxdesign.com/cishu.php?code=%@.%@";
+    NSString * url = @"http://www.9pxdesign.com/cishu.php?code=%@";
     
-    NSString * prefix = [self.searchModel.fullCode substringToIndex:2];
-    
-    url = [NSString stringWithFormat:url,self.searchModel.shortCode,prefix];
+    url = [NSString stringWithFormat:url,self.searchModel.fullCode];
     
     [self doHttpRequest:url tag:10];
 }
@@ -150,8 +157,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-
-    
     if (request.tag == 0)
     {
 //        NSLog(@"responseString:\n%@",request.responseString);
@@ -234,8 +239,10 @@
 
 - (void)reloadTime
 {
-    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
+    self.refreshButton.hidden = false;
+    [self.refreshActivityView stopAnimating];
     
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据已经更新" duration:2];
     
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
@@ -358,14 +365,12 @@
     SearchModel * model = self.searchModel;
     if ([self checkIsInSelfStock])
     {
-        
-        [model deleteSelf];
+        [model deleteSelfStock];
         [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_add.png"] forState:(UIControlStateNormal)];
-        
     }
     else
     {
-        [model insertSelfIntoFirst];
+        [model addSelfStock];
         [self.addBtN setBackgroundImage:[UIImage imageNamed:@"detail_added.png"] forState:(UIControlStateNormal)];
     }
 }
@@ -394,6 +399,9 @@
 //请求k线
 - (void)requestForStock
 {
+    self.refreshButton.hidden = true;
+    [self.refreshActivityView startAnimating];
+    
     if (_selectedIndex == 0)
     {
         [self requestForKLine:1];
@@ -411,6 +419,11 @@
     [self setTimerLabel:nil];
     [self setScrollBgView:nil];
     [self setLineGraphicsBgView:nil];
+    [self setTitleView:nil];
+    [self setTitleLabel:nil];
+    [self setCodeLabel:nil];
+    [self setRefreshButton:nil];
+    [self setRefreshActivityView:nil];
     [super viewDidUnload];
 }
 @end

@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSArray * nameList;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
 @property (strong, nonatomic) IBOutlet STSegmentedControl *stTabView;
+@property (strong, nonatomic) IBOutlet UIButton *refreshButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *refreshActivityView;
 @end
 
 @implementation ChooseStocksController
@@ -82,6 +84,9 @@
 
 - (void)requestForStocks:(int)index
 {
+    self.refreshButton.hidden = true;
+    [self.refreshActivityView startAnimating];
+    
     NSString * url = @"http://www.9pxdesign.com/%@.php";
     
     url = [NSString stringWithFormat:url,self.titlesList[index]];
@@ -94,6 +99,8 @@
 {
     if (request.tag == mSelectedIndex)
     {
+        self.refreshButton.hidden = false;
+        [self.refreshActivityView stopAnimating];
         NSArray * arr = [request.responseString objectFromJSONString];
         
         NSArray * modelArr = [ChooseStockModel parseChooseStockModels:arr tag:mSelectedIndex];

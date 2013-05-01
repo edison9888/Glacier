@@ -39,7 +39,18 @@
     self.todayOpenLabel.text = self.stockBaseInfoModel.openPrice;
     self.todayHighLabel.text = self.stockBaseInfoModel.todayHigh;
     self.todayLowLabel.text = self.stockBaseInfoModel.todayLow;
-    self.turnoverRateLabel.text = [NSString stringWithFormat:@"%.2f%%",self.stockBaseInfoModel.turnoverRate.floatValue * 100];
+    
+    if (self.stockBaseInfoModel.turnoverRate.floatValue)
+    {
+        self.turnoverRateLabel.text = [NSString stringWithFormat:@"%.2f%%",self.stockBaseInfoModel.turnoverRate.floatValue * 100];
+    }
+    else
+    {
+         self.turnoverRateLabel.text = @"--";
+    }
+    
+    
+    
     self.changeValueLabel.text = self.stockBaseInfoModel.changeValue;
     self.changeRatioLabel.text = self.stockBaseInfoModel.changeRatio;
     UIColor * color = nil;
@@ -53,7 +64,7 @@
     }
     else
     {
-        color = [UIColor darkGrayColor];
+        color = [UIColor lightGrayColor];
     }
     self.changeRatioLabel.textColor = self.changeValueLabel.textColor = self.currentPriceLabel.textColor = color;
 }

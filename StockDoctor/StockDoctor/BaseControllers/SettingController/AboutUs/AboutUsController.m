@@ -30,7 +30,7 @@ static bool isFollowed;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"关于股票专家";
+    self.title = @"关于股票医生";
     if (isFollowed)
     {
         [self changeButton];

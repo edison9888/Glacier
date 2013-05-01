@@ -11,6 +11,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *imgButton;
 @property (strong, nonatomic) IBOutlet UIImageView *changeImgView;
 @property (strong, nonatomic) IBOutlet UIView *imgBgView;
+@property (strong, nonatomic) IBOutlet UIImageView *selectionView;
 @end
 
 @implementation DiagnosisCell
@@ -28,15 +29,24 @@
     if (state < 0)
     {
         self.changeImgView.image = [UIImage imageNamed:@"greenbg"];
+        self.changLabel.textColor = [UIColor whiteColor];
     }
     else if (state == 0)
     {
         self.changeImgView.image = [UIImage imageNamed:@"graybg"];
+        self.changLabel.textColor = [UIColor colorWithWhite:0.15 alpha:1];
     }
     if (state > 0)
     {
         self.changeImgView.image = [UIImage imageNamed:@"redbg"];
+        self.changLabel.textColor = [UIColor whiteColor];
     }
+}
+
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    self.selectionView.highlighted = highlighted;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

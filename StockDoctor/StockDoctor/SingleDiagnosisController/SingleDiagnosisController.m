@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *probabilityLabel;
-@property (nonatomic,readonly) bool isStock;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) NSTimer * progressTimer;
 @property (strong, nonatomic) IBOutlet UIView *activityBgView;
@@ -96,7 +95,7 @@ static float gStockValue; //股票上涨中指数的比例
         
         self.timeLabel.text = [formatter stringFromDate:[NSDate date]];
         
-        if ([self isStock])
+        if ([self.detailController.searchModel isStock])
         {
             if (gStockValue)
             {
@@ -119,32 +118,6 @@ static float gStockValue; //股票上涨中指数的比例
             }
         }
     }
-}
-
-- (bool)isStock
-{
-    SearchModel * model = self.detailController.searchModel;
-    NSString * prefix = [model.fullCode substringToIndex:2];
-    NSString * code = [model.fullCode substringFromIndex:2];
-    int codeValue = code.intValue;
-    if ([prefix isEqualToString:@"sh"])
-    {
-        if ( codeValue <= 999 && codeValue >= 1)
-        {
-            //上证指数
-            return false;
-        }
-    }
-    else if([prefix isEqualToString:@"sz"])
-    {
-        if ( codeValue <= 399999 && codeValue >= 399001)
-        {
-            //深证指数
-            return false;
-        }
-    }
-    //其余为股票
-    return true;
 }
 
 - (void)requestForStockValue
@@ -191,7 +164,7 @@ static float gStockValue; //股票上涨中指数的比例
     
     float maxRatio;
     
-    if ([self isStock])
+    if ([self.detailController.searchModel isStock])
     {
         maxRatio = 0.2f;
     }
@@ -215,7 +188,7 @@ static float gStockValue; //股票上涨中指数的比例
     
     int score = 0;
     
-    if ([self isStock])
+    if ([self.detailController.searchModel isStock])
     {
         score = tempRatio * 0.6 + gStockValue * 0.4;
     }

@@ -40,7 +40,8 @@
 {
     float price = self.currentPrice.floatValue;
     float pre = self.preClosePrice.floatValue;
-    return price == pre ? 0 : (price > pre ? 1 :-1);
+
+    return price == pre ? 0 : (price > pre ? 1 : -1);
 }
 
 - (NSString *)change 

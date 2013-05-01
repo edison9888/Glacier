@@ -12,6 +12,7 @@
 #import "DetailController.h"
 #import "SinaBaseDataModel.h"
 #import "DiagnosisCell.h"
+#define refresh_time 10.0f
 
 @interface DiagnosisController ()
 @property (strong, nonatomic) IBOutlet UIButton *leftBarButton;
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIView *deleteBarView;
 @property (strong, nonatomic) NSMutableArray * deleteList;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
+@property (strong, nonatomic) NSTimer * timer;
 @end
 
 @implementation DiagnosisController
@@ -43,13 +45,44 @@
     self.navigationItem.rightBarButtonItem = self.rightBarButtonItem;
     self.navigationItem.leftBarButtonItem = self.leftBarButtonItem;
     self.deleteList = [NSMutableArray array];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:refresh_time target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    if (self.timer)
+    {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:refresh_time target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+    
     [self.leftBarButton setTitle:@"编辑" forState:(UIControlStateNormal)];
     [self.stockTableView setEditing:false];
     [self refreshData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    
+    [self.timer invalidate];
+    self.timer = nil;
+    if (self.stockTableView.editing)
+    {
+        [[ContainerController instance] dissmisViewAndShowTab:self.deleteBarView];
+        [self.leftBarButton setTitle:@"编辑" forState:(UIControlStateNormal)];
+        [self.leftBarButton  setBackgroundImage:[UIImage imageNamed: @"edit.png"] forState:(UIControlStateNormal)];
+        [self.stockTableView setEditing:false animated:false];
+    }
+}
+
+- (void)onTimer:(NSTimer *)sender
+{
+    if (!self.stockTableView.isEditing)
+    {
+        [self refreshData];
+    }
 }
 
 - (void)refreshData
@@ -97,16 +130,7 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    if (self.stockTableView.editing)
-    {
-        [[ContainerController instance] dissmisViewAndShowTab:self.deleteBarView];
-        [self.leftBarButton setTitle:@"编辑" forState:(UIControlStateNormal)];
-        [self.leftBarButton  setBackgroundImage:[UIImage imageNamed: @"edit.png"] forState:(UIControlStateNormal)];
-        [self.stockTableView setEditing:false animated:false];
-    }
-}
+
 
 - (IBAction)onDeleteClick:(UIButton *)sender
 {
@@ -124,7 +148,7 @@
     {
         NSIndexPath * index = self.deleteList[i];
         SearchModel * model = self.modelList[index.row];
-        [model deleteSelf];
+        [model deleteSelfStock];
         [deleteArr addObject:model];
     }
     
@@ -195,7 +219,8 @@
 {
     if (self.stockTableView.editing)
     {
-        for (int i = self.deleteList.count - 1; i>= 0; i--)
+        int count = self.deleteList.count;
+        for (int i = count - 1; i>= 0; i--)
         {
             NSIndexPath * path = self.deleteList[i];
             if (path.row == indexPath.row)

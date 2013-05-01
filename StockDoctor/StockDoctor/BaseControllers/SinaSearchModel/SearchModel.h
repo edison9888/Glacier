@@ -16,6 +16,12 @@
 @property (nonatomic,assign) int sortIndex;
 + (NSArray *) extractModelList:(NSString *)inputStr;
 + (NSString *) composeUrlForCodes:(NSArray *)codes;
+
+//是否是股票，false为指数
+- (bool)isStock;
+
+- (void)addSelfStock;
+- (void)deleteSelfStock;
 @end
 
 @interface SearchModel (db)
