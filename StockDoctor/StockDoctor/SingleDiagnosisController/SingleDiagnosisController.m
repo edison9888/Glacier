@@ -213,12 +213,17 @@ static float gStockValue; //股票上涨中指数的比例
 
 - (IBAction)onShareToWeiboClick:(UIButton *)sender
 {
+    [self postWeibo:true];
+}
+
+- (void)postWeibo:(bool)needLogin
+{
     NSString * text = @"我通过#股票医生#诊断了%@，上涨概率为%@，你也赶快诊断下你的股票吧。http://itunes.apple.com/cn/app/id517609453（分享自@股票医生手机版";
     
     text = [NSString stringWithFormat:text,self.detailController.searchModel.shortName,self.probabilityText];
     
-    
-    if ([[SinaWeiboManager instance] isAuth])
+    [SinaWeiboManager instance].delegate = self;
+    if (!needLogin || [[SinaWeiboManager instance] isAuth])
     {
         [[SinaWeiboManager instance] postImageWeibo:text image:self.view.currentImage receiver:self];
     }
@@ -226,6 +231,11 @@ static float gStockValue; //股票上涨中指数的比例
     {
         [[SinaWeiboManager instance] doLogin];
     }
+}
+
+- (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
+{
+    [self postWeibo:false];
 }
 
 - (IBAction)onDiagnosis:(UIButton *)sender

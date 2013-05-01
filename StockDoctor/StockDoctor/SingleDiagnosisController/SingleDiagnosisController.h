@@ -10,6 +10,6 @@
 #import "DetailController.h"
 #import "SinaWeiboManager.h"
 
-@interface SingleDiagnosisController : GlacierController<SinaWeiboRequestDelegate>
+@interface SingleDiagnosisController : GlacierController<SinaWeiboRequestDelegate,SinaWeiboDelegate>
 @property (nonatomic,assign) DetailController * detailController;
 @end
