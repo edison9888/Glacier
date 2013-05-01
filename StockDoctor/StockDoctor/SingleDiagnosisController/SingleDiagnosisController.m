@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIView *activityBgView;
 @property (strong, nonatomic) IBOutlet UILabel *activityLabel;
 @property (nonatomic, copy) NSString * probabilityText;
+@property (strong, nonatomic) IBOutlet UIImageView *weiboSuccessView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end
 
@@ -56,7 +58,24 @@ static float gStockValue; //股票上涨中指数的比例
     self.activityBgView.layer.cornerRadius = 10;
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",self.detailController.searchModel.shortName,self.detailController.searchModel.shortCode];
+    
+    if ([self.detailController.searchModel isStock])
+    {
+        if (!gStockValue)
+        {
+            [self requestForStockValue];
+        }
+    }
+    else
+    {
+        if (!gIndexValue)
+        {
+            [self requestForIndexValue];
+        }
+    }
+    
     [self doDiagnosis];
+    
 }
 
 - (void)doDiagnosis
@@ -64,7 +83,7 @@ static float gStockValue; //股票上涨中指数的比例
     self.view.userInteractionEnabled = false;
     self.probabilityLabel.text = @"--";
     self.progressView.progress = 0;
-    self.activityBgView.hidden = false;
+    [self showProgressView:false content:@"开始分析"];
     self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
 }
 
@@ -75,18 +94,19 @@ static float gStockValue; //股票上涨中指数的比例
     self.progressView.progress = _timerCount / 5.0f;
     if (_timerCount == 1)
     {
-        self.activityLabel.text = @"正在分析大盘走势";
+        [self showProgressView:false content:@"正在分析大盘走势"];
     }
     else if (_timerCount == 3)
     {
-        self.activityLabel.text = @"正在分析板块联动";
+        [self showProgressView:false content:@"正在分析板块联动"];
     }
     
     if (_timerCount == 5)
     {
+        [self showProgressView:false content:@"完成分析"];
         self.view.userInteractionEnabled = true;
         _timerCount = 0;
-        self.activityBgView.hidden = true;
+        [self hideProgressView];
         [self.progressTimer invalidate];
         self.progressTimer = nil;
 
@@ -213,6 +233,7 @@ static float gStockValue; //股票上涨中指数的比例
 
 - (IBAction)onShareToWeiboClick:(UIButton *)sender
 {
+    [self showProgressView:false content:@"正在分享微博..."];
     [self postWeibo:true];
 }
 
@@ -243,9 +264,30 @@ static float gStockValue; //股票上涨中指数的比例
     [self doDiagnosis];
 }
 
+- (void)showProgressView:(bool)isWeibo content:(NSString *)text 
+{
+    self.activityBgView.hidden = false;
+    self.activityView.hidden = isWeibo;
+    self.activityLabel.text = text;
+    self.weiboSuccessView.hidden = !isWeibo;
+    if (isWeibo)
+    {
+        double delayInSeconds = 1.5f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.activityBgView.hidden = true;
+        });
+    }
+}
+
+- (void)hideProgressView
+{
+    self.activityBgView.hidden = true;
+}
+
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"转发微博成功!" duration:2];
+    [self showProgressView:true content:@"微博分享成功"];
 }
 
 - (IBAction)onFinishClick:(UIButton *)sender
@@ -261,6 +303,8 @@ static float gStockValue; //股票上涨中指数的比例
     [self setProgressView:nil];
     [self setActivityBgView:nil];
     [self setActivityLabel:nil];
+    [self setWeiboSuccessView:nil];
+    [self setActivityView:nil];
     [super viewDidUnload];
 }
 @end
