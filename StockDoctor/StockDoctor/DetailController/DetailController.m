@@ -185,15 +185,17 @@
 - (void)processKLineData:(ASIHTTPRequest *)request tag:(int)tag
 {
     KLineModel * model = [KLineModel parseData:request.responseString];
-    
-    NSArray * freqs = @[@"day",@"week",@"month"];
-    model.freq = freqs[tag - 1];
-    
-    [self.trendKLineModelDict setObject:model forKey:@(tag)];
-    
-    //每次收到K线请求后请求分时数据 以便计算最后的K线数据
-    [self requestForTrendAndInfo];
-    [self refreshGraphView];
+    if (model)
+    {
+        NSArray * freqs = @[@"day",@"week",@"month"];
+        model.freq = freqs[tag - 1];
+        
+        [self.trendKLineModelDict setObject:model forKey:@(tag)];
+        
+        //每次收到K线请求后请求分时数据 以便计算最后的K线数据
+        [self requestForTrendAndInfo];
+        [self refreshGraphView];
+    }
 }
 
 - (void)processTrendData:(ASIHTTPRequest *)request
