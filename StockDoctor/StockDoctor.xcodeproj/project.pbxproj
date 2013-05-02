@@ -23,6 +23,7 @@
 		583EF6EC17314AA300E58CFE /* weibo_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6EB17314AA300E58CFE /* weibo_success.png */; };
 		583EF6EE1731615600E58CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6ED1731615600E58CFE /* Default.png */; };
 		583FE1331730CFB400CD4A09 /* shuaxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 583FE1321730CFB400CD4A09 /* shuaxin.png */; };
+		584359691732AFCC009ACFB9 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 584359681732AFCC009ACFB9 /* noise.png */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -136,6 +137,7 @@
 		583EF6EB17314AA300E58CFE /* weibo_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_success.png; sourceTree = "<group>"; };
 		583EF6ED1731615600E58CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		583FE1321730CFB400CD4A09 /* shuaxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuaxin.png; sourceTree = "<group>"; };
+		584359681732AFCC009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -452,6 +454,7 @@
 		5866A20F171A83480095C4FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				584359681732AFCC009ACFB9 /* noise.png */,
 				587EEE3F172C11C700455855 /* Project */,
 				587EEE05172AD0D700455855 /* Setting */,
 				587EEE00172ACB8200455855 /* ChooseStock */,
@@ -772,6 +775,7 @@
 				583FE1331730CFB400CD4A09 /* shuaxin.png in Resources */,
 				583EF6EC17314AA300E58CFE /* weibo_success.png in Resources */,
 				583EF6EE1731615600E58CFE /* Default.png in Resources */,
+				584359691732AFCC009ACFB9 /* noise.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

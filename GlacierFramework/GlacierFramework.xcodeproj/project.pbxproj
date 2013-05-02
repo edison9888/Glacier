@@ -32,6 +32,11 @@
 		582A288B172385B1006C9A21 /* SinaWeiboConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2884172385B1006C9A21 /* SinaWeiboConstants.h */; };
 		582A288C172385B1006C9A21 /* SinaWeiboRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2885172385B1006C9A21 /* SinaWeiboRequest.h */; };
 		582A288D172385B1006C9A21 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A2886172385B1006C9A21 /* SinaWeiboRequest.m */; };
+		584359611732AF45009ACFB9 /* ARCMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595C1732AF45009ACFB9 /* ARCMacro.h */; };
+		584359621732AF45009ACFB9 /* YLBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595D1732AF45009ACFB9 /* YLBackgroundView.h */; };
+		584359631732AF45009ACFB9 /* YLBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5843595E1732AF45009ACFB9 /* YLBackgroundView.m */; };
+		584359641732AF45009ACFB9 /* YLProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595F1732AF45009ACFB9 /* YLProgressBar.h */; };
+		584359651732AF45009ACFB9 /* YLProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 584359601732AF45009ACFB9 /* YLProgressBar.m */; };
 		587EEDB41729654200455855 /* STSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 587EEDB21729654200455855 /* STSegmentedControl.h */; };
 		587EEDB51729654200455855 /* STSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 587EEDB31729654200455855 /* STSegmentedControl.m */; };
 		5885340015B2F650009569A5 /* GlacierController.h in Headers */ = {isa = PBXBuildFile; fileRef = 588533FE15B2F650009569A5 /* GlacierController.h */; settings = {ATTRIBUTES = (); }; };
@@ -113,6 +118,12 @@
 		582A2884172385B1006C9A21 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
 		582A2885172385B1006C9A21 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
 		582A2886172385B1006C9A21 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		5843595C1732AF45009ACFB9 /* ARCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacro.h; sourceTree = "<group>"; };
+		5843595D1732AF45009ACFB9 /* YLBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLBackgroundView.h; sourceTree = "<group>"; };
+		5843595E1732AF45009ACFB9 /* YLBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLBackgroundView.m; sourceTree = "<group>"; };
+		5843595F1732AF45009ACFB9 /* YLProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLProgressBar.h; sourceTree = "<group>"; };
+		584359601732AF45009ACFB9 /* YLProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLProgressBar.m; sourceTree = "<group>"; };
+		584359671732AFA1009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		587EEDB21729654200455855 /* STSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSegmentedControl.h; sourceTree = "<group>"; };
 		587EEDB31729654200455855 /* STSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSegmentedControl.m; sourceTree = "<group>"; };
 		588533FE15B2F650009569A5 /* GlacierController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlacierController.h; sourceTree = "<group>"; };
@@ -233,6 +244,27 @@
 			path = SinaWeibo;
 			sourceTree = "<group>";
 		};
+		5843595B1732AF45009ACFB9 /* YLProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				584359661732AFA1009ACFB9 /* images */,
+				5843595C1732AF45009ACFB9 /* ARCMacro.h */,
+				5843595D1732AF45009ACFB9 /* YLBackgroundView.h */,
+				5843595E1732AF45009ACFB9 /* YLBackgroundView.m */,
+				5843595F1732AF45009ACFB9 /* YLProgressBar.h */,
+				584359601732AF45009ACFB9 /* YLProgressBar.m */,
+			);
+			path = YLProgressBar;
+			sourceTree = "<group>";
+		};
+		584359661732AFA1009ACFB9 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				584359671732AFA1009ACFB9 /* noise.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		587EEDA31729654200455855 /* STSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +321,7 @@
 		58EDDD7D15D5F4EF00D9AADC /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				5843595B1732AF45009ACFB9 /* YLProgressBar */,
 				582A287E172385B1006C9A21 /* SinaWeibo */,
 				58D341A217145D8D0055E971 /* BlockKit */,
 				A5BF20C01630EBC100EDE716 /* GDataXML */,
@@ -485,6 +518,9 @@
 				58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */,
 				58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */,
 				587EEDB41729654200455855 /* STSegmentedControl.h in Headers */,
+				584359611732AF45009ACFB9 /* ARCMacro.h in Headers */,
+				584359621732AF45009ACFB9 /* YLBackgroundView.h in Headers */,
+				584359641732AF45009ACFB9 /* YLProgressBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +608,8 @@
 				58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */,
 				58234A2A17242E0A00091541 /* UIView+CurrentScreen.m in Sources */,
 				587EEDB51729654200455855 /* STSegmentedControl.m in Sources */,
+				584359631732AF45009ACFB9 /* YLBackgroundView.m in Sources */,
+				584359651732AF45009ACFB9 /* YLProgressBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

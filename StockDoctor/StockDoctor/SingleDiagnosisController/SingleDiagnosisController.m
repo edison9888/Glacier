@@ -9,6 +9,7 @@
 #import "SingleDiagnosisController.h"
 #import "UIView+CurrentScreen.h"
 #import <QuartzCore/QuartzCore.h>
+#import "YLProgressBar.h"
 
 @interface SingleDiagnosisController ()
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -29,7 +30,7 @@ static float gStockValue; //股票上涨中指数的比例
 
 @implementation SingleDiagnosisController
 {
-    int _timerCount;
+    float _timerCount;
 }
 
 - (void)dealloc
@@ -84,28 +85,30 @@ static float gStockValue; //股票上涨中指数的比例
     self.probabilityLabel.text = @"--";
     self.progressView.progress = 0;
     [self showProgressView:false content:@"开始分析"];
-    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+    self.progressView.hidden = false;
+    self.probabilityLabel.hidden = true;
+    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
 }
-
 
 - (void) onTimer:(NSTimer *)timer
 {
-    _timerCount++;
-    self.progressView.progress = _timerCount / 5.0f;
-    if (_timerCount == 1)
+    _timerCount +=  0.5f;
+    self.progressView.progress = _timerCount / 100.0f;
+    if (_timerCount == 20)
     {
         [self showProgressView:false content:@"正在分析大盘走势"];
     }
-    else if (_timerCount == 3)
+    else if (_timerCount == 50)
     {
         [self showProgressView:false content:@"正在分析板块联动"];
     }
-    
-    if (_timerCount == 5)
+    else if (_timerCount >= 100)
     {
-        [self showProgressView:false content:@"完成分析"];
+        [self showProgressView:true content:@"分析完成"];
         self.view.userInteractionEnabled = true;
         _timerCount = 0;
+        self.probabilityLabel.hidden = false;
+        self.progressView.hidden = true;
         [self hideProgressView];
         [self.progressTimer invalidate];
         self.progressTimer = nil;
@@ -276,17 +279,17 @@ static float gStockValue; //股票上涨中指数的比例
     self.weiboSuccessView.hidden = !isWeibo;
     if (isWeibo)
     {
-        double delayInSeconds = 1.5f;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            self.activityBgView.hidden = true;
-        });
+        [self hideProgressView];
     }
 }
 
 - (void)hideProgressView
 {
-    self.activityBgView.hidden = true;
+    double delayInSeconds = 1.5f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.activityBgView.hidden = true;
+    });
 }
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
