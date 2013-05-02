@@ -100,7 +100,7 @@
     
     NSString * escapedUrlString =[self.shortName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.shortCode,[self isStock]];
+    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.fullCode,![self isStock]];
     
     ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:escapedUrlString]];
     [[SharedApp instance] doASIHttpRequest:request];
@@ -116,7 +116,7 @@
     
     NSString * escapedUrlString =[self.shortName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
-    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.shortCode,[self isStock]];
+    requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.fullCode,![self isStock]];
     
     ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
     [[SharedApp instance] doASIHttpRequest:request];

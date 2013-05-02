@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *searchTableView;
 @property (nonatomic,strong) NSArray * modelList;
 @property (nonatomic,strong) NSArray * selfStocksModelList;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldForSearch;
 @end
 
 @implementation SearchStockController
@@ -34,6 +35,11 @@
     self.title = @"添加股票";
     self.selfStocksModelList = [SearchModel selectAll];
     self.modelList = [SearchModel selectAllForSearch];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.textFieldForSearch becomeFirstResponder];
 }
 
 - (IBAction)onSearchTextChanged:(UITextField *)sender
@@ -145,4 +151,8 @@
     [[ContainerController instance]pushControllerHideTab:detailController animated:true];
 }
 
+- (void)viewDidUnload {
+    [self setTextFieldForSearch:nil];
+    [super viewDidUnload];
+}
 @end

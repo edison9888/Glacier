@@ -227,6 +227,10 @@ static float gStockValue; //股票上涨中指数的比例
         score = 99;
     }
     
+    NSString * writeToServer = @"http://www.9pxdesign.com/writestock.php";
+    [self doHttpRequest:writeToServer tag:100];
+    
+    
     self.probabilityText = [NSString stringWithFormat:@"%d%%",score];
     self.probabilityLabel.text = self.probabilityText;
 }

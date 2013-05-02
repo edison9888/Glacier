@@ -75,12 +75,12 @@
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="181615368">
-									<int key="type">1</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="43048749">
+									<int key="type">2</int>
 									<double key="pointSize">15</double>
 								</object>
-								<object class="NSFont" key="IBUIFont" id="171843762">
-									<string key="NSName">Helvetica</string>
+								<object class="NSFont" key="IBUIFont" id="545574996">
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -106,8 +106,8 @@
 								<reference key="IBUIHighlightedColor" ref="133221722"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<reference key="IBUIFontDescription" ref="181615368"/>
-								<reference key="IBUIFont" ref="171843762"/>
+								<reference key="IBUIFontDescription" ref="43048749"/>
+								<reference key="IBUIFont" ref="545574996"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 							<object class="IBUILabel" id="130084357">
@@ -127,8 +127,8 @@
 								<reference key="IBUIHighlightedColor" ref="133221722"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<reference key="IBUIFontDescription" ref="181615368"/>
-								<reference key="IBUIFont" ref="171843762"/>
+								<reference key="IBUIFontDescription" ref="43048749"/>
+								<reference key="IBUIFont" ref="545574996"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>
 						</array>
