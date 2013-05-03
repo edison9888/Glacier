@@ -152,14 +152,16 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-//    NSLog(@"request failed tag:%d",request.tag);
+    self.refreshButton.hidden = false;
+    [self.refreshActivityView stopAnimating];
+    [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"数据更新失败，请刷新重试" duration:2];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+//    NSLog(@"responseString:\n%@",request.responseString);
     if (request.tag == 0)
     {
-//        NSLog(@"responseString:\n%@",request.responseString);
         [self processTrendData:request];
     }
     else if(request.tag == 10)
@@ -275,18 +277,50 @@
         
         NSString * klineDate = [klineCell.date stringByReplacingOccurrencesOfString:@"-" withString:@""];
         
-        if (![trendDate isEqualToString:klineDate] && index == 1)
-        {
-            KLineCellData * todayKlineCell = [[KLineCellData alloc]init];
+        KLineCellData * todayKlineCell = [[KLineCellData alloc]init];
         
-            NSDateFormatter * format = [[NSDateFormatter alloc]init];
-            format.dateFormat = @"yyyyMMdd";
-            NSDate * date = [format dateFromString:trendDate];
-            
-            NSDateFormatter * toFormat = [[NSDateFormatter alloc]init];
-            toFormat.dateFormat = @"yyyy-MM-dd";
-            
-            todayKlineCell.date = [toFormat stringFromDate:date];
+        NSDateFormatter * format = [[NSDateFormatter alloc]init];
+        format.dateFormat = @"yyyyMMdd";
+        NSDate * tDate = [format dateFromString:trendDate];
+        NSDate * kDate = [format dateFromString:klineDate];
+        NSDateFormatter * toFormat = [[NSDateFormatter alloc]init];
+        toFormat.dateFormat = @"yyyy-MM-dd";
+        
+        
+        
+        
+        //flag为true需要重建一个kline
+        bool flag = false;
+        
+        if (index == 1)
+        {
+            if(![trendDate isEqualToString:klineDate])
+            {
+                flag = true;
+            }
+        }
+        else if (index == 2)
+        {
+            int weekday = dayOfTheWeekFromDate(kDate);
+            //最后一根为周六，并且时间不同
+            if (weekday == 6 && ![trendDate isEqualToString:klineDate])
+            {
+                flag = true;
+            }
+        }
+        else if (index == 3)
+        {
+            int kMonth = dateComponentFrom(kDate).month;
+            int tMonth = dateComponentFrom(tDate).month;
+            if (kMonth != tMonth && ![trendDate isEqualToString:klineDate])
+            {
+                flag = true;
+            }
+        }
+        
+        if (flag)//新建k线
+        {
+            todayKlineCell.date = [toFormat stringFromDate:tDate];
             
             float newPrice = trendCell.price.floatValue;
             todayKlineCell.open = self.stockBaseInfoModel.openPrice;
@@ -300,11 +334,14 @@
             {
                 todayKlineCell.low = trendCell.price;
             }
+            long long trendVolume = self.stockBaseInfoModel.volume.longLongValue / 100;
+            todayKlineCell.volume = [NSString stringWithFormat:@"%lld", trendVolume];
             [klineModel.cellDataList insertObject:todayKlineCell atIndex:0];
         }
-        else
+        else //修改原有k线
         {
             float newPrice = trendCell.price.floatValue;
+            klineCell.date = [toFormat stringFromDate:tDate];
             klineCell.close = trendCell.price;
             if (newPrice > klineCell.high.floatValue)
             {
@@ -315,6 +352,15 @@
             {
                 klineCell.low = trendCell.price;
             }
+            
+            if (![trendDate isEqualToString:klineDate]) //日期不同则叠加
+            {
+                long long trendVolume = self.stockBaseInfoModel.volume.longLongValue / 100;
+                long long klineVolume = klineCell.volume.longLongValue;
+                
+                klineCell.volume = [NSString stringWithFormat:@"%lld", trendVolume + klineVolume];
+            }
+            
         }
     }
 }

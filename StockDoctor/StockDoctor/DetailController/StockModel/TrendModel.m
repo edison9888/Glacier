@@ -19,8 +19,8 @@
     model.todayHigh = jsonArr[3];
     model.todayLow = jsonArr[4];
     model.currentPrice = jsonArr[5];
-    model.volume = jsonArr[25];
-    model.amount = jsonArr[26];
+    model.volume = jsonArr[26];
+    model.amount = jsonArr[27];
     
     model.volumeRate = jsonArr[28];
     model.pettm = jsonArr[29];
