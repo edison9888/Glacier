@@ -32,6 +32,12 @@
 		582A288B172385B1006C9A21 /* SinaWeiboConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2884172385B1006C9A21 /* SinaWeiboConstants.h */; };
 		582A288C172385B1006C9A21 /* SinaWeiboRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 582A2885172385B1006C9A21 /* SinaWeiboRequest.h */; };
 		582A288D172385B1006C9A21 /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A2886172385B1006C9A21 /* SinaWeiboRequest.m */; };
+		583B3AD117354EB6002D8FE4 /* TBXML+Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 583B3ACA17354EB6002D8FE4 /* TBXML+Compression.m */; };
+		583B3AD217354EB6002D8FE4 /* TBXML+HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 583B3ACB17354EB6002D8FE4 /* TBXML+HTTP.m */; };
+		583B3AD317354EB6002D8FE4 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 583B3ACC17354EB6002D8FE4 /* TBXML.m */; };
+		583B3AD417354EB6002D8FE4 /* TBXML+Compression.h in Headers */ = {isa = PBXBuildFile; fileRef = 583B3ACE17354EB6002D8FE4 /* TBXML+Compression.h */; };
+		583B3AD517354EB6002D8FE4 /* TBXML+HTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = 583B3ACF17354EB6002D8FE4 /* TBXML+HTTP.h */; };
+		583B3AD617354EB6002D8FE4 /* TBXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 583B3AD017354EB6002D8FE4 /* TBXML.h */; };
 		584359611732AF45009ACFB9 /* ARCMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595C1732AF45009ACFB9 /* ARCMacro.h */; };
 		584359621732AF45009ACFB9 /* YLBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595D1732AF45009ACFB9 /* YLBackgroundView.h */; };
 		584359631732AF45009ACFB9 /* YLBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5843595E1732AF45009ACFB9 /* YLBackgroundView.m */; };
@@ -84,8 +90,6 @@
 		58EDDDDA15D5F4EF00D9AADC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9D15D5F4EF00D9AADC /* JSONKit.m */; };
 		58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDDC15D5F4EF00D9AADC /* JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9F15D5F4EF00D9AADC /* JSONObject.m */; };
-		A5BF20C31630EBC100EDE716 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */; };
-		A5BF20C41630EBC100EDE716 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */; };
 		DD832FBD15B263FD00FBF9DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD832FBC15B263FD00FBF9DE /* UIKit.framework */; };
 		DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD87036415AF1BBA0067B66C /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +122,12 @@
 		582A2884172385B1006C9A21 /* SinaWeiboConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboConstants.h; sourceTree = "<group>"; };
 		582A2885172385B1006C9A21 /* SinaWeiboRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinaWeiboRequest.h; sourceTree = "<group>"; };
 		582A2886172385B1006C9A21 /* SinaWeiboRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinaWeiboRequest.m; sourceTree = "<group>"; };
+		583B3ACA17354EB6002D8FE4 /* TBXML+Compression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+Compression.m"; sourceTree = "<group>"; };
+		583B3ACB17354EB6002D8FE4 /* TBXML+HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBXML+HTTP.m"; sourceTree = "<group>"; };
+		583B3ACC17354EB6002D8FE4 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		583B3ACE17354EB6002D8FE4 /* TBXML+Compression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+Compression.h"; sourceTree = "<group>"; };
+		583B3ACF17354EB6002D8FE4 /* TBXML+HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBXML+HTTP.h"; sourceTree = "<group>"; };
+		583B3AD017354EB6002D8FE4 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		5843595C1732AF45009ACFB9 /* ARCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacro.h; sourceTree = "<group>"; };
 		5843595D1732AF45009ACFB9 /* YLBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLBackgroundView.h; sourceTree = "<group>"; };
 		5843595E1732AF45009ACFB9 /* YLBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLBackgroundView.m; sourceTree = "<group>"; };
@@ -172,8 +182,6 @@
 		58EDDD9D15D5F4EF00D9AADC /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONObject.h; sourceTree = "<group>"; };
 		58EDDD9F15D5F4EF00D9AADC /* JSONObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONObject.m; sourceTree = "<group>"; };
-		A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		DD832FBC15B263FD00FBF9DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD87036115AF1BBA0067B66C /* libGlacierFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD87036415AF1BBA0067B66C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -242,6 +250,35 @@
 				582A2886172385B1006C9A21 /* SinaWeiboRequest.m */,
 			);
 			path = SinaWeibo;
+			sourceTree = "<group>";
+		};
+		583B3AC817354EB6002D8FE4 /* TBXML */ = {
+			isa = PBXGroup;
+			children = (
+				583B3AC917354EB6002D8FE4 /* TBXML-Code */,
+				583B3ACD17354EB6002D8FE4 /* TBXML-Headers */,
+			);
+			path = TBXML;
+			sourceTree = "<group>";
+		};
+		583B3AC917354EB6002D8FE4 /* TBXML-Code */ = {
+			isa = PBXGroup;
+			children = (
+				583B3ACA17354EB6002D8FE4 /* TBXML+Compression.m */,
+				583B3ACB17354EB6002D8FE4 /* TBXML+HTTP.m */,
+				583B3ACC17354EB6002D8FE4 /* TBXML.m */,
+			);
+			path = "TBXML-Code";
+			sourceTree = "<group>";
+		};
+		583B3ACD17354EB6002D8FE4 /* TBXML-Headers */ = {
+			isa = PBXGroup;
+			children = (
+				583B3ACE17354EB6002D8FE4 /* TBXML+Compression.h */,
+				583B3ACF17354EB6002D8FE4 /* TBXML+HTTP.h */,
+				583B3AD017354EB6002D8FE4 /* TBXML.h */,
+			);
+			path = "TBXML-Headers";
 			sourceTree = "<group>";
 		};
 		5843595B1732AF45009ACFB9 /* YLProgressBar */ = {
@@ -321,10 +358,10 @@
 		58EDDD7D15D5F4EF00D9AADC /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				583B3AC817354EB6002D8FE4 /* TBXML */,
 				5843595B1732AF45009ACFB9 /* YLProgressBar */,
 				582A287E172385B1006C9A21 /* SinaWeibo */,
 				58D341A217145D8D0055E971 /* BlockKit */,
-				A5BF20C01630EBC100EDE716 /* GDataXML */,
 				58EDDE1115D5F89A00D9AADC /* CocoaAsyncSocket */,
 				5898FB54171925D600F7616D /* DateHelpers */,
 				58EDDD7E15D5F4EF00D9AADC /* ASI */,
@@ -417,15 +454,6 @@
 			path = CocoaAsyncSocket;
 			sourceTree = "<group>";
 		};
-		A5BF20C01630EBC100EDE716 /* GDataXML */ = {
-			isa = PBXGroup;
-			children = (
-				A5BF20C11630EBC100EDE716 /* GDataXMLNode.h */,
-				A5BF20C21630EBC100EDE716 /* GDataXMLNode.m */,
-			);
-			path = GDataXML;
-			sourceTree = "<group>";
-		};
 		DD87035615AF1BBA0067B66C = {
 			isa = PBXGroup;
 			children = (
@@ -496,7 +524,6 @@
 				58EDDDD415D5F4EF00D9AADC /* ASIProgressDelegate.h in Headers */,
 				58EDDDD515D5F4EF00D9AADC /* ASIWebPageRequest.h in Headers */,
 				58EDDDD715D5F4EF00D9AADC /* Reachability.h in Headers */,
-				A5BF20C31630EBC100EDE716 /* GDataXMLNode.h in Headers */,
 				581D66A516DBBC51007674F7 /* FMDatabase.h in Headers */,
 				581D66A716DBBC51007674F7 /* FMDatabaseAdditions.h in Headers */,
 				581D66A916DBBC51007674F7 /* FMDatabasePool.h in Headers */,
@@ -521,6 +548,9 @@
 				584359611732AF45009ACFB9 /* ARCMacro.h in Headers */,
 				584359621732AF45009ACFB9 /* YLBackgroundView.h in Headers */,
 				584359641732AF45009ACFB9 /* YLProgressBar.h in Headers */,
+				583B3AD417354EB6002D8FE4 /* TBXML+Compression.h in Headers */,
+				583B3AD517354EB6002D8FE4 /* TBXML+HTTP.h in Headers */,
+				583B3AD617354EB6002D8FE4 /* TBXML.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,7 +620,6 @@
 				58EDDDDA15D5F4EF00D9AADC /* JSONKit.m in Sources */,
 				58EDDDDC15D5F4EF00D9AADC /* JSONObject.m in Sources */,
 				580200BA15D60752002A854F /* GCDAsyncSocket.m in Sources */,
-				A5BF20C41630EBC100EDE716 /* GDataXMLNode.m in Sources */,
 				581D66A616DBBC51007674F7 /* FMDatabase.m in Sources */,
 				581D66A816DBBC51007674F7 /* FMDatabaseAdditions.m in Sources */,
 				581D66AA16DBBC51007674F7 /* FMDatabasePool.m in Sources */,
@@ -610,6 +639,9 @@
 				587EEDB51729654200455855 /* STSegmentedControl.m in Sources */,
 				584359631732AF45009ACFB9 /* YLBackgroundView.m in Sources */,
 				584359651732AF45009ACFB9 /* YLProgressBar.m in Sources */,
+				583B3AD117354EB6002D8FE4 /* TBXML+Compression.m in Sources */,
+				583B3AD217354EB6002D8FE4 /* TBXML+HTTP.m in Sources */,
+				583B3AD317354EB6002D8FE4 /* TBXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
