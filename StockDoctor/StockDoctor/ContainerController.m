@@ -47,6 +47,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *defaultLeftBar;
 @property (strong, nonatomic) UIViewController * presentController;
 @property (strong, nonatomic) IBOutlet UIImageView *bgImg;
+@property (strong, nonatomic) UIView * presentBgView;
 @end
 
 @implementation ContainerController
@@ -181,6 +182,11 @@
 - (void)presentControllerFromButtom:(UIViewController *)controller
 {
     self.presentController = controller;
+    UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
+    view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+    [self.view addSubview:view];
+    self.presentBgView = view;
+    
     controller.view.frame = self.view.bounds;
     [controller.view fixY:CGRectGetHeight(self.view.bounds)];
     [self.view addSubview:controller.view];
@@ -194,6 +200,8 @@
     [UIView animateWithDuration:0.5 animations:^{
         [self.presentController.view fixY:CGRectGetHeight(self.view.bounds)];
     } completion:^(BOOL finished) {
+        [self.presentBgView removeFromSuperview];
+        self.presentBgView = nil;
         [self.presentController.view removeFromSuperview];
         self.presentController = nil;
     }];

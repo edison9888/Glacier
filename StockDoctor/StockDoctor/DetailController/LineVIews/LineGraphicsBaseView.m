@@ -11,12 +11,12 @@
 #define WidthRate (24/30.0)
 #define HeightRate (26/30.0)
 
-#define data_start (1/20.0f)
-#define data_end (9/20.0f)
-#define buttom_string_start (9/20.0f)
-#define buttom_string_end (10/20.0f)
-#define volume_start (12/20.0f)
-#define volume_end (15/20.0f)
+#define data_start (1.5/20.0f)
+#define data_end (12.0f/20.0f)
+#define buttom_string_start (12.0/20.0f)
+#define buttom_string_end (13.0f/20.0f)
+#define volume_start (14.5f/20.0f)
+#define volume_end (19.5f/20.0f)
 #define string_padding 2
 
 @implementation LineGraphicsBaseView
