@@ -20,13 +20,11 @@
 @property (strong, nonatomic) IBOutlet UIView *activityBgView;
 @property (strong, nonatomic) IBOutlet UILabel *activityLabel;
 @property (nonatomic, copy) NSString * probabilityText;
+@property (nonatomic, assign) int probability;
 @property (strong, nonatomic) IBOutlet UIImageView *weiboSuccessView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end
-
-static float gIndexValue; //指数上涨常数
-static float gStockValue; //股票上涨中指数的比例
 
 @implementation SingleDiagnosisController
 {
@@ -60,20 +58,7 @@ static float gStockValue; //股票上涨中指数的比例
     
     self.nameLabel.text = [NSString stringWithFormat:@"%@(%@)",self.detailController.searchModel.shortName,self.detailController.searchModel.shortCode];
     
-    if ([self.detailController.searchModel isStock])
-    {
-        if (!gStockValue)
-        {
-            [self requestForStockValue];
-        }
-    }
-    else
-    {
-        if (!gIndexValue)
-        {
-            [self requestForIndexValue];
-        }
-    }
+   
     
     [self doDiagnosis];
     
@@ -82,12 +67,22 @@ static float gStockValue; //股票上涨中指数的比例
 - (void)doDiagnosis
 {
     self.view.userInteractionEnabled = false;
+    self.probabilityText = nil;
     self.probabilityLabel.text = @"--";
     self.progressView.progress = 0;
     [self showProgressView:false content:@"开始分析"];
     self.progressView.hidden = false;
     self.probabilityLabel.hidden = true;
     self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+    if ([self.detailController.searchModel isStock])
+    {
+        [self requestForStockValue];
+        
+    }
+    else
+    {
+        [self requestForIndexValue];
+    }
 }
 
 - (void) onTimer:(NSTimer *)timer
@@ -102,6 +97,14 @@ static float gStockValue; //股票上涨中指数的比例
     {
         [self showProgressView:false content:@"正在分析板块联动"];
     }
+    else if (_timerCount == 99)
+    {
+        if (!self.probabilityText)
+        {
+            [self showProgressView:false content:@"正在等待处理"];
+            _timerCount -= 0.5f;
+        }
+    }
     else if (_timerCount >= 100)
     {
         [self showProgressView:true content:@"分析完成"];
@@ -112,34 +115,12 @@ static float gStockValue; //股票上涨中指数的比例
         [self hideProgressView];
         [self.progressTimer invalidate];
         self.progressTimer = nil;
-
+        
         NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
         
         self.timeLabel.text = [formatter stringFromDate:[NSDate date]];
-        
-        if ([self.detailController.searchModel isStock])
-        {
-            if (gStockValue)
-            {
-                [self calculate];
-            }
-            else
-            {
-                [self requestForStockValue];
-            }
-        }
-        else
-        {
-            if (gIndexValue)
-            {
-                [self calculate];
-            }
-            else
-            {
-                [self requestForIndexValue];
-            }
-        }
+        self.probabilityLabel.text = self.probabilityText;
     }
 }
 
@@ -153,25 +134,38 @@ static float gStockValue; //股票上涨中指数的比例
     [self doHttpRequest:@"http://www.9pxdesign.com/indexvar.php" tag:0];
 }
 
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    [self showProgressView:true content:@"网络处理失败"];
+    self.view.userInteractionEnabled = true;
+    _timerCount = 0;
+    self.probabilityLabel.hidden = false;
+    self.progressView.hidden = true;
+    [self hideProgressView];
+    [self.progressTimer invalidate];
+    self.progressTimer = nil;
+    
+    self.timeLabel.text = @"--";
+    self.probabilityLabel.text = @"--";
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     if (request.tag == 0)
     {
         NSDictionary * dict = [request.responseString objectFromJSONString];
         NSString * value = dict[@"bianliang"];
-        gIndexValue = value.floatValue;
-        [self calculate];
+        [self calculate:value.floatValue];
     }
     else if(request.tag == 1)
     {
         NSDictionary * dict = [request.responseString objectFromJSONString];
         NSString * value = dict[@"gailv"];
-        gStockValue = value.floatValue;
-        [self calculate];
+        [self calculate:value.floatValue];
     }
 }
 
-- (void)calculate
+- (void)calculate:(float)stockValue
 {
     KLineModel * klineModel = self.detailController.trendKLineModelDict[@(1)];
     StockBaseInfoModel * baseInfoModel = self.detailController.stockBaseInfoModel;
@@ -213,11 +207,11 @@ static float gStockValue; //股票上涨中指数的比例
     
     if ([self.detailController.searchModel isStock])
     {
-        score = tempRatio * 0.6 + gStockValue * 0.4;
+        score = tempRatio * 0.6 + stockValue * 0.4;
     }
     else
     {
-        score = tempRatio * gIndexValue;
+        score = tempRatio * stockValue;
     }
     
     //score不能为极值
@@ -230,12 +224,23 @@ static float gStockValue; //股票上涨中指数的比例
         score = 99;
     }
     
-    NSString * writeToServer = @"http://www.9pxdesign.com/writestock.php";
-    [self doHttpRequest:writeToServer tag:100];
-    
+    self.probability = score;
+    [self writeToServer];
     
     self.probabilityText = [NSString stringWithFormat:@"%d%%",score];
-    self.probabilityLabel.text = self.probabilityText;
+}
+
+- (void)writeToServer
+{
+    NSString * name = [self.detailController.searchModel.shortName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * code = self.detailController.searchModel.fullCode;
+    NSString * indexOrNo = [NSString stringWithFormat:@"%d",![self.detailController.searchModel isStock]];
+    NSString * score = [NSString stringWithFormat:@"%d",self.probability];
+    NSString * huanshou = self.detailController.stockBaseInfoModel.turnoverRate;
+    NSString * zhangfu = self.detailController.stockBaseInfoModel.changeRatio;
+    NSString * writeToServer = @"http://www.9pxdesign.com/writestock.php?name=%@&code=%@&indexYesOrNo=%@&gailv=%@&huanshou=%@&zhangfu=%@";
+    writeToServer = [NSString stringWithFormat:writeToServer,name,code,indexOrNo,score,huanshou,zhangfu];
+    [self doHttpRequest:writeToServer tag:100];
 }
 
 - (IBAction)onShareToWeiboClick:(UIButton *)sender
