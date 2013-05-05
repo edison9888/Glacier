@@ -19,6 +19,11 @@
 		58386F741712E88900B636E7 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F721712E88900B636E7 /* DetailController.xib */; };
 		58386F841714508300B636E7 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58386F831714508300B636E7 /* SearchCell.xib */; };
 		58386F87171450A200B636E7 /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58386F86171450A200B636E7 /* SearchCell.m */; };
+		583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F117368BC20002A93C /* CoreLocation.framework */; };
+		583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F317368BD80002A93C /* libstdc++.dylib */; };
+		583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F517368BF20002A93C /* CoreTelephony.framework */; };
+		583B846A17369B460002A93C /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846917369B460002A93C /* libBaiduMobStat.a */; };
+		583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846B17369D220002A93C /* libGlacierFramework.a */; };
 		583DF669172F73B40095096B /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 583DF668172F73B40095096B /* save.png */; };
 		583EF6EC17314AA300E58CFE /* weibo_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6EB17314AA300E58CFE /* weibo_success.png */; };
 		583EF6EE1731615600E58CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6ED1731615600E58CFE /* Default.png */; };
@@ -30,7 +35,6 @@
 		585087111711A55200EA6820 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5850870F1711A55200EA6820 /* InfoPlist.strings */; };
 		585087131711A55200EA6820 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087121711A55200EA6820 /* main.m */; };
 		585087171711A55200EA6820 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 585087161711A55200EA6820 /* AppDelegate.m */; };
-		5850872A1711A5CF00EA6820 /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087291711A5CF00EA6820 /* libGlacierFramework.a */; };
 		5850872E1711A6AF00EA6820 /* ContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5850872C1711A6AF00EA6820 /* ContainerController.m */; };
 		5850872F1711A6AF00EA6820 /* ContainerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5850872D1711A6AF00EA6820 /* ContainerController.xib */; };
 		585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087301711A8B800EA6820 /* libxml2.2.dylib */; };
@@ -133,6 +137,11 @@
 		58386F831714508300B636E7 /* SearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		58386F85171450A200B636E7 /* SearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCell.h; sourceTree = "<group>"; };
 		58386F86171450A200B636E7 /* SearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCell.m; sourceTree = "<group>"; };
+		583B83F117368BC20002A93C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		583B83F317368BD80002A93C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		583B83F517368BF20002A93C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		583B846917369B460002A93C /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		583B846B17369D220002A93C /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
 		583DF668172F73B40095096B /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		583EF6EB17314AA300E58CFE /* weibo_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_success.png; sourceTree = "<group>"; };
 		583EF6ED1731615600E58CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -253,6 +262,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */,
+				583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */,
+				583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */,
+				583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */,
 				5850873F1711A8EF00EA6820 /* MessageUI.framework in Frameworks */,
 				5850873D1711A8E700EA6820 /* SystemConfiguration.framework in Frameworks */,
 				5850873B1711A8DF00EA6820 /* MobileCoreServices.framework in Frameworks */,
@@ -261,10 +274,10 @@
 				585087351711A8CA00EA6820 /* libsqlite3.0.dylib in Frameworks */,
 				585087331711A8C100EA6820 /* libz.dylib in Frameworks */,
 				585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */,
-				5850872A1711A5CF00EA6820 /* libGlacierFramework.a in Frameworks */,
 				585087071711A55200EA6820 /* UIKit.framework in Frameworks */,
 				585087091711A55200EA6820 /* Foundation.framework in Frameworks */,
 				5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */,
+				583B846A17369B460002A93C /* libBaiduMobStat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +363,11 @@
 		585087051711A55200EA6820 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				583B846B17369D220002A93C /* libGlacierFramework.a */,
+				583B846917369B460002A93C /* libBaiduMobStat.a */,
+				583B83F517368BF20002A93C /* CoreTelephony.framework */,
+				583B83F317368BD80002A93C /* libstdc++.dylib */,
+				583B83F117368BC20002A93C /* CoreLocation.framework */,
 				585087291711A5CF00EA6820 /* libGlacierFramework.a */,
 				5850873E1711A8EF00EA6820 /* MessageUI.framework */,
 				5850873C1711A8E700EA6820 /* SystemConfiguration.framework */,
@@ -888,6 +906,7 @@
 		585087271711A55200EA6820 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
@@ -895,6 +914,10 @@
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
@@ -903,6 +926,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -910,6 +934,7 @@
 		585087281711A55200EA6820 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INPUT_FILETYPE = automatic;
@@ -917,6 +942,10 @@
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
@@ -925,6 +954,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

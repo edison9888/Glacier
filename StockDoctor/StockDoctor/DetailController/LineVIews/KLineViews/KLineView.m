@@ -15,6 +15,7 @@
 @property (nonatomic,strong) NSArray * MA10DataList;
 @property (nonatomic,strong) NSArray * MA20DataList;
 @property (nonatomic,strong) NSArray * verSepList;
+@property (nonatomic,strong) KLineCellData * lastCell;
 @end
 
 @implementation KLineView
@@ -53,6 +54,11 @@
         }
     }];
     copyModel.cellDataList = arr;
+    if (model.cellDataList.count > LineCount)
+    {
+        self.lastCell = model.cellDataList[LineCount];
+    }
+    
     
     self.MA5DataList = [model generateMAData:5 WithCount:LineCount];
     self.MA10DataList = [model generateMAData:10 WithCount:LineCount];
@@ -363,26 +369,31 @@
     
     [self.kLineModel.cellDataList enumerateObjectsUsingBlock:^(KLineCellData * obj, NSUInteger idx, BOOL *stop) {
         CGRect seriesRect = CGRectMake(CGRectGetMaxX(rect) - (idx  + 1)* seriesWidth, CGRectGetMinY(rect), seriesWidth, CGRectGetHeight(rect));
-        [self drawVolumeSeriesBar:seriesRect cellData:obj];
+        [self drawVolumeSeriesBar:seriesRect cellData:obj index:idx];
     }];
 }
 
 //绘制量线单元格
-- (void)drawVolumeSeriesBar:(CGRect)rect cellData:(KLineCellData *)data
+- (void)drawVolumeSeriesBar:(CGRect)rect cellData:(KLineCellData *)data index:(int)cellIndex
 {
     UIColor * color;
-    
-    if (data.close.floatValue > data.open.floatValue)
+    KLineCellData * lastCell = nil;
+    if (cellIndex < self.kLineModel.cellDataList.count - 1)
     {
-        color = [UIColor redColor];
+        lastCell = self.kLineModel.cellDataList[cellIndex + 1];
     }
-    else if (data.close.floatValue < data.open.floatValue)
+    else
+    {
+        lastCell = self.lastCell;
+    }
+    
+    if (data.close.floatValue < lastCell.close.floatValue)
     {
         color = [UIColor greenColor];
     }
     else
     {
-        color = [UIColor grayColor];
+        color = [UIColor redColor];
     }
     
     UIBezierPath * path = [UIBezierPath bezierPath];

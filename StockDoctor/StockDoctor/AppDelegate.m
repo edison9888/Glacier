@@ -7,13 +7,19 @@
 //
 
 #import "AppDelegate.h"
-
+#import "BaiduMobStat.h"
 #import "ContainerController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //开启百度统计
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    statTracker.enableExceptionLog = NO;
+    statTracker.sessionResumeInterval = 60;
+    [statTracker startWithAppId:@"poirot9"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     

@@ -136,7 +136,6 @@
 						<string key="NSFrame">{{44, 28}, {71, 14}}</string>
 						<reference key="NSSuperview" ref="902069806"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -275,7 +274,6 @@
 								<string key="NSFrame">{{262, 8}, {49, 30}}</string>
 								<reference key="NSSuperview" ref="696820964"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -366,7 +364,6 @@
 				<string key="NSFrameSize">{136, 34}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -377,7 +374,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">1</int>
@@ -389,7 +385,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">3</int>
@@ -401,7 +396,6 @@
 				<string key="NSFrameSize">{136, 33}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="370084485"/>
 				<int key="IBUITag">2</int>
