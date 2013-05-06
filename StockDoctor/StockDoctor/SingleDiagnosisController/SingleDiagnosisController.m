@@ -136,17 +136,20 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
-    [self showProgressView:true content:@"网络处理失败"];
-    self.view.userInteractionEnabled = true;
-    _timerCount = 0;
-    self.probabilityLabel.hidden = false;
-    self.progressView.hidden = true;
-    [self hideProgressView];
-    [self.progressTimer invalidate];
-    self.progressTimer = nil;
-    
-    self.timeLabel.text = @"--";
-    self.probabilityLabel.text = @"--";
+    if (request.tag == 0 || request.tag == 1)
+    {
+        [self showProgressView:true content:@"网络处理失败"];
+     
+        self.view.userInteractionEnabled = true;
+        _timerCount = 0;
+        self.probabilityLabel.hidden = false;
+        self.progressView.hidden = true;
+        [self hideProgressView];
+        [self.progressTimer invalidate];
+        self.progressTimer = nil;
+        self.timeLabel.text = @"--";
+        self.probabilityLabel.text = @"--";
+    }
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -236,8 +239,8 @@
     NSString * code = self.detailController.searchModel.fullCode;
     NSString * indexOrNo = [NSString stringWithFormat:@"%d",![self.detailController.searchModel isStock]];
     NSString * score = [NSString stringWithFormat:@"%d",self.probability];
-    NSString * huanshou = self.detailController.stockBaseInfoModel.turnoverRate;
-    NSString * zhangfu = self.detailController.stockBaseInfoModel.changeRatio;
+    NSString * huanshou = [self.detailController.stockBaseInfoModel.turnoverRate stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * zhangfu = [self.detailController.stockBaseInfoModel.changeRatio stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString * writeToServer = @"http://www.9pxdesign.com/writestock.php?name=%@&code=%@&indexYesOrNo=%@&gailv=%@&huanshou=%@&zhangfu=%@";
     writeToServer = [NSString stringWithFormat:writeToServer,name,code,indexOrNo,score,huanshou,zhangfu];
     [self doHttpRequest:writeToServer tag:100];

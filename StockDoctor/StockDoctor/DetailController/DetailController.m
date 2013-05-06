@@ -271,8 +271,6 @@
         )
     {
         NSString * trendDate = [self.stockBaseInfoModel.tradeDate substringToIndex:8];
-        
-        TrendCellData * trendCell = trendModel.trendCellDataList.lastObject;
         KLineCellData * klineCell = klineModel.cellDataList[0];
         
         NSString * klineDate = [klineCell.date stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -321,37 +319,29 @@
         if (flag)//新建k线
         {
             todayKlineCell.date = [toFormat stringFromDate:tDate];
-            
-            float newPrice = trendCell.price.floatValue;
             todayKlineCell.open = self.stockBaseInfoModel.openPrice;
-            todayKlineCell.close = trendCell.price;
-            if (newPrice > todayKlineCell.high.floatValue)
-            {
-                todayKlineCell.high = trendCell.price;
-            }
+            todayKlineCell.close = self.stockBaseInfoModel.currentPrice;
+            todayKlineCell.high = self.stockBaseInfoModel.todayHigh;
+            todayKlineCell.low = self.stockBaseInfoModel.todayLow;
             
-            if (newPrice < klineCell.low.floatValue)
-            {
-                todayKlineCell.low = trendCell.price;
-            }
             long long trendVolume = self.stockBaseInfoModel.volume.longLongValue / 100;
             todayKlineCell.volume = [NSString stringWithFormat:@"%lld", trendVolume];
             [klineModel.cellDataList insertObject:todayKlineCell atIndex:0];
         }
         else //修改原有k线
         {
-            float newPrice = trendCell.price.floatValue;
             klineCell.date = [toFormat stringFromDate:tDate];
-            klineCell.close = trendCell.price;
-            if (newPrice > klineCell.high.floatValue)
+            klineCell.close = self.stockBaseInfoModel.currentPrice;
+            if (self.stockBaseInfoModel.todayHigh.floatValue > klineCell.high.floatValue)
             {
-                klineCell.high = trendCell.price;
+                klineCell.high = self.stockBaseInfoModel.todayHigh;
             }
             
-            if (newPrice < klineCell.low.floatValue)
+            if (self.stockBaseInfoModel.todayLow.floatValue < klineCell.low.floatValue)
             {
-                klineCell.low = trendCell.price;
+                klineCell.low = self.stockBaseInfoModel.todayLow;
             }
+            
             
             if (![trendDate isEqualToString:klineDate]) //日期不同则叠加
             {
