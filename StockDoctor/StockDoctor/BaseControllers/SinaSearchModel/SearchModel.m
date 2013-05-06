@@ -102,7 +102,7 @@
     
     requestUrl = [NSString stringWithFormat:requestUrl,escapedUrlString,self.fullCode,![self isStock]];
     
-    ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:escapedUrlString]];
+    ASIHTTPRequest * request = [[ASIHTTPRequest alloc]initWithURL:[NSURL URLWithString:requestUrl]];
     [[SharedApp instance] doASIHttpRequest:request];
 }
 

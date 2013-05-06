@@ -157,7 +157,6 @@
 		585087141711A55200EA6820 /* StockDoctor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StockDoctor-Prefix.pch"; sourceTree = "<group>"; };
 		585087151711A55200EA6820 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		585087161711A55200EA6820 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		585087291711A5CF00EA6820 /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../GlacierFramework/build/Release-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
 		5850872B1711A6AF00EA6820 /* ContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerController.h; sourceTree = "<group>"; };
 		5850872C1711A6AF00EA6820 /* ContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerController.m; sourceTree = "<group>"; };
 		5850872D1711A6AF00EA6820 /* ContainerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerController.xib; sourceTree = "<group>"; };
@@ -368,7 +367,6 @@
 				583B83F517368BF20002A93C /* CoreTelephony.framework */,
 				583B83F317368BD80002A93C /* libstdc++.dylib */,
 				583B83F117368BC20002A93C /* CoreLocation.framework */,
-				585087291711A5CF00EA6820 /* libGlacierFramework.a */,
 				5850873E1711A8EF00EA6820 /* MessageUI.framework */,
 				5850873C1711A8E700EA6820 /* SystemConfiguration.framework */,
 				5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */,
