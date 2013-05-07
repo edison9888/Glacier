@@ -235,6 +235,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
+								<bool key="IBUIAdjustsImageWhenHighlighted">NO</bool>
 								<string key="IBUINormalTitle">    晒到微博</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1050625181"/>
 								<reference key="IBUINormalTitleColor" ref="288090400"/>

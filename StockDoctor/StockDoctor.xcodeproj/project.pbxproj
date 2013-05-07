@@ -11,6 +11,7 @@
 		58004A2A171D92D900817E2C /* ChooseStocksController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A28171D92D900817E2C /* ChooseStocksController.xib */; };
 		58004A2F171D9D9C00817E2C /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58004A2D171D9D9C00817E2C /* SettingController.m */; };
 		58004A30171D9D9C00817E2C /* SettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58004A2E171D9D9C00817E2C /* SettingController.xib */; };
+		5821015E17393F7800CF5CC0 /* GlacierController+BaiduSta.m in Sources */ = {isa = PBXBuildFile; fileRef = 5821015D17393F7800CF5CC0 /* GlacierController+BaiduSta.m */; };
 		58234A1F172410A500091541 /* AboutUsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A1D172410A500091541 /* AboutUsController.m */; };
 		58234A20172410A500091541 /* AboutUsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58234A1E172410A500091541 /* AboutUsController.xib */; };
 		582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A288F17238CB0006C9A21 /* SinaWeiboManager.m */; };
@@ -22,13 +23,13 @@
 		583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F117368BC20002A93C /* CoreLocation.framework */; };
 		583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F317368BD80002A93C /* libstdc++.dylib */; };
 		583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F517368BF20002A93C /* CoreTelephony.framework */; };
-		583B846A17369B460002A93C /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846917369B460002A93C /* libBaiduMobStat.a */; };
 		583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846B17369D220002A93C /* libGlacierFramework.a */; };
 		583DF669172F73B40095096B /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 583DF668172F73B40095096B /* save.png */; };
 		583EF6EC17314AA300E58CFE /* weibo_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6EB17314AA300E58CFE /* weibo_success.png */; };
 		583EF6EE1731615600E58CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6ED1731615600E58CFE /* Default.png */; };
 		583FE1331730CFB400CD4A09 /* shuaxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 583FE1321730CFB400CD4A09 /* shuaxin.png */; };
 		584359691732AFCC009ACFB9 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 584359681732AFCC009ACFB9 /* noise.png */; };
+		584873B91737F22B00EF2E72 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 584873B81737F22B00EF2E72 /* libBaiduMobStat.a */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -125,6 +126,8 @@
 		58004A2C171D9D9C00817E2C /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		58004A2D171D9D9C00817E2C /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		58004A2E171D9D9C00817E2C /* SettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingController.xib; sourceTree = "<group>"; };
+		5821015C17393F7800CF5CC0 /* GlacierController+BaiduSta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GlacierController+BaiduSta.h"; sourceTree = "<group>"; };
+		5821015D17393F7800CF5CC0 /* GlacierController+BaiduSta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GlacierController+BaiduSta.m"; sourceTree = "<group>"; };
 		58234A1C172410A500091541 /* AboutUsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsController.h; sourceTree = "<group>"; };
 		58234A1D172410A500091541 /* AboutUsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsController.m; sourceTree = "<group>"; };
 		58234A1E172410A500091541 /* AboutUsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsController.xib; sourceTree = "<group>"; };
@@ -140,13 +143,13 @@
 		583B83F117368BC20002A93C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		583B83F317368BD80002A93C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		583B83F517368BF20002A93C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		583B846917369B460002A93C /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		583B846B17369D220002A93C /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
 		583DF668172F73B40095096B /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		583EF6EB17314AA300E58CFE /* weibo_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_success.png; sourceTree = "<group>"; };
 		583EF6ED1731615600E58CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		583FE1321730CFB400CD4A09 /* shuaxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuaxin.png; sourceTree = "<group>"; };
 		584359681732AFCC009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		584873B81737F22B00EF2E72 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -276,7 +279,7 @@
 				585087071711A55200EA6820 /* UIKit.framework in Frameworks */,
 				585087091711A55200EA6820 /* Foundation.framework in Frameworks */,
 				5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */,
-				583B846A17369B460002A93C /* libBaiduMobStat.a in Frameworks */,
+				584873B91737F22B00EF2E72 /* libBaiduMobStat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,8 +365,8 @@
 		585087051711A55200EA6820 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				584873B81737F22B00EF2E72 /* libBaiduMobStat.a */,
 				583B846B17369D220002A93C /* libGlacierFramework.a */,
-				583B846917369B460002A93C /* libBaiduMobStat.a */,
 				583B83F517368BF20002A93C /* CoreTelephony.framework */,
 				583B83F317368BD80002A93C /* libstdc++.dylib */,
 				583B83F117368BC20002A93C /* CoreLocation.framework */,
@@ -394,6 +397,8 @@
 				5850872C1711A6AF00EA6820 /* ContainerController.m */,
 				5850872D1711A6AF00EA6820 /* ContainerController.xib */,
 				5850870D1711A55200EA6820 /* Supporting Files */,
+				5821015C17393F7800CF5CC0 /* GlacierController+BaiduSta.h */,
+				5821015D17393F7800CF5CC0 /* GlacierController+BaiduSta.m */,
 			);
 			path = StockDoctor;
 			sourceTree = "<group>";
@@ -826,6 +831,7 @@
 				582A289017238CB0006C9A21 /* SinaWeiboManager.m in Sources */,
 				58234A1F172410A500091541 /* AboutUsController.m in Sources */,
 				587EEE16172AD2D900455855 /* SettingHeaderView.m in Sources */,
+				5821015E17393F7800CF5CC0 /* GlacierController+BaiduSta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

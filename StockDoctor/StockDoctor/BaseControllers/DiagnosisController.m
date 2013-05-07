@@ -16,6 +16,7 @@
 
 @interface DiagnosisController ()
 @property (strong, nonatomic) IBOutlet UIButton *leftBarButton;
+@property (strong, nonatomic) IBOutlet UIButton *firstAddBtn;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBarButtonItem;
 @property (strong, nonatomic) NSMutableArray * modelList;
 @property (strong, nonatomic) NSArray * sinaDataList;
@@ -88,11 +89,21 @@
 - (void)refreshData
 {
     self.modelList = [NSMutableArray arrayWithArray:[SearchModel selectAll]];
-     [self.stockTableView reloadData];
-    if (self.modelList.count > 0)
+    if (self.modelList.count <= 0)
     {
-        NSString * url = @"http://hq.sinajs.cn/list=%@";
-        [self doHttpRequest:[NSString stringWithFormat:url,[SearchModel composeUrlForCodes:self.modelList]]];
+        self.firstAddBtn.hidden = false;
+        self.stockTableView.hidden = true;
+    }
+    else
+    {
+        self.firstAddBtn.hidden = true;
+        self.stockTableView.hidden = false;
+        [self.stockTableView reloadData];
+        if (self.modelList.count > 0)
+        {
+            NSString * url = @"http://hq.sinajs.cn/list=%@";
+            [self doHttpRequest:[NSString stringWithFormat:url,[SearchModel composeUrlForCodes:self.modelList]]];
+        }
     }
 }
 
@@ -103,16 +114,38 @@
     [self.stockTableView reloadData];
 }
 
+- (IBAction)onAddClick:(UIButton *)sender {
+    [self addStock];
+}
+
 - (IBAction)onAddStock:(UIButton *)sender
+{
+    [self addStock];
+}
+
+
+- (void)addStock
 {
     SearchStockController * searchController = [[SearchStockController alloc]init];
     [[ContainerController instance]pushController:searchController animated:true];
 }
 
+
 - (IBAction)onEditSelfStock:(UIButton *)sender
 {
     if (self.stockTableView.editing)
     {
+        if (self.modelList.count <= 0)
+        {
+            self.firstAddBtn.hidden = false;
+            self.stockTableView.hidden = true;
+        }
+        else
+        {
+            self.firstAddBtn.hidden = true;
+            self.stockTableView.hidden = false;
+        }
+        
         [[ContainerController instance] dissmisViewAndShowTab:self.deleteBarView];
         [sender setTitle:@"编辑" forState:(UIControlStateNormal)];
         [sender setBackgroundImage:[UIImage imageNamed: @"edit.png"] forState:(UIControlStateNormal)];
@@ -121,6 +154,10 @@
     }
     else
     {
+        
+        self.firstAddBtn.hidden = true;
+        self.stockTableView.hidden = false;
+        
         [self refreshDeleteButton];
         [[ContainerController instance] hideTabAndPresentView:self.deleteBarView];
         [self.deleteList removeAllObjects];
@@ -255,6 +292,7 @@
     [self setLeftBarButton:nil];
     [self setDeleteBarView:nil];
     [self setDeleteButton:nil];
+    [self setFirstAddBtn:nil];
     [super viewDidUnload];
 }
 @end

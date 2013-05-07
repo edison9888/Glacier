@@ -21,6 +21,7 @@
 		581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */; };
 		581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A316DBBC51007674F7 /* FMResultSet.h */; };
 		581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A416DBBC51007674F7 /* FMResultSet.m */; };
+		5821015B17393B1C00CF5CC0 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5821015A17393B1C00CF5CC0 /* libBaiduMobStat.a */; };
 		58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A22172429BC00091541 /* MTStatusBarOverlay.h */; };
 		58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A23172429BC00091541 /* MTStatusBarOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A2717242E0A00091541 /* UIView+CurrentScreen.h */; };
@@ -140,6 +141,7 @@
 		581D66A216DBBC51007674F7 /* fmdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fmdb.m; sourceTree = "<group>"; };
 		581D66A316DBBC51007674F7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		581D66A416DBBC51007674F7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		5821015A17393B1C00CF5CC0 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		58234A22172429BC00091541 /* MTStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTStatusBarOverlay.h; sourceTree = "<group>"; };
 		58234A23172429BC00091541 /* MTStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTStatusBarOverlay.m; sourceTree = "<group>"; };
 		58234A2717242E0A00091541 /* UIView+CurrentScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CurrentScreen.h"; sourceTree = "<group>"; };
@@ -188,8 +190,6 @@
 		583B83D217368A1C0002A93C /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
 		583B83D317368A1C0002A93C /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		583B846117369B2E0002A93C /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
-		583B846317369B2E0002A93C /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
-		583B846517369B2E0002A93C /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
 		5843595C1732AF45009ACFB9 /* ARCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacro.h; sourceTree = "<group>"; };
 		5843595D1732AF45009ACFB9 /* YLBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLBackgroundView.h; sourceTree = "<group>"; };
 		5843595E1732AF45009ACFB9 /* YLBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLBackgroundView.m; sourceTree = "<group>"; };
@@ -257,6 +257,7 @@
 			files = (
 				DD832FBD15B263FD00FBF9DE /* UIKit.framework in Frameworks */,
 				DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */,
+				5821015B17393B1C00CF5CC0 /* libBaiduMobStat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,26 +408,9 @@
 			isa = PBXGroup;
 			children = (
 				583B846117369B2E0002A93C /* BaiduMobStat.h */,
-				583B846217369B2E0002A93C /* Release-iphoneos */,
-				583B846417369B2E0002A93C /* Release-iphonesimulator */,
+				5821015A17393B1C00CF5CC0 /* libBaiduMobStat.a */,
 			);
 			path = BaiduMobStat;
-			sourceTree = "<group>";
-		};
-		583B846217369B2E0002A93C /* Release-iphoneos */ = {
-			isa = PBXGroup;
-			children = (
-				583B846317369B2E0002A93C /* libBaiduMobStat.a */,
-			);
-			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		583B846417369B2E0002A93C /* Release-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				583B846517369B2E0002A93C /* libBaiduMobStat.a */,
-			);
-			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		5843595B1732AF45009ACFB9 /* YLProgressBar */ = {

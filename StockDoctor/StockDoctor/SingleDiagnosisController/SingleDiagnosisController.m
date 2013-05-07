@@ -239,7 +239,9 @@
     NSString * code = self.detailController.searchModel.fullCode;
     NSString * indexOrNo = [NSString stringWithFormat:@"%d",![self.detailController.searchModel isStock]];
     NSString * score = [NSString stringWithFormat:@"%d",self.probability];
-    NSString * huanshou = [self.detailController.stockBaseInfoModel.turnoverRate stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString * huanshou = [NSString stringWithFormat:@"%.2f",self.detailController.stockBaseInfoModel.turnoverRate.floatValue * 100];
+    huanshou = [huanshou stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString * zhangfu = [self.detailController.stockBaseInfoModel.changeRatio stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString * writeToServer = @"http://www.9pxdesign.com/writestock.php?name=%@&code=%@&indexYesOrNo=%@&gailv=%@&huanshou=%@&zhangfu=%@";
     writeToServer = [NSString stringWithFormat:writeToServer,name,code,indexOrNo,score,huanshou,zhangfu];
@@ -248,7 +250,7 @@
 
 - (IBAction)onShareToWeiboClick:(UIButton *)sender
 {
-    [self showProgressView:false content:@"正在分享微博..."];
+    [[MTStatusBarOverlay sharedInstance] postMessage:@"正在分享微博..."];
     [self postWeibo:true];
 }
 
@@ -261,7 +263,8 @@
     [SinaWeiboManager instance].delegate = self;
     if (!needLogin || [[SinaWeiboManager instance] isAuth])
     {
-        [[SinaWeiboManager instance] postImageWeibo:text image:self.view.currentImage receiver:self];
+        UIWindow * window = [UIApplication sharedApplication].keyWindow;
+        [[SinaWeiboManager instance] postImageWeibo:text image:window.currentImage receiver:self];
     }
     else
     {
@@ -302,7 +305,15 @@
 
 - (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
 {
-    [self showProgressView:true content:@"微博分享成功"];
+    NSDictionary * dict = result;
+    if (dict[@"error_code"])
+    {
+        [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"微博分享失败" duration:3];
+    }
+    else
+    {
+        [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"微博分享成功" duration:3];
+    }
 }
 
 - (IBAction)onFinishClick:(UIButton *)sender

@@ -14,15 +14,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //开启百度统计
-    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
-    statTracker.enableExceptionLog = NO;
-    statTracker.sessionResumeInterval = 60;
-    [statTracker startWithAppId:@"poirot9"];
+    @try
+    {
+        //开启百度统计
+        BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+        statTracker.enableExceptionLog = NO;
+        statTracker.sessionResumeInterval = 60;
+        [statTracker startWithAppId:@"8ad6acb59c"];
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"%@",exception);
+    }
+    @finally
+    {
+        
+    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    
     self.window.rootViewController = [ContainerController instance];
     [self.window makeKeyAndVisible];
     return YES;
