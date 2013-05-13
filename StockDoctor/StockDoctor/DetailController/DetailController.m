@@ -103,9 +103,16 @@
 
 - (void)onDiagnosisClick:(UIButton *)sender
 {
-    SingleDiagnosisController * controller = [[SingleDiagnosisController alloc]init];
-    controller.detailController = self;
-    [[ContainerController instance] presentControllerFromButtom:controller];
+    if (self.stockBaseInfoModel.currentPrice.floatValue == 0)
+    {
+        [[MTStatusBarOverlay sharedInstance] postErrorMessage:@"该股票数据异常，无法诊断，请选择其他股票" duration:3];
+    }
+    else
+    {
+        SingleDiagnosisController * controller = [[SingleDiagnosisController alloc]init];
+        controller.detailController = self;
+        [[ContainerController instance] presentControllerFromButtom:controller];
+    }
 }
 
 //请求诊断人数
@@ -196,7 +203,7 @@
         
         //每次收到K线请求后请求分时数据 以便计算最后的K线数据
         [self requestForTrendAndInfo];
-        [self refreshGraphView];
+//        [self refreshGraphView];
     }
 }
 

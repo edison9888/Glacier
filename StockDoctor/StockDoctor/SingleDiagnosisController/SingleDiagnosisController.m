@@ -66,22 +66,31 @@
 
 - (void)doDiagnosis
 {
-    self.view.userInteractionEnabled = false;
-    self.probabilityText = nil;
-    self.probabilityLabel.text = @"--";
-    self.progressView.progress = 0;
-    [self showProgressView:false content:@"开始分析"];
-    self.progressView.hidden = false;
-    self.probabilityLabel.hidden = true;
-    self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
-    if ([self.detailController.searchModel isStock])
+    KLineModel * klineModel = self.detailController.trendKLineModelDict[@(1)];
+    StockBaseInfoModel * baseInfoModel = self.detailController.stockBaseInfoModel;
+    if (!klineModel  || !baseInfoModel || klineModel.cellDataList.count < 72)
     {
-        [self requestForStockValue];
-        
+        [self showProgressView:true content:@"数据不完整，诊断失败，请稍后再试"];
     }
     else
     {
-        [self requestForIndexValue];
+        self.view.userInteractionEnabled = false;
+        self.probabilityText = nil;
+        self.probabilityLabel.text = @"--";
+        self.progressView.progress = 0;
+        [self showProgressView:false content:@"开始分析"];
+        self.progressView.hidden = false;
+        self.probabilityLabel.hidden = true;
+        self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
+        if ([self.detailController.searchModel isStock])
+        {
+            [self requestForStockValue];
+            
+        }
+        else
+        {
+            [self requestForIndexValue];
+        }
     }
 }
 
