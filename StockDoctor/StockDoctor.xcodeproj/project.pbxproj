@@ -30,6 +30,8 @@
 		583FE1331730CFB400CD4A09 /* shuaxin.png in Resources */ = {isa = PBXBuildFile; fileRef = 583FE1321730CFB400CD4A09 /* shuaxin.png */; };
 		584359691732AFCC009ACFB9 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 584359681732AFCC009ACFB9 /* noise.png */; };
 		584873B91737F22B00EF2E72 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 584873B81737F22B00EF2E72 /* libBaiduMobStat.a */; };
+		584980F81743C84A004DF32F /* whitexuanxiangbg_02_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = 584980F71743C84A004DF32F /* whitexuanxiangbg_02_tap.png */; };
+		584980FC1743C98D004DF32F /* whitexuanxiangbg_01_tap.png in Resources */ = {isa = PBXBuildFile; fileRef = 584980FB1743C98D004DF32F /* whitexuanxiangbg_01_tap.png */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
 		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
 		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
@@ -150,6 +152,8 @@
 		583FE1321730CFB400CD4A09 /* shuaxin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuaxin.png; sourceTree = "<group>"; };
 		584359681732AFCC009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		584873B81737F22B00EF2E72 /* libBaiduMobStat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBaiduMobStat.a; sourceTree = "<group>"; };
+		584980F71743C84A004DF32F /* whitexuanxiangbg_02_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitexuanxiangbg_02_tap.png; sourceTree = "<group>"; };
+		584980FB1743C98D004DF32F /* whitexuanxiangbg_01_tap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitexuanxiangbg_01_tap.png; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* StockDoctor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockDoctor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -591,6 +595,8 @@
 		587EEDFB172AC7E300455855 /* Diagnosis */ = {
 			isa = PBXGroup;
 			children = (
+				584980FB1743C98D004DF32F /* whitexuanxiangbg_01_tap.png */,
+				584980F71743C84A004DF32F /* whitexuanxiangbg_02_tap.png */,
 				583EF6EB17314AA300E58CFE /* weibo_success.png */,
 				587EEE4A172C12FA00455855 /* whitexuanxiangbg_01.png */,
 				587EEE4B172C12FA00455855 /* whitexuanxiangbg_02.png */,
@@ -797,6 +803,8 @@
 				583EF6EC17314AA300E58CFE /* weibo_success.png in Resources */,
 				583EF6EE1731615600E58CFE /* Default.png in Resources */,
 				584359691732AFCC009ACFB9 /* noise.png in Resources */,
+				584980F81743C84A004DF32F /* whitexuanxiangbg_02_tap.png in Resources */,
+				584980FC1743C98D004DF32F /* whitexuanxiangbg_01_tap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -924,10 +932,7 @@
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
@@ -952,10 +957,7 @@
 				GCC_PREFIX_HEADER = "StockDoctor/StockDoctor-Prefix.pch";
 				INFOPLIST_FILE = "StockDoctor/StockDoctor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
 				OTHER_LDFLAGS = (
 					"-force_load",
 					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",

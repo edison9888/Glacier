@@ -36,13 +36,29 @@
 {
     if (![self.stockBaseInfoModel.currentPrice isEqualToString:@"--"]  && self.stockBaseInfoModel.currentPrice.floatValue == 0)
     {
-        self.currentPriceLabel.text = @"停牌";
+        int timeValue = 0;
+        if (self.stockBaseInfoModel.tradeDate)
+        {
+            NSString * time = [self.stockBaseInfoModel.tradeDate substringFromIndex:8];
+            timeValue = time.intValue;
+            if (timeValue >= 91500 && timeValue < 92600)
+            {
+                self.currentPriceLabel.text = @"集合竞价";
+            }
+            else
+            {
+                self.currentPriceLabel.text = @"停牌";
+            }
+            
+        }
+        self.currentPriceLabel.font = [UIFont boldSystemFontOfSize:35];
         self.currentPriceLabel.textColor = [UIColor lightGrayColor];
         self.currentPriceLabel.textAlignment = NSTextAlignmentCenter;
         self.preCloseLabel.text = self.stockBaseInfoModel.preClose;
     }
     else
     {
+        self.currentPriceLabel.font = [UIFont boldSystemFontOfSize:40];
         self.currentPriceLabel.textAlignment = NSTextAlignmentLeft;
         self.currentPriceLabel.text = self.stockBaseInfoModel.currentPrice;
         self.preCloseLabel.text = self.stockBaseInfoModel.preClose;
@@ -58,8 +74,6 @@
         {
              self.turnoverRateLabel.text = @"--";
         }
-        
-        
         
         self.changeValueLabel.text = self.stockBaseInfoModel.changeValue;
         self.changeRatioLabel.text = self.stockBaseInfoModel.changeRatio;

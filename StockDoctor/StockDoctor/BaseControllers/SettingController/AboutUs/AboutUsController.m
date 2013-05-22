@@ -12,6 +12,7 @@ static bool isFollowed;
 
 @interface AboutUsController ()
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
+@property (strong, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -31,6 +32,10 @@ static bool isFollowed;
 {
     [super viewDidLoad];
     self.title = @"关于股票医生";
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary]; 
+    NSString * app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    self.versionLabel.text = [NSString stringWithFormat:@"V%@",app_Version];
     if (isFollowed)
     {
         [self changeButton];
@@ -82,6 +87,7 @@ static bool isFollowed;
 
 - (void)viewDidUnload {
     [self setFollowButton:nil];
+    [self setVersionLabel:nil];
     [super viewDidUnload];
 }
 @end

@@ -23,6 +23,7 @@
 @property (nonatomic, assign) int probability;
 @property (strong, nonatomic) IBOutlet UIImageView *weiboSuccessView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (strong, nonatomic) IBOutlet UIButton *shareButton;
 
 @end
 
@@ -265,15 +266,18 @@
 
 - (void)postWeibo:(bool)needLogin
 {
-    NSString * text = @"我通过#股票医生#诊断了%@，上涨概率为%@，你也赶快诊断下你的股票吧。http://itunes.apple.com/cn/app/id517609453（分享自@股票医生手机版";
+    self.activityBgView.hidden = true;
+    self.shareButton.highlighted = false;
+    
+    NSString * text = @"我通过#股票医生#诊断了%@，上涨概率为%@，你也赶快诊断下你的股票吧。http://itunes.apple.com/cn/app/id517609453（分享自@股票医生手机版)";
     
     text = [NSString stringWithFormat:text,self.detailController.searchModel.shortName,self.probabilityText];
-    
     [SinaWeiboManager instance].delegate = self;
     if (!needLogin || [[SinaWeiboManager instance] isAuth])
     {
-        UIWindow * window = [UIApplication sharedApplication].keyWindow;
-        [[SinaWeiboManager instance] postImageWeibo:text image:window.currentImage receiver:self];
+        extern CGImageRef UIGetScreenImage();//需要先extern
+        UIImage *image = [UIImage imageWithCGImage:UIGetScreenImage()];
+        [[SinaWeiboManager instance] postImageWeibo:text image:image receiver:self];
     }
     else
     {
@@ -317,12 +321,22 @@
     NSDictionary * dict = result;
     if (dict[@"error_code"])
     {
-        [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"微博分享失败" duration:3];
+        [self showProgressView:true content:@"微博分享失败，请稍后重试"];
     }
     else
     {
-        [[MTStatusBarOverlay sharedInstance] postFinishMessage:@"微博分享成功" duration:3];
+        [[MTStatusBarOverlay sharedInstance]postFinishMessage:@"分享完成" duration:1];
+        double delayInSeconds = 0.2f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self showProgressView:true content:@"微博分享成功"];
+        });
     }
+}
+
+- (void)request:(SinaWeiboRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"%@",error);
 }
 
 - (IBAction)onFinishClick:(UIButton *)sender
@@ -340,6 +354,7 @@
     [self setActivityLabel:nil];
     [self setWeiboSuccessView:nil];
     [self setActivityView:nil];
+    [self setShareButton:nil];
     [super viewDidUnload];
 }
 @end

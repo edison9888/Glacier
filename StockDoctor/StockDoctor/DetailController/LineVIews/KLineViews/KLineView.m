@@ -303,21 +303,24 @@
 - (void)drawHorizontalGridInRect:(CGRect)rect lineCount:(int)lineCount
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
     UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    
+    CGFloat lineHeight = CGRectGetHeight(rect) / lineCount;
+    
+    for (int i = 0; i<= lineCount; i++)
+    {
+        [path moveToPoint:CGPointMake(CGRectGetMinX(rect),
+                                      rint( CGRectGetMinY(rect) + i * lineHeight))];
+        [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect),
+                                         rint( CGRectGetMinY(rect) + i * lineHeight))];
+    }
     [path setLineWidth:0.5];
-    [path moveToPoint:CGPointMake(CGRectGetMinX(rect),
-                                  CGRectGetMinY(rect))];
-    [path addLineToPoint:CGPointMake(CGRectGetMaxX(rect),
-                                     CGRectGetMinY(rect))];
     UIColor * gridColor = [UIColor grayColor];
     [gridColor setStroke];
-    
-    CGContextSaveGState(context);
     [path stroke];
-    for(int i = 0;i < lineCount;i++) {
-        CGContextTranslateCTM(context, 0.0, CGRectGetHeight(rect) / lineCount);
-        [path stroke];
-    }
     CGContextRestoreGState(context);
 }
 

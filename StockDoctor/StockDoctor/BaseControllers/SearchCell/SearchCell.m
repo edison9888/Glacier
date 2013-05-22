@@ -9,5 +9,9 @@
 #import "SearchCell.h"
 
 @implementation SearchCell
-
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    [super setHighlighted:highlighted animated:animated];
+    _selectImg.highlighted = highlighted;
+}
 @end

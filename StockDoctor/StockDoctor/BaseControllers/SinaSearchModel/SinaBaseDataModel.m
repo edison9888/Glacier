@@ -40,23 +40,36 @@
 {
     float price = self.currentPrice.floatValue;
     float pre = self.preClosePrice.floatValue;
-
-    return price == pre ? 0 : (price > pre ? 1 : -1);
+    if (price == 0)
+    {
+        return 0;
+    }
+    else
+    {
+        return price == pre ? 0 : (price > pre ? 1 : -1);
+    }
 }
 
-- (NSString *)change 
+- (NSString *)change
 {
     float price = self.currentPrice.floatValue;
     float pre = self.preClosePrice.floatValue;
     if (pre)
     {
-        if (self.changeState > 0)
+        if(price == 0)
         {
-            return [NSString stringWithFormat:@"+%.2f%%",(price - pre)/pre * 100];
+            return @"+0.00%";
         }
         else
         {
-            return [NSString stringWithFormat:@"%.2f%%",(price - pre)/pre * 100];
+            if (self.changeState > 0)
+            {
+                return [NSString stringWithFormat:@"+%.2f%%",(price - pre)/pre * 100];
+            }
+            else
+            {
+                return [NSString stringWithFormat:@"%.2f%%",(price - pre)/pre * 100];
+            }
         }
     }
     else

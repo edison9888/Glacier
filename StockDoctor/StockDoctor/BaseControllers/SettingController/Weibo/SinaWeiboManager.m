@@ -9,7 +9,7 @@
 #import "SinaWeiboManager.h"
 #define kAppKey             @"3595089389"
 #define kAppSecret          @"4caf12978f7ef14b14d4bf689da236b6"
-#define kAppRedirectURI     @"http://itunes.apple.com/cn/app/id517609453?mt=8"
+#define kAppRedirectURI     @"http://www.9pxdesign.com/stockdoctor/"
 
 
 @implementation SinaWeiboManager

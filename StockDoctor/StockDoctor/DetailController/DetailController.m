@@ -105,7 +105,7 @@
 {
     if (self.stockBaseInfoModel.currentPrice.floatValue == 0)
     {
-        [[MTStatusBarOverlay sharedInstance] postErrorMessage:@"该股票数据异常，无法诊断，请选择其他股票" duration:3];
+        [[MTStatusBarOverlay sharedInstance] postErrorMessage:@"该股票数据异常，请稍后再试" duration:3];
     }
     else
     {
@@ -186,7 +186,7 @@
     NSDictionary * dict = [request.responseString objectFromJSONString];
 
     NSString * count = dict[@"cishu"];
-    NSString * diagStr = [NSString stringWithFormat:@"现在已有%@人诊断",count ? count :@"0"];
+    NSString * diagStr = [NSString stringWithFormat:@"已有%@人诊断",count ? count :@"0"];
     
     self.stockInfoView.diagnosisCountLabel.text = diagStr;
 }
@@ -230,6 +230,13 @@
             }
         }
     }];
+    
+    //去掉非今天的分时
+//    if (![[self.stockBaseInfoModel.tradeDate substringToIndex:8] isEqualToString: [[NSDate date] toString:@"yyyyMMdd"]] )
+//    {
+//        [self requestForTrendAndInfo];
+//        return;
+//    }
     
     self.stockInfoView.stockBaseInfoModel = self.stockBaseInfoModel;
     [self.stockInfoView reloadData];
