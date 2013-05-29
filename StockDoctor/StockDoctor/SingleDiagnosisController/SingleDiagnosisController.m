@@ -12,6 +12,8 @@
 #import "YLProgressBar.h"
 
 @interface SingleDiagnosisController ()
+@property (strong, nonatomic) IBOutlet UILabel *tipTextLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tipFirstLabel;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *probabilityLabel;
@@ -24,7 +26,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *weiboSuccessView;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
-
+@property (strong, nonatomic) NSArray * tipsContentList;
+@property (strong, nonatomic) NSArray * tipsProbList;
 @end
 
 @implementation SingleDiagnosisController
@@ -37,11 +40,28 @@
     self.detailController = nil;
 }
 
+//1～20分     风险过高，退出为宜
+//21～40分   谨慎持股，适度减仓
+//41～60分   持股观望，关注动能
+//61～80分   风险不高，持股待涨
+//81～99分   风险释放，买入为佳
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.tipsProbList = @[@(20),
+                              @(40),
+                              @(60),
+                              @(80),
+                              @(100)];
+        
+        self.tipsContentList = @[@"风险过高，退出为宜",
+                                 @"谨慎持股，适度减仓",
+                                 @"持股观望，关注动能",
+                                 @"风险不高，持股待涨",
+                                 @"风险释放，买入为佳",
+                                 ];
     }
     return self;
 }
@@ -82,6 +102,8 @@
         [self showProgressView:false content:@"开始分析"];
         self.progressView.hidden = false;
         self.probabilityLabel.hidden = true;
+        self.tipFirstLabel.hidden = true;
+        self.tipTextLabel.hidden = true;
         self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:0.05f target:self selector:@selector(onTimer:) userInfo:nil repeats:true];
         if ([self.detailController.searchModel isStock])
         {
@@ -131,6 +153,17 @@
         
         self.timeLabel.text = [formatter stringFromDate:[NSDate date]];
         self.probabilityLabel.text = self.probabilityText;
+        self.tipFirstLabel.hidden = false;
+        self.tipTextLabel.hidden = false;
+        
+        [self.tipsProbList enumerateObjectsUsingBlock:^(NSNumber * prob, NSUInteger idx, BOOL *stop) {
+            NSString * text = self.tipsContentList[idx];
+            if (self.probability <= prob.intValue)
+            {
+                self.tipTextLabel.text = text;
+                * stop = true;
+            }
+        }];
     }
 }
 
@@ -275,9 +308,8 @@
     [SinaWeiboManager instance].delegate = self;
     if (!needLogin || [[SinaWeiboManager instance] isAuth])
     {
-        extern CGImageRef UIGetScreenImage();//需要先extern
-        UIImage *image = [UIImage imageWithCGImage:UIGetScreenImage()];
-        [[SinaWeiboManager instance] postImageWeibo:text image:image receiver:self];
+        UIWindow * window = [UIApplication sharedApplication].keyWindow;
+        [[SinaWeiboManager instance] postImageWeibo:text image:window.currentImage receiver:self];
     }
     else
     {
@@ -355,6 +387,8 @@
     [self setWeiboSuccessView:nil];
     [self setActivityView:nil];
     [self setShareButton:nil];
+    [self setTipFirstLabel:nil];
+    [self setTipTextLabel:nil];
     [super viewDidUnload];
 }
 @end

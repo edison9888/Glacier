@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MyDraw/MyDraw.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:StockDoctor/StockDoctor.xcodeproj">
    </FileRef>
    <FileRef

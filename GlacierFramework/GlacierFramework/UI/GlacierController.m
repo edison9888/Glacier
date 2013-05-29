@@ -11,7 +11,6 @@
 #import "ASINetworkQueue.h"
 
 @interface GlacierController ()
--(void) doRawHttpRequest:(ASIHTTPRequest *) request;
 @end
 
 @implementation GlacierController

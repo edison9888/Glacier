@@ -25,4 +25,5 @@
 -(void) doHttpRequest:(NSString *) requestUrl userInfo:(NSDictionary *)info;
 -(void) doHttpRequest:(NSString *) requestUrl postData:(NSData *)data;
 -(void) doHttpRequest:(NSString *) requestUrl postJSONData:(JSONObject *)json;
+-(void) doRawHttpRequest:(ASIHTTPRequest *) request;
 @end
