@@ -80,6 +80,8 @@
 		5885340115B2F650009569A5 /* GlacierController.m in Sources */ = {isa = PBXBuildFile; fileRef = 588533FF15B2F650009569A5 /* GlacierController.m */; };
 		5885340415B2F725009569A5 /* SharedApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 5885340215B2F725009569A5 /* SharedApp.h */; settings = {ATTRIBUTES = (); }; };
 		5885340515B2F725009569A5 /* SharedApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 5885340315B2F725009569A5 /* SharedApp.m */; };
+		589035C017590F06002351EA /* GlaSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 589035BE17590F06002351EA /* GlaSegmentedControl.h */; };
+		589035C117590F06002351EA /* GlaSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 589035BF17590F06002351EA /* GlaSegmentedControl.m */; };
 		5898FB58171925D600F7616D /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898FB55171925D600F7616D /* DateHelpers.h */; };
 		5898FB59171925D600F7616D /* DateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898FB56171925D600F7616D /* DateHelpers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		58D341A617145D8D0055E971 /* BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A317145D8D0055E971 /* BlocksKit.h */; };
@@ -202,6 +204,8 @@
 		588533FF15B2F650009569A5 /* GlacierController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlacierController.m; sourceTree = "<group>"; };
 		5885340215B2F725009569A5 /* SharedApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedApp.h; sourceTree = "<group>"; };
 		5885340315B2F725009569A5 /* SharedApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedApp.m; sourceTree = "<group>"; };
+		589035BE17590F06002351EA /* GlaSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlaSegmentedControl.h; path = ../../../../TaxiSeeker/TaxiSeeker/RootControllers/HomeController/GlaSegmentedControl.h; sourceTree = "<group>"; };
+		589035BF17590F06002351EA /* GlaSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlaSegmentedControl.m; path = ../../../../TaxiSeeker/TaxiSeeker/RootControllers/HomeController/GlaSegmentedControl.m; sourceTree = "<group>"; };
 		5898FB55171925D600F7616D /* DateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelpers.h; sourceTree = "<group>"; };
 		5898FB56171925D600F7616D /* DateHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelpers.m; sourceTree = "<group>"; };
 		5898FB57171925D600F7616D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
@@ -446,6 +450,7 @@
 		588533FD15B2F640009569A5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				589035BD17590EB9002351EA /* GlaSegmentedControl */,
 				587EEDA31729654200455855 /* STSegmentedControl */,
 				58234A2617242E0A00091541 /* CurrentScreen */,
 				58234A21172429BC00091541 /* MTStatusBarOverlay */,
@@ -457,6 +462,16 @@
 				5885340315B2F725009569A5 /* SharedApp.m */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		589035BD17590EB9002351EA /* GlaSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				589035BE17590F06002351EA /* GlaSegmentedControl.h */,
+				589035BF17590F06002351EA /* GlaSegmentedControl.m */,
+			);
+			name = GlaSegmentedControl;
+			path = GlaSegmentControl;
 			sourceTree = "<group>";
 		};
 		5898FB54171925D600F7616D /* DateHelpers */ = {
@@ -701,6 +716,7 @@
 				583B83EE17368A1C0002A93C /* CSerializedJSONData.h in Headers */,
 				583B83F017368A1C0002A93C /* JSONRepresentation.h in Headers */,
 				583B846617369B2E0002A93C /* BaiduMobStat.h in Headers */,
+				589035C017590F06002351EA /* GlaSegmentedControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +822,7 @@
 				583B83EB17368A1C0002A93C /* CJSONScanner.m in Sources */,
 				583B83ED17368A1C0002A93C /* CJSONSerializer.m in Sources */,
 				583B83EF17368A1C0002A93C /* CSerializedJSONData.m in Sources */,
+				589035C117590F06002351EA /* GlaSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

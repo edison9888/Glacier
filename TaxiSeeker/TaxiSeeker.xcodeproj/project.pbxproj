@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 582A289117239DF1006C9A21 /* SinaWeibo.bundle */; };
+		583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F117368BC20002A93C /* CoreLocation.framework */; };
+		583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F317368BD80002A93C /* libstdc++.dylib */; };
+		583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F517368BF20002A93C /* CoreTelephony.framework */; };
+		583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846B17369D220002A93C /* libGlacierFramework.a */; };
+		583EF6EE1731615600E58CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6ED1731615600E58CFE /* Default.png */; };
+		584359691732AFCC009ACFB9 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 584359681732AFCC009ACFB9 /* noise.png */; };
+		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
+		585087091711A55200EA6820 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087081711A55200EA6820 /* Foundation.framework */; };
+		5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850870A1711A55200EA6820 /* CoreGraphics.framework */; };
+		585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087301711A8B800EA6820 /* libxml2.2.dylib */; };
+		585087331711A8C100EA6820 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087321711A8C100EA6820 /* libz.dylib */; };
+		585087351711A8CA00EA6820 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087341711A8C900EA6820 /* libsqlite3.0.dylib */; };
+		585087371711A8D100EA6820 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087361711A8D100EA6820 /* CFNetwork.framework */; };
+		585087391711A8D700EA6820 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087381711A8D700EA6820 /* Security.framework */; };
+		5850873B1711A8DF00EA6820 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */; };
+		5850873D1711A8E700EA6820 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873C1711A8E700EA6820 /* SystemConfiguration.framework */; };
+		5850873F1711A8EF00EA6820 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5850873E1711A8EF00EA6820 /* MessageUI.framework */; };
+		587EEDB71729682400455855 /* STSegmentedControl.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 587EEDB61729682400455855 /* STSegmentedControl.bundle */; };
+		587EEE45172C11C900455855 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 587EEE40172C11C900455855 /* Default-568h@2x.png */; };
+		587EEE46172C11C900455855 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 587EEE41172C11C900455855 /* Default@2x.png */; };
+		587EEE47172C11C900455855 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 587EEE42172C11C900455855 /* icon.png */; };
+		587EEE48172C11C900455855 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 587EEE43172C11C900455855 /* icon@2x.png */; };
+		587EEE49172C11C900455855 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 587EEE44172C11C900455855 /* iTunesArtwork */; };
+		5890357817590542002351EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890352517590542002351EA /* AppDelegate.m */; };
+		5890358F17590542002351EA /* ContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890355517590542002351EA /* ContainerController.m */; };
+		5890359017590542002351EA /* ContainerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5890355617590542002351EA /* ContainerController.xib */; };
+		5890359A17590542002351EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5890356D17590542002351EA /* InfoPlist.strings */; };
+		5890359C17590542002351EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890357117590542002351EA /* main.m */; };
+		5890359F17590542002351EA /* TaxiSeeker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5890357617590542002351EA /* TaxiSeeker-Info.plist */; };
+		589035A617590774002351EA /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589035A417590774002351EA /* HomePageController.m */; };
+		589035A717590774002351EA /* HomePageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 589035A517590774002351EA /* HomePageController.xib */; };
+		589035B2175909D0002351EA /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035A9175909D0002351EA /* home.png */; };
+		589035B3175909D0002351EA /* home2.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AA175909D0002351EA /* home2.png */; };
+		589035B4175909D0002351EA /* more.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AB175909D0002351EA /* more.png */; };
+		589035B5175909D0002351EA /* more2.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AC175909D0002351EA /* more2.png */; };
+		589035B6175909D0002351EA /* mydir.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AD175909D0002351EA /* mydir.png */; };
+		589035B7175909D0002351EA /* mydir2.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AE175909D0002351EA /* mydir2.png */; };
+		589035B8175909D0002351EA /* navbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035AF175909D0002351EA /* navbg.png */; };
+		589035B9175909D0002351EA /* taxicard.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035B0175909D0002351EA /* taxicard.png */; };
+		589035BA175909D0002351EA /* taxicard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035B1175909D0002351EA /* taxicard2.png */; };
+		589035BC17590A0D002351EA /* topbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035BB17590A0D002351EA /* topbar.png */; };
+		589035CD1759879D002351EA /* TabButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 589035CC1759879D002351EA /* TabButton.m */; };
+		589035CF175987AE002351EA /* TabButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 589035CE175987AE002351EA /* TabButton.xib */; };
+		589035D117598DC5002351EA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D017598DC5002351EA /* bg.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		582A289117239DF1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
+		583B83F117368BC20002A93C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		583B83F317368BD80002A93C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		583B83F517368BF20002A93C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		583B846B17369D220002A93C /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
+		583EF6ED1731615600E58CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		584359681732AFCC009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
+		585087031711A55200EA6820 /* TaxiSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		585087061711A55200EA6820 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		585087081711A55200EA6820 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5850870A1711A55200EA6820 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		585087301711A8B800EA6820 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		585087321711A8C100EA6820 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		585087341711A8C900EA6820 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		585087361711A8D100EA6820 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		585087381711A8D700EA6820 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5850873C1711A8E700EA6820 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5850873E1711A8EF00EA6820 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		587EEDB61729682400455855 /* STSegmentedControl.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = STSegmentedControl.bundle; sourceTree = "<group>"; };
+		587EEE40172C11C900455855 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		587EEE41172C11C900455855 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		587EEE42172C11C900455855 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		587EEE43172C11C900455855 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		587EEE44172C11C900455855 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		5890352417590542002351EA /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5890352517590542002351EA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5890355417590542002351EA /* ContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerController.h; sourceTree = "<group>"; };
+		5890355517590542002351EA /* ContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerController.m; sourceTree = "<group>"; };
+		5890355617590542002351EA /* ContainerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerController.xib; sourceTree = "<group>"; };
+		5890356E17590542002351EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5890357117590542002351EA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5890357617590542002351EA /* TaxiSeeker-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TaxiSeeker-Info.plist"; sourceTree = "<group>"; };
+		5890357717590542002351EA /* TaxiSeeker-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaxiSeeker-Prefix.pch"; sourceTree = "<group>"; };
+		589035A317590774002351EA /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
+		589035A417590774002351EA /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
+		589035A517590774002351EA /* HomePageController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageController.xib; sourceTree = "<group>"; };
+		589035A9175909D0002351EA /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		589035AA175909D0002351EA /* home2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home2.png; sourceTree = "<group>"; };
+		589035AB175909D0002351EA /* more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more.png; sourceTree = "<group>"; };
+		589035AC175909D0002351EA /* more2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more2.png; sourceTree = "<group>"; };
+		589035AD175909D0002351EA /* mydir.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mydir.png; sourceTree = "<group>"; };
+		589035AE175909D0002351EA /* mydir2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mydir2.png; sourceTree = "<group>"; };
+		589035AF175909D0002351EA /* navbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbg.png; sourceTree = "<group>"; };
+		589035B0175909D0002351EA /* taxicard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taxicard.png; sourceTree = "<group>"; };
+		589035B1175909D0002351EA /* taxicard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taxicard2.png; sourceTree = "<group>"; };
+		589035BB17590A0D002351EA /* topbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topbar.png; sourceTree = "<group>"; };
+		589035CB1759879D002351EA /* TabButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabButton.h; sourceTree = "<group>"; };
+		589035CC1759879D002351EA /* TabButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabButton.m; sourceTree = "<group>"; };
+		589035CE175987AE002351EA /* TabButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabButton.xib; sourceTree = "<group>"; };
+		589035D017598DC5002351EA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		585087001711A55200EA6820 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */,
+				583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */,
+				583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */,
+				583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */,
+				5850873F1711A8EF00EA6820 /* MessageUI.framework in Frameworks */,
+				5850873D1711A8E700EA6820 /* SystemConfiguration.framework in Frameworks */,
+				5850873B1711A8DF00EA6820 /* MobileCoreServices.framework in Frameworks */,
+				585087391711A8D700EA6820 /* Security.framework in Frameworks */,
+				585087371711A8D100EA6820 /* CFNetwork.framework in Frameworks */,
+				585087351711A8CA00EA6820 /* libsqlite3.0.dylib in Frameworks */,
+				585087331711A8C100EA6820 /* libz.dylib in Frameworks */,
+				585087311711A8B800EA6820 /* libxml2.2.dylib in Frameworks */,
+				585087071711A55200EA6820 /* UIKit.framework in Frameworks */,
+				585087091711A55200EA6820 /* Foundation.framework in Frameworks */,
+				5850870B1711A55200EA6820 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		585086FA1711A55200EA6820 = {
+			isa = PBXGroup;
+			children = (
+				5890352317590542002351EA /* TaxiSeeker */,
+				5866A20F171A83480095C4FE /* Resource */,
+				585087051711A55200EA6820 /* Frameworks */,
+				585087041711A55200EA6820 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		585087041711A55200EA6820 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				585087031711A55200EA6820 /* TaxiSeeker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		585087051711A55200EA6820 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				583B846B17369D220002A93C /* libGlacierFramework.a */,
+				583B83F517368BF20002A93C /* CoreTelephony.framework */,
+				583B83F317368BD80002A93C /* libstdc++.dylib */,
+				583B83F117368BC20002A93C /* CoreLocation.framework */,
+				5850873E1711A8EF00EA6820 /* MessageUI.framework */,
+				5850873C1711A8E700EA6820 /* SystemConfiguration.framework */,
+				5850873A1711A8DF00EA6820 /* MobileCoreServices.framework */,
+				585087381711A8D700EA6820 /* Security.framework */,
+				585087361711A8D100EA6820 /* CFNetwork.framework */,
+				585087341711A8C900EA6820 /* libsqlite3.0.dylib */,
+				585087321711A8C100EA6820 /* libz.dylib */,
+				585087301711A8B800EA6820 /* libxml2.2.dylib */,
+				585087061711A55200EA6820 /* UIKit.framework */,
+				585087081711A55200EA6820 /* Foundation.framework */,
+				5850870A1711A55200EA6820 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5866A20F171A83480095C4FE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				589035A8175909D0002351EA /* TabBar */,
+				589035D017598DC5002351EA /* bg.png */,
+				584359681732AFCC009ACFB9 /* noise.png */,
+				589035BB17590A0D002351EA /* topbar.png */,
+				587EEE3F172C11C700455855 /* Project */,
+				587EEDB61729682400455855 /* STSegmentedControl.bundle */,
+				582A289117239DF1006C9A21 /* SinaWeibo.bundle */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		587EEE3F172C11C700455855 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				583EF6ED1731615600E58CFE /* Default.png */,
+				587EEE40172C11C900455855 /* Default-568h@2x.png */,
+				587EEE41172C11C900455855 /* Default@2x.png */,
+				587EEE42172C11C900455855 /* icon.png */,
+				587EEE43172C11C900455855 /* icon@2x.png */,
+				587EEE44172C11C900455855 /* iTunesArtwork */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		5890352317590542002351EA /* TaxiSeeker */ = {
+			isa = PBXGroup;
+			children = (
+				589035A1175906F8002351EA /* RootControllers */,
+				5890352417590542002351EA /* AppDelegate.h */,
+				5890352517590542002351EA /* AppDelegate.m */,
+				5890355417590542002351EA /* ContainerController.h */,
+				5890355517590542002351EA /* ContainerController.m */,
+				5890355617590542002351EA /* ContainerController.xib */,
+				589035CA17598788002351EA /* TabButton */,
+				589035A017590580002351EA /* Supporting Files */,
+			);
+			path = TaxiSeeker;
+			sourceTree = "<group>";
+		};
+		589035A017590580002351EA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5890356D17590542002351EA /* InfoPlist.strings */,
+				5890357117590542002351EA /* main.m */,
+				5890357617590542002351EA /* TaxiSeeker-Info.plist */,
+				5890357717590542002351EA /* TaxiSeeker-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		589035A1175906F8002351EA /* RootControllers */ = {
+			isa = PBXGroup;
+			children = (
+				589035A217590757002351EA /* HomeController */,
+			);
+			path = RootControllers;
+			sourceTree = "<group>";
+		};
+		589035A217590757002351EA /* HomeController */ = {
+			isa = PBXGroup;
+			children = (
+				589035A317590774002351EA /* HomePageController.h */,
+				589035A417590774002351EA /* HomePageController.m */,
+				589035A517590774002351EA /* HomePageController.xib */,
+			);
+			path = HomeController;
+			sourceTree = "<group>";
+		};
+		589035A8175909D0002351EA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				589035A9175909D0002351EA /* home.png */,
+				589035AA175909D0002351EA /* home2.png */,
+				589035AB175909D0002351EA /* more.png */,
+				589035AC175909D0002351EA /* more2.png */,
+				589035AD175909D0002351EA /* mydir.png */,
+				589035AE175909D0002351EA /* mydir2.png */,
+				589035AF175909D0002351EA /* navbg.png */,
+				589035B0175909D0002351EA /* taxicard.png */,
+				589035B1175909D0002351EA /* taxicard2.png */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		589035CA17598788002351EA /* TabButton */ = {
+			isa = PBXGroup;
+			children = (
+				589035CB1759879D002351EA /* TabButton.h */,
+				589035CC1759879D002351EA /* TabButton.m */,
+				589035CE175987AE002351EA /* TabButton.xib */,
+			);
+			path = TabButton;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		585087021711A55200EA6820 /* TaxiSeeker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 585087261711A55200EA6820 /* Build configuration list for PBXNativeTarget "TaxiSeeker" */;
+			buildPhases = (
+				585086FF1711A55200EA6820 /* Sources */,
+				585087001711A55200EA6820 /* Frameworks */,
+				585087011711A55200EA6820 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TaxiSeeker;
+			productName = StockDoctor;
+			productReference = 585087031711A55200EA6820 /* TaxiSeeker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		585086FB1711A55200EA6820 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = glacier;
+			};
+			buildConfigurationList = 585086FE1711A55200EA6820 /* Build configuration list for PBXProject "TaxiSeeker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 585086FA1711A55200EA6820;
+			productRefGroup = 585087041711A55200EA6820 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				585087021711A55200EA6820 /* TaxiSeeker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		585087011711A55200EA6820 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */,
+				587EEDB71729682400455855 /* STSegmentedControl.bundle in Resources */,
+				587EEE45172C11C900455855 /* Default-568h@2x.png in Resources */,
+				587EEE46172C11C900455855 /* Default@2x.png in Resources */,
+				587EEE47172C11C900455855 /* icon.png in Resources */,
+				587EEE48172C11C900455855 /* icon@2x.png in Resources */,
+				587EEE49172C11C900455855 /* iTunesArtwork in Resources */,
+				583EF6EE1731615600E58CFE /* Default.png in Resources */,
+				584359691732AFCC009ACFB9 /* noise.png in Resources */,
+				5890359017590542002351EA /* ContainerController.xib in Resources */,
+				5890359A17590542002351EA /* InfoPlist.strings in Resources */,
+				5890359F17590542002351EA /* TaxiSeeker-Info.plist in Resources */,
+				589035A717590774002351EA /* HomePageController.xib in Resources */,
+				589035B2175909D0002351EA /* home.png in Resources */,
+				589035B3175909D0002351EA /* home2.png in Resources */,
+				589035B4175909D0002351EA /* more.png in Resources */,
+				589035B5175909D0002351EA /* more2.png in Resources */,
+				589035B6175909D0002351EA /* mydir.png in Resources */,
+				589035B7175909D0002351EA /* mydir2.png in Resources */,
+				589035B8175909D0002351EA /* navbg.png in Resources */,
+				589035B9175909D0002351EA /* taxicard.png in Resources */,
+				589035BA175909D0002351EA /* taxicard2.png in Resources */,
+				589035BC17590A0D002351EA /* topbar.png in Resources */,
+				589035CF175987AE002351EA /* TabButton.xib in Resources */,
+				589035D117598DC5002351EA /* bg.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		585086FF1711A55200EA6820 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5890357817590542002351EA /* AppDelegate.m in Sources */,
+				5890358F17590542002351EA /* ContainerController.m in Sources */,
+				5890359C17590542002351EA /* main.m in Sources */,
+				589035A617590774002351EA /* HomePageController.m in Sources */,
+				589035CD1759879D002351EA /* TabButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5890356D17590542002351EA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5890356E17590542002351EA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		585087241711A55200EA6820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		585087251711A55200EA6820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		585087271711A55200EA6820 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaxiSeeker/TaxiSeeker-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TaxiSeeker/TaxiSeeker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/** $(SRCROOT)/../GlacierFramework/**";
+				VALID_ARCHS = "armv7 armv7s";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		585087281711A55200EA6820 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TaxiSeeker/TaxiSeeker-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/TaxiSeeker/TaxiSeeker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(BUILT_PRODUCTS_DIR)/libGlacierFramework.a",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/** $(SRCROOT)/../GlacierFramework/**";
+				VALID_ARCHS = "armv7 armv7s";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		585086FE1711A55200EA6820 /* Build configuration list for PBXProject "TaxiSeeker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				585087241711A55200EA6820 /* Debug */,
+				585087251711A55200EA6820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		585087261711A55200EA6820 /* Build configuration list for PBXNativeTarget "TaxiSeeker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				585087271711A55200EA6820 /* Debug */,
+				585087281711A55200EA6820 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 585086FB1711A55200EA6820 /* Project object */;
+}
