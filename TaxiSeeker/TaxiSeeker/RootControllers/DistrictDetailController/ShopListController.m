@@ -9,12 +9,12 @@
 #define Price_Tag 1
 #define Room_Tag 2
 
-#import "DistrictDetailController.h"
+#import "ShopListController.h"
 #import "IndicatorTab.h"
 #import "DistrictDetailCell.h"
 #import "ShopModel.h"
 
-@interface DistrictDetailController ()
+@interface ShopListController ()
 @property (strong, nonatomic) IBOutlet GlaSegmentedControl *segTab;
 @property (nonatomic, strong) NSArray * tabTitleList;
 @property (strong, nonatomic) IBOutlet UIImageView *indicatorView;
@@ -24,7 +24,7 @@
 @property (nonatomic,assign) NSUInteger selectedSortType;
 @end
 
-@implementation DistrictDetailController
+@implementation ShopListController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,9 +101,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    DistrictDetailController * controller = [[DistrictDetailController alloc]init];
-//    controller.model = self.districtModelList[indexPath.row];
-//    [[ContainerController instance] pushControllerHideTab:controller animated:true];
 }
 
 - (void)changeStage:(NSUInteger)index
@@ -117,13 +114,13 @@
 
 - (void)requestForCommunityList
 {
-    NSString * url = [NSString stringWithFormat:@"http://www.down01.net/dirshanghai/getSortlist.php?distractId=%@&sort=%d&page=1&serviceId=16",self.model.gid,_selectedSortType];
+    NSString * url = [NSString stringWithFormat:@"http://www.down01.net/dirshanghai/getSortlist.php?sort=%d&page=1&search=&serviceId=%@",_selectedSortType,self.model.gid];
     [self doHttpRequest:url tag:_selectedSortType];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
-    self.communityModelList = [ShopModel parseJson:request.responseString key:@"villages"];
+    self.communityModelList = [ShopModel parseJson:request.responseString key:@"shops"];
     [_tableListView reloadData];
 }
 

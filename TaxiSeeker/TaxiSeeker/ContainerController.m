@@ -10,6 +10,9 @@
 #import "GlaSegmentedControl.h"
 #import "TabButton.h"
 #import "HomePageController.h"
+#import "MoreController.h"
+#import "MyDirController.h"
+
 #define AnimationTime 0.35f
 #define BarAniTime 0.2f
 
@@ -230,11 +233,11 @@
         case 0:
             contentController = [[HomePageController alloc]init];
             break;
-//        case 1:
-//            contentController = [[ChooseStocksController alloc]init];
-//            break;
-//        case 2:
-//            contentController = [[SettingController alloc]init];
+        case 3:
+            contentController = [[MyDirController alloc]init];
+            break;
+        case 4:
+            contentController = [[MoreController alloc]init];
             break;
         default:
             break;

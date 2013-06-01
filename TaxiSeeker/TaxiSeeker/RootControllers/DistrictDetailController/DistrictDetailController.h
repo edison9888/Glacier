@@ -9,6 +9,6 @@
 #import "GlacierController.h"
 #import "DistrictModel.h"
 
-@interface DistrictDetailController : GlacierController
+@interface DistrictDetailController : GlacierController<GlaSegmentedControlDelegate, UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) DistrictModel * model;
 @end

@@ -11,6 +11,9 @@
 #import "DistrictCell.h"
 #import "DistrictModel.h"
 #import "DistrictDetailController.h"
+#import "ShopListController.h"
+#import "ServiceModel.h"
+#import "NearByCell.h"
 
 #define DistrictTable 0
 #define NearByTable 1
@@ -25,6 +28,7 @@
 @property (nonatomic, strong) NSMutableDictionary * subViewDictionary;
 @property (strong, nonatomic) IBOutlet UIView *tableHolder;
 @property (nonatomic,strong) NSMutableArray * districtModelList;
+@property (nonatomic,strong) NSMutableArray * serviceModelList;
 @end
 
 @implementation HomePageController
@@ -90,6 +94,10 @@
         {
             [self requestForDistrictList];
         }
+        else if(index == NearByTable)
+        {
+            [self requestForServiceList];
+        }
     }
     
     [self.subViewDictionary enumerateKeysAndObjectsUsingBlock:^(NSNumber * key, UITableView * obj, BOOL *stop) {
@@ -113,7 +121,7 @@
     }
     else
     {
-        return 0;
+        return self.serviceModelList.count;
     }
 }
 
@@ -133,6 +141,24 @@
         cell.imgBar.imageURL = strToURL(model.icon);
         return cell;
     }
+    else if (tableView.tag == NearByTable)
+    {
+        NSString * idStr = @"NearByCell";
+        DistrictCell * cell = [tableView dequeueReusableCellWithIdentifier:idStr];
+        if (!cell)
+        {
+            cell = [[NSBundle mainBundle]loadNibNamed:@"NearByCell" owner:nil options:nil][0];
+        }
+        
+        ServiceModel * model = self.serviceModelList[indexPath.row];
+        cell.titleLabel.text = model.name;
+        cell.imgBar.imageURL = strToURL(model.icon);
+        return cell;
+    }
+    else
+    {
+        return nil;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,7 +169,12 @@
         controller.model = self.districtModelList[indexPath.row];
         [[ContainerController instance] pushControllerHideTab:controller animated:true];
     }
-    
+    else if (tableView.tag == NearByTable)
+    {
+        ShopListController * controller = [[ShopListController alloc]init];
+        controller.model = self.serviceModelList[indexPath.row];
+        [[ContainerController instance] pushControllerHideTab:controller animated:true];
+    }
 }
 
 
@@ -154,12 +185,24 @@
     [self doHttpRequest:@"http://www.down01.net/dirshanghai/getDistrict.php?cityid=021" tag:DistrictTable];
 }
 
+//附近服务请求
+- (void)requestForServiceList
+{
+    [self doHttpRequest:@"http://www.down01.net/dirshanghai/getService.php?type=all&lat=0.000000&lon=0.000000&villageId=0" tag:NearByTable];
+}
+
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     if (request.tag == DistrictTable)
     {
         self.districtModelList = [DistrictModel parseJson:request.responseString];
         UITableView * table = self.subViewDictionary[@(DistrictTable)];
+        [table reloadData];
+    }
+    else if (request.tag == NearByTable)
+    {
+        self.serviceModelList = [ServiceModel parseJson:request.responseString];
+        UITableView * table = self.subViewDictionary[@(NearByTable)];
         [table reloadData];
     }
 }

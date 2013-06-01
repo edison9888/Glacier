@@ -100,6 +100,7 @@
     if (self.indicatorView)
     {
         [self addSubview:self.indicatorView];
+        [self sendSubviewToBack:self.indicatorView];
         UIControl * control = self.buttonDictionary[@(self.selectedIndex)];
         CGFloat x = CGRectGetMidX(control.frame);
         if (animated)
