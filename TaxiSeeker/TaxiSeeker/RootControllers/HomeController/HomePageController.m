@@ -7,9 +7,24 @@
 //
 
 #import "HomePageController.h"
+#import "IndicatorTab.h"
+#import "DistrictCell.h"
+#import "DistrictModel.h"
+#import "DistrictDetailController.h"
+
+#define DistrictTable 0
+#define NearByTable 1
 
 @interface HomePageController ()
-
+@property (strong, nonatomic) IBOutlet GlaSegmentedControl *segTab;
+@property (nonatomic, strong) NSArray * tabTitleList;
+@property (strong, nonatomic) IBOutlet UIImageView *indicatorView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *leftBar;
+@property (strong, nonatomic) IBOutlet UIImageView *lineView;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
+@property (nonatomic, strong) NSMutableDictionary * subViewDictionary;
+@property (strong, nonatomic) IBOutlet UIView *tableHolder;
+@property (nonatomic,strong) NSMutableArray * districtModelList;
 @end
 
 @implementation HomePageController
@@ -18,7 +33,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.tabTitleList = @[@"By District",@"By Nearby"];
+        self.subViewDictionary = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -26,13 +42,145 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.leftBarButtonItem = self.leftBar;
+    self.navigationItem.rightBarButtonItem = self.rightBar;
+    
+    _segTab.showIndicator = true;
+    _segTab.buttomView = self.lineView;
+    _segTab.indicatorViewTopPadding = CGRectGetHeight(_segTab.bounds) - CGRectGetHeight(_lineView.bounds) - CGRectGetHeight(_indicatorView.bounds);
+    _segTab.indicatorView = self.indicatorView;
+    [_segTab initButtons];
+    [self changeStage:DistrictTable];
+    
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark Segments delegate
+
+- (NSUInteger)numForSegments
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return 2;
 }
 
+- (UIControl *)buttonForIndex:(NSUInteger)index
+{
+    IndicatorTab * btn = [[NSBundle mainBundle]loadNibNamed:@"IndicatorTab" owner:nil options:nil][0];
+    btn.textLabel.text = self.tabTitleList[index];
+    return btn;
+}
+
+- (void)onSegmentChange:(NSUInteger)index
+{
+    [self changeStage:index];
+}
+
+- (void)changeStage:(NSUInteger)index
+{
+    UITableView * table = self.subViewDictionary[@(index)];
+    if (!table)
+    {
+        table = [[UITableView alloc]initWithFrame:self.tableHolder.bounds];
+        table.tag = index;
+        table.delegate = self;
+        table.dataSource = self;
+        table.autoresizingMask = 0x3f;
+        table.backgroundColor = [UIColor clearColor];
+        [self.tableHolder addSubview:table];
+        [self.subViewDictionary setObject:table forKey:@(index)];
+        if (index == DistrictTable)
+        {
+            [self requestForDistrictList];
+        }
+    }
+    
+    [self.subViewDictionary enumerateKeysAndObjectsUsingBlock:^(NSNumber * key, UITableView * obj, BOOL *stop) {
+        if (key.integerValue == index)
+        {
+            obj.hidden = false;
+        }
+        else
+        {
+            obj.hidden = true;
+        }
+    }];
+
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView.tag == DistrictTable)
+    {
+        return self.districtModelList.count;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == DistrictTable)
+    {
+        NSString * idStr = @"DistrictCell";
+        DistrictCell * cell = [tableView dequeueReusableCellWithIdentifier:idStr];
+        if (!cell)
+        {
+            cell = [[NSBundle mainBundle]loadNibNamed:@"DistrictCell" owner:nil options:nil][0];
+        }
+        
+        DistrictModel * model = self.districtModelList[indexPath.row];
+        cell.titleLabel.text = model.name;
+        cell.imgBar.imageURL = strToURL(model.icon);
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView.tag == DistrictTable)
+    {
+        DistrictDetailController * controller = [[DistrictDetailController alloc]init];
+        controller.model = self.districtModelList[indexPath.row];
+        [[ContainerController instance] pushControllerHideTab:controller animated:true];
+    }
+    
+}
+
+
+#pragma mark WebRequest
+//区域请求
+- (void)requestForDistrictList
+{
+    [self doHttpRequest:@"http://www.down01.net/dirshanghai/getDistrict.php?cityid=021" tag:DistrictTable];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    if (request.tag == DistrictTable)
+    {
+        self.districtModelList = [DistrictModel parseJson:request.responseString];
+        UITableView * table = self.subViewDictionary[@(DistrictTable)];
+        [table reloadData];
+    }
+}
+
+
+#pragma mark TextField Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return true;
+}
+
+
+- (void)viewDidUnload {
+    [self setSegTab:nil];
+    [self setIndicatorView:nil];
+    [self setLineView:nil];
+    [self setRightBar:nil];
+    [self setLeftBar:nil];
+    [self setTableHolder:nil];
+    [super viewDidUnload];
+}
 @end

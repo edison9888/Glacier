@@ -21,7 +21,6 @@
 		581D66AC16DBBC51007674F7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A116DBBC51007674F7 /* FMDatabaseQueue.m */; };
 		581D66AE16DBBC51007674F7 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 581D66A316DBBC51007674F7 /* FMResultSet.h */; };
 		581D66AF16DBBC51007674F7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 581D66A416DBBC51007674F7 /* FMResultSet.m */; };
-		5821015B17393B1C00CF5CC0 /* libBaiduMobStat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5821015A17393B1C00CF5CC0 /* libBaiduMobStat.a */; };
 		58234A24172429BC00091541 /* MTStatusBarOverlay.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A22172429BC00091541 /* MTStatusBarOverlay.h */; };
 		58234A25172429BC00091541 /* MTStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 58234A23172429BC00091541 /* MTStatusBarOverlay.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		58234A2917242E0A00091541 /* UIView+CurrentScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 58234A2717242E0A00091541 /* UIView+CurrentScreen.h */; };
@@ -84,6 +83,8 @@
 		589035C61759128D002351EA /* GlaSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 589035C41759128D002351EA /* GlaSegmentedControl.m */; };
 		5898FB58171925D600F7616D /* DateHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 5898FB55171925D600F7616D /* DateHelpers.h */; };
 		5898FB59171925D600F7616D /* DateHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5898FB56171925D600F7616D /* DateHelpers.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		58B4E5FB1759BFBD007393C1 /* SegBaseTabControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 58B4E5F91759BFBD007393C1 /* SegBaseTabControl.h */; };
+		58B4E5FC1759BFBD007393C1 /* SegBaseTabControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4E5FA1759BFBD007393C1 /* SegBaseTabControl.m */; };
 		58D341A617145D8D0055E971 /* BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A317145D8D0055E971 /* BlocksKit.h */; };
 		58D341A717145D8D0055E971 /* NSArray+BlocksKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */; };
 		58D341A817145D8D0055E971 /* NSArray+BlocksKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */; };
@@ -123,6 +124,16 @@
 		58EDDDDA15D5F4EF00D9AADC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9D15D5F4EF00D9AADC /* JSONKit.m */; };
 		58EDDDDB15D5F4EF00D9AADC /* JSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */; settings = {ATTRIBUTES = (); }; };
 		58EDDDDC15D5F4EF00D9AADC /* JSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EDDD9F15D5F4EF00D9AADC /* JSONObject.m */; };
+		58F426991759F70600D75BC0 /* EGOImageButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F4268F1759F70600D75BC0 /* EGOImageButton.h */; };
+		58F4269A1759F70600D75BC0 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426901759F70600D75BC0 /* EGOImageButton.m */; };
+		58F4269B1759F70600D75BC0 /* EGOImageLoadConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F426921759F70600D75BC0 /* EGOImageLoadConnection.h */; };
+		58F4269C1759F70600D75BC0 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426931759F70600D75BC0 /* EGOImageLoadConnection.m */; };
+		58F4269D1759F70600D75BC0 /* EGOImageLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F426941759F70600D75BC0 /* EGOImageLoader.h */; };
+		58F4269E1759F70600D75BC0 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426951759F70600D75BC0 /* EGOImageLoader.m */; };
+		58F4269F1759F70600D75BC0 /* EGOImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F426971759F70600D75BC0 /* EGOImageView.h */; };
+		58F426A01759F70600D75BC0 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426981759F70600D75BC0 /* EGOImageView.m */; };
+		58F426A31759F73200D75BC0 /* EGOCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 58F426A11759F73200D75BC0 /* EGOCache.h */; };
+		58F426A41759F73200D75BC0 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426A21759F73200D75BC0 /* EGOCache.m */; };
 		DD832FBD15B263FD00FBF9DE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD832FBC15B263FD00FBF9DE /* UIKit.framework */; };
 		DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD87036415AF1BBA0067B66C /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -209,6 +220,8 @@
 		5898FB55171925D600F7616D /* DateHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelpers.h; sourceTree = "<group>"; };
 		5898FB56171925D600F7616D /* DateHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelpers.m; sourceTree = "<group>"; };
 		5898FB57171925D600F7616D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		58B4E5F91759BFBD007393C1 /* SegBaseTabControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegBaseTabControl.h; sourceTree = "<group>"; };
+		58B4E5FA1759BFBD007393C1 /* SegBaseTabControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegBaseTabControl.m; sourceTree = "<group>"; };
 		58D341A317145D8D0055E971 /* BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocksKit.h; sourceTree = "<group>"; };
 		58D341A417145D8D0055E971 /* NSArray+BlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlocksKit.h"; sourceTree = "<group>"; };
 		58D341A517145D8D0055E971 /* NSArray+BlocksKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+BlocksKit.m"; sourceTree = "<group>"; };
@@ -248,6 +261,16 @@
 		58EDDD9D15D5F4EF00D9AADC /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		58EDDD9E15D5F4EF00D9AADC /* JSONObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONObject.h; sourceTree = "<group>"; };
 		58EDDD9F15D5F4EF00D9AADC /* JSONObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONObject.m; sourceTree = "<group>"; };
+		58F4268F1759F70600D75BC0 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
+		58F426901759F70600D75BC0 /* EGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageButton.m; sourceTree = "<group>"; };
+		58F426921759F70600D75BC0 /* EGOImageLoadConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoadConnection.h; sourceTree = "<group>"; };
+		58F426931759F70600D75BC0 /* EGOImageLoadConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoadConnection.m; sourceTree = "<group>"; };
+		58F426941759F70600D75BC0 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
+		58F426951759F70600D75BC0 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
+		58F426971759F70600D75BC0 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
+		58F426981759F70600D75BC0 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
+		58F426A11759F73200D75BC0 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		58F426A21759F73200D75BC0 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		DD832FBC15B263FD00FBF9DE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DD87036115AF1BBA0067B66C /* libGlacierFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGlacierFramework.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD87036415AF1BBA0067B66C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -261,7 +284,6 @@
 			files = (
 				DD832FBD15B263FD00FBF9DE /* UIKit.framework in Frameworks */,
 				DD87036515AF1BBA0067B66C /* Foundation.framework in Frameworks */,
-				5821015B17393B1C00CF5CC0 /* libBaiduMobStat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +489,8 @@
 		589035C21759128D002351EA /* GlaSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
+				58B4E5F91759BFBD007393C1 /* SegBaseTabControl.h */,
+				58B4E5FA1759BFBD007393C1 /* SegBaseTabControl.m */,
 				589035C31759128D002351EA /* GlaSegmentedControl.h */,
 				589035C41759128D002351EA /* GlaSegmentedControl.m */,
 			);
@@ -504,6 +528,7 @@
 		58EDDD7D15D5F4EF00D9AADC /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				58F4268C1759F70600D75BC0 /* EGOImageLoader */,
 				583B846017369B2E0002A93C /* BaiduMobStat */,
 				583B83B317368A1C0002A93C /* TouchJSON */,
 				583B3AC817354EB6002D8FE4 /* TBXML */,
@@ -600,6 +625,55 @@
 				580200B815D60752002A854F /* GCDAsyncSocket.m */,
 			);
 			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		58F4268C1759F70600D75BC0 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				58F4268D1759F70600D75BC0 /* EGOCache */,
+				58F4268E1759F70600D75BC0 /* EGOImageButton */,
+				58F426911759F70600D75BC0 /* EGOImageLoader */,
+				58F426961759F70600D75BC0 /* EGOImageView */,
+			);
+			path = EGOImageLoader;
+			sourceTree = "<group>";
+		};
+		58F4268D1759F70600D75BC0 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				58F426A11759F73200D75BC0 /* EGOCache.h */,
+				58F426A21759F73200D75BC0 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		58F4268E1759F70600D75BC0 /* EGOImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				58F4268F1759F70600D75BC0 /* EGOImageButton.h */,
+				58F426901759F70600D75BC0 /* EGOImageButton.m */,
+			);
+			path = EGOImageButton;
+			sourceTree = "<group>";
+		};
+		58F426911759F70600D75BC0 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				58F426921759F70600D75BC0 /* EGOImageLoadConnection.h */,
+				58F426931759F70600D75BC0 /* EGOImageLoadConnection.m */,
+				58F426941759F70600D75BC0 /* EGOImageLoader.h */,
+				58F426951759F70600D75BC0 /* EGOImageLoader.m */,
+			);
+			path = EGOImageLoader;
+			sourceTree = "<group>";
+		};
+		58F426961759F70600D75BC0 /* EGOImageView */ = {
+			isa = PBXGroup;
+			children = (
+				58F426971759F70600D75BC0 /* EGOImageView.h */,
+				58F426981759F70600D75BC0 /* EGOImageView.m */,
+			);
+			path = EGOImageView;
 			sourceTree = "<group>";
 		};
 		DD87035615AF1BBA0067B66C = {
@@ -716,6 +790,12 @@
 				583B83F017368A1C0002A93C /* JSONRepresentation.h in Headers */,
 				583B846617369B2E0002A93C /* BaiduMobStat.h in Headers */,
 				589035C51759128D002351EA /* GlaSegmentedControl.h in Headers */,
+				58B4E5FB1759BFBD007393C1 /* SegBaseTabControl.h in Headers */,
+				58F426991759F70600D75BC0 /* EGOImageButton.h in Headers */,
+				58F4269B1759F70600D75BC0 /* EGOImageLoadConnection.h in Headers */,
+				58F4269D1759F70600D75BC0 /* EGOImageLoader.h in Headers */,
+				58F4269F1759F70600D75BC0 /* EGOImageView.h in Headers */,
+				58F426A31759F73200D75BC0 /* EGOCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -822,6 +902,12 @@
 				583B83ED17368A1C0002A93C /* CJSONSerializer.m in Sources */,
 				583B83EF17368A1C0002A93C /* CSerializedJSONData.m in Sources */,
 				589035C61759128D002351EA /* GlaSegmentedControl.m in Sources */,
+				58B4E5FC1759BFBD007393C1 /* SegBaseTabControl.m in Sources */,
+				58F4269A1759F70600D75BC0 /* EGOImageButton.m in Sources */,
+				58F4269C1759F70600D75BC0 /* EGOImageLoadConnection.m in Sources */,
+				58F4269E1759F70600D75BC0 /* EGOImageLoader.m in Sources */,
+				58F426A01759F70600D75BC0 /* EGOImageView.m in Sources */,
+				58F426A41759F73200D75BC0 /* EGOCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,26 +978,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/GlacierFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierFramework/GlacierFramework-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat\"",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat/Release-iphoneos\"",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/3rdParty/ios_api/Release-iphoneos\"",
-					"\"$(SRCROOT)/3rdParty/ios_api/Release-iphonesimulator\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
-				VALID_ARCHS = "armv6 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -919,26 +997,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao yu (K4TPPU7GMA)";
+				CODE_SIGN_IDENTITY = "";
 				DSTROOT = /tmp/GlacierFramework.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GlacierFramework/GlacierFramework-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat\"",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat/Release-iphoneos\"",
-					"\"$(SRCROOT)/3rdParty/BaiduMobStat/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/3rdParty/ios_api/Release-iphoneos\"",
-					"\"$(SRCROOT)/3rdParty/ios_api/Release-iphonesimulator\"",
-				);
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB4AFDCA-D20E-40E6-9A55-7B5E656FADEE";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../** \"$(SRCROOT)/..\"/**";
-				VALID_ARCHS = "armv6 armv7 armv7s";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};

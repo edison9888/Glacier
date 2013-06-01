@@ -17,8 +17,12 @@
 @end
 
 @interface GlaSegmentedControl : UIView
+@property (nonatomic,assign) CGFloat indicatorViewTopPadding;
+@property (nonatomic,assign) bool showIndicator;
+@property (nonatomic,retain) UIView *buttomView;
+@property (nonatomic,retain) UIView * indicatorView;
 @property (nonatomic,retain) UIView * backgrondView;
 @property (nonatomic,assign) NSInteger selectedIndex;
-@property (nonatomic,assign) id<GlaSegmentedControlDelegate> delegate;
+@property (nonatomic,assign) IBOutlet id<GlaSegmentedControlDelegate> delegate;
 - (void)initButtons;
 @end

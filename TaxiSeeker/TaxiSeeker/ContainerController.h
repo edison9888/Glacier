@@ -7,7 +7,7 @@
 //
 
 #import "GlacierController.h"
-
+#define REQUEST_SHANGHAI_DIR_URL @"http://www.down01.net/dirshanghai/"
 @interface ContainerController : GlacierController<GlaSegmentedControlDelegate>
 + (ContainerController *)instance;
 - (void)pushController:(UIViewController *)controller animated:(BOOL)animated;
@@ -17,3 +17,5 @@
 - (void)hideTabAndPresentView:(UIView *)view;
 - (void)dissmisViewAndShowTab:(UIView *)view;
 @end
+
+NSURL* strToURL(NSString * str);

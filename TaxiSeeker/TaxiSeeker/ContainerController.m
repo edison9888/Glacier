@@ -266,6 +266,12 @@
 }
 @end
 
+NSURL * strToURL(NSString * str)
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",REQUEST_SHANGHAI_DIR_URL,str]];
+}
+
+
 @interface UINavigationBar(Custom)
 
 @end

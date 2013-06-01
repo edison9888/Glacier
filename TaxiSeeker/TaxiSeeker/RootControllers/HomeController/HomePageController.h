@@ -8,6 +8,6 @@
 
 #import "GlacierController.h"
 
-@interface HomePageController : GlacierController
+@interface HomePageController : GlacierController<GlaSegmentedControlDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @end

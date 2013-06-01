@@ -11,7 +11,6 @@
 		583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F117368BC20002A93C /* CoreLocation.framework */; };
 		583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F317368BD80002A93C /* libstdc++.dylib */; };
 		583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F517368BF20002A93C /* CoreTelephony.framework */; };
-		583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B846B17369D220002A93C /* libGlacierFramework.a */; };
 		583EF6EE1731615600E58CFE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 583EF6ED1731615600E58CFE /* Default.png */; };
 		584359691732AFCC009ACFB9 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 584359681732AFCC009ACFB9 /* noise.png */; };
 		585087071711A55200EA6820 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585087061711A55200EA6820 /* UIKit.framework */; };
@@ -36,7 +35,6 @@
 		5890359017590542002351EA /* ContainerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5890355617590542002351EA /* ContainerController.xib */; };
 		5890359A17590542002351EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5890356D17590542002351EA /* InfoPlist.strings */; };
 		5890359C17590542002351EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5890357117590542002351EA /* main.m */; };
-		5890359F17590542002351EA /* TaxiSeeker-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5890357617590542002351EA /* TaxiSeeker-Info.plist */; };
 		589035A617590774002351EA /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 589035A417590774002351EA /* HomePageController.m */; };
 		589035A717590774002351EA /* HomePageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 589035A517590774002351EA /* HomePageController.xib */; };
 		589035B2175909D0002351EA /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035A9175909D0002351EA /* home.png */; };
@@ -53,6 +51,18 @@
 		589035CF175987AE002351EA /* TabButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 589035CE175987AE002351EA /* TabButton.xib */; };
 		589035D117598DC5002351EA /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D017598DC5002351EA /* bg.png */; };
 		589035D417599214002351EA /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D317599214002351EA /* back.png */; };
+		589035D91759A32A002351EA /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D61759A32A002351EA /* line.png */; };
+		589035DA1759A32A002351EA /* search_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D71759A32A002351EA /* search_button.png */; };
+		589035DB1759A32A002351EA /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 589035D81759A32A002351EA /* triangle.png */; };
+		58B4E5F61759BA56007393C1 /* IndicatorTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B4E5F51759BA56007393C1 /* IndicatorTab.m */; };
+		58B4E5F81759BA65007393C1 /* IndicatorTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58B4E5F71759BA65007393C1 /* IndicatorTab.xib */; };
+		58B4E6001759C706007393C1 /* libGlacierFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58B4E5FF1759C706007393C1 /* libGlacierFramework.a */; };
+		58F426701759E91300D75BC0 /* DistrictCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F4266F1759E91300D75BC0 /* DistrictCell.m */; };
+		58F426721759E92200D75BC0 /* DistrictCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58F426711759E92200D75BC0 /* DistrictCell.xib */; };
+		58F426871759EAB900D75BC0 /* listbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 58F426861759EAB900D75BC0 /* listbg.png */; };
+		58F4268B1759EBDA00D75BC0 /* DistrictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F4268A1759EBDA00D75BC0 /* DistrictModel.m */; };
+		58F426A9175A046C00D75BC0 /* DistrictDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58F426A7175A046C00D75BC0 /* DistrictDetailController.m */; };
+		58F426AA175A046C00D75BC0 /* DistrictDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58F426A8175A046C00D75BC0 /* DistrictDetailController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,7 +70,6 @@
 		583B83F117368BC20002A93C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		583B83F317368BD80002A93C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		583B83F517368BF20002A93C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		583B846B17369D220002A93C /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
 		583EF6ED1731615600E58CFE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		584359681732AFCC009ACFB9 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		585087031711A55200EA6820 /* TaxiSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +117,22 @@
 		589035CE175987AE002351EA /* TabButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabButton.xib; sourceTree = "<group>"; };
 		589035D017598DC5002351EA /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		589035D317599214002351EA /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		589035D61759A32A002351EA /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		589035D71759A32A002351EA /* search_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_button.png; sourceTree = "<group>"; };
+		589035D81759A32A002351EA /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		58B4E5F41759BA56007393C1 /* IndicatorTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorTab.h; sourceTree = "<group>"; };
+		58B4E5F51759BA56007393C1 /* IndicatorTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorTab.m; sourceTree = "<group>"; };
+		58B4E5F71759BA65007393C1 /* IndicatorTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndicatorTab.xib; sourceTree = "<group>"; };
+		58B4E5FF1759C706007393C1 /* libGlacierFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGlacierFramework.a; path = "../../../../Library/Developer/Xcode/DerivedData/Glacier-cdkevdoiohinfkgqfbaavhfkwmns/Build/Products/Debug-iphoneos/libGlacierFramework.a"; sourceTree = "<group>"; };
+		58F4266E1759E91300D75BC0 /* DistrictCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrictCell.h; sourceTree = "<group>"; };
+		58F4266F1759E91300D75BC0 /* DistrictCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrictCell.m; sourceTree = "<group>"; };
+		58F426711759E92200D75BC0 /* DistrictCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DistrictCell.xib; sourceTree = "<group>"; };
+		58F426861759EAB900D75BC0 /* listbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listbg.png; sourceTree = "<group>"; };
+		58F426891759EBDA00D75BC0 /* DistrictModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrictModel.h; sourceTree = "<group>"; };
+		58F4268A1759EBDA00D75BC0 /* DistrictModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrictModel.m; sourceTree = "<group>"; };
+		58F426A6175A046C00D75BC0 /* DistrictDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistrictDetailController.h; sourceTree = "<group>"; };
+		58F426A7175A046C00D75BC0 /* DistrictDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistrictDetailController.m; sourceTree = "<group>"; };
+		58F426A8175A046C00D75BC0 /* DistrictDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DistrictDetailController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				583B846C17369D220002A93C /* libGlacierFramework.a in Frameworks */,
+				58B4E6001759C706007393C1 /* libGlacierFramework.a in Frameworks */,
 				583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */,
 				583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */,
 				583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */,
@@ -157,7 +182,7 @@
 		585087051711A55200EA6820 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				583B846B17369D220002A93C /* libGlacierFramework.a */,
+				58B4E5FF1759C706007393C1 /* libGlacierFramework.a */,
 				583B83F517368BF20002A93C /* CoreTelephony.framework */,
 				583B83F317368BD80002A93C /* libstdc++.dylib */,
 				583B83F117368BC20002A93C /* CoreLocation.framework */,
@@ -179,6 +204,7 @@
 		5866A20F171A83480095C4FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				589035D51759A2CB002351EA /* HomePages */,
 				589035D217599214002351EA /* Public */,
 				589035A8175909D0002351EA /* TabBar */,
 				589035D017598DC5002351EA /* bg.png */,
@@ -233,6 +259,7 @@
 		589035A1175906F8002351EA /* RootControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58F426A5175A044800D75BC0 /* DistrictDetailController */,
 				589035A217590757002351EA /* HomeController */,
 			);
 			path = RootControllers;
@@ -241,6 +268,8 @@
 		589035A217590757002351EA /* HomeController */ = {
 			isa = PBXGroup;
 			children = (
+				58F426881759EB6200D75BC0 /* Models */,
+				58F4266D1759E8E900D75BC0 /* Cells */,
 				589035A317590774002351EA /* HomePageController.h */,
 				589035A417590774002351EA /* HomePageController.m */,
 				589035A517590774002351EA /* HomePageController.xib */,
@@ -267,6 +296,9 @@
 		589035CA17598788002351EA /* TabButton */ = {
 			isa = PBXGroup;
 			children = (
+				58B4E5F41759BA56007393C1 /* IndicatorTab.h */,
+				58B4E5F51759BA56007393C1 /* IndicatorTab.m */,
+				58B4E5F71759BA65007393C1 /* IndicatorTab.xib */,
 				589035CB1759879D002351EA /* TabButton.h */,
 				589035CC1759879D002351EA /* TabButton.m */,
 				589035CE175987AE002351EA /* TabButton.xib */,
@@ -277,9 +309,49 @@
 		589035D217599214002351EA /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				58F426861759EAB900D75BC0 /* listbg.png */,
 				589035D317599214002351EA /* back.png */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		589035D51759A2CB002351EA /* HomePages */ = {
+			isa = PBXGroup;
+			children = (
+				589035D61759A32A002351EA /* line.png */,
+				589035D71759A32A002351EA /* search_button.png */,
+				589035D81759A32A002351EA /* triangle.png */,
+			);
+			path = HomePages;
+			sourceTree = "<group>";
+		};
+		58F4266D1759E8E900D75BC0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				58F4266E1759E91300D75BC0 /* DistrictCell.h */,
+				58F4266F1759E91300D75BC0 /* DistrictCell.m */,
+				58F426711759E92200D75BC0 /* DistrictCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		58F426881759EB6200D75BC0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				58F426891759EBDA00D75BC0 /* DistrictModel.h */,
+				58F4268A1759EBDA00D75BC0 /* DistrictModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		58F426A5175A044800D75BC0 /* DistrictDetailController */ = {
+			isa = PBXGroup;
+			children = (
+				58F426A6175A046C00D75BC0 /* DistrictDetailController.h */,
+				58F426A7175A046C00D75BC0 /* DistrictDetailController.m */,
+				58F426A8175A046C00D75BC0 /* DistrictDetailController.xib */,
+			);
+			path = DistrictDetailController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +416,6 @@
 				584359691732AFCC009ACFB9 /* noise.png in Resources */,
 				5890359017590542002351EA /* ContainerController.xib in Resources */,
 				5890359A17590542002351EA /* InfoPlist.strings in Resources */,
-				5890359F17590542002351EA /* TaxiSeeker-Info.plist in Resources */,
 				589035A717590774002351EA /* HomePageController.xib in Resources */,
 				589035B2175909D0002351EA /* home.png in Resources */,
 				589035B3175909D0002351EA /* home2.png in Resources */,
@@ -359,6 +430,13 @@
 				589035CF175987AE002351EA /* TabButton.xib in Resources */,
 				589035D117598DC5002351EA /* bg.png in Resources */,
 				589035D417599214002351EA /* back.png in Resources */,
+				589035D91759A32A002351EA /* line.png in Resources */,
+				589035DA1759A32A002351EA /* search_button.png in Resources */,
+				589035DB1759A32A002351EA /* triangle.png in Resources */,
+				58B4E5F81759BA65007393C1 /* IndicatorTab.xib in Resources */,
+				58F426721759E92200D75BC0 /* DistrictCell.xib in Resources */,
+				58F426871759EAB900D75BC0 /* listbg.png in Resources */,
+				58F426AA175A046C00D75BC0 /* DistrictDetailController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +452,10 @@
 				5890359C17590542002351EA /* main.m in Sources */,
 				589035A617590774002351EA /* HomePageController.m in Sources */,
 				589035CD1759879D002351EA /* TabButton.m in Sources */,
+				58B4E5F61759BA56007393C1 /* IndicatorTab.m in Sources */,
+				58F426701759E91300D75BC0 /* DistrictCell.m in Sources */,
+				58F4268B1759EBDA00D75BC0 /* DistrictModel.m in Sources */,
+				58F426A9175A046C00D75BC0 /* DistrictDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +556,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/** $(SRCROOT)/../GlacierFramework/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -499,7 +581,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/** $(SRCROOT)/../GlacierFramework/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../**";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

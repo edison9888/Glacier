@@ -7,6 +7,7 @@
 //
 
 #import "GlaSegmentedControl.h"
+#define Ani_Seconds 0.3f
 @interface GlaSegmentedControl()
 @property (nonatomic,strong) NSMutableDictionary * buttonDictionary;
 @end
@@ -15,6 +16,7 @@
 
 - (void)dealloc
 {
+    [_backgrondView release];
     [_buttonDictionary release];
     [super dealloc];
 }
@@ -79,6 +81,38 @@
         [self addSubview:cont];
         [cont addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside ];
     }
+    
+    if (self.buttomView)
+    {
+        self.buttomView.frame = CGRectMake(0,
+                                           CGRectGetHeight(self.bounds) - CGRectGetHeight(self.buttomView.bounds), CGRectGetWidth(self.bounds), CGRectGetHeight(self.buttomView.bounds));
+        [self addSubview:self.buttomView];
+    }
+    
+    if (self.showIndicator)
+    {
+        [self layoutIndicator:false];
+    }
+}
+
+- (void)layoutIndicator:(bool)animated
+{
+    if (self.indicatorView)
+    {
+        [self addSubview:self.indicatorView];
+        UIControl * control = self.buttonDictionary[@(self.selectedIndex)];
+        CGFloat x = CGRectGetMidX(control.frame);
+        if (animated)
+        {
+            [UIView animateWithDuration:Ani_Seconds animations:^{
+                self.indicatorView.frame = CGRectMake(x - CGRectGetWidth(self.indicatorView.bounds) /2, self.indicatorViewTopPadding, CGRectGetWidth(self.indicatorView.bounds), CGRectGetHeight(self.indicatorView.bounds));
+            }];
+        }
+        else
+        {
+            self.indicatorView.frame = CGRectMake(x - CGRectGetWidth(self.indicatorView.bounds) /2, self.indicatorViewTopPadding, CGRectGetWidth(self.indicatorView.bounds), CGRectGetHeight(self.indicatorView.bounds));
+        }
+    }
 }
 
 - (void)refreshButtonsState
@@ -99,6 +133,7 @@
     {
         [self.delegate onSegmentChange:self.selectedIndex];
     };
+    [self layoutIndicator:true];
 }
 
 @end
