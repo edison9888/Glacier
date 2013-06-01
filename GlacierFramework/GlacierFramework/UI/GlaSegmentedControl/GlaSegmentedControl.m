@@ -7,56 +7,100 @@
 //
 
 #import "GlaSegmentedControl.h"
+@interface GlaSegmentedControl()
+@property (nonatomic,strong) NSMutableDictionary * buttonDictionary;
+@end
 
 @implementation GlaSegmentedControl
 
-- (void)initWithImages:(NSArray *)buttonImages buttonTintNormal:(UIColor *)backgroundColorNormal buttonTintPressed:(UIColor *)backgroundColorPressed actionHandler:(void (^)(int buttonIndex))actionHandler {
-    buttons = [[NSMutableArray alloc] init];
-    int numberOfButtons = [buttonImages count];
-    for (int i = 0; i < numberOfButtons; i++) {
-        UIButton *newButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        newButton.frame = CGRectMake(i * (self.frame.size.width/numberOfButtons), 0, self.frame.size.width/numberOfButtons, self.frame.size.height);
-        newButton.layer.bounds = CGRectMake(0, 0, self.frame.size.width/numberOfButtons, self.frame.size.height);
-        newButton.layer.borderWidth = .5;
-        newButton.layer.borderColor = [UIColor colorWithWhite:.6 alpha:1].CGColor;
-        newButton.backgroundColor = backgroundColorNormal;
-        newButton.clipsToBounds = YES;
-        newButton.layer.masksToBounds = YES;
-        
-        CAGradientLayer *shineLayer = [CAGradientLayer layer];
-        shineLayer.frame = newButton.layer.bounds;
-        shineLayer.colors = [NSArray arrayWithObjects:
-                             (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                             (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
-                             (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
-                             (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
-                             (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                             nil];
-        shineLayer.locations = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:0.0f],
-                                [NSNumber numberWithFloat:0.5f],
-                                [NSNumber numberWithFloat:0.5f],
-                                [NSNumber numberWithFloat:0.8f],
-                                [NSNumber numberWithFloat:1.0f],
-                                nil];
-        [newButton.layer addSublayer:shineLayer];
-        
-        [newButton addTarget:self action:@selector(buttonUp:event:) forControlEvents:(UIControlEventTouchUpOutside|UIControlEventTouchUpInside|UIControlEventTouchCancel|UIControlEventTouchDragExit)];
-        [newButton addTarget:self action:@selector(buttonDown:event:) forControlEvents:UIControlEventTouchDown|UIControlEventTouchDragEnter];
-        [newButton addTarget:self action:@selector(buttonPressed:event:) forControlEvents:UIControlEventTouchUpInside];
-        [newButton setImage:[buttonImages objectAtIndex:i] forState:UIControlStateNormal];
-        
-        [self addSubview:newButton];
-        [buttons addObject:newButton];
-        buttonBackgroundColorForStateNormal = backgroundColorNormal;
-        buttonBackgroundColorForStatePressed = backgroundColorPressed;
-    }
-    self.layer.cornerRadius = 10;
-    self.layer.borderColor = [UIColor colorWithWhite:.6 alpha:1].CGColor;
-    self.layer.borderWidth = 1;
-    self.clipsToBounds = YES;
-    buttonPressActionHandler = [actionHandler copy];
+- (void)dealloc
+{
+    [_buttonDictionary release];
+    [super dealloc];
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        self.buttonDictionary = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (NSUInteger)numForSegments
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(numForSegments)])
+    {
+        return [self.delegate numForSegments];
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+- (UIControl *)buttonForIndex:(NSUInteger)index
+{
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(buttonForIndex:)])
+    {
+        return [self.delegate buttonForIndex:index];
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self refreshButtonsState];
+}
+
+- (void)initButtons
+{
+    if (self.backgrondView)
+    {
+        self.backgrondView.frame = self.bounds;
+        [self addSubview:self.backgrondView];
+    }
+    
+    CGFloat xAxis = 0;
+    CGFloat step = self.bounds.size.width / [self numForSegments];
+    for (int i = 0; i< [self numForSegments]; i++)
+    {
+        UIControl * cont = [self buttonForIndex:i];
+        cont.frame = CGRectMake(xAxis + i * step, 0, step, CGRectGetHeight(self.bounds));
+        cont.tag = i;
+        [self.buttonDictionary setObject:cont forKey:@(i)];
+        [self addSubview:cont];
+        [cont addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside ];
+    }
+}
+
+- (void)refreshButtonsState
+{
+    [self.buttonDictionary enumerateKeysAndObjectsUsingBlock:^(NSNumber * index, UIControl * btn, BOOL *stop) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(onChangeState:index:selected:)])
+        {
+            [self.delegate onChangeState:btn index:index.integerValue selected:index.integerValue == self.selectedIndex];
+        };
+    }];
+}
+
+- (void)onClick:(UIControl *)sender
+{
+    self.selectedIndex = sender.tag;
+    [self refreshButtonsState];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(onSegmentChange:)])
+    {
+        [self.delegate onSegmentChange:self.selectedIndex];
+    };
+}
 
 @end
+
+

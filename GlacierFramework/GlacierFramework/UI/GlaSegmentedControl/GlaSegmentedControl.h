@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GlaSegmentedControl : UIView
+@protocol GlaSegmentedControlDelegate <NSObject>
+- (NSUInteger)numForSegments;
+- (UIControl *)buttonForIndex:(NSUInteger)index;
+@optional
+- (void)onChangeState:(id)button index:(NSUInteger)index selected:(BOOL)isSelected;
+- (void)onSegmentChange:(NSUInteger)index;
+@end
 
+@interface GlaSegmentedControl : UIView
+@property (nonatomic,retain) UIView * backgrondView;
+@property (nonatomic,assign) NSInteger selectedIndex;
+@property (nonatomic,assign) id<GlaSegmentedControlDelegate> delegate;
+- (void)initButtons;
 @end

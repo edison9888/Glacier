@@ -10,4 +10,6 @@
 
 @interface TabButton : UIControl
 
+@property (strong, nonatomic) IBOutlet UIImageView *imgBar;
+@property (strong, nonatomic) IBOutlet UILabel *textLabel;
 @end

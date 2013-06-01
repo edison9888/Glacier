@@ -43,6 +43,7 @@
 						<string key="NSFrameSize">{320, 500}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="433708991"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -57,6 +58,7 @@
 						<string key="NSFrameSize">{320, 451}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="550326109"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -64,7 +66,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIView" id="960639953">
+					<object class="IBUIView" id="550326109">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 451}, {320, 54}}</string>
@@ -84,7 +86,7 @@
 				<string key="NSFrameSize">{320, 500}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="433708991"/>
+				<reference key="NSNextKeyView" ref="920530660"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -167,17 +169,9 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tabBar</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="960639953"/>
-					</object>
-					<int key="connectionID">35</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tabBarView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="960639953"/>
+						<reference key="destination" ref="550326109"/>
 					</object>
 					<int key="connectionID">36</int>
 				</object>
@@ -205,7 +199,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="433708991"/>
 							<reference ref="920530660"/>
-							<reference ref="960639953"/>
+							<reference ref="550326109"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -246,7 +240,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">33</int>
-						<reference key="object" ref="960639953"/>
+						<reference key="object" ref="550326109"/>
 						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -276,17 +270,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ContainerController</string>
 					<string key="superclassName">GlacierController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">onBackClick:</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">onBackClick:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">onBackClick:</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bgImg">UIImageView</string>
 						<string key="bgView">UIView</string>

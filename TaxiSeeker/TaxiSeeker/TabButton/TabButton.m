@@ -9,10 +9,6 @@
 #import "TabButton.h"
 
 @implementation TabButton
-{
-    IBOutlet UIImageView *_tabImg;
-}
-
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -22,10 +18,11 @@
     return self;
 }
 
--(void)setHighlighted:(BOOL)highlighted
-{
-    [super setHighlighted:highlighted];
-    [_tabImg setHighlighted:highlighted];
-}
+//-(void)setHighlighted:(BOOL)highlighted
+//{
+//    [super setHighlighted:highlighted];
+//    _imgBar.highlighted = highlighted;
+//    _textLabel.highlighted = highlighted;
+//}
 
 @end

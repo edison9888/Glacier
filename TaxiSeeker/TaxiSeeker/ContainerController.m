@@ -9,6 +9,7 @@
 #import "ContainerController.h"
 #import "GlaSegmentedControl.h"
 #import "TabButton.h"
+#import "HomePageController.h"
 #define AnimationTime 0.35f
 #define BarAniTime 0.2f
 
@@ -20,6 +21,10 @@
 @property (strong, nonatomic) UIViewController * presentController;
 @property (strong, nonatomic) IBOutlet UIImageView *bgImg;
 @property (strong, nonatomic) UIView * presentBgView;
+
+@property (nonatomic, strong) NSArray * normalTabImgList;
+@property (nonatomic, strong) NSArray * selectedTabImgList;
+@property (nonatomic, strong) NSArray * tabTitleList;
 @end
 
 @implementation ContainerController
@@ -32,6 +37,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _tabIndex = -1;
+        self.normalTabImgList = @[@"home.png",@"taxicard.png",@"taxicard.png",@"mydir.png",@"more.png",];
+        self.selectedTabImgList = @[@"home2.png",@"taxicard2.png",@"taxicard2.png",@"mydir2.png",@"more2.png",];
+        self.tabTitleList = @[@"Index",@"GroupBuy",@"TaxiCard",@"MyDir",@"More"];
+        
     }
     return self;
 }
@@ -43,7 +52,14 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
     _tabBarView.delegate = self;
     [self initDatabase];
+   
+    UIImageView * tabBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"navbg.png"]];
+    _tabBarView.backgrondView = tabBG;
+    [_tabBarView initButtons];
+    [self switchViews:0];
 }
+
+#pragma mark Segments delegate
 
 - (NSUInteger)numForSegments
 {
@@ -53,8 +69,32 @@
 - (UIControl *)buttonForIndex:(NSUInteger)index
 {
     TabButton * btn = [[NSBundle mainBundle]loadNibNamed:@"TabButton" owner:nil options:nil][0];
+    [btn.imgBar setImage:[UIImage imageNamed:self.normalTabImgList[index]]];
+    [btn.imgBar setHighlightedImage:[UIImage imageNamed:self.selectedTabImgList[index]]];
+    btn.textLabel.text = self.tabTitleList[index];
     return btn;
 }
+
+- (void)onChangeState:(id)button index:(NSUInteger)index selected:(BOOL)isSelected
+{
+    TabButton * btn = button;
+    
+    if (isSelected) {
+        [btn.imgBar setImage:[UIImage imageNamed:self.selectedTabImgList[index]]];
+        [btn.imgBar setHighlightedImage:[UIImage imageNamed:self.normalTabImgList[index]]];
+        btn.textLabel.textColor = [UIColor whiteColor];
+        btn.textLabel.highlightedTextColor = [UIColor lightGrayColor];
+    }
+    else
+    {
+        [btn.imgBar setImage:[UIImage imageNamed:self.normalTabImgList[index]]];
+        [btn.imgBar setHighlightedImage:[UIImage imageNamed:self.selectedTabImgList[index]]];
+        btn.textLabel.textColor = [UIColor lightGrayColor];
+        btn.textLabel.highlightedTextColor = [UIColor whiteColor];
+    }
+}
+
+#pragma mark init Database
 
 - (void)initDatabase
 {
@@ -186,19 +226,19 @@
     
     GlacierController * contentController = nil;
     
-//    switch (index) {
-//        case 0:
-//            contentController = [[DiagnosisController alloc]init];
-//            break;
+    switch (index) {
+        case 0:
+            contentController = [[HomePageController alloc]init];
+            break;
 //        case 1:
 //            contentController = [[ChooseStocksController alloc]init];
 //            break;
 //        case 2:
 //            contentController = [[SettingController alloc]init];
-//            break;
-//        default:
-//            break;
-//    }
+            break;
+        default:
+            break;
+    }
     
     UINavigationController * navigation = [[UINavigationController alloc] initWithRootViewController:contentController];
     self.naviController = navigation;
