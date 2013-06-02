@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		582A289217239DF1006C9A21 /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 582A289117239DF1006C9A21 /* SinaWeibo.bundle */; };
+		583AB03B175B4869002A0C6A /* TaxiCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583AB039175B4869002A0C6A /* TaxiCardController.m */; };
+		583AB03C175B4869002A0C6A /* TaxiCardController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583AB03A175B4869002A0C6A /* TaxiCardController.xib */; };
+		583AB041175B4905002A0C6A /* GroupBuyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583AB03F175B4905002A0C6A /* GroupBuyController.m */; };
+		583AB042175B4905002A0C6A /* GroupBuyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583AB040175B4905002A0C6A /* GroupBuyController.xib */; };
 		583B83F217368BC20002A93C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F117368BC20002A93C /* CoreLocation.framework */; };
 		583B83F417368BD80002A93C /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F317368BD80002A93C /* libstdc++.dylib */; };
 		583B83F617368BF20002A93C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 583B83F517368BF20002A93C /* CoreTelephony.framework */; };
@@ -137,6 +141,12 @@
 
 /* Begin PBXFileReference section */
 		582A289117239DF1006C9A21 /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
+		583AB038175B4869002A0C6A /* TaxiCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaxiCardController.h; sourceTree = "<group>"; };
+		583AB039175B4869002A0C6A /* TaxiCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaxiCardController.m; sourceTree = "<group>"; };
+		583AB03A175B4869002A0C6A /* TaxiCardController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaxiCardController.xib; sourceTree = "<group>"; };
+		583AB03E175B4905002A0C6A /* GroupBuyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBuyController.h; sourceTree = "<group>"; };
+		583AB03F175B4905002A0C6A /* GroupBuyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBuyController.m; sourceTree = "<group>"; };
+		583AB040175B4905002A0C6A /* GroupBuyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupBuyController.xib; sourceTree = "<group>"; };
 		583B83F117368BC20002A93C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		583B83F317368BD80002A93C /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		583B83F517368BF20002A93C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -313,6 +323,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		583AB037175B4851002A0C6A /* TaxiCardController */ = {
+			isa = PBXGroup;
+			children = (
+				583AB038175B4869002A0C6A /* TaxiCardController.h */,
+				583AB039175B4869002A0C6A /* TaxiCardController.m */,
+				583AB03A175B4869002A0C6A /* TaxiCardController.xib */,
+			);
+			path = TaxiCardController;
+			sourceTree = "<group>";
+		};
+		583AB03D175B48F4002A0C6A /* GroupBuyController */ = {
+			isa = PBXGroup;
+			children = (
+				583AB03E175B4905002A0C6A /* GroupBuyController.h */,
+				583AB03F175B4905002A0C6A /* GroupBuyController.m */,
+				583AB040175B4905002A0C6A /* GroupBuyController.xib */,
+			);
+			path = GroupBuyController;
+			sourceTree = "<group>";
+		};
 		583BDBD9175AF08100ECDD21 /* ShopDetailController */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +518,8 @@
 		589035A1175906F8002351EA /* RootControllers */ = {
 			isa = PBXGroup;
 			children = (
+				583AB03D175B48F4002A0C6A /* GroupBuyController */,
+				583AB037175B4851002A0C6A /* TaxiCardController */,
 				583BDBD9175AF08100ECDD21 /* ShopDetailController */,
 				58F426A5175A044800D75BC0 /* DistrictDetailController */,
 				589035A217590757002351EA /* HomeController */,
@@ -824,6 +856,8 @@
 				583BDC0F175B10FC00ECDD21 /* Icon-Small-50.png in Resources */,
 				583BDC10175B10FC00ECDD21 /* Icon-Small.png in Resources */,
 				583BDC12175B12E600ECDD21 /* iTunesArtwork in Resources */,
+				583AB03C175B4869002A0C6A /* TaxiCardController.xib in Resources */,
+				583AB042175B4905002A0C6A /* GroupBuyController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +888,8 @@
 				583BDBEC175AF9C800ECDD21 /* IndicatorTab.m in Sources */,
 				583BDBEE175AF9C800ECDD21 /* TabButton.m in Sources */,
 				583BDC16175B1A4000ECDD21 /* ShopDetailModel.m in Sources */,
+				583AB03B175B4869002A0C6A /* TaxiCardController.m in Sources */,
+				583AB041175B4905002A0C6A /* GroupBuyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

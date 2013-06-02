@@ -12,6 +12,8 @@
 #import "HomePageController.h"
 #import "MoreController.h"
 #import "MyDirController.h"
+#import "TaxiCardController.h"
+#import "GroupBuyController.h"
 
 #define AnimationTime 0.35f
 #define BarAniTime 0.2f
@@ -232,6 +234,12 @@
     switch (index) {
         case 0:
             contentController = [[HomePageController alloc]init];
+            break;
+        case 1:
+            contentController = [[GroupBuyController alloc]init];
+            break;
+        case 2:
+            contentController = [[TaxiCardController alloc]init];
             break;
         case 3:
             contentController = [[MyDirController alloc]init];
