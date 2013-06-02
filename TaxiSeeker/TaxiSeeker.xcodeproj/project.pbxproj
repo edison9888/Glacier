@@ -521,10 +521,10 @@
 				583AB03D175B48F4002A0C6A /* GroupBuyController */,
 				583AB037175B4851002A0C6A /* TaxiCardController */,
 				583BDBD9175AF08100ECDD21 /* ShopDetailController */,
-				58F426A5175A044800D75BC0 /* DistrictDetailController */,
 				589035A217590757002351EA /* HomeController */,
 				58F426C7175A4BC200D75BC0 /* MoreController */,
 				58F426CB175A4BC400D75BC0 /* MyDirController */,
+				58F426A5175A044800D75BC0 /* DistrictDetailController */,
 			);
 			path = RootControllers;
 			sourceTree = "<group>";
