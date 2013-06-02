@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "GlaSegmentedControl.h"
+    #import "EGOImageView.h"
     #import "GlacierController.h"
     #import "ContainerController.h"
 #endif

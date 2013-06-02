@@ -68,6 +68,8 @@
 		583B83EF17368A1C0002A93C /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 583B83D217368A1C0002A93C /* CSerializedJSONData.m */; };
 		583B83F017368A1C0002A93C /* JSONRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 583B83D317368A1C0002A93C /* JSONRepresentation.h */; };
 		583B846617369B2E0002A93C /* BaiduMobStat.h in Headers */ = {isa = PBXBuildFile; fileRef = 583B846117369B2E0002A93C /* BaiduMobStat.h */; };
+		583BDBD5175AE53200ECDD21 /* SDSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 583BDBD3175AE53200ECDD21 /* SDSegmentedControl.h */; };
+		583BDBD6175AE53200ECDD21 /* SDSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 583BDBD4175AE53200ECDD21 /* SDSegmentedControl.m */; };
 		584359611732AF45009ACFB9 /* ARCMacro.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595C1732AF45009ACFB9 /* ARCMacro.h */; };
 		584359621732AF45009ACFB9 /* YLBackgroundView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5843595D1732AF45009ACFB9 /* YLBackgroundView.h */; };
 		584359631732AF45009ACFB9 /* YLBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5843595E1732AF45009ACFB9 /* YLBackgroundView.m */; };
@@ -203,6 +205,8 @@
 		583B83D217368A1C0002A93C /* CSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSerializedJSONData.m; sourceTree = "<group>"; };
 		583B83D317368A1C0002A93C /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		583B846117369B2E0002A93C /* BaiduMobStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobStat.h; sourceTree = "<group>"; };
+		583BDBD3175AE53200ECDD21 /* SDSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSegmentedControl.h; sourceTree = "<group>"; };
+		583BDBD4175AE53200ECDD21 /* SDSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSegmentedControl.m; sourceTree = "<group>"; };
 		5843595C1732AF45009ACFB9 /* ARCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCMacro.h; sourceTree = "<group>"; };
 		5843595D1732AF45009ACFB9 /* YLBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLBackgroundView.h; sourceTree = "<group>"; };
 		5843595E1732AF45009ACFB9 /* YLBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLBackgroundView.m; sourceTree = "<group>"; };
@@ -439,6 +443,15 @@
 			path = BaiduMobStat;
 			sourceTree = "<group>";
 		};
+		583BDBD2175AE53200ECDD21 /* SDSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				583BDBD3175AE53200ECDD21 /* SDSegmentedControl.h */,
+				583BDBD4175AE53200ECDD21 /* SDSegmentedControl.m */,
+			);
+			path = SDSegmentedControl;
+			sourceTree = "<group>";
+		};
 		5843595B1732AF45009ACFB9 /* YLProgressBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +485,7 @@
 		588533FD15B2F640009569A5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				583BDBD2175AE53200ECDD21 /* SDSegmentedControl */,
 				589035C21759128D002351EA /* GlaSegmentedControl */,
 				587EEDA31729654200455855 /* STSegmentedControl */,
 				58234A2617242E0A00091541 /* CurrentScreen */,
@@ -796,6 +810,7 @@
 				58F4269D1759F70600D75BC0 /* EGOImageLoader.h in Headers */,
 				58F4269F1759F70600D75BC0 /* EGOImageView.h in Headers */,
 				58F426A31759F73200D75BC0 /* EGOCache.h in Headers */,
+				583BDBD5175AE53200ECDD21 /* SDSegmentedControl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,6 +923,7 @@
 				58F4269E1759F70600D75BC0 /* EGOImageLoader.m in Sources */,
 				58F426A01759F70600D75BC0 /* EGOImageView.m in Sources */,
 				58F426A41759F73200D75BC0 /* EGOCache.m in Sources */,
+				583BDBD6175AE53200ECDD21 /* SDSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

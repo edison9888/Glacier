@@ -13,9 +13,10 @@
 #import "IndicatorTab.h"
 #import "DistrictDetailCell.h"
 #import "ShopModel.h"
+#import "SDSegmentedControl.h"
 
 @interface DistrictDetailController ()
-@property (strong, nonatomic) IBOutlet GlaSegmentedControl *segTab;
+@property (strong, nonatomic) IBOutlet SDSegmentedControl *segTab;
 @property (nonatomic, strong) NSArray * tabTitleList;
 @property (strong, nonatomic) IBOutlet UIImageView *indicatorView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *rightBar;
@@ -40,41 +41,14 @@
     [super viewDidLoad];
     self.title = self.model.name;
     self.navigationItem.rightBarButtonItem = self.rightBar;
-//    _segTab.showIndicator = true;
-    [_segTab initButtons];
+    
+    self.segTab.arrowSize = 0;
     [self changeStage:Service_Tag];
 }
 
-#pragma mark Segments delegate
-
-- (NSUInteger)numForSegments
-{
-    return 3;
-}
-
-- (UIControl *)buttonForIndex:(NSUInteger)index
-{
-    IndicatorTab * btn = [[NSBundle mainBundle]loadNibNamed:@"IndicatorTab" owner:nil options:nil][0];
-    btn.textLabel.text = self.tabTitleList[index];
-    return btn;
-}
-
-- (void)onSegmentChange:(NSUInteger)index
-{
-    [self changeStage:index];
-}
-
-- (void)onChangeState:(id)button index:(NSUInteger)index selected:(BOOL)isSelected
-{
-    IndicatorTab * btn = button;
-    if (isSelected)
-    {
-        [btn.textLabel setTextColor:[UIColor lightGrayColor]];
-    }
-    else
-    {
-        [btn.textLabel setTextColor:[UIColor grayColor]];
-    }
+- (IBAction)onValueChanged:(SDSegmentedControl *)sender {
+    
+     [self changeStage:sender.selectedSegmentIndex];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

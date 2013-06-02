@@ -11,8 +11,9 @@
 
 #import "ShopListController.h"
 #import "IndicatorTab.h"
-#import "DistrictDetailCell.h"
+#import "ShopCell.h"
 #import "ShopModel.h"
+#import "ShopDetailController.h"
 
 @interface ShopListController ()
 @property (strong, nonatomic) IBOutlet GlaSegmentedControl *segTab;
@@ -84,23 +85,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * idStr = @"DistrictDetailCell";
-    DistrictDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:idStr];
-    if (!cell)
+    static NSString* cellIdentifier = @"ShopCell";
+    ShopCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil )
     {
-        cell = [[NSBundle mainBundle]loadNibNamed:@"DistrictDetailCell" owner:nil options:nil][0];
+        UINib* nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-    
-    ShopModel * model = self.communityModelList[indexPath.row];
-    cell.titleLabel.text = model.name;
-    cell.addressLabel.text = model.address;
-    cell.railLabel.text = model.neardy;
-    cell.imgBar.imageURL = strToURL(model.icon);
+    ShopModel* model = self.communityModelList[indexPath.row];
+    cell.shopNameLable.text = model.name;
+    cell.shopAddressLable.text = model.address;
+    cell.shopPriceLable.text = [NSString stringWithFormat:@"Average Price:%@RMB",model.price];
+    cell.shopDistanceLable.text = [NSString stringWithFormat:@"%@m",model.neardyself];
+    cell.shopRateView.rank = model.star.floatValue;
+    cell.shopImageView.imageURL = strToURL(model.icon);
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ShopModel* model = self.communityModelList[indexPath.row];
+    ShopDetailController * controller = [[ShopDetailController alloc]init];
+    controller.shopModel = model;
+    [[ContainerController instance] pushControllerHideTab:controller animated:true];
 }
 
 - (void)changeStage:(NSUInteger)index
